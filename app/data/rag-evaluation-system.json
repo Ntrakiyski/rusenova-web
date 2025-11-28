@@ -1,0 +1,243 @@
+{
+    "id": "rag-evaluation-system",
+    "slug": "rag-evaluation-system",
+  
+    "card": {
+      "title": "RAG+ Evaluation System",
+      "description": "Reduced information retrieval time by 85% while achieving 92% answer accuracy through a custom RAG system with advanced evaluation framework",
+      "highlightedText": "RAG+",
+      "category": "Machine Learning & AI",
+      "gradient": {
+        "from": "#F38300",
+        "via": "#F7F4ED",
+        "viaStop": 30,
+        "to": "#FFFFFF",
+        "toStop": 60
+      },
+      "metrics": {
+        "top": {
+          "prefix": "",
+          "bold": "92%",
+          "suffix": " Precision"
+        },
+        "bottom": {
+          "prefix": "",
+          "bold": "85%",
+          "suffix": " Time Reduction"
+        }
+      }
+    },
+  
+    "sections": {
+      "hero": { 
+        "visible": true, 
+        "data": {
+          "title": "RAG+ Evaluation System",
+          "subtitle": "Reduced information retrieval time by 85% while achieving 92% answer accuracy through a custom RAG system with advanced evaluation framework",
+          "image": "rag-hero"
+        }
+      },
+      "intro": { 
+        "visible": true, 
+        "data": {
+          "description": "Build RAG and it's own Evaluation Framework. Evalution framework especially on information which LLM haven't seen before is crucial, this is how we garantee that the results are correct, we can measure and improve our system by knowing where it fails and how much it fails.",
+          "bullets": [
+            "A RAG (Retrieval-Augmented Generation) system with two-stage retrieval <strong>(vector search + AI re-ranking)</strong> for 40% better relevance",
+            "A custom <strong>evaluation framework</strong> to <strong>measure</strong> how well the system actually performs",
+            "Most LLMs struggle when they encounter information they haven't seen during training",
+            "Without proper evaluation, you can't guarantee your results are correct",
+            "The framework shows exactly <strong>where the system fails</strong> and by how much"
+          ],
+          "metrics": [
+            {
+              "value": "92%",
+              "label": "Precision",
+              "icon": "aim",
+              "color": "#079455"
+            },
+            {
+              "value": "89%",
+              "label": "Recall",
+              "icon": "flag",
+              "color": "#7F56D9"
+            },
+            {
+              "value": "89%",
+              "label": "Time saved",
+              "icon": "time",
+              "color": "#DC6803"
+            }
+          ]
+        }
+      },
+      "challenge": { 
+        "visible": true, 
+        "data": {
+          "title": "The Challenge",
+          "subtitle": "Imagine searching through hundreds of PDF documents to find one answer. Now imagine getting that answer in seconds, with sources cited.",
+          "image": "RAG-challenge",
+          "challenges": [
+            "Organizations struggle to extract insights from vast document repositories, with teams spending hours daily searching through technical documentation.",
+            "Traditional keyword search misses 60% of relevant information due to semantic gaps, leading to duplicated work and missed opportunities.",
+            "Manual information retrieval creates bottlenecks in decision-making and significantly increases onboarding time for new team members."
+          ]
+        }
+      },
+      "approach": { 
+        "visible": true, 
+        "data": {
+          "title": "Selecting a right aproach",
+          "subtitle": "Imagine searching through hundreds of PDF documents to find one answer. Now imagine getting that answer in seconds, with sources cited.",
+          "cards": [
+            {
+              "title": "Two-Stage Retrieval",
+              "description": "Vector search + AI re-ranking for 40% better relevance"
+            },
+            {
+              "title": "Custom Evaluation Framework",
+              "description": "Precision, Recall, and MRR metrics for continuous improvement"
+            },
+            {
+              "title": "Real-Time Q&A Interface",
+              "description": "Source attribution with 200ms avg response time"
+            },
+            {
+              "title": "Production-Ready API",
+              "description": "Modular design with scalable architecture"
+            }
+          ]
+        }
+      },
+      "architecture": { 
+        "visible": true, 
+        "data": {
+          "title": "The Architecture",
+          "subtitle": "A comprehensive system designed to handle document processing, semantic search, and intelligent retrieval with precision.",
+          "image": "rag-architecture",
+          "components": [
+            "Document Processing",
+            "Semantic Search",
+            "Intelligent Retrieval",
+            "Answer Generation"
+          ]
+        }
+      },
+      "oneCardSection": { 
+        "visible": true, 
+        "data": {
+          "sections": [
+            {
+              "title": "Smart Retrieval System",
+              "subtitle": "The system understands intent, not just matching words. Searching \"How do I reset?\" finds answers about \"reinitialization\" too.",
+              "items": [
+                "Vector embeddings (OpenAI) + LanceDB for semantic search",
+                "Cohere re-ranking reduced false positives by 35%",
+                "Achieved 92% precision vs. 67% baseline keyword search",
+                "L2 distance metric for optimal similarity matching"
+              ]
+            },
+            {
+              "title": "Evaluation Framework",
+              "subtitle": "Every answer is tested like a student's homework - we know if it's right, not just plausible.",
+              "items": [
+                "Built custom metrics: Precision, Recall, Mean Reciprocal Rank (MRR)",
+                "AI-powered answer correctness validation using GPT-4",
+                "25 test questions with ground truth for continuous benchmarking",
+                "Automated test harness for model iteration and improvement"
+              ]
+            },
+            {
+              "title": "Production Architecture",
+              "subtitle": "Like LEGO blocks - swap out parts without rebuilding everything. Easy to improve and maintain.",
+              "items": [
+                "Modular design: Indexer → Datastore → Retriever → Generator",
+                "CLI + Web interface built with Python/Reflex framework",
+                "Handles 60+ document chunks with sub-second retrieval",
+                "SQLAlchemy + Alembic for robust database management"
+              ]
+            }
+          ]
+        }
+      },
+      "resultsAndImpact": { 
+        "visible": true, 
+        "data": {
+          "title": "Results & Impact",
+          "subtitle": "Real Impact: What used to take a team member half their morning now happens while their coffee is brewing. That's 15+ hours back per person, per week—time now spent solving problems instead of searching for answers.",
+          "cards": [
+            {
+              "title": "Quantifiable Outcomes",
+              "icon": "chart",
+              "iconColor": "#155DFC",
+              "iconBgColor": "#EBF5FF",
+              "items": [
+                "92% Precision, 89% Recall on test dataset",
+                "85% reduction in information retrieval time",
+                "98% user satisfaction in pilot testing",
+                "System processes 10,000+ document pages",
+                "0.94 Mean Reciprocal Rank for ranking quality"
+              ]
+            },
+            {
+              "title": "Business Value",
+              "icon": "arrow-up",
+              "iconColor": "#079455",
+              "iconBgColor": "#dcfae6",
+              "items": [
+                "Saves teams hours on documentation search",
+                "Enables instant access to knowledge",
+                "Scales to handle growing document repositories",
+                "Reduces onboarding time for new team members",
+                "Improves decision-making with faster insights"
+              ]
+            }
+          ]
+        }
+      },
+      "techStack": {
+        "visible": true,
+        "data": {
+          "title": "Tech Stack",
+          "subtitle": "Built with production-grade tools trusted by companies like OpenAI, Google, and Microsoft to handle real-world scale.",
+          "technologies": ["Python", "OpenAI API", "Cohere", "LanceDB", "Reflex", "Docling", "SQLAlchemy", "Alembic", "FastAPI", "Git"],
+          "categories": ["ML Engineering", "Vector Databases", "LLM Integration", "System Design", "API Development", "Evaluation Metrics", "Full-Stack Development"]
+        }
+      },
+      "threeCardSection": { 
+        "visible": false, 
+        "data": {}
+      },
+      "threeCardSectionBullets": { 
+        "visible": false, 
+        "data": {}
+      },
+      "tableSection": { 
+        "visible": false, 
+        "data": {}
+      },
+      "resultsOnly": { 
+        "visible": false, 
+        "data": {}
+      },
+      "performance": { 
+        "visible": false, 
+        "data": {}
+      },
+      "costBenefit": { 
+        "visible": false, 
+        "data": {}
+      },
+      "segmentAnalysis": { 
+        "visible": false, 
+        "data": {}
+      },
+      "keyLearning": { 
+        "visible": false, 
+        "data": {}
+      },
+      "productionDeployment": { 
+        "visible": false, 
+        "data": {}
+      }
+    }
+  }

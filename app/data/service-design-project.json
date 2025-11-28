@@ -1,0 +1,56 @@
+{
+  "id": "service-design",
+  "title": "Service Design",
+  "subtitle": "Designing end-to-end service experiences for various clients and industries.",
+  "heroBackground": "bg-[#252222]",
+  "titleHighlight": "20+ Projects",
+  "intro": {
+    "title": "Service Design Philosophy",
+    "features": [
+      {
+        "title": "Holistic experiences",
+        "description": "Creating holistic experiences that span digital and physical touchpoints. During my 3+ years at Telenor Bulgaria, I worked on over 20 cross-platform projects and developed expertise in service design methodologies and tools."
+      },
+      {
+        "title": "Complex ecosystems",
+        "description": "Specialized in designing for complex ecosystems and service journeys, focusing on creating seamless experiences across multiple channels."
+      }
+    ]
+  },
+  "selectedWork": {
+    "title": "Selected Work",
+    "description": "Featured below are select projects from my broader portfolio. Happy to dive deeper into specific work"
+  },
+  "projects": [
+    {
+      "id": "methodology",
+      "title": "Service Design Methodology",
+      "description": "Comprehensive approach to designing end-to-end service experiences. User research and journey mapping, service blueprinting and touchpoint analysis, prototyping and testing service concepts, implementation and continuous improvement.",
+      "achievements": [
+        "User research and journey mapping",
+        "Service blueprinting and touchpoint analysis",
+        "Prototyping and testing service concepts",
+        "Implementation and continuous improvement"
+      ],
+      "images": ["/rag-results.png"],
+      "layout": "text-left"
+    },
+    {
+      "id": "case-studies",
+      "title": "Case Studies",
+      "description": "Examples of service design projects across different industries. Designed end-to-end experiences for various sectors including telecom, healthcare, e-commerce, and banking.",
+      "achievements": [
+        "Designed end-to-end onboarding experience for telecom customers",
+        "Created service blueprint for healthcare appointment system",
+        "Developed customer support service redesign for e-commerce platform",
+        "Designed multi-channel service experience for banking clients"
+      ],
+      "images": ["/rag-results.png"],
+      "layout": "text-left"
+    }
+  ],
+  "callout": {
+    "title": "Keep in mind",
+    "description": "What you see here is a snapshot - each project has layers of research, collaboration, and tough decisions that shaped the outcome. If something catches your eye, let's talk about how that experience translates to what you're working on."
+  }
+}
