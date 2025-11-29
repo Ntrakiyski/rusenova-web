@@ -7,7 +7,7 @@ import imgImage132 from "../../public/rag-results.png";
 import imgCrystal from "../../public/rag-results.png";
 import imgCubs from "../../public/rag-results.png";
 import imgTriangle from "../../public/rag-results.png";
-import spiralImage from "../../public/rag-results.png";
+import spiralImage from "../../public/fractal.png";
 import Link from 'next/link';
 
 // ML Data
@@ -210,22 +210,22 @@ export default function HomePage() {
 
   const features = [
     {
-      icon: imgCubs,
+      icon: imgCubs.src,
       title: 'AI integrations',
       description: 'Automate repetitive workflows and eliminate manual tasks'
     },
     {
-      icon: imgTriangle,
+      icon: imgTriangle.src,
       title: 'AI chatbots',
       description: 'Issues which resolves themselves 24/7'
     },
     {
-      icon: imgCubs,
+      icon: imgCubs.src,
       title: 'Custom AI apps',
       description: 'Specialized AI for your needs'
     },
     {
-      icon: imgTriangle,
+      icon: imgTriangle.src,
       title: 'Algorithm Advisory',
       description: 'Driving data-led business impact'
     }
@@ -273,7 +273,7 @@ export default function HomePage() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" as const }
     }
   };
 
@@ -293,7 +293,7 @@ export default function HomePage() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" as const }
     }
   };
 
@@ -315,7 +315,7 @@ export default function HomePage() {
                 <img 
                   alt="Gloria Logo" 
                   className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" 
-                  src={imgImage132} 
+                  src={imgImage132.src} 
                 />
               </div>
               <p 
@@ -508,7 +508,7 @@ export default function HomePage() {
                 </div>
               </div>
               
-              <img alt="" className="h-full w-auto object-contain pointer-events-none relative z-10" src={imgCrystal} />
+              <img alt="" className="h-full w-auto object-contain pointer-events-none relative z-10" src={imgCrystal.src} />
             </div>
           </div>
         </motion.div>
@@ -1174,7 +1174,7 @@ export default function HomePage() {
                   <img 
                     alt="" 
                     className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" 
-                    src={spiralImage} 
+                    src={spiralImage.src} 
                   />
                 </div>
               </div>

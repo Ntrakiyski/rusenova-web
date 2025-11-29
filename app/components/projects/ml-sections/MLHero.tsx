@@ -47,15 +47,6 @@ export default function MLHero({
                 width={592}
                 height={400}
               />
-              {decorationImage && (
-                <Image
-                  src={decorationImage}
-                  alt="Decoration"
-                  className="absolute -bottom-8 -right-8 w-[140px] sm:w-[180px] md:w-[294px] pointer-events-none"
-                  width={294}
-                  height={294}
-                />
-              )}
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@
 import { mlProjects } from '@/app/data/mlProjects';
 import { productDesignProjects } from '@/app/data/productDesignProjects';
 import homeContent from '@/app/data/homeContent.json';
+import { useState, useEffect } from 'react';
 
 import HeroSection from './home/HeroSection';
 import ServicesSection from './home/ServicesSection';
@@ -12,6 +13,23 @@ import PDPreviewSection from './home/PDPreviewSection';
 import AboutSection from './home/AboutSection';
 
 export default function HomePageContent() {
+  const [pdData, setPdData] = useState(productDesignProjects);
+
+  // Listen for custom event to refresh data
+  useEffect(() => {
+    const handleRefresh = async () => {
+      try {
+        // Dynamic import to bypass module caching
+        const moduleData = await import('@/app/data/productDesignProjects');
+        setPdData(moduleData.productDesignProjects);
+      } catch (error) {
+        console.error('Failed to refresh PD projects:', error);
+      }
+    };
+
+    window.addEventListener('refresh-pd-projects', handleRefresh);
+    return () => window.removeEventListener('refresh-pd-projects', handleRefresh);
+  }, []);
 
   return (
     <>
@@ -40,7 +58,7 @@ export default function HomePageContent() {
       {/* Product Design Preview Section */}
       <section id="experience">
         <PDPreviewSection
-          pdData={productDesignProjects}
+          pdData={pdData}
           colors={homeContent.colors}
         />
       </section>

@@ -194,7 +194,7 @@ export default function MLProjects() {
       <header className="bg-[#252222] relative z-10">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-[80px] flex items-center">
           <div className="flex items-center gap-3">
-            <img alt="Gloria Logo" className="w-10 h-10 object-cover" src={imgImage132} />
+            <img alt="Gloria Logo" className="w-10 h-10 object-cover" src={imgImage132.src} />
             <p className="font-['Bricolage_Grotesque',sans-serif] text-white text-xl sm:text-2xl" style={{ fontVariationSettings: "'opsz' 96, 'wdth' 100" }}>
               Gloria
             </p>
@@ -219,8 +219,8 @@ export default function MLProjects() {
             {/* Hero Image */}
             <div className="flex-1 w-full relative">
               <div className="relative w-full max-w-[592px] mx-auto">
-                <img alt="RAG Hero" className="w-full rounded-[12px] border border-white" src={imgImage139} />
-                <img alt="Decoration" className="absolute -bottom-8 -right-8 w-[140px] sm:w-[180px] md:w-[294px] pointer-events-none" src={imgImage155} />
+                <img alt="RAG Hero" className="w-full rounded-[12px] border border-white" src={imgImage139.src} />
+                <img alt="Decoration" className="absolute -bottom-8 -right-8 w-[140px] sm:w-[180px] md:w-[294px] pointer-events-none" src={imgImage155.src} />
               </div>
             </div>
           </div>
@@ -409,7 +409,7 @@ export default function MLProjects() {
           </div>
 
           <div className="flex justify-center">
-            <img alt="Architecture Diagram" className="w-full max-w-[800px] rounded-lg" src={imgImage268} />
+            <img alt="Architecture Diagram" className="w-full max-w-[800px] rounded-lg" src={imgImage268.src} />
           </div>
         </div>
       </section>
@@ -497,7 +497,7 @@ export default function MLProjects() {
 
           <div className="mb-8 flex justify-center">
             <div className="w-full max-w-[1216px]">
-              <img alt="RAG System Interface" className="w-full rounded-[12px] border border-white" src={imgImage139} />
+              <img alt="RAG System Interface" className="w-full rounded-[12px] border border-white" src={imgImage139.src} />
             </div>
           </div>
 

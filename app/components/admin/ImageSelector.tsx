@@ -101,6 +101,7 @@ function ImageSelector({
       const extension = img.type.toLowerCase();
       return imageTypes.includes(extension);
     })
+    .sort((a, b) => a.name.localeCompare(b.name))
     .map(img => ({
       value: `/${img.name}`,
       label: img.name,

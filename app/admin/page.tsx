@@ -141,7 +141,7 @@ export default function AdminPage() {
     }
   };
 
-  const updateField = (section: string, field: string, value: string | number | boolean) => {
+  const updateField = (section: string, field: string, value: string | number | boolean | string[]) => {
     setHomeContent(prev => {
       const newPrev = JSON.parse(JSON.stringify(prev)); // Deep clone
       const keys = field.split('.');
@@ -163,18 +163,18 @@ export default function AdminPage() {
     });
   };
 
-  // Project editing functions
+   // Project editing functions
   const updateProjectField = (projectType: 'ml' | 'pd', projectIndex: number, field: string, value: string | string[] | undefined) => {
     if (projectType === 'ml') {
       setMlProjectsData(prev => {
         const updated = [...prev];
-        updated[projectIndex] = { ...updated[projectIndex], [field]: value };
+        updated[projectIndex] = { ...updated[projectIndex], [field]: value } as typeof updated[0];
         return updated;
       });
     } else {
       setProductDesignProjectsData(prev => {
         const updated = [...prev];
-        updated[projectIndex] = { ...updated[projectIndex], [field]: value };
+        updated[projectIndex] = { ...updated[projectIndex], [field]: value } as typeof updated[0];
         return updated;
       });
     }
@@ -274,6 +274,9 @@ export default function AdminPage() {
       if (mlResponse.ok && pdResponse.ok) {
         setProjectSaveMessage('Projects saved successfully!');
         setTimeout(() => setProjectSaveMessage(''), 3000);
+        
+        // Trigger refresh event to update UI
+        window.dispatchEvent(new CustomEvent('refresh-pd-projects'));
       } else {
         setProjectSaveMessage('Error saving projects');
       }
@@ -615,7 +618,7 @@ export default function AdminPage() {
         return (
           <div className="space-y-4">
             <Label className="text-sm font-medium">Cards</Label>
-            {section.cards?.map((card: { title: string; description: string }, cardIndex: number) => (
+            {(section as any).cards?.map((card: { title: string; description: string }, cardIndex: number) => (
               <Card key={cardIndex} className="p-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -663,7 +666,7 @@ export default function AdminPage() {
         return (
           <div className="space-y-4">
             <Label className="text-sm font-medium">Cards</Label>
-            {section.cards?.map((card: { title: string; description: string }, cardIndex: number) => (
+            {(section as any).cards?.map((card: { title: string; description: string }, cardIndex: number) => (
               <Card key={cardIndex} className="p-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -711,7 +714,7 @@ export default function AdminPage() {
         return (
           <div className="space-y-4">
             <Label className="text-sm font-medium">Cards with Bullets</Label>
-            {section.cards?.map((card: { title: string; items: string[] }, cardIndex: number) => (
+            {(section as any).cards?.map((card: { title: string; items: string[] }, cardIndex: number) => (
               <Card key={cardIndex} className="p-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -775,7 +778,7 @@ export default function AdminPage() {
         return (
           <div className="space-y-4">
             <Label className="text-sm font-medium">Metrics</Label>
-            {section.metrics?.map((metric: { value: string; label: string }, metricIndex: number) => (
+            {(section as any).metrics?.map((metric: { value: string; label: string }, metricIndex: number) => (
               <Card key={metricIndex} className="p-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -1027,11 +1030,12 @@ export default function AdminPage() {
           </div>
         );
 
-      case 'cost-benefit':
+      case 'cost-benefit': {
+        const costBenefitSection = section as Extract<ProjectSection, { type: 'cost-benefit' }>;
         return (
           <div className="space-y-4">
             <Label className="text-sm font-medium">Cost-Benefit Items</Label>
-            {section.items?.map((item: { title: string; content: string | string[] }, itemIndex: number) => (
+            {costBenefitSection.items?.map((item, itemIndex: number) => (
               <Card key={itemIndex} className="p-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -1101,12 +1105,14 @@ export default function AdminPage() {
             </Button>
           </div>
         );
+      }
 
-      case 'segment-analysis':
+      case 'segment-analysis': {
+        const segmentAnalysisSection = section as Extract<ProjectSection, { type: 'segment-analysis' }>;
         return (
           <div className="space-y-4">
             <Label className="text-sm font-medium">Segments</Label>
-            {section.segments?.map((segment: { name: string; metrics: Array<{ name: string; value: string }> }, segmentIndex: number) => (
+            {segmentAnalysisSection.segments?.map((segment: { name: string; metrics: Array<{ name: string; value: string }> }, segmentIndex: number) => (
               <Card key={segmentIndex} className="p-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -1170,12 +1176,14 @@ export default function AdminPage() {
             </Button>
           </div>
         );
+      }
 
-      case 'key-learning':
+      case 'key-learning': {
+        const keyLearningSection = section as Extract<ProjectSection, { type: 'key-learning' }>;
         return (
           <div className="space-y-4">
             <Label className="text-sm font-medium">Learnings</Label>
-            {section.learnings?.map((learning: { title: string; description: string }, learningIndex: number) => (
+            {keyLearningSection.learnings?.map((learning: { title: string; description: string }, learningIndex: number) => (
               <Card key={learningIndex} className="p-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -1218,12 +1226,14 @@ export default function AdminPage() {
             </Button>
           </div>
         );
+      }
 
-      case 'production-deployment':
+      case 'production-deployment': {
+        const productionDeploymentSection = section as Extract<ProjectSection, { type: 'production-deployment' }>;
         return (
           <div className="space-y-4">
             <Label className="text-sm font-medium">Deployment Cards</Label>
-            {section.cards?.map((card: { title: string; icon?: string; bullets: string[] }, cardIndex: number) => (
+            {productionDeploymentSection.cards?.map((card: { title: string; icon?: string; bullets: string[] }, cardIndex: number) => (
               <Card key={cardIndex} className="p-4">
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
@@ -1291,6 +1301,7 @@ export default function AdminPage() {
             </Button>
           </div>
         );
+      }
       case 'evaluation':
       case 'production':
         return (
@@ -1322,12 +1333,13 @@ export default function AdminPage() {
           </div>
         );
 
-      case 'results':
+      case 'results': {
+        const resultsSection = section as Extract<ProjectSection, { type: 'results' }>;
         return (
           <div className="space-y-4">
             <div className="space-y-4">
               <Label className="text-sm font-medium">Outcomes</Label>
-              {section.outcomes?.map((outcome: string, outcomeIndex: number) => (
+              {resultsSection.outcomes?.map((outcome: string, outcomeIndex: number) => (
                 <div key={outcomeIndex} className="flex gap-2">
                   <Textarea
                     value={outcome}
@@ -1353,7 +1365,7 @@ export default function AdminPage() {
             </div>
             <div className="space-y-4">
               <Label className="text-sm font-medium">Business Value</Label>
-              {section.businessValue?.map((value: string, valueIndex: number) => (
+              {(resultsSection as any).businessValue?.map((value: string, valueIndex: number) => (
                 <div key={valueIndex} className="flex gap-2">
                   <Textarea
                     value={value}
@@ -1379,12 +1391,14 @@ export default function AdminPage() {
             </div>
           </div>
         );
+      }
 
-      case 'smart-retrieval':
+      case 'smart-retrieval': {
+        const smartRetrievalSection = section as Extract<ProjectSection, { type: 'smart-retrieval' }>;
         return (
           <div className="space-y-4">
             <Label className="text-sm font-medium">Smart Retrieval Items</Label>
-            {section.items?.map((item: string, itemIndex: number) => (
+            {smartRetrievalSection.items?.map((item: string, itemIndex: number) => (
               <div key={itemIndex} className="flex gap-2">
                 <Textarea
                   value={item}
@@ -1409,6 +1423,7 @@ export default function AdminPage() {
             </Button>
           </div>
         );
+      }
 
       case 'communication-framework':
       case 'admin':
@@ -2231,7 +2246,7 @@ export default function AdminPage() {
                               <div key={index} className="flex gap-2">
                                 <Input
                                   value={opportunity}
-                                  onChange={(e) => updateField(`contact.opportunities.0.${index}`, e.target.value)}
+                                  onChange={(e) => updateField('contact', `opportunities.0.${index}`, e.target.value)}
                                   placeholder="Opportunity name"
                                 />
                                 <Button
@@ -2265,7 +2280,7 @@ export default function AdminPage() {
                               <div key={index} className="flex gap-2">
                                 <Input
                                   value={opportunity}
-                                  onChange={(e) => updateField(`contact.opportunities.1.${index}`, e.target.value)}
+                                  onChange={(e) => updateField('contact', `opportunities.1.${index}`, e.target.value)}
                                   placeholder="Opportunity name"
                                 />
                                 <Button

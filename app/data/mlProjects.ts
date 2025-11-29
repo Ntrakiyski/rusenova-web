@@ -64,7 +64,7 @@ export const mlProjects: Project[] = [
         "type": "architecture",
         "title": "The Architecture",
         "description": "A comprehensive system designed to handle document processing, semantic search, and intelligent retrieval with precision.",
-        "image": "/rag-results.png"
+        "image": "/rag-architecture.png"
       },
       {
         "type": "smart-retrieval",
@@ -170,7 +170,7 @@ export const mlProjects: Project[] = [
     "gradientColors": [
       "#D7EBDF"
     ],
-    "heroImage": "/rag-results.png",
+    "heroImage": "/fraud-hero.png",
     "sections": [
       {
         "type": "intro",
@@ -333,6 +333,7 @@ export const mlProjects: Project[] = [
       {
         "type": "technical-performance",
         "title": "Technical Performance",
+        "description": "Comprehensive performance metrics and technical achievements of the fraud detection system.",
         "metrics": [
           {
             "name": "Recall",

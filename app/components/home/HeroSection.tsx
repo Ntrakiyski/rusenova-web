@@ -12,7 +12,7 @@ interface HeroSectionProps {
 export default function HeroSection({ content, colors }: HeroSectionProps) {
 
   return (
-    <section className={`relative pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden`} style={{ borderRadius: '0 0 60px 60px', background: 'linear-gradient(156deg, #F7F4ED 79.59%, #FD681D 111.61%)' }}>
+    <section className={`relative pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden`} style={{ borderRadius: '0 0 60px 60px'}}>
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 relative z-10">
         <div className="flex flex-col items-center gap-8 md:gap-12">
           <motion.p
@@ -85,6 +85,6 @@ export default function HeroSection({ content, colors }: HeroSectionProps) {
           </div>
         </div>
       </div>
-    </section>
-  );
-}
+    </section> 
+  )
+} 
