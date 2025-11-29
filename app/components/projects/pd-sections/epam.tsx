@@ -91,7 +91,7 @@ export default function Epam({ projectData }: EpamProps) {
   }));
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen w-full">
       {/* 1. Hero Header Section */}
       <PDHero
         title={title}
@@ -101,44 +101,50 @@ export default function Epam({ projectData }: EpamProps) {
       />
 
       {/* 2. Nutshell Section */}
-      <PDNutshell
-        title={intro.title}
-        features={intro.features}
-      />
+      <div className="max-w-full sm:max-w-[360px] md:max-w-[512px] lg:max-w-[1280px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-[32px]">
+        <PDNutshell
+          title={intro.title}
+          features={intro.features}
+        />
+      </div>
 
       {/* 3. Project Sections - Pattern: image left, image right, image left */}
       {fixedProjects.map((project, index) => {
         // Pattern: 0: left (image left), 1: right (image right), 2: left (image left)
         if (index % 2 === 0) {
           return (
-            <PDSectionLeft
-              key={project.id}
-              title={project.title}
-              description={project.description}
-              achievements={project.achievements}
-              images={project.images}
-              background="bg-[#f7f4ed]"
-            />
+            <div key={project.id} className="max-w-full sm:max-w-[360px] md:max-w-[512px] lg:max-w-[1280px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-[32px]">
+              <PDSectionLeft
+                title={project.title}
+                description={project.description}
+                achievements={project.achievements}
+                images={project.images}
+                background="bg-[#f7f4ed]"
+              />
+            </div>
           );
         } else {
           return (
-            <PDSectionRight
-              key={project.id}
-              title={project.title}
-              description={project.description}
-              achievements={project.achievements}
-              images={project.images}
-              background="bg-[#f7f4ed]"
-            />
+            <div key={project.id} className="max-w-full sm:max-w-[360px] md:max-w-[512px] lg:max-w-[1280px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-[32px]">
+              <PDSectionRight
+                title={project.title}
+                description={project.description}
+                achievements={project.achievements}
+                images={project.images}
+                background="bg-[#f7f4ed]"
+              />
+            </div>
           );
         }
       })}
 
       {/* 4. Keep In Mind Section */}
-      <PDKeepInMind
-        title={callout.title}
-        description={callout.description}
-      />
+      <div className="max-w-full sm:max-w-[360px] md:max-w-[512px] lg:max-w-[1280px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-[32px]">
+        <PDKeepInMind
+          title={callout.title}
+          description={callout.description}
+        />
+      </div>
     </div>
   );
 }

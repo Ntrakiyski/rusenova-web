@@ -2,32 +2,15 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import imgCubs from "@/public/rag-results.png";
-import imgTriangle from "@/public/rag-results.png";
+import { HomeContent } from '@/types/project';
 
-export default function FeaturesSection() {
-  const features = [
-    {
-      icon: imgCubs,
-      title: 'AI integrations',
-      description: 'Automate repetitive workflows and eliminate manual tasks'
-    },
-    {
-      icon: imgTriangle,
-      title: 'AI chatbots',
-      description: 'Issues which resolves themselves 24/7'
-    },
-    {
-      icon: imgCubs,
-      title: 'Custom AI apps',
-      description: 'Specialized AI for your needs'
-    },
-    {
-      icon: imgTriangle,
-      title: 'Algorithm Advisory',
-      description: 'Driving data-led business impact'
-    }
-  ];
+interface FeaturesSectionProps {
+  content: HomeContent['features'];
+  colors: HomeContent['colors'];
+}
+
+export default function FeaturesSection({ content, colors }: FeaturesSectionProps) {
+  const features = content.items;
 
   const featureContainerVariants = {
     hidden: { opacity: 0 },
@@ -45,12 +28,12 @@ export default function FeaturesSection() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" as const }
     }
   };
 
   return (
-    <section className="bg-black relative py-16 md:py-24 overflow-hidden">
+    <section className={`relative py-16 md:py-24 overflow-hidden`} style={{ backgroundColor: content.backgroundColor }}>
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -60,16 +43,16 @@ export default function FeaturesSection() {
           className="flex flex-col items-center gap-5 mb-12 md:mb-16"
         >
           <h2
-            className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-white text-[28px] md:text-[36px] text-center max-w-[768px]"
-            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+            className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[28px] md:text-[36px] text-center max-w-[768px]"
+            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: 'white' }}
           >
-            Building intelligence into your product
+            {content.title}
           </h2>
           <p
-            className="font-['Bricolage_Grotesque:Regular',sans-serif] text-white text-[16px] md:text-[20px] text-center max-w-[768px]"
-            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+            className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[16px] md:text-[20px] text-center max-w-[768px]"
+            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: 'white' }}
           >
-            ML systems that work technically and experiences that work for humans—because <span style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>you need both</span>.
+            {content.subtitle}
           </p>
         </motion.div>
 
@@ -84,7 +67,7 @@ export default function FeaturesSection() {
             <motion.div
               key={index}
               variants={featureItemVariants}
-              className="flex flex-col items-center gap-6 p-6 rounded-2xl hover:bg-white/5 transition-colors"
+              className="flex flex-col items-center gap-6 p-6 rounded-2xl"
             >
               <div className="relative size-[72px]">
                 <Image
@@ -104,8 +87,8 @@ export default function FeaturesSection() {
                   {feature.title}
                 </h3>
                 <p
-                  className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[#babcc0] text-[16px]"
-                  style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                  className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[16px]"
+                  style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.muted }}
                 >
                   {feature.description}
                 </p>

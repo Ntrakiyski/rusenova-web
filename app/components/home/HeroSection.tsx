@@ -5,42 +5,48 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import imgImage132 from "@/public/rag-results.png";
+import { HomeContent } from '@/types/project';
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  content: HomeContent['hero'];
+  colors: HomeContent['colors'];
+}
+
+export default function HeroSection({ content, colors }: HeroSectionProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <section className="relative bg-[#f7f4ed] pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden rounded-bl-[40px] rounded-br-[40px] md:rounded-bl-[60px] md:rounded-br-[60px]">
+    <section className={`relative pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden rounded-bl-[40px] rounded-br-[40px] md:rounded-bl-[60px] md:rounded-br-[60px]`} style={{ backgroundColor: content.backgroundColor }}>
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 relative z-10">
         <div className="flex flex-col items-center gap-8 md:gap-12">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[#f0633f] text-[18px] md:text-[24px] text-center"
-            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+            className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[18px] md:text-[24px] text-center"
+            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.accent }}
           >
-            HUMAN & AI
+            {content.badge}
           </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="font-['Bricolage_Grotesque:Bold',sans-serif] text-[#191818] text-[36px] md:text-[64px] lg:text-[90px] text-center max-w-[1024px] leading-tight"
-            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+            className="font-['Bricolage_Grotesque:Bold',sans-serif] text-[36px] md:text-[64px] lg:text-[90px] text-center max-w-[1024px] leading-tight"
+            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.primary }}
           >
-            Smart systems build for real people
+            {content.title}
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[#494848] text-[16px] md:text-[20px] text-center max-w-[768px]"
-            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+            className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[16px] md:text-[20px] text-center max-w-[768px]"
+            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.secondary }}
           >
-            Hi, I'm Gloria and I bend Product Design & Machine Learning to create better systems for great user experience
+            {content.subtitle}
           </motion.p>
 
           <motion.div
@@ -49,32 +55,29 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             className="flex flex-col sm:flex-row gap-3 md:gap-5 w-full sm:w-auto"
           >
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="box-border flex items-center justify-center px-5 py-3 rounded-lg border border-[#191818] bg-white shadow-sm hover:bg-[#f7f4ed] transition-colors"
-            >
-              <span
-                className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[#191818] text-[16px]"
-                style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+            {content.buttons.map((button, index) => (
+              <motion.button
+                key={index}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className={`box-border flex items-center justify-center px-5 py-3 rounded-lg border shadow-sm transition-colors ${
+                  button.style === 'primary' 
+                    ? `border-[${colors.text.primary}] bg-white hover:bg-[${colors.background}]`
+                    : `border-[${colors.secondary}] bg-[${colors.secondary}] hover:bg-[${colors.text.primary}]`
+                }`}
+                onClick={() => window.open(button.link, '_blank')}
               >
-                Email
-              </span>
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-              className="box-border flex items-center justify-center px-5 py-3 rounded-lg border border-[#252222] bg-[#252222] shadow-sm hover:bg-[#191818] transition-colors"
-            >
-              <span
-                className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-white text-[16px]"
-                style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
-              >
-                LinkedIn
-              </span>
-            </motion.button>
+                <span
+                  className={`font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[16px] ${
+                    button.style === 'primary' ? '' : 'text-white'
+                  }`}
+                  style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: button.style === 'primary' ? colors.text.primary : undefined }}
+                >
+                  {button.text}
+                </span>
+              </motion.button>
+            ))}
           </motion.div>
         </div>
       </div>
@@ -130,7 +133,7 @@ export default function HeroSection() {
               </div>
             </div>
 
-            <img alt="" className="h-full w-auto object-contain pointer-events-none relative z-10" src={imgImage132} />
+            <img alt={content.image.alt} className="h-full w-auto object-contain pointer-events-none relative z-10" src={content.image.src} />
           </div>
         </div>
       </motion.div>

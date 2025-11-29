@@ -9,25 +9,21 @@ interface PDSelectedWorkProps {
 
 export default function PDSelectedWork({ title, description }: PDSelectedWorkProps) {
   return (
-    <div className="box-border content-stretch flex flex-col gap-[64px] items-center px-0 py-[96px] relative size-full">
-      <div className="max-w-[1280px] relative shrink-0 w-full">
-        <div className="flex flex-col items-center max-w-inherit size-full">
-          <div className="box-border content-stretch flex flex-col gap-[32px] items-center max-w-inherit px-[32px] py-0 relative w-full">
-            <div className="content-stretch flex flex-col gap-[32px] items-center relative shrink-0 w-full">
-              <div className="content-stretch flex flex-col gap-[20px] items-center max-w-[768px] relative shrink-0 w-full">
-                <div className="content-stretch flex flex-col gap-[12px] items-center relative shrink-0 w-full">
-                  <p className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold leading-[44px] relative shrink-0 text-[#191818] text-[36px] text-center w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                    {title}
-                  </p>
-                </div>
-                <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-[30px] relative shrink-0 text-[#475467] text-[20px] text-center w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                  {description}
-                </p>
-              </div>
-            </div>
-          </div>
+    <section className="w-full py-8 sm:py-12 md:py-16 lg:py-[96px]">
+      <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[32px] py-0 w-full">
+
+          {/* Title */}
+          <h2 className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold leading-8 sm:leading-10 md:leading-[40px] lg:leading-[44px] text-[#191818] text-lg sm:text-xl md:text-2xl lg:text-[36px] text-center w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            {title}
+          </h2>
+
+          {/* Description */}
+          <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-7 sm:leading-8 md:leading-[28px] lg:leading-[30px] text-[#475467] text-sm sm:text-base md:text-lg lg:text-[20px] text-center w-full max-w-[768px] mx-auto" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            {description}
+          </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -11,12 +11,14 @@ interface Metric {
 }
 
 interface MLWhatIBuildProps {
+  title?: string;
   description: string;
   metrics: Metric[];
   background?: string;
 }
 
 export default function MLWhatIBuild({
+  title,
   description,
   metrics,
   background = 'bg-white'
@@ -63,26 +65,73 @@ export default function MLWhatIBuild({
   return (
     <section className={`${background} py-16 md:py-24 lg:py-32 relative z-10`}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
-          {/* Description */}
-          <div className="flex-1">
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-lg sm:text-xl leading-relaxed" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-              {description}
-            </p>
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
+          {/* Text Content - Left Side */}
+          <div className="lg:w-1/2">
+            {title && (
+              <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-2xl sm:text-3xl mb-6" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                {title}
+              </h2>
+            )}
+            <div className="space-y-3">
+              <div className="flex items-start gap-2 sm:gap-3">
+                <div className="shrink-0 mt-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#f38300]" />
+                </div>
+                <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  A RAG (Retrieval-Augmented Generation) system with two-stage retrieval (vector search + AI re-ranking) for 40% better relevance
+                </p>
+              </div>
+              <div className="flex items-start gap-2 sm:gap-3">
+                <div className="shrink-0 mt-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#f38300]" />
+                </div>
+                <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  A custom evaluation framework to measure how well the system actually performs
+                </p>
+              </div>
+              <div className="flex items-start gap-2 sm:gap-3">
+                <div className="shrink-0 mt-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#f38300]" />
+                </div>
+                <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  Most LLMs struggle when they encounter information they haven't seen during training
+                </p>
+              </div>
+              <div className="flex items-start gap-2 sm:gap-3">
+                <div className="shrink-0 mt-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#f38300]" />
+                </div>
+                <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  Without proper evaluation, you can't guarantee your results are correct
+                </p>
+              </div>
+              <div className="flex items-start gap-2 sm:gap-3">
+                <div className="shrink-0 mt-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#f38300]" />
+                </div>
+                <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  The framework shows exactly where the system fails and by how much
+                </p>
+              </div>
+            </div>
           </div>
 
-          {/* Metrics Cards */}
-          <div className="flex-1 w-full">
-            <div className="flex flex-col gap-6">
+          {/* Metrics Cards - Right Side */}
+          <div className="lg:w-1/2">
+            {/* Metrics Cards Section */}
+            <div className="flex flex-col gap-4 w-full">
               {metrics.map((metric, index) => (
-                <div key={index} className="bg-white border border-[#dddddd] rounded-[16px] p-6">
-                  <div className="flex items-center gap-5">
+                <div key={index} className="bg-[#F7F4ED] rounded-[16px] p-4 w-full">
+                  <div className="flex items-center gap-3 w-full">
                     {metric.icon || getDefaultIcon(metric.label, metric.iconBg)}
-                    <div className="flex-1">
-                      <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-xl mb-2" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-lg sm:text-xl mb-1" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
                         {metric.value}
                       </p>
-                      <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                      <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-sm sm:text-base truncate" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
                         {metric.label}
                       </p>
                     </div>

@@ -44,16 +44,16 @@ export default function MLChallenge({
         </div>
 
         {/* Two Column Layout */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
+        <div className="flex flex-col gap-6">
           {/* Challenge List */}
-          <div className="flex-1 w-full">
-            <div className="space-y-5 pl-0 lg:pl-4">
+          <div className="w-full">
+            <div className="space-y-4 pl-0">
               {challenges.map((challenge, index) => (
-                <div key={index} className="flex gap-3 items-start">
+                <div key={index} className="flex gap-2 sm:gap-3 items-start">
                   <div className="pt-2 shrink-0">
                     <div className="w-3 h-3 rounded-full bg-[#f38300]" />
                   </div>
-                  <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
                     {renderChallengeContent(challenge, index)}
                   </p>
                 </div>
@@ -61,25 +61,15 @@ export default function MLChallenge({
             </div>
           </div>
 
-          {/* Decorative Graphic */}
-          <div className="flex-1 w-full flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[396px] h-[300px] sm:h-[356px]">
-              {/* Decorative shapes */}
-              <div className="absolute left-0 top-[54px] w-full h-[228px] flex items-center justify-center">
-                <div className="rotate-[330deg] skew-x-[27deg]">
-                  <div className="bg-[#f7f4ed] rounded-[12px] w-[228px] h-[228px]" />
-                </div>
-              </div>
-              <div className="absolute left-0 top-[103px] w-full h-[228px] flex items-center justify-center">
-                <div className="rotate-[330deg] skew-x-[27deg]">
-                  <div className="bg-[#f38300] rounded-[12px] w-[228px] h-[228px]" />
-                </div>
-              </div>
-              <div className="absolute left-0 top-[13px] w-full h-[228px] flex items-center justify-center">
-                <div className="rotate-[330deg] skew-x-[27deg]">
-                  <div className="bg-[#f7f4ed] rounded-[12px] w-[228px] h-[228px]" />
-                </div>
-              </div>
+          {/* RAG Results Image */}
+          <div className="w-full flex justify-center">
+            <div className="relative w-full max-w-[300px] sm:max-w-[396px] h-auto">
+              <img 
+                src="/rag-results.png" 
+                alt="RAG Results Visualization" 
+                className="w-full h-auto rounded-lg shadow-lg"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>

@@ -13,39 +13,41 @@ export default function PDHero({
   title,
   subtitle,
   titleHighlight,
-  background = 'bg-[#252222]'
+  background = 'bg-[#252222]/95'
 }: PDHeroProps) {
   // Split subtitle to highlight the titleHighlight part
   const subtitleParts = subtitle.split(titleHighlight || '');
 
   return (
-    <div className={`${background} content-stretch flex flex-col isolate items-center relative size-full`}>
-      <div className="box-border content-stretch flex flex-col gap-[64px] min-h-[700px] items-center pb-0 pt-[96px] px-0 relative shrink-0 w-full z-[1]">
-        <div className="max-w-[1280px] relative rounded-[16px] shrink-0 w-full">
-          <div className="flex flex-col items-center max-w-inherit overflow-clip rounded-[inherit] size-full">
-            <div className="box-border content-stretch flex flex-col gap-[32px] items-center max-w-inherit pb-0 pt-[40px] px-[32px] relative w-full">
-              <div className="content-stretch flex flex-col gap-[48px] items-center relative shrink-0 w-full">
-                <div className="content-stretch flex flex-col gap-[24px] items-center max-w-[1024px] relative shrink-0 w-full">
-                  <div className="content-stretch flex flex-col gap-[16px] items-center relative shrink-0 w-full">
-                    <p className="font-['Bricolage_Grotesque:Bold',sans-serif] font-bold leading-[120px] relative shrink-0 text-[90px] text-center text-white tracking-[-1.8px] max-w-[800px] mx-auto w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                      {title}
+    <section className={`${background} w-full flex-col items-center`}>
+      <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] items-center pb-0 pt-8 sm:pt-12 md:pt-[64px] lg:pt-[96px] relative w-full z-[1]">
+          <div className="relative rounded-[16px] w-full">
+            <div className="flex flex-col items-center overflow-clip rounded-[inherit] w-full">
+              <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[32px] items-center pb-0 pt-6 sm:pt-8 md:pt-10 lg:pt-[40px] px-0 w-full">
+                <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-[48px] items-center w-full">
+                  <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[24px] items-center w-full">
+                    <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[16px] items-center w-full">
+                      <h1 className="font-['Bricolage_Grotesque:Bold',sans-serif] font-bold leading-tight sm:leading-[40px] md:leading-[60px] lg:leading-[120px] text-2xl sm:text-3xl md:text-5xl lg:text-[90px] text-center text-white tracking-[-0.5px] sm:tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.8px] max-w-full md:max-w-[500px] lg:max-w-[800px] mx-auto w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                        {title}
+                      </h1>
+                    </div>
+                    <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-6 sm:leading-7 md:leading-8 lg:leading-[30px] max-w-full md:max-w-[512px] lg:max-w-[768px] text-[#babcc0] text-sm sm:text-base md:text-lg lg:text-[20px] text-center w-full px-2" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                      {subtitleParts[0]}
+                      {titleHighlight && (
+                        <span className="font-['Bricolage_Grotesque:Bold',sans-serif] font-bold text-[#f38300]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                          {titleHighlight}
+                        </span>
+                      )}
+                      {subtitleParts[1]}
                     </p>
                   </div>
-                  <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-[30px] max-w-[768px] relative shrink-0 text-[#babcc0] text-[20px] text-center w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                    {subtitleParts[0]}
-                    {titleHighlight && (
-                      <span className="font-['Bricolage_Grotesque:Bold',sans-serif] font-bold text-[#f38300]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                        {titleHighlight}
-                      </span>
-                    )}
-                    {subtitleParts[1]}
-                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

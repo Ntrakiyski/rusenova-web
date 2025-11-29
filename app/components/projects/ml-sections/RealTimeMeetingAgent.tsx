@@ -38,11 +38,11 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
         title={projectData.title}
         subtitle={projectData.shortDescription}
         heroImage={projectData.heroImage}
-        gradientColors={projectData.gradientColors}
       />
 
       {/* What I Build Section */}
       <MLWhatIBuild
+        title="What I Built"
         description={projectData.description || ''}
         metrics={projectData.metrics}
       />
