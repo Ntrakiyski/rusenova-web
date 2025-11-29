@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
@@ -9,18 +8,18 @@ import { usePathname } from 'next/navigation';
 
 interface NavigationProps {
   isDark?: boolean;
-  background?: string;
 }
 
-export default function Navigation({ isDark = false, background }: NavigationProps) {
+export default function Navigation({}: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const pathname = usePathname();
 
-  // Use provided background prop or default based on isDark
-  const bgColor = background || (isDark ? 'bg-[#252222]/95' : 'bg-[#f7f4ed]/95');
-  const textColor = isDark ? 'text-white' : 'text-[#191818]';
-  const linkColor = isDark ? 'text-[#babcc0] hover:text-white' : 'text-[#494848] hover:text-[#191818]';
+  // Use cream background on home page, dark on other pages
+  const isHomePage = pathname === '/';
+  const bgColor = isHomePage ? 'bg-[#f7f4ed]' : 'bg-[#252222]';
+  const textColor = isHomePage ? 'text-[#191818]' : 'text-white';
+  const linkColor = isHomePage ? 'text-[#191818] hover:underline' : 'text-white hover:underline';
 
   const navItems = [
     { label: 'Home', href: '/', section: 'home' },
@@ -30,17 +29,14 @@ export default function Navigation({ isDark = false, background }: NavigationPro
     { label: 'Contact', href: '/#contact', section: 'contact' }
   ];
 
-  const isOnHomePage = () => {
-    return pathname === '/';
-  };
-
   // Determine if we should use dark background for mobile menu
-  const mobileMenuBgColor = isDark ? 'bg-[#252222]/95' : 'bg-[#f7f4ed]/95';
+  const mobileMenuBgColor = isHomePage ? 'bg-[#f7f4ed]/95' : 'bg-[#252222]/95';
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80;
+      // Use hardcoded heights: 72px for mobile, 80px for desktop
+      const headerHeight = window.innerWidth >= 768 ? 80 : 72;
       const elementPosition = element.offsetTop - headerHeight;
       window.scrollTo({
         top: elementPosition,
@@ -50,8 +46,10 @@ export default function Navigation({ isDark = false, background }: NavigationPro
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (!isOnHomePage()) return;
+    let scrollTimeout: NodeJS.Timeout;
+    
+    const updateActiveSection = () => {
+      if (pathname !== '/') return;
       const sections = ['projects', 'experience', 'about', 'contact'];
       const scrollPosition = window.scrollY + 150;
 
@@ -71,13 +69,26 @@ export default function Navigation({ isDark = false, background }: NavigationPro
         }
       }
     };
+    
+    const handleScroll = () => {
+      // Clear existing timeout
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      
+      // Debounce the scroll handler to prevent flickering
+      scrollTimeout = setTimeout(() => {
+        updateActiveSection();
+      }, 100);
+    };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    updateActiveSection();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+    };
   }, [pathname]);
 
-  const handleNavClick = (href: string, section: string) => {
+  const handleNavClick = (href: string) => {
     setMobileMenuOpen(false);
     const sectionId = href.includes('#') ? href.split('#')[1] : '';
 
@@ -85,12 +96,27 @@ export default function Navigation({ isDark = false, background }: NavigationPro
       // Use Next.js router for navigation
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (href.startsWith('/#')) {
-      scrollToSection(sectionId);
+      if (pathname === '/') {
+        // If on home page, just scroll to the section
+        scrollToSection(sectionId);
+      } else {
+        // If on different page, navigate to home page first, then scroll to section
+        window.location.assign(href);
+      }
     }
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 ${bgColor} backdrop-blur-sm`}>
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 ${bgColor} shadow-none border-0`}
+      style={{
+        boxShadow: 'none',
+        border: 'none',
+        borderWidth: '0',
+        borderBottom: 'none',
+        outline: 'none'
+      }}
+    >
       <div className="max-w-[1280px] mx-auto">
         <div className="flex items-center justify-between px-4 md:px-8 py-4 md:py-5">
           <Link
@@ -101,7 +127,7 @@ export default function Navigation({ isDark = false, background }: NavigationPro
               <Image
                 alt="Gloria Logo"
                 className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
-                src="/rag-results.png"
+                src="/flower_logo.png"
                 width={40}
                 height={40}
               />
@@ -114,26 +140,26 @@ export default function Navigation({ isDark = false, background }: NavigationPro
             </p>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-4">
             {navItems.map((item) => {
               const isActive = activeSection === item.section;
               return (
-                <a
+                <Link
                   key={item.label}
                   href={item.href}
                   onClick={(e) => {
                     e.preventDefault();
-                    handleNavClick(item.href, item.section);
+                    handleNavClick(item.href);
                   }}
-                  className={`font-['Bricolage_Grotesque:Regular',sans-serif] ${
-                    isActive ? (isDark ? 'text-white' : 'text-[#191818]') : linkColor
-                  } transition-colors text-[16px] cursor-pointer ${
+                  className={`block px-4 py-3 font-['Bricolage_Grotesque:Regular',sans-serif] ${
+                    isActive ? (isHomePage ? 'text-[#191818]' : 'text-white') : linkColor
+                  } text-[16px] cursor-pointer ${
                     isActive ? 'underline decoration-2 underline-offset-4' : ''
                   }`}
                   style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
                 >
                   {item.label}
-                </a>
+                </Link>
               );
             })}
           </nav>
@@ -148,7 +174,7 @@ export default function Navigation({ isDark = false, background }: NavigationPro
         </div>
 
         {mobileMenuOpen && (
-          <nav className={`md:hidden border-t ${isDark ? 'border-white/10' : 'border-[#191818]/10'} ${mobileMenuBgColor} pb-4`}>
+          <nav className={`md:hidden ${mobileMenuBgColor} pb-4`}>
             {navItems.map((item) => {
               const isActive = activeSection === item.section;
               return (
@@ -157,10 +183,10 @@ export default function Navigation({ isDark = false, background }: NavigationPro
                   href={item.href}
                   onClick={(e) => {
                     e.preventDefault();
-                    handleNavClick(item.href, item.section);
+                    handleNavClick(item.href);
                   }}
                   className={`block px-4 py-3 font-['Bricolage_Grotesque:Regular',sans-serif] ${
-                    isActive ? (isDark ? 'text-white' : 'text-[#191818]') : linkColor
+                    isActive ? (isHomePage ? 'text-[#191818]' : 'text-white') : linkColor
                   } text-[16px] cursor-pointer ${
                     isActive ? 'underline decoration-2 underline-offset-4' : ''
                   }`}

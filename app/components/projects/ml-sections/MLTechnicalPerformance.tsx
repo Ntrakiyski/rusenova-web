@@ -63,8 +63,8 @@ export default function MLTechnicalPerformance({
   const leftMetrics = metrics.filter(metric => !metric.details);
 
   return (
-    <section className={`${background} py-16 md:py-24 relative z-10`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10 flex items-center`} style={{ minHeight: '760px' }}>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title Section */}
         <div className="mb-12">
           {title && (

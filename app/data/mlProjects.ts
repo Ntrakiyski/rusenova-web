@@ -17,14 +17,14 @@ export const mlProjects: Project[] = [
         "label": "Recall"
       },
       {
-        "value": "85%",
+        "value": "89%",
         "label": "Time saved"
       }
     ],
     "gradientColors": [
-      "#F38301"
+      "#F5D0AE"
     ],
-    "heroImage": "/rag-results.png",
+    "heroImage": "/rag-hero.png",
     "sections": [
       {
         "type": "intro",
@@ -168,10 +168,7 @@ export const mlProjects: Project[] = [
       }
     ],
     "gradientColors": [
-      "#8EB2F2",
-      "#F38300",
-      "#E9A8E5",
-      "#F44B2F"
+      "#D7EBDF"
     ],
     "heroImage": "/rag-results.png",
     "sections": [
@@ -572,9 +569,7 @@ export const mlProjects: Project[] = [
       }
     ],
     "gradientColors": [
-      "#8EB2F2",
-      "#F28EC1",
-      "#F38300"
+      "#E7D7EB"
     ],
     "heroImage": "/rag-results.png",
     "sections": [

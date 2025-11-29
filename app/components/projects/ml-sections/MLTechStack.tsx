@@ -22,9 +22,9 @@ export default function MLTechStack({
   background = 'bg-white'
 }: MLTechStackProps) {
   return (
-    <section className={`${background} py-16 md:py-24 relative z-10`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Heading section */}
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10 flex items-center`} style={{ minHeight: '760px' }}>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        {/* Title and Description Row */}
         <div className="flex flex-col gap-8 mb-16">
           <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl md:text-4xl font-semibold text-left" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
             {title}
@@ -36,7 +36,7 @@ export default function MLTechStack({
           )}
         </div>
 
-        {/* Tech stack content */}
+        {/* Tech Stack Categories Rows */}
         <div className="overflow-hidden relative w-full max-w-[1216px] mx-auto">
           <div className="relative z-10">
             {categorizedTechnologies ? (
@@ -47,9 +47,9 @@ export default function MLTechStack({
                       {category}
                     </h3>
                     <div className="flex flex-wrap gap-3">
-                      {techList.map((tech, index) => (
+                      {techList.map((tech, techIndex) => (
                         <div
-                          key={index}
+                          key={techIndex}
                           className="px-4 py-2 border border-[#DDDDDD] rounded-lg shadow-sm bg-white"
                         >
                           <span className="font-['Inter',sans-serif] text-sm font-semibold text-[#191818]">
@@ -62,10 +62,10 @@ export default function MLTechStack({
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {/* Technologies section */}
+              <div className="flex flex-col gap-8">
+                {/* Technologies Category Row */}
                 {technologies.length > 0 && (
-                  <div className="col-span-1 md:col-span-2 lg:col-span-4">
+                  <div className="flex flex-col">
                     <h3 className="font-['Inter',sans-serif] text-lg font-semibold text-[#191818] mb-6">
                       Technologies
                     </h3>
@@ -84,9 +84,9 @@ export default function MLTechStack({
                   </div>
                 )}
 
-                {/* Categories section */}
+                {/* Categories Row */}
                 {categories.length > 0 && (
-                  <div className="col-span-1 md:col-span-2 lg:col-span-4">
+                  <div className="flex flex-col">
                     <h3 className="font-['Inter',sans-serif] text-lg font-semibold text-[#191818] mb-6">
                       Categories
                     </h3>

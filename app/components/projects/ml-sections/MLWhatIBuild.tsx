@@ -62,12 +62,12 @@ export default function MLWhatIBuild({
     }
   };
 
-  return (
-    <section className={`${background} py-16 md:py-24 lg:py-32 relative z-10`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
+   return (
+    <section className={`${background} py-16 md:py-24 lg:py-32 min-h-[760px] xl:min-h-[760px] relative z-10 flex items-center`} style={{ minHeight: '760px' }}>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start w-full">
           {/* Text Content - Left Side */}
-          <div className="lg:w-1/2">
+          <div className="w-full lg:w-1/2">
             {title && (
               <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-2xl sm:text-3xl mb-6" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
                 {title}
@@ -120,7 +120,7 @@ export default function MLWhatIBuild({
           </div>
 
           {/* Metrics Cards - Right Side */}
-          <div className="lg:w-1/2">
+          <div className="w-full lg:w-1/2">
             {/* Metrics Cards Section */}
             <div className="flex flex-col gap-4 w-full">
               {metrics.map((metric, index) => (

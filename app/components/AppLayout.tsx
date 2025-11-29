@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import Navigation from './Navigation';
 import ContactSection from './ContactSection';
 import Footer from './home/Footer';
+import homeContent from '@/app/data/homeContent.json';
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -19,12 +20,12 @@ export default function AppLayout({ children }: AppLayoutProps) {
       <Navigation isDark={!isHomePage} />
 
       {/* Main content area */}
-      <main className="pt-20">
+      <main>
         {children}
       </main>
 
       {/* Contact Section - appears on all pages */}
-      <ContactSection />
+      <ContactSection content={homeContent.contact} />
 
       {/* Footer - appears on all pages */}
       <Footer />

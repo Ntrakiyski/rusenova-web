@@ -19,10 +19,10 @@ export const productDesignProjects: Project[] = [
       }
     ],
     "gradientColors": [
-      "#D29C81",
-      "#C7B8DA"
+      "#D1E8D2",
+      "#E5CEC2"
     ],
-    "heroImage": "/rag-results.png",
+    "heroImage": "/telenor-insurance.png",
     "sections": [
       {
         "type": "intro",
@@ -54,7 +54,7 @@ export const productDesignProjects: Project[] = [
           "Built a decision-tree system that helped determine message priority",
           "Delivered a scalable communication framework adopted company-wide"
         ],
-        "image": "/rag-results.png",
+        "image": "/tide-coms.png",
         "layout": "text-left-image-right"
       },
       {
@@ -69,7 +69,7 @@ export const productDesignProjects: Project[] = [
           "Increased active usage of invoicing by 23% and accounting features",
           "Increasing daily active users by 12%"
         ],
-        "image": "/rag-results.png",
+        "image": "/tide-admin.png",
         "layout": "text-left-image-right"
       },
       {
@@ -85,7 +85,7 @@ export const productDesignProjects: Project[] = [
           "Conducted iterative research and testing to identify key user needs",
           "Developed a prioritization framework for impactful data"
         ],
-        "image": "/rag-results.png",
+        "image": "/tide-home.png",
         "layout": "image-left-text-right"
       }
     ]
@@ -108,7 +108,8 @@ export const productDesignProjects: Project[] = [
       }
     ],
     "gradientColors": [
-      "#8EB2F2"
+      "#EDC585",
+      "#D1D1E8"
     ],
     "heroImage": "/rag-results.png",
     "sections": [
@@ -191,7 +192,8 @@ export const productDesignProjects: Project[] = [
       }
     ],
     "gradientColors": [
-      "#F38300"
+      "#C2D1E5",
+      "#D4E5C2"
     ],
     "heroImage": "/rag-results.png",
     "sections": [
@@ -244,7 +246,8 @@ export const productDesignProjects: Project[] = [
       }
     ],
     "gradientColors": [
-      "#F28EC1"
+      "#F39C71",
+      "#D1E8D2"
     ],
     "heroImage": "/rag-results.png",
     "sections": [

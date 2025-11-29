@@ -30,8 +30,8 @@ export default function PDNutshell({ title, features }: PDNutshellProps) {
   const wordsToHighlight = ['cross-functional', 'Experience Foundation', 'core product experience'];
 
   return (
-    <section className="bg-white w-full py-8 sm:py-12 md:py-16 lg:py-[96px]">
-      <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8">
+    <section className="bg-white w-full py-8 sm:py-12 md:py-16 lg:py-[96px] min-h-[760px] xl:min-h-[760px]" style={{ minHeight: '760px' }}>
+      <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] py-0 w-full">
 
           {/* Heading */}

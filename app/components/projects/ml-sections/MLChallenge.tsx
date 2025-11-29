@@ -27,9 +27,9 @@ export default function MLChallenge({
   };
 
   return (
-    <section className={`${background} py-16 md:py-24 relative z-10`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10`} style={{ minHeight: '760px' }}>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        {/* Title and Description Row */}
         <div className="mb-12">
           {title && (
             <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
@@ -43,10 +43,10 @@ export default function MLChallenge({
           )}
         </div>
 
-        {/* Two Column Layout */}
-        <div className="flex flex-col gap-6">
-          {/* Challenge List */}
-          <div className="w-full">
+        {/* Content Row with Two Columns */}
+        <div className="flex flex-col lg:flex-row lg:gap-12 gap-6 items-center">
+          {/* Challenge List - Left Column */}
+          <div className="w-full lg:w-1/2 flex items-center">
             <div className="space-y-4 pl-0">
               {challenges.map((challenge, index) => (
                 <div key={index} className="flex gap-2 sm:gap-3 items-start">
@@ -61,9 +61,9 @@ export default function MLChallenge({
             </div>
           </div>
 
-          {/* RAG Results Image */}
-          <div className="w-full flex justify-center">
-            <div className="relative w-full max-w-[300px] sm:max-w-[396px] h-auto">
+          {/* RAG Results Image - Right Column */}
+          <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
+            <div className="relative w-full h-auto">
               <img 
                 src="/rag-results.png" 
                 alt="RAG Results Visualization" 

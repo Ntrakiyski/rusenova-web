@@ -23,17 +23,17 @@
     "buttons": [
       {
         "text": "Email",
-        "link": "mailto:gloria@example.com",
+        "link": "mailto:gloriarussenovaa@gmail.com",
         "style": "primary"
       },
       {
         "text": "LinkedIn",
-        "link": "https://linkedin.com",
+        "link": "https://www.linkedin.com/in/gloriarusenova/",
         "style": "secondary"
       }
     ],
     "image": {
-      "src": "/rag-results.png",
+      "src": "/hero-diamond.png",
       "alt": ""
     }
   },
@@ -53,22 +53,22 @@
       {
         "title": "AI integrations",
         "description": "Automate repetitive workflows and eliminate manual tasks",
-        "icon": "/rag-results.png"
+        "icon": "/cubs.gif"
       },
       {
         "title": "AI chatbots",
         "description": "Issues which resolves themselves 24/7",
-        "icon": "/rag-results.png"
+        "icon": "/triangle.gif"
       },
       {
         "title": "Custom AI apps",
         "description": "Specialized AI for your needs",
-        "icon": "/rag-results.png"
+        "icon": "/cubs.gif"
       },
       {
         "title": "Algorithm Advisory",
         "description": "Driving data-led business impact",
-        "icon": "/rag-results.png"
+        "icon": "/triangle.gif"
       }
     ]
   },
@@ -95,9 +95,24 @@
       }
     ],
     "image": {
-      "src": "/rag-results.png",
+      "src": "/me.png",
       "alt": "Gloria"
     }
+  },
+  "contact": {
+    "title": "Want to talk about your project?",
+    "subtitle": "Message me on LinkedIn or send me an email",
+    "email": "mailto:gloriarusenovaa@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/gloriarusenova/",
+    "opportunities": [
+      [
+        "Machine Learning Engineering",
+        "Data Science"
+      ],
+      [
+        "Product Design"
+      ]
+    ]
   },
   "footer": {
     "backgroundColor": "#191818",

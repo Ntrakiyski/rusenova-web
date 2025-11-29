@@ -6,6 +6,7 @@ import { HomeContent, ProjectSection } from '@/types/project';
 import homeContentData from '@/app/data/homeContent.json';
 import { mlProjects } from '@/app/data/mlProjects';
 import { productDesignProjects } from '@/app/data/productDesignProjects';
+import stylesData from '@/app/data/styles.json';
 
 // shadcn components
 import { Button } from '@/components/ui/button';
@@ -17,6 +18,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ImageSelector } from '../components/admin/ImageSelector';
 
 export default function AdminPage() {
   const [homeContent, setHomeContent] = useState<HomeContent>(homeContentData as HomeContent);
@@ -26,6 +28,11 @@ export default function AdminPage() {
   const [saveMessage, setSaveMessage] = useState('');
   const [projectSaveMessage, setProjectSaveMessage] = useState('');
   const [isSavingProjects, setIsSavingProjects] = useState(false);
+  
+  // Styles management state
+  const [stylesDataState, setStylesDataState] = useState(stylesData);
+  const [isSavingStyles, setIsSavingStyles] = useState(false);
+  const [stylesSaveMessage, setStylesSaveMessage] = useState('');
   
   // Image management state
   const [images, setImages] = useState<Array<{
@@ -57,30 +64,50 @@ export default function AdminPage() {
   };
 
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
 
     setIsUploading(true);
     setUploadMessage('');
 
     try {
-      const formData = new FormData();
-      formData.append('file', file);
+      const uploadPromises = Array.from(files).map(async (file) => {
+        const formData = new FormData();
+        formData.append('file', file);
 
-      const response = await fetch('/api/admin/upload-image', {
-        method: 'POST',
-        body: formData,
+        const response = await fetch('/api/admin/upload-image', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+          return { success: true, filename: data.filename, file: file.name };
+        } else {
+          return { success: false, error: data.error, file: file.name };
+        }
       });
 
-      const data = await response.json();
+      const results = await Promise.all(uploadPromises);
+      
+      const successful = results.filter(r => r.success);
+      const failed = results.filter(r => !r.success);
 
-      if (response.ok) {
-        setUploadMessage(`Successfully uploaded ${data.filename}`);
-        event.target.value = ''; // Clear the input
-        await loadImages(); // Refresh the image list
-      } else {
-        setUploadMessage(`Error: ${data.error}`);
+      if (successful.length > 0) {
+        setUploadMessage(
+          `Successfully uploaded ${successful.length} file${successful.length > 1 ? 's' : ''}: ${successful.map(r => r.filename).join(', ')}`
+        );
       }
+      
+      if (failed.length > 0) {
+        setUploadMessage(prev => 
+          prev + (prev ? '\n' : '') + `Failed to upload ${failed.length} file${failed.length > 1 ? 's' : ''}: ${failed.map(r => `${r.file}: ${r.error}`).join('; ')}`
+        );
+      }
+
+      event.target.value = ''; // Clear the input
+      await loadImages(); // Refresh the image list
     } catch {
       setUploadMessage('Upload failed');
     } finally {
@@ -115,35 +142,25 @@ export default function AdminPage() {
   };
 
   const updateField = (section: string, field: string, value: string | number | boolean) => {
-    setHomeContent(prev => ({
-      ...prev,
-      [section]: {
-        ...prev[section as keyof HomeContent],
-        ...(field.includes('.') 
-          ? updateNestedField(prev[section as keyof HomeContent], field, value)
-          : { [field]: value }
-        )
+    setHomeContent(prev => {
+      const newPrev = JSON.parse(JSON.stringify(prev)); // Deep clone
+      const keys = field.split('.');
+      let current: unknown = newPrev[section];
+      
+      // Navigate to the parent of the target field
+      for (let i = 0; i < keys.length - 1; i++) {
+        if (current && typeof current === 'object') {
+          current = (current as Record<string, unknown>)[keys[i]];
+        }
       }
-    }));
-  };
-
-  const updateNestedField = (obj: Record<string, unknown>, field: string, value: string | number | boolean): Record<string, unknown> => {
-    const keys = field.split('.');
-    const result = { ...obj };
-    let current: Record<string, unknown> = result;
-    
-    for (let i = 0; i < keys.length - 1; i++) {
-      const key = keys[i];
-      current[key] = { ...(current[key] as Record<string, unknown>) };
-      current = current[key] as Record<string, unknown>;
-    }
-    
-    current[keys[keys.length - 1]] = value;
-    return result;
-  };
-
-  const handleInputChange = (section: string, field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    updateField(section, field, e.target.value);
+      
+      // Set the final value
+      if (current && typeof current === 'object') {
+        (current as Record<string, unknown>)[keys[keys.length - 1]] = value;
+      }
+      
+      return newPrev;
+    });
   };
 
   // Project editing functions
@@ -267,6 +284,71 @@ export default function AdminPage() {
     }
   };
 
+  // Styles management functions
+  const updateStylesField = (fieldPath: string, value: string) => {
+    setStylesDataState(prev => {
+      const keys = fieldPath.split('.');
+      let current: Record<string, unknown> = { ...prev };
+      
+      // Navigate to the parent of the target field
+      for (let i = 0; i < keys.length - 1; i++) {
+        current[keys[i]] = { ...(current[keys[i]] as Record<string, unknown>) };
+        current = current[keys[i]] as Record<string, unknown>;
+      }
+      
+      // Set the final value
+      current[keys[keys.length - 1]] = value;
+      
+      return { ...prev };
+    });
+  };
+
+  const handleSaveStyles = async () => {
+    setIsSavingStyles(true);
+    setStylesSaveMessage('');
+
+    try {
+      const response = await fetch('/api/admin/save-styles', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(stylesDataState),
+      });
+
+      if (response.ok) {
+        setStylesSaveMessage('Styles saved successfully!');
+        setTimeout(() => setStylesSaveMessage(''), 3000);
+      } else {
+        setStylesSaveMessage('Error saving styles');
+      }
+    } catch {
+      setStylesSaveMessage('Error saving styles');
+    } finally {
+      setIsSavingStyles(false);
+    }
+  };
+
+  const addGradientColor = () => {
+    setStylesDataState(prev => ({
+      ...prev,
+      gradients: {
+        ...prev.gradients,
+        projects: [...(prev.gradients.projects as string[]), '#000000']
+      }
+    }));
+  };
+
+  const removeGradientColor = (index: number) => {
+    setStylesDataState(prev => ({
+      ...prev,
+      gradients: {
+        ...prev.gradients,
+        projects: (prev.gradients.projects as string[]).filter((_, i) => i !== index)
+      }
+    }));
+  };
+
   // Section editing functions
   const updateProjectSection = (projectType: 'ml' | 'pd', projectIndex: number, sectionIndex: number, field: string, value: string) => {
     if (projectType === 'ml') {
@@ -289,35 +371,6 @@ export default function AdminPage() {
         updated[projectIndex] = updatedProject;
         return updated;
       });
-    }
-  };
-
-  const updateProjectSectionJSON = (projectType: 'ml' | 'pd', projectIndex: number, sectionIndex: number, jsonString: string) => {
-    try {
-      const parsedSection = JSON.parse(jsonString);
-      if (projectType === 'ml') {
-        setMlProjectsData(prev => {
-          const updated = [...prev];
-          const updatedProject = { ...updated[projectIndex] };
-          const updatedSections = [...updatedProject.sections];
-          updatedSections[sectionIndex] = { ...updatedSections[sectionIndex], ...parsedSection };
-          updatedProject.sections = updatedSections;
-          updated[projectIndex] = updatedProject;
-          return updated;
-        });
-      } else {
-        setProductDesignProjectsData(prev => {
-          const updated = [...prev];
-          const updatedProject = { ...updated[projectIndex] };
-          const updatedSections = [...updatedProject.sections];
-          updatedSections[sectionIndex] = { ...updatedSections[sectionIndex], ...parsedSection };
-          updatedProject.sections = updatedSections;
-          updated[projectIndex] = updatedProject;
-          return updated;
-        });
-      }
-    } catch (error) {
-      console.error('Invalid JSON format:', error);
     }
   };
 
@@ -396,7 +449,7 @@ export default function AdminPage() {
             if (!current[key]) current[key] = [];
             current = current[key] as Record<string, unknown>;
           }
-          (current as unknown[]).push(defaultItem);
+          (current as unknown as unknown[]).push(defaultItem);
           
           updatedSections[sectionIndex] = updatedSection;
           updatedProject.sections = updatedSections;
@@ -416,7 +469,7 @@ export default function AdminPage() {
             if (!current[key]) current[key] = [];
             current = current[key] as Record<string, unknown>;
           }
-          (current as unknown[]).push(defaultItem);
+          (current as unknown as unknown[]).push(defaultItem);
           
           updatedSections[sectionIndex] = updatedSection;
           updatedProject.sections = updatedSections;
@@ -439,7 +492,7 @@ export default function AdminPage() {
           for (const key of keys.slice(0, -1)) {
             current = current[key] as Record<string, unknown>;
           }
-          (current as unknown[]).splice(index, 1);
+          (current as unknown as unknown[]).splice(index, 1);
           
           updatedSections[sectionIndex] = updatedSection;
           updatedProject.sections = updatedSections;
@@ -458,7 +511,7 @@ export default function AdminPage() {
           for (const key of keys.slice(0, -1)) {
             current = current[key] as Record<string, unknown>;
           }
-          (current as unknown[]).splice(index, 1);
+          (current as unknown as unknown[]).splice(index, 1);
           
           updatedSections[sectionIndex] = updatedSection;
           updatedProject.sections = updatedSections;
@@ -551,14 +604,11 @@ export default function AdminPage() {
       case 'architecture':
         return (
           <div className="space-y-4">
-            <div className="space-y-2">
-              <Label>Architecture Image</Label>
-              <Input
-                value={section.image || ''}
-                onChange={(e) => updateSectionField('image', e.target.value)}
-                placeholder="/path/to/architecture-image.png"
-              />
-            </div>
+            <ImageSelector
+              value={section.image || ''}
+              onChange={(value) => updateSectionField('image', value)}
+              label="Architecture Image"
+            />
           </div>
         );
       case 'approach':
@@ -1421,14 +1471,11 @@ export default function AdminPage() {
                 Add Achievement
               </Button>
             </div>
-            <div className="space-y-2">
-              <Label>Section Image</Label>
-              <Input
-                value={section.image || ''}
-                onChange={(e) => updateSectionField('image', e.target.value)}
-                placeholder="/path/to/image.png"
-              />
-            </div>
+            <ImageSelector
+              value={section.image || ''}
+              onChange={(value) => updateSectionField('image', value)}
+              label="Section Image"
+            />
             <div className="space-y-2">
               <Label>Layout</Label>
               <Input
@@ -1496,20 +1543,111 @@ export default function AdminPage() {
                 Add Achievement
               </Button>
             </div>
-            <div className="space-y-2">
-              <Label>Section Image</Label>
-              <Input
-                value={section.image || ''}
-                onChange={(e) => updateSectionField('image', e.target.value)}
-                placeholder="/path/to/image.png"
-              />
-            </div>
+            <ImageSelector
+              value={section.image || ''}
+              onChange={(value) => updateSectionField('image', value)}
+              label="Section Image"
+            />
             <div className="space-y-2">
               <Label>Layout</Label>
               <Input
                 value={section.layout || ''}
                 onChange={(e) => updateSectionField('layout', e.target.value)}
                 placeholder="Layout type (e.g., text-left-image-right)"
+              />
+            </div>
+          </div>
+        );
+
+      case 'generic':
+      case undefined:
+        // Handle generic sections that might have images arrays
+        return (
+          <div className="space-y-4">
+            {/* Handle single image field */}
+            {(section as any).image && (
+              <div className="space-y-2">
+                <Label>Section Image</Label>
+                <ImageSelector
+                  value={(section as any).image || ''}
+                  onChange={(value) => updateSectionField('image', value)}
+                  label="Section Image"
+                />
+              </div>
+            )}
+            
+            {/* Handle images array */}
+            {(section as any).images && (
+              <div className="space-y-4">
+                <Label className="text-sm font-medium">Section Images</Label>
+                {(section as any).images?.map((image: string, imageIndex: number) => (
+                  <div key={imageIndex} className="flex gap-2 items-center">
+                    <div className="flex-1">
+                      <ImageSelector
+                        value={image}
+                        onChange={(value) => updateSectionField(`images.${imageIndex}`, value)}
+                        label={`Image ${imageIndex + 1}`}
+                      />
+                    </div>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => removeArrayItem('images', imageIndex)}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                ))}
+                <Button
+                  variant="outline"
+                  onClick={() => addArrayItem('images', '')}
+                >
+                  Add Image
+                </Button>
+              </div>
+            )}
+            
+            {/* Fallback to JSON editor for other fields */}
+            <div className="space-y-2">
+              <Label className="text-sm font-medium">Other Content (JSON format)</Label>
+              <Textarea
+                value={JSON.stringify({
+                  ...section,
+                  image: undefined,
+                  images: undefined
+                }, null, 2)}
+                onChange={(e) => {
+                  try {
+                    const updated = JSON.parse(e.target.value);
+                    if (projectType === 'ml') {
+                      setMlProjectsData(prev => {
+                        const updatedProjects = [...prev];
+                        updatedProjects[projectIndex].sections[sectionIndex] = {
+                          ...updatedProjects[projectIndex].sections[sectionIndex],
+                          ...updated,
+                          image: (section as any).image,
+                          images: (section as any).images
+                        };
+                        return updatedProjects;
+                      });
+                    } else {
+                      setProductDesignProjectsData(prev => {
+                        const updatedProjects = [...prev];
+                        updatedProjects[projectIndex].sections[sectionIndex] = {
+                          ...updatedProjects[projectIndex].sections[sectionIndex],
+                          ...updated,
+                          image: (section as any).image,
+                          images: (section as any).images
+                        };
+                        return updatedProjects;
+                      });
+                    }
+                  } catch {
+                    // Invalid JSON, ignore
+                  }
+                }}
+                placeholder="Edit other section properties as JSON"
+                rows={8}
               />
             </div>
           </div>
@@ -1559,171 +1697,45 @@ export default function AdminPage() {
       {/* Header */}
       <div className="border-b bg-card sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="py-4">
             <div>
               <h1 className="text-2xl font-bold">Home Page Admin</h1>
               <p className="text-sm text-muted-foreground">Manage your home page content</p>
-            </div>
-            <div className="flex items-center gap-4">
-              {saveMessage && (
-                <Badge variant={saveMessage.includes('Error') ? 'destructive' : 'default'}>
-                  {saveMessage}
-                </Badge>
-              )}
-              <Button
-                onClick={handleSave}
-                disabled={isSaving}
-                size="lg"
-              >
-                {isSaving ? 'Saving...' : 'Save Changes'}
-              </Button>
             </div>
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Save Button Section */}
+        <div className="flex justify-end mb-6">
+          {saveMessage && (
+            <Badge variant={saveMessage.includes('Error') ? 'destructive' : 'default'} className="mr-4">
+              {saveMessage}
+            </Badge>
+          )}
+          <Button
+            onClick={handleSave}
+            disabled={isSaving}
+            size="lg"
+          >
+            {isSaving ? 'Saving...' : 'Save Changes'}
+          </Button>
+        </div>
+
         <Tabs defaultValue="home" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="home">Home Page</TabsTrigger>
             <TabsTrigger value="projects">Projects</TabsTrigger>
+            <TabsTrigger value="styles">Styles</TabsTrigger>
             <TabsTrigger value="images">Images</TabsTrigger>
           </TabsList>
 
           {/* Home Page Content */}
           <TabsContent value="home">
             <div className="space-y-6">
-              {/* Colors Section */}
-              <Collapsible defaultOpen>
-                <CollapsibleTrigger asChild>
-                  <Card className="cursor-pointer hover:bg-accent/50 transition-colors">
-                    <CardHeader>
-                      <div className="flex justify-between items-center w-full">
-                        <div>
-                          <CardTitle>Colors</CardTitle>
-                          <CardDescription>Manage your website color scheme</CardDescription>
-                        </div>
-                        <Badge variant="outline">Colors</Badge>
-                      </div>
-                    </CardHeader>
-                  </Card>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <Card className="mt-2">
-                    <CardContent>
-                <div className="max-w-6xl mx-auto space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="primary">Primary Color</Label>
-                      <div className="flex gap-2">
-                        <Input
-                          id="primary"
-                          type="color"
-                          value={homeContent.colors.primary}
-                          onChange={handleInputChange('colors', 'primary')}
-                          className="w-16 h-10"
-                        />
-                        <Input
-                          value={homeContent.colors.primary}
-                          onChange={handleInputChange('colors', 'primary')}
-                          placeholder="#000000"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="secondary">Secondary Color</Label>
-                      <div className="flex gap-2">
-                        <Input
-                          id="secondary"
-                          type="color"
-                          value={homeContent.colors.secondary}
-                          onChange={handleInputChange('colors', 'secondary')}
-                          className="w-16 h-10"
-                        />
-                        <Input
-                          value={homeContent.colors.secondary}
-                          onChange={handleInputChange('colors', 'secondary')}
-                          placeholder="#000000"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="background">Background Color</Label>
-                      <div className="flex gap-2">
-                        <Input
-                          id="background"
-                          type="color"
-                          value={homeContent.colors.background}
-                          onChange={handleInputChange('colors', 'background')}
-                          className="w-16 h-10"
-                        />
-                        <Input
-                          value={homeContent.colors.background}
-                          onChange={handleInputChange('colors', 'background')}
-                          placeholder="#000000"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="text-primary">Primary Text</Label>
-                      <div className="flex gap-2">
-                        <Input
-                          id="text-primary"
-                          type="color"
-                          value={homeContent.colors.text.primary}
-                          onChange={handleInputChange('colors', 'text.primary')}
-                          className="w-16 h-10"
-                        />
-                        <Input
-                          value={homeContent.colors.text.primary}
-                          onChange={handleInputChange('colors', 'text.primary')}
-                          placeholder="#000000"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="text-secondary">Secondary Text</Label>
-                      <div className="flex gap-2">
-                        <Input
-                          id="text-secondary"
-                          type="color"
-                          value={homeContent.colors.text.secondary}
-                          onChange={handleInputChange('colors', 'text.secondary')}
-                          className="w-16 h-10"
-                        />
-                        <Input
-                          value={homeContent.colors.text.secondary}
-                          onChange={handleInputChange('colors', 'text.secondary')}
-                          placeholder="#000000"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="text-accent">Accent Text</Label>
-                      <div className="flex gap-2">
-                        <Input
-                          id="text-accent"
-                          type="color"
-                          value={homeContent.colors.text.accent}
-                          onChange={handleInputChange('colors', 'text.accent')}
-                          className="w-16 h-10"
-                        />
-                        <Input
-                          value={homeContent.colors.text.accent}
-                          onChange={handleInputChange('colors', 'text.accent')}
-                          placeholder="#000000"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                    </CardContent>
-                  </Card>
-                </CollapsibleContent>
-              </Collapsible>
-
               {/* Hero Section */}
-              <Collapsible defaultOpen>
+              <Collapsible defaultOpen={false}>
                 <CollapsibleTrigger asChild>
                   <Card className="cursor-pointer hover:bg-accent/50 transition-colors">
                     <CardHeader>
@@ -1779,15 +1791,12 @@ export default function AdminPage() {
                         rows={3}
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="hero-image-src">Image Source</Label>
-                      <Input
-                        id="hero-image-src"
-                        value={homeContent.hero.image.src}
-                        onChange={(e) => updateField('hero', 'image.src', e.target.value)}
-                        placeholder="/path/to/image.png"
-                      />
-                    </div>
+                    <ImageSelector
+                      id="hero-image-src"
+                      value={homeContent.hero.image.src}
+                      onChange={(value) => updateField('hero', 'image.src', value)}
+                      label="Image Source"
+                    />
                     <div className="space-y-2">
                       <Label htmlFor="hero-image-alt">Image Alt Text</Label>
                       <Input
@@ -1850,7 +1859,7 @@ export default function AdminPage() {
               </Collapsible>
 
               {/* Services Section */}
-              <Collapsible defaultOpen>
+              <Collapsible defaultOpen={false}>
                 <CollapsibleTrigger asChild>
                   <Card className="cursor-pointer hover:bg-accent/50 transition-colors">
                     <CardHeader>
@@ -1923,7 +1932,7 @@ export default function AdminPage() {
               </Collapsible>
 
               {/* Features Section */}
-              <Collapsible defaultOpen>
+              <Collapsible defaultOpen={false}>
                 <CollapsibleTrigger asChild>
                   <Card className="cursor-pointer hover:bg-accent/50 transition-colors">
                     <CardHeader>
@@ -2017,7 +2026,7 @@ export default function AdminPage() {
               </Collapsible>
 
               {/* About Section */}
-              <Collapsible defaultOpen>
+              <Collapsible defaultOpen={false}>
                 <CollapsibleTrigger asChild>
                   <Card className="cursor-pointer hover:bg-accent/50 transition-colors">
                     <CardHeader>
@@ -2063,15 +2072,12 @@ export default function AdminPage() {
                         placeholder="I'm Gloria"
                       />
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="about-image-src">Image Source</Label>
-                      <Input
-                        id="about-image-src"
-                        value={homeContent.about.image.src}
-                        onChange={(e) => updateField('about', 'image.src', e.target.value)}
-                        placeholder="/path/to/image.png"
-                      />
-                    </div>
+                    <ImageSelector
+                      id="about-image-src"
+                      value={homeContent.about.image.src}
+                      onChange={(value) => updateField('about', 'image.src', value)}
+                      label="Image Source"
+                    />
                     <div className="space-y-2">
                       <Label htmlFor="about-image-alt">Image Alt Text</Label>
                       <Input
@@ -2160,8 +2166,140 @@ export default function AdminPage() {
                 </CollapsibleContent>
               </Collapsible>
 
+              {/* Contact Section */}
+              <Collapsible defaultOpen={false}>
+                <CollapsibleTrigger asChild>
+                  <Card className="cursor-pointer hover:bg-accent/50 transition-colors">
+                    <CardHeader>
+                      <div className="flex justify-between items-center w-full">
+                        <div>
+                          <CardTitle>Contact Section</CardTitle>
+                          <CardDescription>Manage your contact section content</CardDescription>
+                        </div>
+                        <Badge variant="outline">Contact</Badge>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <Card className="mt-2">
+                    <CardContent>
+                      <div className="max-w-6xl mx-auto space-y-6">
+                        <div className="space-y-2">
+                          <Label htmlFor="contact-title">Section Title</Label>
+                          <Input
+                            id="contact-title"
+                            value={homeContent.contact.title}
+                            onChange={(e) => updateField('contact', 'title', e.target.value)}
+                            placeholder="Want to talk about your project?"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="contact-subtitle">Section Subtitle</Label>
+                          <Textarea
+                            id="contact-subtitle"
+                            value={homeContent.contact.subtitle}
+                            onChange={(e) => updateField('contact', 'subtitle', e.target.value)}
+                            placeholder="Message me on LinkedIn or send me an email"
+                            rows={3}
+                          />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-2">
+                            <Label htmlFor="contact-email">Email Link</Label>
+                            <Input
+                              id="contact-email"
+                              value={homeContent.contact.email}
+                              onChange={(e) => updateField('contact', 'email', e.target.value)}
+                              placeholder="mailto:gloria@example.com"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="contact-linkedin">LinkedIn URL</Label>
+                            <Input
+                              id="contact-linkedin"
+                              value={homeContent.contact.linkedin}
+                              onChange={(e) => updateField('contact', 'linkedin', e.target.value)}
+                              placeholder="https://linkedin.com/in/yourprofile"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <Label className="text-sm font-medium">Opportunities (First Row)</Label>
+                          <div className="space-y-2">
+                            {homeContent.contact.opportunities[0]?.map((opportunity: string, index: number) => (
+                              <div key={index} className="flex gap-2">
+                                <Input
+                                  value={opportunity}
+                                  onChange={(e) => updateField(`contact.opportunities.0.${index}`, e.target.value)}
+                                  placeholder="Opportunity name"
+                                />
+                                <Button
+                                  variant="destructive"
+                                  size="sm"
+                                  onClick={() => {
+                                    const updated = [...homeContent.contact.opportunities[0]];
+                                    updated.splice(index, 1);
+                                    updateField('contact', 'opportunities.0', updated);
+                                  }}
+                                >
+                                  Remove
+                                </Button>
+                              </div>
+                            ))}
+                            <Button
+                              variant="outline"
+                              onClick={() => {
+                                const updated = [...(homeContent.contact.opportunities[0] || []), ''];
+                                updateField('contact', 'opportunities.0', updated);
+                              }}
+                            >
+                              Add Opportunity
+                            </Button>
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <Label className="text-sm font-medium">Opportunities (Second Row)</Label>
+                          <div className="space-y-2">
+                            {homeContent.contact.opportunities[1]?.map((opportunity: string, index: number) => (
+                              <div key={index} className="flex gap-2">
+                                <Input
+                                  value={opportunity}
+                                  onChange={(e) => updateField(`contact.opportunities.1.${index}`, e.target.value)}
+                                  placeholder="Opportunity name"
+                                />
+                                <Button
+                                  variant="destructive"
+                                  size="sm"
+                                  onClick={() => {
+                                    const updated = [...homeContent.contact.opportunities[1]];
+                                    updated.splice(index, 1);
+                                    updateField('contact', 'opportunities.1', updated);
+                                  }}
+                                >
+                                  Remove
+                                </Button>
+                              </div>
+                            ))}
+                            <Button
+                              variant="outline"
+                              onClick={() => {
+                                const updated = [...(homeContent.contact.opportunities[1] || []), ''];
+                                updateField('contact', 'opportunities.1', updated);
+                              }}
+                            >
+                              Add Opportunity
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CollapsibleContent>
+              </Collapsible>
+
               {/* Footer Section */}
-              <Collapsible defaultOpen>
+              <Collapsible defaultOpen={false}>
                 <CollapsibleTrigger asChild>
                   <Card className="cursor-pointer hover:bg-accent/50 transition-colors">
                     <CardHeader>
@@ -2363,15 +2501,12 @@ export default function AdminPage() {
                                         rows={3}
                                       />
                                     </div>
-                                    <div className="space-y-2">
-                                      <Label htmlFor={`ml-${projectIndex}-heroImage`}>Hero Image</Label>
-                                      <Input
-                                        id={`ml-${projectIndex}-heroImage`}
-                                        value={project.heroImage}
-                                        onChange={(e) => updateProjectField('ml', projectIndex, 'heroImage', e.target.value)}
-                                        placeholder="/path/to/image.png"
-                                      />
-                                    </div>
+                                    <ImageSelector
+                                      id={`ml-${projectIndex}-heroImage`}
+                                      value={project.heroImage}
+                                      onChange={(value) => updateProjectField('ml', projectIndex, 'heroImage', value)}
+                                      label="Hero Image"
+                                    />
                                     <div className="space-y-2">
                                       <Label htmlFor={`ml-${projectIndex}-gradientColors`}>Gradient Colors (comma-separated)</Label>
                                       <Input
@@ -2628,15 +2763,12 @@ export default function AdminPage() {
                                         rows={3}
                                       />
                                     </div>
-                                    <div className="space-y-2">
-                                      <Label htmlFor={`pd-${projectIndex}-heroImage`}>Hero Image</Label>
-                                      <Input
-                                        id={`pd-${projectIndex}-heroImage`}
-                                        value={project.heroImage}
-                                        onChange={(e) => updateProjectField('pd', projectIndex, 'heroImage', e.target.value)}
-                                        placeholder="/path/to/image.png"
-                                      />
-                                    </div>
+                                    <ImageSelector
+                                      id={`pd-${projectIndex}-heroImage`}
+                                      value={project.heroImage}
+                                      onChange={(value) => updateProjectField('pd', projectIndex, 'heroImage', value)}
+                                      label="Hero Image"
+                                    />
                                     <div className="space-y-2">
                                       <Label htmlFor={`pd-${projectIndex}-gradientColors`}>Gradient Colors (comma-separated)</Label>
                                       <Input
@@ -2798,21 +2930,22 @@ export default function AdminPage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Upload Images</CardTitle>
-                  <CardDescription>Upload new images to your public folder</CardDescription>
+                  <CardDescription>Upload one or more new images to your public folder</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
                     <div>
-                      <Label htmlFor="image-upload">Choose Image File</Label>
+                      <Label htmlFor="image-upload">Choose Image Files</Label>
                       <Input
                         id="image-upload"
                         type="file"
                         accept="image/*"
+                        multiple
                         onChange={handleImageUpload}
                         disabled={isUploading}
                       />
                       <p className="text-sm text-muted-foreground mt-1">
-                        Supported formats: JPG, PNG, GIF, WebP, SVG. Max size: 5MB
+                        Supported formats: JPG, PNG, GIF, WebP, SVG. Max size: 5MB per file. You can select multiple files.
                       </p>
                     </div>
                     
@@ -2923,6 +3056,815 @@ export default function AdminPage() {
                   )}
                 </CardContent>
               </Card>
+            </div>
+          </TabsContent>
+
+          {/* Styles Content */}
+          <TabsContent value="styles">
+            <div className="space-y-6">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className="text-lg font-semibold">Global Styles Management</h3>
+                  <p className="text-sm text-muted-foreground">Manage colors, typography, layout, and animations</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  {stylesSaveMessage && (
+                    <Badge variant={stylesSaveMessage.includes('Error') ? 'destructive' : 'default'}>
+                      {stylesSaveMessage}
+                    </Badge>
+                  )}
+                  <Button
+                    onClick={handleSaveStyles}
+                    disabled={isSavingStyles}
+                    size="lg"
+                  >
+                    {isSavingStyles ? 'Saving...' : 'Save Styles'}
+                  </Button>
+                </div>
+              </div>
+
+              {/* Color Theme Management */}
+              <Collapsible defaultOpen={false}>
+                <CollapsibleTrigger asChild>
+                  <Card className="cursor-pointer hover:bg-accent/50 transition-colors">
+                    <CardHeader>
+                      <div className="flex justify-between items-center w-full">
+                        <div>
+                          <CardTitle>Color Theme</CardTitle>
+                          <CardDescription>Manage your website color scheme</CardDescription>
+                        </div>
+                        <Badge variant="outline">Colors</Badge>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <Card className="mt-2">
+                    <CardContent className="space-y-6">
+                      {/* Primary Colors */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="space-y-2">
+                          <Label>Primary Color</Label>
+                          <div className="flex gap-2">
+                            <Input
+                              type="color"
+                              value={stylesData.colors.primary}
+                              onChange={(e) => updateStylesField('colors.primary', e.target.value)}
+                              className="w-16 h-10"
+                            />
+                            <Input
+                              value={stylesData.colors.primary}
+                              onChange={(e) => updateStylesField('colors.primary', e.target.value)}
+                              placeholder="#000000"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Secondary Color</Label>
+                          <div className="flex gap-2">
+                            <Input
+                              type="color"
+                              value={stylesData.colors.secondary}
+                              onChange={(e) => updateStylesField('colors.secondary', e.target.value)}
+                              className="w-16 h-10"
+                            />
+                            <Input
+                              value={stylesData.colors.secondary}
+                              onChange={(e) => updateStylesField('colors.secondary', e.target.value)}
+                              placeholder="#000000"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Background Color</Label>
+                          <div className="flex gap-2">
+                            <Input
+                              type="color"
+                              value={stylesData.colors.background}
+                              onChange={(e) => updateStylesField('colors.background', e.target.value)}
+                              className="w-16 h-10"
+                            />
+                            <Input
+                              value={stylesData.colors.background}
+                              onChange={(e) => updateStylesField('colors.background', e.target.value)}
+                              placeholder="#000000"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Text Colors */}
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="space-y-2">
+                          <Label>Primary Text</Label>
+                          <div className="flex gap-2">
+                            <Input
+                              type="color"
+                              value={stylesData.colors.text.primary}
+                              onChange={(e) => updateStylesField('colors.text.primary', e.target.value)}
+                              className="w-16 h-10"
+                            />
+                            <Input
+                              value={stylesData.colors.text.primary}
+                              onChange={(e) => updateStylesField('colors.text.primary', e.target.value)}
+                              placeholder="#000000"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Secondary Text</Label>
+                          <div className="flex gap-2">
+                            <Input
+                              type="color"
+                              value={stylesData.colors.text.secondary}
+                              onChange={(e) => updateStylesField('colors.text.secondary', e.target.value)}
+                              className="w-16 h-10"
+                            />
+                            <Input
+                              value={stylesData.colors.text.secondary}
+                              onChange={(e) => updateStylesField('colors.text.secondary', e.target.value)}
+                              placeholder="#000000"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Accent Text</Label>
+                          <div className="flex gap-2">
+                            <Input
+                              type="color"
+                              value={stylesData.colors.text.accent}
+                              onChange={(e) => updateStylesField('colors.text.accent', e.target.value)}
+                              className="w-16 h-10"
+                            />
+                            <Input
+                              value={stylesData.colors.text.accent}
+                              onChange={(e) => updateStylesField('colors.text.accent', e.target.value)}
+                              placeholder="#000000"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <Label>Muted Text</Label>
+                          <div className="flex gap-2">
+                            <Input
+                              type="color"
+                              value={stylesData.colors.text.muted}
+                              onChange={(e) => updateStylesField('colors.text.muted', e.target.value)}
+                              className="w-16 h-10"
+                            />
+                            <Input
+                              value={stylesData.colors.text.muted}
+                              onChange={(e) => updateStylesField('colors.text.muted', e.target.value)}
+                              placeholder="#000000"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Hover States */}
+                      <div>
+                        <h4 className="text-sm font-medium mb-4">Hover States</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div className="space-y-2">
+                            <Label>Primary Hover</Label>
+                            <div className="flex gap-2">
+                              <Input
+                                type="color"
+                                value={stylesData.colors.hover.primary}
+                                onChange={(e) => updateStylesField('colors.hover.primary', e.target.value)}
+                                className="w-16 h-10"
+                              />
+                              <Input
+                                value={stylesData.colors.hover.primary}
+                                onChange={(e) => updateStylesField('colors.hover.primary', e.target.value)}
+                                placeholder="#000000"
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label>Secondary Hover</Label>
+                            <div className="flex gap-2">
+                              <Input
+                                type="color"
+                                value={stylesData.colors.hover.secondary}
+                                onChange={(e) => updateStylesField('colors.hover.secondary', e.target.value)}
+                                className="w-16 h-10"
+                              />
+                              <Input
+                                value={stylesData.colors.hover.secondary}
+                                onChange={(e) => updateStylesField('colors.hover.secondary', e.target.value)}
+                                placeholder="#000000"
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label>Background Hover</Label>
+                            <div className="flex gap-2">
+                              <Input
+                                type="color"
+                                value={stylesData.colors.hover.background}
+                                onChange={(e) => updateStylesField('colors.hover.background', e.target.value)}
+                                className="w-16 h-10"
+                              />
+                              <Input
+                                value={stylesData.colors.hover.background}
+                                onChange={(e) => updateStylesField('colors.hover.background', e.target.value)}
+                                placeholder="#000000"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Interactive Colors */}
+                      <div>
+                        <h4 className="text-sm font-medium mb-4">Interactive Colors</h4>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                          <div className="space-y-2">
+                            <Label>Success</Label>
+                            <div className="flex gap-2">
+                              <Input
+                                type="color"
+                                value={stylesData.colors.interactive.success}
+                                onChange={(e) => updateStylesField('colors.interactive.success', e.target.value)}
+                                className="w-16 h-10"
+                              />
+                              <Input
+                                value={stylesData.colors.interactive.success}
+                                onChange={(e) => updateStylesField('colors.interactive.success', e.target.value)}
+                                placeholder="#000000"
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label>Warning</Label>
+                            <div className="flex gap-2">
+                              <Input
+                                type="color"
+                                value={stylesData.colors.interactive.warning}
+                                onChange={(e) => updateStylesField('colors.interactive.warning', e.target.value)}
+                                className="w-16 h-10"
+                              />
+                              <Input
+                                value={stylesData.colors.interactive.warning}
+                                onChange={(e) => updateStylesField('colors.interactive.warning', e.target.value)}
+                                placeholder="#000000"
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label>Error</Label>
+                            <div className="flex gap-2">
+                              <Input
+                                type="color"
+                                value={stylesData.colors.interactive.error}
+                                onChange={(e) => updateStylesField('colors.interactive.error', e.target.value)}
+                                className="w-16 h-10"
+                              />
+                              <Input
+                                value={stylesData.colors.interactive.error}
+                                onChange={(e) => updateStylesField('colors.interactive.error', e.target.value)}
+                                placeholder="#000000"
+                              />
+                            </div>
+                          </div>
+                          <div className="space-y-2">
+                            <Label>Info</Label>
+                            <div className="flex gap-2">
+                              <Input
+                                type="color"
+                                value={stylesData.colors.interactive.info}
+                                onChange={(e) => updateStylesField('colors.interactive.info', e.target.value)}
+                                className="w-16 h-10"
+                              />
+                              <Input
+                                value={stylesData.colors.interactive.info}
+                                onChange={(e) => updateStylesField('colors.interactive.info', e.target.value)}
+                                placeholder="#000000"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Project Gradients */}
+                      <div>
+                        <h4 className="text-sm font-medium mb-4">Project Gradients</h4>
+                        <div className="space-y-2">
+                          {stylesData.gradients.projects.map((color, index) => (
+                            <div key={index} className="flex gap-2 items-center">
+                              <Input
+                                type="color"
+                                value={color}
+                                onChange={(e) => updateStylesField(`gradients.projects.${index}`, e.target.value)}
+                                className="w-16 h-10"
+                              />
+                              <Input
+                                value={color}
+                                onChange={(e) => updateStylesField(`gradients.projects.${index}`, e.target.value)}
+                                placeholder="#000000"
+                              />
+                              <Button
+                                variant="destructive"
+                                size="sm"
+                                onClick={() => removeGradientColor(index)}
+                              >
+                                Remove
+                              </Button>
+                            </div>
+                          ))}
+                          <Button
+                            variant="outline"
+                            onClick={addGradientColor}
+                          >
+                            Add Gradient Color
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CollapsibleContent>
+              </Collapsible>
+
+              {/* Typography Settings */}
+              <Collapsible defaultOpen={false}>
+                <CollapsibleTrigger asChild>
+                  <Card className="cursor-pointer hover:bg-accent/50 transition-colors">
+                    <CardHeader>
+                      <div className="flex justify-between items-center w-full">
+                        <div>
+                          <CardTitle>Typography</CardTitle>
+                          <CardDescription>Manage fonts, sizes, and text styles</CardDescription>
+                        </div>
+                        <Badge variant="outline">Typography</Badge>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <Card className="mt-2">
+                    <CardContent className="space-y-6">
+                      {/* Font Families */}
+                      <div>
+                        <h4 className="text-sm font-medium mb-4">Font Families</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div className="space-y-2">
+                            <Label>Primary Font</Label>
+                            <Select value={stylesData.typography.fontFamily.primary} onValueChange={(value) => updateStylesField('typography.fontFamily.primary', value)}>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select font" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="'Bricolage_Grotesque', sans-serif">Bricolage Grotesque</SelectItem>
+                                <SelectItem value="system-ui, sans-serif">System UI</SelectItem>
+                                <SelectItem value="'Inter', sans-serif">Inter</SelectItem>
+                                <SelectItem value="'Roboto', sans-serif">Roboto</SelectItem>
+                                <SelectItem value="'Open Sans', sans-serif">Open Sans</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="space-y-2">
+                            <Label>Secondary Font</Label>
+                            <Select value={stylesData.typography.fontFamily.secondary} onValueChange={(value) => updateStylesField('typography.fontFamily.secondary', value)}>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select font" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="system-ui, sans-serif">System UI</SelectItem>
+                                <SelectItem value="'Inter', sans-serif">Inter</SelectItem>
+                                <SelectItem value="'Roboto', sans-serif">Roboto</SelectItem>
+                                <SelectItem value="'Open Sans', sans-serif">Open Sans</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div className="space-y-2">
+                            <Label>Monospace Font</Label>
+                            <Select value={stylesData.typography.fontFamily.monospace} onValueChange={(value) => updateStylesField('typography.fontFamily.monospace', value)}>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select font" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="'JetBrains Mono', monospace">JetBrains Mono</SelectItem>
+                                <SelectItem value="'Fira Code', monospace">Fira Code</SelectItem>
+                                <SelectItem value="'Source Code Pro', monospace">Source Code Pro</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+                      </div>
+
+                      
+                      {/* Font Weights */}
+                      <div>
+                        <h4 className="text-sm font-medium mb-4">Font Weights</h4>
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                          {Object.entries(stylesData.typography.fontWeights).map(([weight, value]) => (
+                            <div key={weight} className="space-y-2">
+                              <Label className="capitalize">{weight}</Label>
+                              <Select value={value} onValueChange={(newValue) => updateStylesField(`typography.fontWeights.${weight}`, newValue)}>
+                                <SelectTrigger>
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="100">100 (Thin)</SelectItem>
+                                  <SelectItem value="200">200 (Extra Light)</SelectItem>
+                                  <SelectItem value="300">300 (Light)</SelectItem>
+                                  <SelectItem value="400">400 (Normal)</SelectItem>
+                                  <SelectItem value="500">500 (Medium)</SelectItem>
+                                  <SelectItem value="600">600 (Semi Bold)</SelectItem>
+                                  <SelectItem value="700">700 (Bold)</SelectItem>
+                                  <SelectItem value="800">800 (Extra Bold)</SelectItem>
+                                  <SelectItem value="900">900 (Black)</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Line Heights & Letter Spacing */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <h4 className="text-sm font-medium mb-4">Line Heights</h4>
+                          <div className="grid grid-cols-2 gap-4">
+                            {Object.entries(stylesData.typography.lineHeights).map(([height, value]) => (
+                              <div key={height} className="space-y-2">
+                                <Label className="capitalize">{height}</Label>
+                                <Select value={value} onValueChange={(newValue) => updateStylesField(`typography.lineHeights.${height}`, newValue)}>
+                                  <SelectTrigger>
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="1">1.0</SelectItem>
+                                    <SelectItem value="1.25">1.25</SelectItem>
+                                    <SelectItem value="1.375">1.375</SelectItem>
+                                    <SelectItem value="1.5">1.5</SelectItem>
+                                    <SelectItem value="1.625">1.625</SelectItem>
+                                    <SelectItem value="2">2.0</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-medium mb-4">Letter Spacing</h4>
+                          <div className="grid grid-cols-2 gap-4">
+                            {Object.entries(stylesData.typography.letterSpacing).map(([spacing, value]) => (
+                              <div key={spacing} className="space-y-2">
+                                <Label className="capitalize">{spacing}</Label>
+                                <Select value={value} onValueChange={(newValue) => updateStylesField(`typography.letterSpacing.${spacing}`, newValue)}>
+                                  <SelectTrigger>
+                                    <SelectValue />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    <SelectItem value="-0.1em">-0.1em</SelectItem>
+                                    <SelectItem value="-0.05em">-0.05em</SelectItem>
+                                    <SelectItem value="-0.025em">-0.025em</SelectItem>
+                                    <SelectItem value="0em">0em</SelectItem>
+                                    <SelectItem value="0.025em">0.025em</SelectItem>
+                                    <SelectItem value="0.05em">0.05em</SelectItem>
+                                    <SelectItem value="0.1em">0.1em</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CollapsibleContent>
+              </Collapsible>
+
+              {/* Layout & Spacing */}
+              <Collapsible defaultOpen={false}>
+                <CollapsibleTrigger asChild>
+                  <Card className="cursor-pointer hover:bg-accent/50 transition-colors">
+                    <CardHeader>
+                      <div className="flex justify-between items-center w-full">
+                        <div>
+                          <CardTitle>Layout & Spacing</CardTitle>
+                          <CardDescription>Manage spacing, containers, and layout settings</CardDescription>
+                        </div>
+                        <Badge variant="outline">Layout</Badge>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <Card className="mt-2">
+                    <CardContent className="space-y-6">
+                      {/* Spacing Scale */}
+                      <div>
+                        <h4 className="text-sm font-medium mb-4">Spacing Scale</h4>
+                        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                          {Object.entries(stylesData.layout.spacing).map(([size, value]) => (
+                            <div key={size} className="space-y-2">
+                              <Label className="capitalize">{size}</Label>
+                              <Input
+                                value={value}
+                                onChange={(e) => updateStylesField(`layout.spacing.${size}`, e.target.value)}
+                                placeholder="e.g., 16px"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Responsive Values Table */}
+                      <div>
+                        <h4 className="text-sm font-medium mb-4">Responsive Values (Breakpoints, Containers, Border Radius, Spacing, Font Sizes)</h4>
+                        <div className="overflow-x-auto">
+                          <table className="w-full border-collapse border border-gray-200">
+                            <thead>
+                              <tr className="bg-gray-50">
+                                <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium">Variant</th>
+                                <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium">Breakpoints</th>
+                                <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium">Containers</th>
+                                <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium">Border Radius</th>
+                                <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium">Spacing</th>
+                                <th className="border border-gray-200 px-4 py-2 text-left text-sm font-medium">Font Sizes (Mobile/Tablet/Desktop)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl'].map((variant) => {
+                                const hasBreakpoint = stylesData.breakpoints[variant as keyof typeof stylesData.breakpoints];
+                                const hasContainer = stylesData.layout.containers[variant as keyof typeof stylesData.layout.containers];
+                                const hasBorderRadius = stylesData.layout.borderRadius[variant as keyof typeof stylesData.layout.borderRadius];
+                                const hasSpacing = stylesData.layout.spacing[variant as keyof typeof stylesData.layout.spacing];
+                                const hasFontSize = stylesData.typography.fontSizes[variant as keyof typeof stylesData.typography.fontSizes];
+                                
+                                if (!hasBreakpoint && !hasContainer && !hasBorderRadius && !hasSpacing && !hasFontSize) return null;
+                                
+                                return (
+                                  <tr key={variant} className="hover:bg-gray-50">
+                                    <td className="border border-gray-200 px-4 py-2 font-medium text-sm">{variant}</td>
+                                    <td className="border border-gray-200 px-4 py-2">
+                                      {hasBreakpoint ? (
+                                        <Input
+                                          value={stylesData.breakpoints[variant as keyof typeof stylesData.breakpoints]}
+                                          onChange={(e) => updateStylesField(`breakpoints.${variant}`, e.target.value)}
+                                          placeholder="e.g., 768px"
+                                          className="w-full"
+                                        />
+                                      ) : (
+                                        <span className="text-gray-400">-</span>
+                                      )}
+                                    </td>
+                                    <td className="border border-gray-200 px-4 py-2">
+                                      {hasContainer ? (
+                                        <Input
+                                          value={stylesData.layout.containers[variant as keyof typeof stylesData.layout.containers]}
+                                          onChange={(e) => updateStylesField(`layout.containers.${variant}`, e.target.value)}
+                                          placeholder="e.g., 1280px"
+                                          className="w-full"
+                                        />
+                                      ) : (
+                                        <span className="text-gray-400">-</span>
+                                      )}
+                                    </td>
+                                    <td className="border border-gray-200 px-4 py-2">
+                                      {hasBorderRadius ? (
+                                        <Input
+                                          value={stylesData.layout.borderRadius[variant as keyof typeof stylesData.layout.borderRadius]}
+                                          onChange={(e) => updateStylesField(`layout.borderRadius.${variant}`, e.target.value)}
+                                          placeholder="e.g., 8px"
+                                          className="w-full"
+                                        />
+                                      ) : (
+                                        <span className="text-gray-400">-</span>
+                                      )}
+                                    </td>
+                                    <td className="border border-gray-200 px-4 py-2">
+                                      {hasSpacing ? (
+                                        <Input
+                                          value={stylesData.layout.spacing[variant as keyof typeof stylesData.layout.spacing]}
+                                          onChange={(e) => updateStylesField(`layout.spacing.${variant}`, e.target.value)}
+                                          placeholder="e.g., 16px"
+                                          className="w-full"
+                                        />
+                                      ) : (
+                                        <span className="text-gray-400">-</span>
+                                      )}
+                                    </td>
+                                    <td className="border border-gray-200 px-4 py-2">
+                                      {hasFontSize ? (
+                                        <div className="space-y-1">
+                                          {(stylesData.typography.fontSizes[variant as keyof typeof stylesData.typography.fontSizes] as string[]).map((size, index) => (
+                                            <Input
+                                              key={index}
+                                              value={size}
+                                              onChange={(e) => updateStylesField(`typography.fontSizes.${variant}.${index}`, e.target.value)}
+                                              placeholder={index === 0 ? "Mobile" : index === 1 ? "Tablet" : "Desktop"}
+                                              className="w-full text-xs"
+                                            />
+                                          ))}
+                                        </div>
+                                      ) : (
+                                        <span className="text-gray-400">-</span>
+                                      )}
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                              {/* Special case for 'none' and 'full' border radius */}
+                              <tr className="hover:bg-gray-50">
+                                <td className="border border-gray-200 px-4 py-2 font-medium text-sm">none</td>
+                                <td className="border border-gray-200 px-4 py-2">
+                                  <span className="text-gray-400">-</span>
+                                </td>
+                                <td className="border border-gray-200 px-4 py-2">
+                                  <span className="text-gray-400">-</span>
+                                </td>
+                                <td className="border border-gray-200 px-4 py-2">
+                                  <Input
+                                    value={stylesData.layout.borderRadius.none}
+                                    onChange={(e) => updateStylesField('layout.borderRadius.none', e.target.value)}
+                                    placeholder="e.g., 0px"
+                                    className="w-full"
+                                  />
+                                </td>
+                                <td className="border border-gray-200 px-4 py-2">
+                                  <span className="text-gray-400">-</span>
+                                </td>
+                                <td className="border border-gray-200 px-4 py-2">
+                                  <span className="text-gray-400">-</span>
+                                </td>
+                              </tr>
+                              <tr className="hover:bg-gray-50">
+                                <td className="border border-gray-200 px-4 py-2 font-medium text-sm">full</td>
+                                <td className="border border-gray-200 px-4 py-2">
+                                  <span className="text-gray-400">-</span>
+                                </td>
+                                <td className="border border-gray-200 px-4 py-2">
+                                  <span className="text-gray-400">-</span>
+                                </td>
+                                <td className="border border-gray-200 px-4 py-2">
+                                  <Input
+                                    value={stylesData.layout.borderRadius.full}
+                                    onChange={(e) => updateStylesField('layout.borderRadius.full', e.target.value)}
+                                    placeholder="e.g., 9999px"
+                                    className="w-full"
+                                  />
+                                </td>
+                                <td className="border border-gray-200 px-4 py-2">
+                                  <span className="text-gray-400">-</span>
+                                </td>
+                                <td className="border border-gray-200 px-4 py-2">
+                                  <span className="text-gray-400">-</span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-2">
+                          This table shows all responsive values across different property types. Font sizes show Mobile/Tablet/Desktop values. Edit values directly in the table.
+                        </p>
+                      </div>
+
+                      {/* Section Padding & Margins */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <h4 className="text-sm font-medium mb-4">Section Padding</h4>
+                          <div className="space-y-4">
+                            <div className="space-y-2">
+                              <Label>Top Padding</Label>
+                              <Input
+                                value={stylesData.layout.sections.padding.top}
+                                onChange={(e) => updateStylesField('layout.sections.padding.top', e.target.value)}
+                                placeholder="e.g., 64px"
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label>Bottom Padding</Label>
+                              <Input
+                                value={stylesData.layout.sections.padding.bottom}
+                                onChange={(e) => updateStylesField('layout.sections.padding.bottom', e.target.value)}
+                                placeholder="e.g., 64px"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-medium mb-4">Section Margins</h4>
+                          <div className="space-y-4">
+                            <div className="space-y-2">
+                              <Label>Top Margin</Label>
+                              <Input
+                                value={stylesData.layout.sections.margin.top}
+                                onChange={(e) => updateStylesField('layout.sections.margin.top', e.target.value)}
+                                placeholder="e.g., 0px"
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label>Bottom Margin</Label>
+                              <Input
+                                value={stylesData.layout.sections.margin.bottom}
+                                onChange={(e) => updateStylesField('layout.sections.margin.bottom', e.target.value)}
+                                placeholder="e.g., 0px"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CollapsibleContent>
+              </Collapsible>
+
+              {/* Animations */}
+              <Collapsible defaultOpen={false}>
+                <CollapsibleTrigger asChild>
+                  <Card className="cursor-pointer hover:bg-accent/50 transition-colors">
+                    <CardHeader>
+                      <div className="flex justify-between items-center w-full">
+                        <div>
+                          <CardTitle>Animations</CardTitle>
+                          <CardDescription>Manage animation durations, easing, and transitions</CardDescription>
+                        </div>
+                        <Badge variant="outline">Animations</Badge>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <Card className="mt-2">
+                    <CardContent className="space-y-6">
+                      {/* Animation Durations */}
+                      <div>
+                        <h4 className="text-sm font-medium mb-4">Animation Durations</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          {Object.entries(stylesData.animations.durations).map(([duration, value]) => (
+                            <div key={duration} className="space-y-2">
+                              <Label className="capitalize">{duration}</Label>
+                              <Select value={value} onValueChange={(newValue) => updateStylesField(`animations.durations.${duration}`, newValue)}>
+                                <SelectTrigger>
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="100ms">100ms</SelectItem>
+                                  <SelectItem value="150ms">150ms</SelectItem>
+                                  <SelectItem value="200ms">200ms</SelectItem>
+                                  <SelectItem value="300ms">300ms</SelectItem>
+                                  <SelectItem value="500ms">500ms</SelectItem>
+                                  <SelectItem value="700ms">700ms</SelectItem>
+                                  <SelectItem value="1000ms">1000ms</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Easing Functions */}
+                      <div>
+                        <h4 className="text-sm font-medium mb-4">Easing Functions</h4>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                          {Object.entries(stylesData.animations.easing).map(([easing, value]) => (
+                            <div key={easing} className="space-y-2">
+                              <Label className="capitalize">{easing}</Label>
+                              <Select value={value} onValueChange={(newValue) => updateStylesField(`animations.easing.${easing}`, newValue)}>
+                                <SelectTrigger>
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="linear">Linear</SelectItem>
+                                  <SelectItem value="ease">Ease</SelectItem>
+                                  <SelectItem value="ease-in">Ease In</SelectItem>
+                                  <SelectItem value="ease-out">Ease Out</SelectItem>
+                                  <SelectItem value="ease-in-out">Ease In Out</SelectItem>
+                                  <SelectItem value="cubic-bezier(0.4, 0, 0.2, 1)">Cubic Bezier (Default)</SelectItem>
+                                  <SelectItem value="cubic-bezier(0.25, 0.46, 0.45, 0.94)">Ease Out Quad</SelectItem>
+                                  <SelectItem value="cubic-bezier(0.68, -0.55, 0.265, 1.55)">Ease Out Back</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Transitions */}
+                      <div>
+                        <h4 className="text-sm font-medium mb-4">Transitions</h4>
+                        <div className="grid grid-cols-1 gap-4">
+                          {Object.entries(stylesData.animations.transitions).map(([transition, value]) => (
+                            <div key={transition} className="space-y-2">
+                              <Label className="capitalize">{transition}</Label>
+                              <Input
+                                value={value}
+                                onChange={(e) => updateStylesField(`animations.transitions.${transition}`, e.target.value)}
+                                placeholder="e.g., 300ms ease-out"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                                          </CardContent>
+                  </Card>
+                </CollapsibleContent>
+              </Collapsible>
             </div>
           </TabsContent>
         </Tabs>

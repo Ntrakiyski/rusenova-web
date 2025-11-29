@@ -253,6 +253,14 @@ export interface HomeContent {
     };
   };
   
+  contact: {
+    title: string;
+    subtitle: string;
+    email: string;
+    linkedin: string;
+    opportunities: string[][];
+  };
+  
   footer: {
     backgroundColor: string;
     brand: {

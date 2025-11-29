@@ -44,81 +44,17 @@ export default function PDSectionRight({
 
   const wordsToHighlight = getWordsToHighlight(title);
 
-  return (
-    <div className={`${background} box-border content-stretch flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center px-0 py-8 sm:py-12 md:py-16 lg:py-[96px] relative size-full`}>
-      {/* Title Section */}
-      <div className="max-w-full sm:max-w-[360px] md:max-w-[512px] lg:max-w-[1280px] mx-auto relative shrink-0 w-full px-4 sm:px-6 md:px-8 lg:px-[32px]">
-        <div className="box-border content-stretch flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[32px] items-start max-w-inherit py-0 relative w-full">
-          <p className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold leading-8 sm:leading-10 md:leading-[40px] lg:leading-[44px] relative shrink-0 text-[#191818] text-lg sm:text-xl md:text-2xl lg:text-[36px] w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-            {title}
-          </p>
-        </div>
-      </div>
+   return (
+    <section className={`${background} w-full py-8 sm:py-12 md:py-16 lg:py-[96px] min-h-[760px]`} style={{ minHeight: '760px' }}>
+      <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
+        <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center w-full">
 
-      {/* Two Column Section */}
-      <div className="max-w-full sm:max-w-[360px] md:max-w-[512px] lg:max-w-[1280px] mx-auto relative shrink-0 w-full px-4 sm:px-6 md:px-8 lg:px-[32px]">
-        <div className="flex flex-col-reverse md:flex-row items-center max-w-inherit size-full gap-6 sm:gap-8 md:gap-[64px]">
-          <div className="box-border content-stretch flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[64px] items-center max-w-inherit py-0 relative w-full">
+          {/* Single row: Image on left, text content on right */}
+          <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center w-full">
 
-            {/* Text Content - Right side for right layout */}
-            <div className="content-stretch flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-[48px] grow items-start max-w-full md:max-w-[560px] min-h-px min-w-px relative shrink-0 w-full md:order-2">
-              {/* Description */}
-              <div className="content-stretch flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[16px] items-start max-w-full md:max-w-[560px] min-w-px relative shrink-0 w-full">
-                <div className="basis-0 content-stretch flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[20px] grow items-start min-h-px min-w-px relative shrink-0 w-full">
-                  <div className="box-border content-stretch flex flex-col gap-2 sm:gap-4 md:gap-6 lg:gap-[8px] items-start pb-0 pt-2 sm:pt-3 md:pt-4 lg:pt-[10px] px-0 relative shrink-0 w-full">
-                    <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-6 sm:leading-7 md:leading-[22px] lg:leading-[24px] relative shrink-0 text-[#191818] text-sm sm:text-base md:text-[15px] lg:text-[16px] w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                      {highlightWords(description, wordsToHighlight)}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Achievements */}
-              <div className="content-stretch flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[16px] items-start max-w-full md:max-w-[560px] min-w-px relative shrink-0 w-full">
-                <div className="basis-0 content-stretch flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[20px] grow items-start min-h-px min-w-px relative shrink-0 w-full">
-                  <div className="box-border content-stretch flex flex-col gap-2 sm:gap-4 md:gap-6 lg:gap-[8px] items-start pb-0 pt-2 sm:pt-3 md:pt-4 lg:pt-[10px] px-0 relative shrink-0 text-[#191818] w-full">
-                    <p className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold leading-7 sm:leading-8 md:leading-[28px] lg:leading-[30px] relative shrink-0 text-base sm:text-lg md:text-xl lg:text-[20px] w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                      What was achieved
-                    </p>
-                    <div className="content-stretch flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-[12px] items-start relative shrink-0 w-full">
-                      {achievements.map((achievement, index) => {
-                        // Extract the bold part from achievement (text between **)
-                        const parts = achievement.split(/(managing|every message|decision-tree|company-wide|10-30% increase|intuitive entry point|Increased active usage)/);
-
-                        return (
-                          <div key={index} className="content-stretch flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-[12px] items-start relative shrink-0 w-full">
-                            <div className="box-border content-stretch flex gap-2 sm:gap-3 md:gap-[10px] items-center pb-0 pt-2 sm:pt-3 md:pt-[8px] px-0 relative shrink-0">
-                              <div className="relative shrink-0 size-3 sm:size-4 md:size-[12px]">
-                                <div className="size-2 sm:size-3 md:size-[8px] rounded-full bg-[#F38300]"></div>
-                              </div>
-                            </div>
-                            <div className="basis-0 content-stretch flex flex-col grow items-start min-h-px min-w-px relative shrink-0 w-full">
-                              <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-6 sm:leading-7 md:leading-[22px] lg:leading-[24px] relative shrink-0 text-[#191818] text-sm sm:text-base md:text-[15px] lg:text-[16px] w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                                {parts.map((part, i) => {
-                                  if (i % 2 === 1) {
-                                    return (
-                                      <span key={i} className="font-['Bricolage_Grotesque:Bold',sans-serif] font-bold" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                                        {part}
-                                      </span>
-                                    );
-                                  }
-                                  return part;
-                                })}
-                              </p>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Image Content - Right side for right layout */}
-            <div className="basis-0 grow min-h-[200px] md:min-h-[560px] max-h-[40vh] md:max-h-[560px] min-h-px min-w-px overflow-clip relative rounded-[16px] shrink-0 w-full md:w-auto order-1 md:order-1 mt-4 md:mt-0">
-              {/* Simplified image display - use the first image for all projects */}
-              <div className="w-full h-[200px] md:h-[560px] relative flex items-center justify-center">
+            {/* Left Column: Image */}
+            <div className="w-full lg:w-1/2 min-h-[200px] lg:min-h-[560px] max-h-[40vh] lg:max-h-[560px] overflow-clip rounded-[16px] lg:order-2">
+              <div className="w-full h-[200px] lg:h-[560px] relative flex items-center justify-center">
                 <img
                   alt=""
                   className="max-h-full max-w-full object-contain pointer-events-none w-auto h-auto"
@@ -126,9 +62,66 @@ export default function PDSectionRight({
                 />
               </div>
             </div>
+
+            {/* Right Column: Text Content */}
+            <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-[48px] items-start w-full lg:w-1/2 lg:order-1">
+
+              {/* Title */}
+              <h2 className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold leading-8 sm:leading-10 md:leading-[40px] lg:leading-[44px] text-[#191818] text-lg sm:text-xl md:text-2xl lg:text-[36px] w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                {title}
+              </h2>
+
+              {/* Description */}
+              <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[16px] items-start w-full">
+                <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[20px] items-start w-full">
+                  <div className="flex flex-col gap-2 sm:gap-4 md:gap-6 lg:gap-[8px] items-start w-full">
+                    <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-6 sm:leading-7 md:leading-[22px] lg:leading-[24px] text-[#191818] text-sm sm:text-base md:text-[15px] lg:text-[16px] w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                      {highlightWords(description, wordsToHighlight)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Achievements */}
+              <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[16px] items-start w-full">
+                <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[20px] items-start w-full">
+                  <h3 className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold leading-7 sm:leading-8 md:leading-[28px] lg:leading-[30px] text-[#191818] text-base sm:text-lg md:text-xl lg:text-[20px] w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                    What was achieved
+                  </h3>
+                  <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-[12px] items-start w-full">
+                    {achievements.map((achievement, index) => {
+                      // Extract the bold part from achievement (text between **)
+                      const parts = achievement.split(/(managing|every message|decision-tree|company-wide|10-30% increase|intuitive entry point|Increased active usage)/);
+
+                      return (
+                        <div key={index} className="flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-[12px] items-start w-full">
+                          <div className="flex gap-2 sm:gap-3 md:gap-[10px] items-center w-full">
+                            <div className="size-3 sm:size-4 md:size-[12px] flex-shrink-0">
+                              <div className="size-2 sm:size-3 md:size-[8px] rounded-full bg-[#F38300]"></div>
+                            </div>
+                            <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-6 sm:leading-7 md:leading-[22px] lg:leading-[24px] text-[#191818] text-sm sm:text-base md:text-[15px] lg:text-[16px] flex-1" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                              {parts.map((part, i) => {
+                                if (i % 2 === 1) {
+                                  return (
+                                    <span key={i} className="font-['Bricolage_Grotesque:Bold',sans-serif] font-bold" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                                      {part}
+                                    </span>
+                                  );
+                                }
+                                return part;
+                              })}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

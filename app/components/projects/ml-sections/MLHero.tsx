@@ -18,14 +18,14 @@ export default function MLHero({
   decorationImage,
   background
 }: MLHeroProps) {
-  // Always use the same black background as navigation: bg-[#252222]/95
-  const heroBackground = background || 'bg-[#252222]/95';
+  // Always use the same dark background as navigation: #252222
+  const heroBackground = background || 'bg-[#252222]';
 
   return (
     <section 
-      className={`${heroBackground} relative z-10 rounded-bl-[32px] rounded-br-[32px] overflow-hidden`}
+      className={`${heroBackground} relative z-10 rounded-bl-[32px] rounded-br-[32px] overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[760px] pt-24 md:pt-32`}
     >
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 h-full flex items-center">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
           {/* Hero Text */}
           <div className="flex-1 w-full">
@@ -39,11 +39,11 @@ export default function MLHero({
 
           {/* Hero Image */}
           <div className="flex-1 w-full relative">
-            <div className="relative w-full max-w-[592px] mx-auto">
+            <div className="relative w-full">
               <Image
                 src={heroImage}
                 alt={`${title} Hero`}
-                className="w-full rounded-[12px] border border-white"
+                className="w-full rounded-[12px]"
                 width={592}
                 height={400}
               />

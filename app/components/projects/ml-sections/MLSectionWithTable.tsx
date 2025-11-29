@@ -22,8 +22,9 @@ export default function MLSectionWithTable({
   background = 'bg-white'
 }: MLSectionWithTableProps) {
   return (
-    <section className={`${background} py-16 md:py-24 relative z-10`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10`} style={{ minHeight: '760px' }}>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        {/* Title and Description Row */}
         <div className="mb-12">
           {title && (
             <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
@@ -37,6 +38,7 @@ export default function MLSectionWithTable({
           )}
         </div>
 
+        {/* Table Row */}
         <div className="rounded-3xl bg-[radial-gradient(134.07%_95.89%_at_92.97%_104.35%,rgba(244,77,46,0.90)_3.85%,rgba(240,132,76,0.90)_22.12%,#C1ABD8_37.02%,#D7DBED_46.63%,#F7F4ED_53.85%)] overflow-hidden relative w-full">
 
           <div className="relative z-10 p-8 md:p-16">

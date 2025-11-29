@@ -17,8 +17,9 @@ export default function MLSectionWithBullets({
   background = 'bg-white'
 }: MLSectionWithBulletsProps) {
   return (
-    <section className={`${background} py-16 md:py-24 relative z-10`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10`} style={{ minHeight: '760px' }}>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        {/* Title and Description Row */}
         <div className="mb-12">
           {title && (
             <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
@@ -32,8 +33,8 @@ export default function MLSectionWithBullets({
           )}
         </div>
 
+        {/* Content Row with Bullets */}
         <GradientBackground className="rounded-3xl overflow-hidden relative w-full max-w-[1216px]">
-
           <div className="relative z-10 p-8 md:p-16">
             <div className="w-full bg-white rounded-[12px] p-8 border border-[#dddddd]">
               <div className="space-y-4">

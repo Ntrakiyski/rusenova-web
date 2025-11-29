@@ -22,9 +22,9 @@ export default function MLCostBenefit({
   background = 'bg-white'
 }: MLCostBenefitProps) {
   return (
-    <section className={`${background} py-16 md:py-24 relative z-10`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-12">
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10 flex items-center`} style={{ minHeight: '760px' }}>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="mb-12 w-full">
           {title && (
             <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
               {title}
@@ -37,7 +37,7 @@ export default function MLCostBenefit({
           )}
         </div>
 
-        <div className="flex flex-col md:flex-row gap-12 justify-start items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 justify-start items-start">
               {items.map((item, index) => (
                 <div
                   key={index}

@@ -111,58 +111,49 @@ export default function Telenor({ projectData }: TelenorProps) {
       />
 
       {/* 2. Telenor Intro Section */}
-      <div className="max-w-full sm:max-w-[360px] md:max-w-[512px] lg:max-w-[1280px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-[32px]">
-        <PDTelenorIntro
-          title={intro.title}
-          features={intro.features}
-        />
-      </div>
+      <PDTelenorIntro
+        title={intro.title}
+        features={intro.features}
+      />
 
       {/* 3. Selected Work Section */}
-      <div className="max-w-full sm:max-w-[360px] md:max-w-[512px] lg:max-w-[1280px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-[32px]">
-        <PDSelectedWork
-          title={selectedWork.title}
-          description={selectedWork.description}
-        />
-      </div>
+      <PDSelectedWork
+        title={selectedWork.title}
+        description={selectedWork.description}
+      />
 
-      {/* 4. Project Sections - Pattern: image left, image right, image left */}
-      {fixedProjects.map((project, index) => {
-        // Pattern: 0: left (image left), 1: right (image right), 2: left (image left)
-        if (index % 2 === 0) {
+      {/* 4. Project Sections - Use layout from project data */}
+      {fixedProjects.map((project) => {
+        if (project.layout === 'text-left') {
           return (
-            <div key={project.id} className="max-w-full sm:max-w-[360px] md:max-w-[512px] lg:max-w-[1280px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-[32px]">
-              <PDSectionLeft
-                title={project.title}
-                description={project.description}
-                achievements={project.achievements}
-                images={project.images}
-                background="bg-[#f7f4ed]"
-              />
-            </div>
+            <PDSectionLeft
+              key={project.id}
+              title={project.title}
+              description={project.description}
+              achievements={project.achievements}
+              images={project.images}
+              background="bg-[#f7f4ed]"
+            />
           );
         } else {
           return (
-            <div key={project.id} className="max-w-full sm:max-w-[360px] md:max-w-[512px] lg:max-w-[1280px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-[32px]">
-              <PDSectionRight
-                title={project.title}
-                description={project.description}
-                achievements={project.achievements}
-                images={project.images}
-                background="bg-[#f7f4ed]"
-              />
-            </div>
+            <PDSectionRight
+              key={project.id}
+              title={project.title}
+              description={project.description}
+              achievements={project.achievements}
+              images={project.images}
+              background="bg-[#f7f4ed]"
+            />
           );
         }
       })}
 
       {/* 5. Keep In Mind Section */}
-      <div className="max-w-full sm:max-w-[360px] md:max-w-[512px] lg:max-w-[1280px] mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-[32px]">
-        <PDKeepInMind
-          title={callout.title}
-          description={callout.description}
-        />
-      </div>
+      <PDKeepInMind
+        title={callout.title}
+        description={callout.description}
+      />
     </div>
   );
 }

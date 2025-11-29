@@ -4,12 +4,30 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import spiralImage from "@/public/rag-results.png";
 
-export default function ContactSection() {
-  const opportunities = [
-    ['Machine Learning Engineering', 'Data Science'],
-    ['Product Design']
-  ];
+interface ContactSectionProps {
+  content: {
+    title: string;
+    subtitle: string;
+    email: string;
+    linkedin: string;
+    opportunities: string[][];
+  };
+}
 
+export default function ContactSection({ content }: ContactSectionProps) {
+  // Fallback content in case content is undefined
+  const fallbackContent = {
+    title: "Want to talk about your project?",
+    subtitle: "Message me on LinkedIn or send me an email",
+    email: "mailto:gloria@example.com",
+    linkedin: "https://linkedin.com",
+    opportunities: [
+      ["Machine Learning Engineering", "Data Science"],
+      ["Product Design"]
+    ]
+  };
+
+  const contactContent = content || fallbackContent;
   return (
     <section id="contact" className="relative py-20">
       <div className="max-w-[1280px] mx-auto px-8">
@@ -32,13 +50,13 @@ export default function ContactSection() {
                 <h2
                   className="font-['Inter:Semi_Bold',sans-serif] text-white text-[36px] leading-[44px] tracking-[-0.72px]"
                 >
-                  Want to talk about your project?
+                  {contactContent.title}
                 </h2>
 
                 <p
                   className="font-['Inter:Regular',sans-serif] text-white text-[20px] leading-[30px]"
                 >
-                  Message me on LinkedIn or send me an email
+                  {contactContent.subtitle}
                 </p>
 
                 <div className="flex gap-3 mt-8">
@@ -46,7 +64,7 @@ export default function ContactSection() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    href="mailto:gloria@example.com"
+                    href={contactContent.email}
                     className="px-[18px] py-[12px] rounded-lg border border-white hover:bg-white/5 transition-colors shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]"
                   >
                     <span
@@ -60,7 +78,7 @@ export default function ContactSection() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    href="https://linkedin.com"
+                    href={contactContent.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-[18px] py-[12px] rounded-lg bg-white hover:bg-white/90 transition-colors border border-[#7f56d9] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]"
@@ -86,12 +104,12 @@ export default function ContactSection() {
                 <p
                   className="font-['Inter:Regular',sans-serif] text-white text-[20px] leading-[30px]"
                 >
-                  I'm currently seeking opportunities in:
+                  I&apos;m currently seeking opportunities in:
                 </p>
 
                 <div className="flex flex-col gap-3">
                   <div className="flex flex-wrap gap-3">
-                    {opportunities[0].map((opportunity, index) => (
+                    {contactContent.opportunities[0].map((opportunity, index) => (
                       <div
                         key={index}
                         className="backdrop-blur-sm backdrop-filter bg-[rgba(255,255,255,0.03)] px-6 py-3 rounded-[10px] h-12 flex items-center justify-center"
@@ -106,7 +124,7 @@ export default function ContactSection() {
                   </div>
 
                   <div className="flex flex-wrap gap-3">
-                    {opportunities[1].map((opportunity, index) => (
+                    {contactContent.opportunities[1].map((opportunity, index) => (
                       <div
                         key={index}
                         className="backdrop-blur-sm backdrop-filter bg-[rgba(255,255,255,0.03)] px-6 py-3 rounded-[10px] h-12 flex items-center justify-center"
@@ -124,8 +142,8 @@ export default function ContactSection() {
             </motion.div>
           </div>
 
-          <div className="absolute flex items-center justify-center left-[850px] w-[559.467px] h-[559.467px] top-[134px] pointer-events-none hidden lg:block">
-            <div className="rotate-[300deg]">
+          <div className="absolute items-center justify-center left-[850px] w-[559.467px] h-[559.467px] top-[134px] pointer-events-none lg:flex hidden">
+            <div className="rotate-300">
               <div className="relative w-[409.558px] h-[409.558px]">
                 <Image
                   alt=""

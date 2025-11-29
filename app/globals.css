@@ -45,6 +45,7 @@
 
 :root {
   --radius: 0.625rem;
+  --header-height: 80px; /* Fallback height, will be updated dynamically */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -118,5 +119,16 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Navbar spacing utilities */
+.navbar-padding-top {
+  padding-top: 72px;
+}
+
+@media (min-width: 768px) {
+  .navbar-padding-top {
+    padding-top: 80px;
   }
 }

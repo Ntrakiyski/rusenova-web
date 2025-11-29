@@ -17,8 +17,9 @@ export default function MLArchitecture({
   background = 'bg-white'
 }: MLArchitectureProps) {
   return (
-    <section className={`${background} py-16 md:py-24 relative`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative`} style={{ minHeight: '760px' }}>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        {/* Title and Description Row */}
         <div className="mb-12">
           {title && (
             <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
@@ -32,12 +33,13 @@ export default function MLArchitecture({
           )}
         </div>
 
+        {/* Content Row with Image */}
         {image && (
           <div className="flex justify-center">
             <Image
               src={image}
               alt={title || 'Architecture Diagram'}
-              className="w-full max-w-[800px] rounded-lg"
+              className="w-full rounded-lg"
               width={800}
               height={500}
             />
