@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Project, IntroSection, ApproachSection, ArchitectureSection, SmartRetrievalSection, EvaluationSection, ProductionSection, ResultsSection, TechStackSection } from '@/types/project';
+import { Project, WhatIBuildSection, IntroSection } from '@/types/project';
 import MLHero from './MLHero';
 import MLWhatIBuild from './MLWhatIBuild';
 import MLChallenge from './MLChallenge';
@@ -13,57 +13,54 @@ import MLTechStack from './MLTechStack';
 
 interface RagEvaluationSystemProps {
   projectData: Project;
+  homeContentData?: {
+    title: string;
+    shortDescription: string;
+  };
 }
 
-export default function RagEvaluationSystem({ projectData }: RagEvaluationSystemProps) {
-  // Extract sections from project data with proper type checking
+export default function RagEvaluationSystem({ projectData, homeContentData }: RagEvaluationSystemProps) {
+  // Extract sections from project data
+  const whatIBuildSection = projectData.sections.find((section): section is WhatIBuildSection =>
+    section.type === 'what-i-build'
+  ) as WhatIBuildSection | undefined;
+
   const challengeSection = projectData.sections.find((section): section is IntroSection =>
     section.type === 'intro' && section.layout === 'text-left-image-right'
   );
 
-  const approachSection = projectData.sections.find((section): section is ApproachSection =>
-    section.type === 'approach'
-  );
-
-  const architectureSection = projectData.sections.find((section): section is ArchitectureSection =>
-    section.type === 'architecture'
-  );
-
-  const smartRetrievalSection = projectData.sections.find((section): section is SmartRetrievalSection =>
-    section.type === 'smart-retrieval'
-  );
-
-  const evaluationSection = projectData.sections.find((section): section is EvaluationSection =>
-    section.type === 'evaluation'
-  );
-
-  const productionSection = projectData.sections.find((section): section is ProductionSection =>
-    section.type === 'production'
-  );
-
-  const resultsSection = projectData.sections.find((section): section is ResultsSection =>
-    section.type === 'results'
-  );
-
-  const techStackSection = projectData.sections.find((section): section is TechStackSection =>
-    section.type === 'tech-stack'
-  );
+  const approachSection = projectData.sections.find((section): section is import('@/types/project').ApproachSection => section.type === 'approach');
+  const architectureSection = projectData.sections.find((section): section is import('@/types/project').ArchitectureSection => section.type === 'architecture');
+  const smartRetrievalSection = projectData.sections.find((section): section is import('@/types/project').SmartRetrievalSection => section.type === 'smart-retrieval');
+  const evaluationSection = projectData.sections.find((section): section is import('@/types/project').EvaluationSection => section.type === 'evaluation');
+  const productionSection = projectData.sections.find((section): section is import('@/types/project').ProductionSection => section.type === 'production');
+  const resultsSection = projectData.sections.find((section): section is import('@/types/project').ResultsSection => section.type === 'results');
+  const techStackSection = projectData.sections.find((section): section is import('@/types/project').TechStackSection => section.type === 'tech-stack');
 
   return (
     <div className="bg-white w-full min-h-screen relative overflow-x-hidden">
       {/* Hero Section */}
       <MLHero
-        title={projectData.title}
-        subtitle={projectData.shortDescription}
-        heroImage={projectData.heroImage}
+        title={projectData.title ?? (homeContentData?.title ?? "")}
+        subtitle={projectData.shortDescription ?? (homeContentData?.shortDescription ?? "")}
+        heroImage={projectData.heroImage ?? "/rag-hero.png"}
       />
 
       {/* What I Build Section */}
-      <MLWhatIBuild
-        title="What I Built"
-        description={projectData.description || ''}
-        metrics={projectData.metrics}
-      />
+      {whatIBuildSection && (
+        <MLWhatIBuild
+          title={whatIBuildSection.title}
+          description={whatIBuildSection.description}
+          metrics={whatIBuildSection.metrics.map(m => ({
+            ...m,
+            icon: m.iconSvg ? (
+              <div dangerouslySetInnerHTML={{ __html: m.iconSvg }} />
+            ) : undefined,
+            iconBg: m.iconBg
+          }))}
+          bulletPoints={whatIBuildSection.bulletPoints}
+        />
+      )}
 
       {/* Challenge Section */}
       {challengeSection && (
@@ -71,6 +68,7 @@ export default function RagEvaluationSystem({ projectData }: RagEvaluationSystem
           title={challengeSection.title}
           description={challengeSection.description}
           challenges={challengeSection.content}
+          image={challengeSection.image}
         />
       )}
 

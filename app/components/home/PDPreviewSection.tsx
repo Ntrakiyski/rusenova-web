@@ -4,15 +4,19 @@ import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project, HomeContent } from '@/types/project';
+import Image from 'next/image';
+import { typoClass } from '@/app/lib/typography';
 import Link from 'next/link';
 
 interface PDPreviewSectionProps {
-  pdData: Project[];
+  pdData?: (Project | NonNullable<HomeContent['pdPreview']>['projects'][0])[];
   colors?: HomeContent['colors'];
   onProjectClick?: (slug: string) => void;
+  typography?: HomeContent['typography'];
+  content?: HomeContent['pdPreview'];
 }
 
-export default function PDPreviewSection({ pdData, colors }: PDPreviewSectionProps) {
+export default function PDPreviewSection({ pdData, colors, typography, content }: PDPreviewSectionProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scrollPD = (direction: 'left' | 'right') => {
@@ -26,6 +30,9 @@ export default function PDPreviewSection({ pdData, colors }: PDPreviewSectionPro
     }
   };
 
+  // Use only content.projects from home page data
+  const projects = content?.projects || [];
+
   return (
     <section id="productdesign" className="bg-white py-16 md:py-24">
       <div className="max-w-[1280px] mx-auto px-4 md:px-8">
@@ -34,16 +41,16 @@ export default function PDPreviewSection({ pdData, colors }: PDPreviewSectionPro
         >
           <div className="flex flex-col gap-5">
             <h2
-              className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[28px] md:text-[36px]"
+              className={`${typoClass(typography?.pdPreview.title)}`}
               style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#101828' }}
             >
-              Product Design
+              {content?.title || "Product Design"}
             </h2>
             <p
-              className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[16px] md:text-[20px] max-w-[768px]"
+              className={`${typoClass(typography?.pdPreview.subtitle)} max-w-[768px]`}
               style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.secondary || '#494848' }}
             >
-              This is my working experience company wide with just a few selected projects
+              {content?.subtitle || "This is my working experience company wide with just a few selected projects"}
             </p>
           </div>
 
@@ -74,86 +81,85 @@ export default function PDPreviewSection({ pdData, colors }: PDPreviewSectionPro
           }}
         >
           <div className="flex gap-6 md:gap-8 min-w-max">
-            {pdData.map((exp, index) => (
-              <Link
-                key={index}
-                href={`/product-design/${exp.slug}`}
-              >
-                <div
-                  className="flex flex-col gap-5 w-[480px] shrink-0 cursor-pointer"
+            {projects.map((exp, index) => (
+              <div key={index} id={`experience-${exp.slug || exp.id || index}`} >
+                <Link
+                  href={`/product-design/${exp.slug}`}
                 >
-                  <div
-                    className="relative h-[280px] md:h-[320px] lg:h-[403px] overflow-hidden rounded-[24px]"
-                    style={{
-                      background: exp.gradientColors.length >= 2
-                        ? `radial-gradient(58.25% 50.19% at 96.04% 96.28%, ${exp.gradientColors[0]} 9.13%, ${exp.gradientColors[1]} 54.81%, #F7F4ED 90.51%)`
-                        : exp.gradientColors.length === 1
-                          ? `radial-gradient(58.25% 50.19% at 96.04% 96.28%, ${exp.gradientColors[0]} 9.13%, #F7F4ED 90.51%)`
-                          : 'radial-gradient(58.25% 50.19% at 96.04% 96.28%, #F5D0AE 9.13%, #F7F4ED 90.51%)'
-                    }}
+                  <motion.div
+                    className="flex flex-col gap-5 w-[480px] shrink-0 cursor-pointer"
                   >
-                    {exp.metrics[0] && exp.metrics[0].value && (
-                      <p
-                        className="absolute left-[38px] top-[85px] font-['Bricolage_Grotesque:Light',sans-serif] text-[16px]"
-                        style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
-                      >
-                        <span
-                          className="font-['Bricolage_Grotesque:Bold',sans-serif]"
-                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
-                        >
-                          {exp.metrics[0].value}
-                        </span>
-                        {' '}{exp.metrics[0].label}
-                      </p>
-                    )}
-                    {!exp.metrics[0]?.value && exp.metrics[0]?.label && (
-                      <p
-                        className="absolute left-[38px] top-[85px] font-['Bricolage_Grotesque:Light',sans-serif] text-[14px] max-w-[calc(100%-76px)]"
-                        style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
-                      >
-                        {exp.metrics[0].label}
-                      </p>
-                    )}
-                    {exp.metrics[1] && exp.metrics[1].value && (
-                      <p
-                        className="absolute left-[146px] bottom-[86px] font-['Bricolage_Grotesque:Light',sans-serif] text-[16px]"
-                        style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
-                      >
-                        <span
-                          className="font-['Bricolage_Grotesque:Bold',sans-serif]"
-                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
-                        >
-                          {exp.metrics[1].value}
-                        </span>
-                        {' '}{exp.metrics[1].label}
-                      </p>
-                    )}
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <h3
-                      className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[20px] md:text-[24px]"
-                      style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#101828' }}
+                    <div
+                      className="relative h-[280px] md:h-[320px] lg:h-[403px] overflow-hidden rounded-[24px] bg-[#F7F4ED]"
                     >
-                      {exp.title}
-                    </h3>
-                    {exp.role && (
+                      <div className="absolute bottom-0 right-0 w-full max-w-[264px] lg:max-w-[364px] aspect-square right-[-34%] bottom-[-47%] z-0 pointer-events-none">
+                        <div className="relative w-full h-full">
+                          <Image src={exp.previewImage ?? '/gradient-pink.png'} alt="" aria-hidden fill className="object-contain" draggable={false} />
+                        </div>
+                      </div>
+                      {exp.metrics[0] && exp.metrics[0].value && (
+                        <p
+                          className="absolute left-[38px] top-[85px] z-10 font-['Bricolage_Grotesque:Light',sans-serif] text-[16px]"
+                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
+                        >
+                          <span
+                            className="font-['Bricolage_Grotesque:Bold',sans-serif]"
+                            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                          >
+                            {exp.metrics[0].value}
+                          </span>
+                          {' '}{exp.metrics[0].label}
+                        </p>
+                      )}
+                      {!exp.metrics[0]?.value && exp.metrics[0]?.label && (
+                        <p
+                          className="absolute left-[38px] top-[85px] z-10 font-['Bricolage_Grotesque:Light',sans-serif] text-[14px] max-w-[calc(100%-76px)]"
+                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
+                        >
+                          {exp.metrics[0].label}
+                        </p>
+                      )}
+                      {exp.metrics[1] && exp.metrics[1].value && (
+                        <p
+                          className="absolute left-[146px] bottom-[86px] z-10 font-['Bricolage_Grotesque:Light',sans-serif] text-[16px]"
+                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
+                        >
+                          <span
+                            className="font-['Bricolage_Grotesque:Bold',sans-serif]"
+                            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                          >
+                            {exp.metrics[1].value}
+                          </span>
+                          {' '}{exp.metrics[1].label}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <h3
+                        className={`${typoClass(typography?.pdPreview.cardTitle)}`}
+                        style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#101828' }}
+                      >
+                        {exp.title}
+                      </h3>
+                      {exp.role && (
+                        <p
+                          className={`${typoClass(typography?.pdPreview.role)}`}
+                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.secondary || '#494848' }}
+                        >
+                          {exp.role}
+                        </p>
+                      )}
                       <p
-                        className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[16px]"
+                        className={`${typoClass(typography?.pdPreview.cardDescription)}`}
                         style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.secondary || '#494848' }}
                       >
-                        {exp.role}
+                        {exp.shortDescription}
                       </p>
-                    )}
-                    <p
-                      className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[16px]"
-                      style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.secondary || '#494848' }}
-                    >
-                      {exp.shortDescription}
-                    </p>
-                  </div>
-                </div>
-              </Link>
+                    </div>
+                  </motion.div>
+                </Link>
+              </div>
             ))}
           </div>
         </div>

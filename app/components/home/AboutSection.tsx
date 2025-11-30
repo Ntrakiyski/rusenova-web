@@ -3,13 +3,15 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { HomeContent } from '@/types/project';
+import { typoClass } from '@/app/lib/typography';
 
 interface AboutSectionProps {
   content: HomeContent['about'];
   colors: HomeContent['colors'];
+  typography: HomeContent['typography'];
 }
 
-export default function AboutSection({ content, colors }: AboutSectionProps) {
+export default function AboutSection({ content, colors, typography }: AboutSectionProps) {
   const stats = content.stats;
 
   return (
@@ -28,7 +30,7 @@ export default function AboutSection({ content, colors }: AboutSectionProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[14px] md:text-[16px]"
+              className={`${typoClass(typography.about.badge)}`}
               style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.accent }}
             >
               {content.badge}
@@ -39,7 +41,7 @@ export default function AboutSection({ content, colors }: AboutSectionProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[28px] md:text-[36px]"
+              className={`${typoClass(typography.about.title)}`}
               style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.primary }}
             >
               {content.title}
@@ -55,7 +57,7 @@ export default function AboutSection({ content, colors }: AboutSectionProps) {
               {content.paragraphs.map((paragraph, index) => (
                 <p
                   key={index}
-                  className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[16px] md:text-[18px]"
+                  className={`${typoClass(typography.about.paragraph)}`}
                   style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.secondary }}
                 >
                   {paragraph}
@@ -80,13 +82,13 @@ export default function AboutSection({ content, colors }: AboutSectionProps) {
                   className="flex flex-col gap-1"
                 >
                   <span
-                    className="font-['Bricolage_Grotesque:Bold',sans-serif] text-[32px] md:text-[40px]"
+                    className={`${typoClass(typography.about.statsValue)}`}
                     style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.primary }}
                   >
                     {stat.value}
                   </span>
                   <span
-                    className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[14px]"
+                    className={`${typoClass(typography.about.statsLabel)}`}
                     style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.secondary }}
                   >
                     {stat.label}

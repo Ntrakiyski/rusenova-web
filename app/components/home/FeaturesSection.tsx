@@ -3,13 +3,15 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { HomeContent } from '@/types/project';
+import { typoClass } from '@/app/lib/typography';
 
 interface FeaturesSectionProps {
   content: HomeContent['features'];
   colors: HomeContent['colors'];
+  typography: HomeContent['typography'];
 }
 
-export default function FeaturesSection({ content, colors }: FeaturesSectionProps) {
+export default function FeaturesSection({ content, colors, typography }: FeaturesSectionProps) {
   const features = content.items;
 
   const featureContainerVariants = {
@@ -43,13 +45,13 @@ export default function FeaturesSection({ content, colors }: FeaturesSectionProp
           className="flex flex-col items-center gap-5 mb-12 md:mb-16"
         >
           <h2
-            className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[28px] md:text-[36px] text-center max-w-[768px]"
+            className={`${typoClass(typography.features.title)} text-center max-w-[768px]`}
             style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: 'white' }}
           >
             {content.title}
           </h2>
           <p
-            className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[16px] md:text-[20px] text-center max-w-[768px]"
+            className={`${typoClass(typography.features.subtitle)} text-center max-w-[768px]`}
             style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: 'white' }}
           >
             {content.subtitle}
@@ -81,13 +83,13 @@ export default function FeaturesSection({ content, colors }: FeaturesSectionProp
 
               <div className="flex flex-col gap-3 text-center">
                 <h3
-                  className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-white text-[20px]"
+                  className={`${typoClass(typography.features.itemTitle)} text-white`}
                   style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
                 >
                   {feature.title}
                 </h3>
                 <p
-                  className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[16px]"
+                  className={`${typoClass(typography.features.itemDescription)}`}
                   style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.muted }}
                 >
                   {feature.description}

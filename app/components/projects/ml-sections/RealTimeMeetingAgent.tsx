@@ -35,16 +35,17 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
     <div className="bg-white w-full min-h-screen relative overflow-x-hidden">
       {/* Hero Section */}
       <MLHero
-        title={projectData.title}
-        subtitle={projectData.shortDescription}
-        heroImage={projectData.heroImage}
+        title={(projectData as any).heroTitle || projectData.title}
+        subtitle={(projectData as any).heroDescription || projectData.shortDescription}
+        heroImage={projectData.heroImage ?? "/rag-hero.png"}
+        background={(projectData as any).heroBackground}
       />
 
       {/* What I Build Section */}
       <MLWhatIBuild
         title="What I Built"
         description={projectData.description || ''}
-        metrics={projectData.metrics}
+        metrics={projectData.metrics || []}
       />
 
       {/* Challenge Section */}

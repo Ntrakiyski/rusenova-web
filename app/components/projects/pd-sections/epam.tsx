@@ -6,128 +6,64 @@ import PDNutshell from './PDNutshell';
 import PDSectionLeft from './PDSectionLeft';
 import PDSectionRight from './PDSectionRight';
 import PDKeepInMind from './PDKeepInMind';
-
-interface EpamFeature {
-  title: string;
-  description: string;
-}
-
-interface EpamProjectItem {
-  id: string;
-  title: string;
-  description: string;
-  achievements: string[];
-  images: string[];
-  layout: 'text-left' | 'text-right';
-}
-
-interface EpamCallout {
-  title: string;
-  description: string;
-}
-
-interface EpamIntro {
-  title: string;
-  description: string;
-  features: EpamFeature[];
-}
-
-interface EpamProject {
-  id: string;
-  title: string;
-  subtitle: string;
-  heroBackground: string;
-  titleHighlight: string;
-  intro: EpamIntro;
-  projects: EpamProjectItem[];
-  callout: EpamCallout;
-}
+import { Project, IntroSection } from '@/types/project';
 
 interface EpamProps {
-  projectData: {
-    id: string;
-    title: string;
-    subtitle: string;
-    heroBackground: string;
-    titleHighlight: string;
-    intro: {
-      title: string;
-      description: string;
-      features: {
-        title: string;
-        description: string;
-      }[];
-    };
-    projects: {
-      id: string;
-      title: string;
-      description: string;
-      achievements: string[];
-      images: string[];
-      layout: string;
-    }[];
-    callout: {
-      title: string;
-      description: string;
-    };
-  };
+  projectData: Project;
 }
 
 export default function Epam({ projectData }: EpamProps) {
-  const {
-    title,
-    subtitle,
-    heroBackground,
-    titleHighlight,
-    intro,
-    projects,
-    callout
-  } = projectData;
-
-  // Fix layout types for projects
-  const fixedProjects = projects.map(project => ({
-    ...project,
-    layout: project.layout as 'text-left' | 'text-right'
-  }));
+  // Extract data from Project structure
+  const introSection = projectData.sections.find((section): section is IntroSection => section.type === 'intro');
+  const projectSections = projectData.sections.filter(section => section.type !== 'intro' && section.type !== 'tech-stack');
 
   return (
     <div className="min-h-screen w-full">
       {/* 1. Hero Header Section */}
       <PDHero
-        title={title}
-        subtitle={subtitle}
-        titleHighlight={titleHighlight}
-        background={heroBackground}
+        title={(projectData as any).heroTitle || projectData.title}
+        subtitle={(projectData as any).heroDescription || projectData.shortDescription}
+        titleHighlight={(projectData as any).titleHighlight || ''}
+        descriptionHighlight={(projectData as any).heroDescriptionHighlight || ''}
+        background={(projectData as any).heroBackground || 'bg-[#252222]'}
       />
 
       {/* 2. Nutshell Section */}
-      <PDNutshell
-        title={intro.title}
-        features={intro.features}
-      />
+      {introSection && (
+        <PDNutshell
+          title={introSection.title}
+          features={Array.isArray(introSection.content) ? introSection.content.map((item: any) => ({
+            title: typeof item === 'string' ? '' : (item.title || ''),
+            description: typeof item === 'string' ? item : (item.description || '')
+          })) : []}
+        />
+      )}
 
       {/* 3. Project Sections - Pattern: image left, image right, image left */}
-      {fixedProjects.map((project, index) => {
+      {projectSections.map((section, index) => {
+        const achievements = (section as any).achievements || [];
+        const image = (section as any).image;
+
         // Pattern: 0: left (image left), 1: right (image right), 2: left (image left)
         if (index % 2 === 0) {
           return (
             <PDSectionLeft
-              key={project.id}
-              title={project.title}
-              description={project.description}
-              achievements={project.achievements}
-              images={project.images}
+              key={section.type}
+              title={section.title}
+              description={section.description}
+              achievements={achievements}
+              images={image ? [image] : ["/rag-results.png"]}
               background="bg-[#f7f4ed]"
             />
           );
         } else {
           return (
             <PDSectionRight
-              key={project.id}
-              title={project.title}
-              description={project.description}
-              achievements={project.achievements}
-              images={project.images}
+              key={section.type}
+              title={section.title}
+              description={section.description}
+              achievements={achievements}
+              images={image ? [image] : ["/rag-results.png"]}
               background="bg-[#f7f4ed]"
             />
           );
@@ -136,8 +72,8 @@ export default function Epam({ projectData }: EpamProps) {
 
       {/* 4. Keep In Mind Section */}
       <PDKeepInMind
-        title={callout.title}
-        description={callout.description}
+        title="Keep in mind"
+        description="What you see here is a snapshot - each project has layers of research, collaboration, and tough decisions that shaped the outcome. If something catches your eye, let's talk about how that experience translates to what you're working on."
       />
     </div>
   );

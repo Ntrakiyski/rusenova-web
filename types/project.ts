@@ -1,6 +1,8 @@
 export interface Metric {
   value: string;
   label: string;
+  iconSvg?: string;
+  iconBg?: string;
 }
 
 export interface ProjectCard {
@@ -25,6 +27,8 @@ export interface BaseProjectSection {
 export interface IntroSection extends BaseProjectSection {
   type: 'intro';
   content: string[] | ProjectFeature[];
+  row1Image?: string;
+  row2Image?: string;
 }
 
 export interface ApproachSection extends BaseProjectSection {
@@ -67,6 +71,7 @@ export interface ResultsSection extends BaseProjectSection {
 export interface WhatIBuildSection extends Omit<BaseProjectSection, 'type'> {
   type: 'what-i-build';
   metrics: Metric[];
+  bulletPoints?: string[];
 }
 
 export interface SectionWithCards extends Omit<BaseProjectSection, 'type'> {
@@ -175,15 +180,19 @@ export type ProjectSection =
 export interface Project {
   id: string;
   slug: string;
-  title: string;
-  company?: string;
-  role?: string;
-  shortDescription: string;
-  description?: string;
-  metrics: Metric[];
-  gradientColors: string[];
-  heroImage: string;
   sections: ProjectSection[];
+  title?: string;
+  shortDescription?: string;
+  description?: string;
+  heroImage?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  titleHighlight?: string;
+  heroDescriptionHighlight?: string;
+  heroBackground?: string;
+  metrics?: Metric[];
+  gradientColors?: string[];
+  previewImage?: string;
 }
 
 // Home Page Content Interfaces
@@ -238,6 +247,36 @@ export interface HomeContent {
     }>;
   };
   
+  mlPreview?: {
+    title: string;
+    subtitle: string;
+    projects: Array<{
+      title: string;
+      shortDescription: string;
+      metrics: Metric[];
+      previewImage?: string;
+      gradientColors?: string[];
+      slug: string;
+      id?: string; // Make optional for JSON data
+    }>;
+  };
+  
+  pdPreview?: {
+    title: string;
+    subtitle: string;
+    projects: Array<{
+      title: string;
+      role: string;
+      company: string;
+      shortDescription: string;
+      previewImage?: string;
+      gradientColors?: string[];
+      slug: string;
+      metrics: Metric[];
+      id?: string; // Make optional for JSON data
+    }>;
+  };
+
   about: {
     backgroundColor: string;
     badge: string;
@@ -287,4 +326,55 @@ export interface HomeContent {
       }>;
     };
   };
+
+  typography: {
+    hero: {
+      badge: TypographyStyle;
+      title: TypographyStyle;
+      subtitle: TypographyStyle;
+    };
+    services: {
+      title: TypographyStyle;
+      item: TypographyStyle;
+    };
+    features: {
+      title: TypographyStyle;
+      subtitle: TypographyStyle;
+      itemTitle: TypographyStyle;
+      itemDescription: TypographyStyle;
+    };
+    mlPreview: {
+      title: TypographyStyle;
+      subtitle: TypographyStyle;
+      cardTitle: TypographyStyle;
+      cardDescription: TypographyStyle;
+      metricText: TypographyStyle;
+    };
+    pdPreview: {
+      title: TypographyStyle;
+      subtitle: TypographyStyle;
+      cardTitle: TypographyStyle;
+      role: TypographyStyle;
+      cardDescription: TypographyStyle;
+    };
+    about: {
+      badge: TypographyStyle;
+      title: TypographyStyle;
+      paragraph: TypographyStyle;
+      statsValue: TypographyStyle;
+      statsLabel: TypographyStyle;
+    };
+  };
+} 
+
+export interface TypographySize {
+  base?: number;
+  md?: number;
+  lg?: number;
+}
+
+export interface TypographyStyle {
+  font: string;
+  weight: 'Light' | 'Regular' | 'SemiBold' | 'Bold';
+  size: TypographySize;
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { ProjectFeature } from '@/types/project';
 
 interface MLChallengeProps {
@@ -8,16 +9,18 @@ interface MLChallengeProps {
   description: string;
   challenges: string[] | ProjectFeature[];
   background?: string;
+  image?: string;
 }
 
 export default function MLChallenge({
   title,
   description,
   challenges,
-  background = 'bg-white'
+  background = 'bg-white',
+  image
 }: MLChallengeProps) {
   // Helper function to render challenge content
-  const renderChallengeContent = (challenge: string | ProjectFeature, index: number) => {
+  const renderChallengeContent = (challenge: string | ProjectFeature) => {
     if (typeof challenge === 'string') {
       return challenge;
     } else if (challenge.type === 'feature') {
@@ -54,7 +57,7 @@ export default function MLChallenge({
                     <div className="w-3 h-3 rounded-full bg-[#f38300]" />
                   </div>
                   <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                    {renderChallengeContent(challenge, index)}
+                    {renderChallengeContent(challenge)}
                   </p>
                 </div>
               ))}
@@ -64,10 +67,12 @@ export default function MLChallenge({
           {/* RAG Results Image - Right Column */}
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
             <div className="relative w-full h-auto">
-              <img 
-                src="/rag-results.png" 
+              <Image 
+                src={image || "/rag-results.png"} 
                 alt="RAG Results Visualization" 
-                className="w-full h-auto rounded-lg shadow-lg"
+                width={600}
+                height={400}
+                className="w-full h-auto"
                 loading="lazy"
               />
             </div>

@@ -6,26 +6,34 @@ export const mlProjects: Project[] = [
     "slug": "rag-evaluation-system",
     "title": "RAG+ Evaluation System",
     "shortDescription": "Reduced information retrieval time by 85% while achieving 92% answer accuracy through a custom RAG system with advanced evaluation framework",
-    "description": "Build RAG and it's own Evaluation Framework. Evaluation framework especially on information which LLM haven't seen before is crucial, this is how we guarantee that the results are correct, we can measure and improve our system by knowing where it fails and how much it fails.",
-    "metrics": [
-      {
-        "value": "92%",
-        "label": "Precision"
-      },
-      {
-        "value": "89%",
-        "label": "Recall"
-      },
-      {
-        "value": "89%",
-        "label": "Time saved"
-      }
-    ],
-    "gradientColors": [
-      "#F5D0AE"
-    ],
     "heroImage": "/rag-hero.png",
     "sections": [
+         {
+        "type": "what-i-build",
+        "title": "What I Built",
+        "description": "A comprehensive RAG system that transforms how organizations access and utilize their document repositories.",
+        "bulletPoints": [
+          "A RAG (Retrieval-Augmented Generation) system with two-stage retrieval (vector search + AI re-ranking) for 40% better relevance",
+          "A custom evaluation framework to measure how well the system actually performs",
+          "Most LLMs struggle when they encounter information they haven't seen during training",
+          "Without proper evaluation, you can't guarantee your results are correct",
+          "The framework shows exactly where the system fails and by how much"
+        ],
+        "metrics": [
+          {
+            "value": "92%",
+            "label": "Precision"
+          },
+          {
+            "value": "89%",
+            "label": "Recall"
+          },
+          {
+            "value": "85%",
+            "label": "Time Saved"
+          }
+        ]
+      },
       {
         "type": "intro",
         "title": "The Challenge",
@@ -35,7 +43,8 @@ export const mlProjects: Project[] = [
           "Traditional keyword search misses 60% of relevant information due to semantic gaps, leading to duplicated work and missed opportunities.",
           "Manual information retrieval creates bottlenecks in decision-making and significantly increases onboarding time for new team members."
         ],
-        "layout": "text-left-image-right"
+        "layout": "text-left-image-right",
+        "image": "/rag-challenge.png"
       },
       {
         "type": "approach",
@@ -145,7 +154,8 @@ export const mlProjects: Project[] = [
           "Full-Stack Development"
         ]
       }
-    ]
+    ],
+    "heroTitle": "RAG+ Evaluation System"
   },
   {
     "id": "fraud-detection-system",
@@ -172,6 +182,32 @@ export const mlProjects: Project[] = [
     ],
     "heroImage": "/fraud-hero.png",
     "sections": [
+      {
+        "type": "what-i-build",
+        "title": "What I Built",
+        "description": "An AI-powered fraud detection system that catches 84% of fraud while keeping false alarms under 0.05%.",
+        "bulletPoints": [
+          "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%",
+          "Advanced machine learning model trained on transaction patterns to identify fraudulent activities in real-time",
+          "Created 21 custom features in 3 tiers - top engineered feature (pca_magnitude) became #1 most important (34.5% model weight)",
+          "Compared 3 algorithms and selected XGBoost: 83.8% recall, 0.968 ROC-AUC, handling extreme class imbalance with scale_pos_weight=578",
+          "Real-time processing with sub-100ms response time for transaction approvals"
+        ],
+        "metrics": [
+          {
+            "value": "83.8%",
+            "label": "Fraud Caught"
+          },
+          {
+            "value": "75.2%",
+            "label": "Precision"
+          },
+          {
+            "value": "0.048%",
+            "label": "False Alarm Rate"
+          }
+        ]
+      },
       {
         "type": "intro",
         "title": "The Challenge",
@@ -213,25 +249,7 @@ export const mlProjects: Project[] = [
         "description": "Scalable, fault-tolerant architecture designed for high-volume transaction processing.",
         "image": "/rag-results.png"
       },
-      {
-        "type": "what-i-build",
-        "title": "What I Built",
-        "description": "Fraud detection system to test feature performance across multiple algorithms and optimize for the highest fraud detection rate.",
-        "metrics": [
-          {
-            "value": "$2.7M",
-            "label": "Annual Savings"
-          },
-          {
-            "value": "83.8%",
-            "label": "Fraud Caught"
-          },
-          {
-            "value": "75.2%",
-            "label": "Alert Accuracy"
-          }
-        ]
-      },
+      
       {
         "type": "section-with-cards",
         "title": "Understand the Data",
@@ -328,7 +346,7 @@ export const mlProjects: Project[] = [
         "type": "key-results-only",
         "title": "Key Results",
         "description": "Created 21 custom features in 3 tiers. Top engineered feature (pca_magnitude) became #1 most important (34.5% model weight)",
-        "image": "/rag-results.png"
+        "image": "/fraud-results.png"
       },
       {
         "type": "technical-performance",
@@ -547,95 +565,9 @@ export const mlProjects: Project[] = [
         ],
         "image": "/rag-results.png"
       }
-    ]
-  },
-  {
-    "id": "real-time-meeting-agent",
-    "slug": "real-time-meeting-agent",
-    "title": "Real-time Meeting Agent",
-    "shortDescription": "AI-powered meeting assistant that provides real-time insights, action items, and follow-ups.",
-    "description": "Transforming meeting productivity with AI that understands context, captures action items, and provides intelligent follow-ups.",
-    "metrics": [
-      {
-        "value": "95%",
-        "label": "Action Item Capture"
-      },
-      {
-        "value": "40%",
-        "label": "Meeting Time Saved"
-      },
-      {
-        "value": "100%",
-        "label": "Follow-up Completion"
-      }
     ],
-    "gradientColors": [
-      "#E7D7EB"
-    ],
-    "heroImage": "/rag-results.png",
-    "sections": [
-      {
-        "type": "intro",
-        "title": "The Challenge",
-        "description": "Meetings often lack structure, clear outcomes, and follow-through, leading to wasted time and missed opportunities.",
-        "content": [
-          "Important decisions get lost in long meeting discussions",
-          "Action items aren't clearly assigned or tracked",
-          "Follow-ups fall through the cracks",
-          "No centralized record of meeting outcomes and decisions"
-        ],
-        "layout": "text-left-image-right"
-      },
-      {
-        "type": "approach",
-        "title": "Our Solution",
-        "description": "AI-powered meeting assistant that understands context, captures key points, and ensures follow-through.",
-        "cards": [
-          {
-            "title": "Real-time Transcription",
-            "description": "Accurate speech-to-text with speaker identification"
-          },
-          {
-            "title": "Context Understanding",
-            "description": "AI that understands meeting context and intent"
-          },
-          {
-            "title": "Action Item Extraction",
-            "description": "Automatic identification and assignment of action items"
-          },
-          {
-            "title": "Smart Follow-ups",
-            "description": "Automated reminders and progress tracking"
-          }
-        ]
-      },
-      {
-        "type": "architecture",
-        "title": "System Architecture",
-        "description": "Scalable architecture for real-time audio processing and natural language understanding.",
-        "image": "/rag-results.png"
-      },
-      {
-        "type": "results",
-        "title": "Results & Impact",
-        "description": "Transformed meeting productivity and accountability across organizations.",
-        "outcomes": [
-          "95% of action items captured and assigned automatically",
-          "40% reduction in meeting time through better preparation",
-          "100% follow-up completion rate",
-          "30% increase in meeting productivity",
-          "Centralized knowledge base of meeting decisions"
-        ],
-        "businessValue": [
-          "Reduced time spent in follow-up meetings",
-          "Improved accountability for action items",
-          "Better decision documentation and traceability",
-          "Enhanced team productivity",
-          "Reduced knowledge loss from employee turnover"
-        ],
-        "image": "/rag-results.png"
-      }
-    ]
+    "heroTitle": "Fraud Detection System",
+    "heroDescription": "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%"
   }
 ];
 

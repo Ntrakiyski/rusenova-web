@@ -6,6 +6,7 @@ interface PDHeroProps {
   title: string;
   subtitle: string;
   titleHighlight?: string;
+  descriptionHighlight?: string;
   background?: string;
 }
 
@@ -13,13 +14,31 @@ export default function PDHero({
   title,
   subtitle,
   titleHighlight,
+  descriptionHighlight,
   background = 'bg-[#252222]/95'
 }: PDHeroProps) {
   // Split subtitle to highlight the titleHighlight part
   const subtitleParts = subtitle.split(titleHighlight || '');
 
+  // Function to highlight multiple words in description
+  const highlightDescription = (text: string, highlights: string) => {
+    if (!highlights) return text;
+    
+    const wordsToHighlight = highlights.split(',').map(word => word.trim()).filter(word => word);
+    let highlightedText = text;
+    
+    wordsToHighlight.forEach(word => {
+      if (word) {
+        const regex = new RegExp(`(${word})`, 'gi');
+        highlightedText = highlightedText.replace(regex, '<span class="font-[\'Bricolage_Grotesque:Bold\',sans-serif] font-bold text-[#f38300]" style="{ fontVariationSettings: \'opsz\' 14, \'wdth\' 100 }">$1</span>');
+      }
+    });
+    
+    return highlightedText;
+  };
+
   return (
-    <section className={`${background} w-full flex-col items-center`}>
+    <section className={`${background} w-full flex items-center justify-center`}>
       <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[760px] items-center pb-0 pt-8 sm:pt-12 md:pt-[64px] lg:pt-[96px] relative w-full z-[1]">
           <div className="relative rounded-[16px] w-full">
@@ -33,13 +52,23 @@ export default function PDHero({
                       </h1>
                     </div>
                     <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-6 sm:leading-7 md:leading-8 lg:leading-[30px] max-w-full md:max-w-[512px] lg:max-w-[768px] text-[#babcc0] text-sm sm:text-base md:text-lg lg:text-[20px] text-center w-full px-2" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                      {subtitleParts[0]}
-                      {titleHighlight && (
-                        <span className="font-['Bricolage_Grotesque:Bold',sans-serif] font-bold text-[#f38300]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                          {titleHighlight}
-                        </span>
+                      {descriptionHighlight ? (
+                        <span 
+                          dangerouslySetInnerHTML={{ 
+                            __html: highlightDescription(subtitle, descriptionHighlight) 
+                          }} 
+                        />
+                      ) : (
+                        <React.Fragment>
+                          {subtitleParts[0]}
+                          {titleHighlight && (
+                            <span className="font-['Bricolage_Grotesque:Bold',sans-serif] font-bold text-[#f38300]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                              {titleHighlight}
+                            </span>
+                          )}
+                          {subtitleParts[1]}
+                        </React.Fragment>
                       )}
-                      {subtitleParts[1]}
                     </p>
                   </div>
                 </div>

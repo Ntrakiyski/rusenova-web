@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Project, WhatIBuildSection, SectionWithCards, SectionWithCardsAndBullets, SectionWithTable, KeyResultsOnlySection, TechnicalPerformanceSection, CostBenefitSection, SegmentAnalysisSection, KeyLearningSection, ProductionDeploymentSection, TechStackSection, ApproachSection } from '@/types/project';
 import MLHero from './MLHero';
 import MLWhatIBuild from './MLWhatIBuild';
@@ -32,7 +33,7 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
 
   const sectionWithCards = projectData.sections.find((section): section is SectionWithCards =>
     section.type === 'section-with-cards'
- ) as SectionWithCards | undefined;
+  ) as SectionWithCards | undefined;
 
   const sectionWithCardsAndBullets = projectData.sections.find((section): section is SectionWithCardsAndBullets =>
     section.type === 'section-with-cards-and-bullets'
@@ -74,10 +75,11 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
     <div className="bg-white w-full min-h-screen relative overflow-x-hidden">
       {/* ML-Hero Section */}
       <MLHero
-        title={projectData.title}
-        subtitle={projectData.shortDescription}
-        heroImage={projectData.heroImage}
+        title={(projectData as any).heroTitle || projectData.title}
+        subtitle={(projectData as any).heroDescription || projectData.shortDescription}
+        heroImage={projectData.heroImage ?? "/rag-hero.png"}
         decorationImage="/rag-results.png"
+        background={(projectData as any).heroBackground}
       />
 
       {/* ML-What I Build Section */}
@@ -85,7 +87,14 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
         <MLWhatIBuild
           title={whatIBuildSection.title}
           description={whatIBuildSection.description}
-          metrics={whatIBuildSection.metrics}
+          metrics={whatIBuildSection.metrics.map(m => ({
+            ...m,
+            icon: m.iconSvg ? (
+              <div dangerouslySetInnerHTML={{ __html: m.iconSvg }} />
+            ) : undefined,
+            iconBg: m.iconBg
+          }))}
+          bulletPoints={whatIBuildSection.bulletPoints}
         />
       )}
 
@@ -105,7 +114,13 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
           description={sectionWithCards.description}
           cards={sectionWithCards.cards.map(card => ({
             ...card,
-            icon: <img src="/file.svg" alt={card.title} className="w-6 h-6" />
+            icon: card.icon ? (
+              <div dangerouslySetInnerHTML={{ __html: card.icon }} />
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="#155DFC" strokeWidth="2"/>
+              </svg>
+            )
           }))}
         />
       )}
@@ -190,7 +205,13 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
           description={productionDeploymentSection.description}
           cards={productionDeploymentSection.cards.map(card => ({
             ...card,
-            icon: <img src="/file.svg" alt={card.title} className="w-6 h-6" />
+            icon: card.icon ? (
+              <div dangerouslySetInnerHTML={{ __html: card.icon }} />
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="#155DFC" strokeWidth="2"/>
+              </svg>
+            )
           }))}
         />
       )}

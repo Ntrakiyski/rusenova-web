@@ -6,125 +6,64 @@ import PDNutshell from './PDNutshell';
 import PDSectionLeft from './PDSectionLeft';
 import PDSectionRight from './PDSectionRight';
 import PDKeepInMind from './PDKeepInMind';
-
-interface MentormateFeature {
-  title: string;
-  description: string;
-}
-
-interface MentormateProjectItem {
-  id: string;
-  title: string;
-  description: string;
-  achievements: string[];
-  images: string[];
-  layout: 'text-left' | 'text-right';
-}
-
-interface MentormateCallout {
-  title: string;
-  description: string;
-}
-
-interface MentormateIntro {
-  title: string;
-  features: MentormateFeature[];
-}
-
-interface MentormateProject {
-  id: string;
-  title: string;
-  subtitle: string;
-  heroBackground: string;
-  titleHighlight: string;
-  intro: MentormateIntro;
-  projects: MentormateProjectItem[];
-  callout: MentormateCallout;
-}
+import { Project, IntroSection } from '@/types/project';
 
 interface MentormateProps {
-  projectData: {
-    id: string;
-    title: string;
-    subtitle: string;
-    heroBackground: string;
-    titleHighlight: string;
-    intro: {
-      title: string;
-      features: {
-        title: string;
-        description: string;
-      }[];
-    };
-    projects: {
-      id: string;
-      title: string;
-      description: string;
-      achievements: string[];
-      images: string[];
-      layout: string;
-    }[];
-    callout: {
-      title: string;
-      description: string;
-    };
-  };
+  projectData: Project;
 }
 
 export default function Mentormate({ projectData }: MentormateProps) {
-  const {
-    title,
-    subtitle,
-    heroBackground,
-    titleHighlight,
-    intro,
-    projects,
-    callout
-  } = projectData;
-
-  // Fix layout types for projects
-  const fixedProjects = projects.map(project => ({
-    ...project,
-    layout: project.layout as 'text-left' | 'text-right'
-  }));
+  // Extract data from Project structure
+  const introSection = projectData.sections.find((section): section is IntroSection => section.type === 'intro');
+  const projectSections = projectData.sections.filter(section => section.type !== 'intro' && section.type !== 'tech-stack');
 
   return (
     <div className="min-h-screen w-full">
       {/* 1. Hero Header Section */}
       <PDHero
-        title={title}
-        subtitle={subtitle}
-        titleHighlight={titleHighlight}
-        background={heroBackground}
+        title={(projectData as any).heroTitle || projectData.title}
+        subtitle={(projectData as any).heroDescription || projectData.shortDescription}
+        titleHighlight={(projectData as any).titleHighlight || ''}
+        descriptionHighlight={(projectData as any).heroDescriptionHighlight || ''}
+        background={(projectData as any).heroBackground || 'bg-[#252222]'}
       />
 
       {/* 2. Nutshell Section */}
-      <PDNutshell
-        title={intro.title}
-        features={intro.features}
-      />
+      {introSection && (
+        <PDNutshell
+          title={introSection.title}
+          features={Array.isArray(introSection.content) ? introSection.content.map((item: any) => ({
+            title: typeof item === 'string' ? '' : (item.title || ''),
+            description: typeof item === 'string' ? item : (item.description || '')
+          })) : []}
+        />
+      )}
 
-      {/* 3. Project Sections - Use layout from project data */}
-      {fixedProjects.map((project) => {
-        if (project.layout === 'text-left') {
+      {/* 3. Project Sections */}
+      {projectSections.map((section) => {
+        const layout = section.layout || 'text-left';
+        const achievements = (section as any).achievements || [];
+        const image = section.image;
+
+        if (layout === 'text-left' || layout === 'text-left-image-right') {
           return (
             <PDSectionLeft
-              key={project.id}
-              title={project.title}
-              description={project.description}
-              achievements={project.achievements}
-              images={project.images}
+              key={section.type}
+              title={section.title}
+              description={section.description}
+              achievements={achievements}
+              images={image ? [image] : ["/rag-results.png"]}
               background="bg-[#f7f4ed]"
             />
           );
         } else {
           return (
             <PDSectionRight
-              key={project.id}
-              title={project.title}
-              description={project.description}
-              achievements={project.achievements}
-              images={project.images}
+              key={section.type}
+              title={section.title}
+              description={section.description}
+              achievements={achievements}
+              images={image ? [image] : ["/rag-results.png"]}
               background="bg-[#f7f4ed]"
             />
           );
@@ -133,8 +72,8 @@ export default function Mentormate({ projectData }: MentormateProps) {
 
       {/* 4. Keep In Mind Section */}
       <PDKeepInMind
-        title={callout.title}
-        description={callout.description}
+        title="Keep in mind"
+        description="What you see here is a snapshot - each project has layers of research, collaboration, and tough decisions that shaped the outcome. If something catches your eye, let's talk about how that experience translates to what you're working on."
       />
     </div>
   );

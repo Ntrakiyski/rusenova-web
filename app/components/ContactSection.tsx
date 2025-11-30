@@ -143,7 +143,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
             </motion.div>
           </div>
 
-          <div className="absolute bottom-0 right-0 pointer-events-none translate-x-16 translate-y-16">
+          <div className="absolute bottom-0 right-0 pointer-events-none translate-y-16">
             <div className="relative w-[250px] h-[250px]">
               <Image
                 alt=""

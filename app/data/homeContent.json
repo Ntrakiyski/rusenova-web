@@ -15,6 +15,44 @@
     },
     "border": "#e5e7eb"
   },
+  "typography": {
+    "hero": {
+      "badge": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 18, "md": 24 } },
+      "title": { "font": "Bricolage_Grotesque", "weight": "Bold", "size": { "base": 36, "md": 64, "lg": 90 } },
+      "subtitle": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16, "md": 20 } }
+    },
+    "services": {
+      "title": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16 } },
+      "item": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 18, "md": 20 } }
+    },
+    "features": {
+      "title": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 28, "md": 36 } },
+      "subtitle": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16, "md": 20 } },
+      "itemTitle": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 20 } },
+      "itemDescription": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16 } }
+    },
+    "mlPreview": {
+      "title": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 28, "md": 36 } },
+      "subtitle": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16, "md": 20 } },
+      "cardTitle": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 20, "md": 24 } },
+      "cardDescription": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16 } },
+      "metricText": { "font": "Bricolage_Grotesque", "weight": "Light", "size": { "base": 16 } }
+    },
+    "pdPreview": {
+      "title": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 28, "md": 36 } },
+      "subtitle": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16, "md": 20 } },
+      "cardTitle": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 20, "md": 24 } },
+      "role": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 16 } },
+      "cardDescription": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16 } }
+    },
+    "about": {
+      "badge": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 14, "md": 16 } },
+      "title": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 28, "md": 36 } },
+      "paragraph": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16, "md": 18 } },
+      "statsValue": { "font": "Bricolage_Grotesque", "weight": "Bold", "size": { "base": 32, "md": 40 } },
+      "statsLabel": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 14 } }
+    }
+  },
   "hero": {
     "backgroundColor": "#f7f4ed",
     "badge": "HUMAN & AI",
@@ -69,6 +107,76 @@
         "title": "Algorithm Advisory",
         "description": "Driving data-led business impact",
         "icon": "/triangle.gif"
+      }
+    ]
+  },
+  "mlPreview": {
+    "title": "Machine Learning & AI",
+    "subtitle": "Hands-on experimentation with fraud detection, retrieval systems, and autonomous agents.",
+    "projects": [
+      {
+        "title": "RAG+ Evaluation System",
+        "shortDescription": "Reduced information retrieval time by 85% while achieving 92% answer accuracy through a custom RAG system with advanced evaluation framework",
+        "metrics": [
+          { "value": "92%", "label": "Precision" },
+          { "value": "89%", "label": "Recall" },
+          { "value": "89%", "label": "Time saved" }
+        ],
+        "previewImage": "/gradient-pink.png",
+        "slug": "rag-evaluation-system"
+      },
+      {
+        "title": "Fraud Detection System",
+        "shortDescription": "Built a real-time fraud detection system that identifies suspicious transactions with 95% accuracy and reduces false positives by 60%",
+        "metrics": [
+          { "value": "95%", "label": "Accuracy" },
+          { "value": "60%", "label": "False Positive Reduction" },
+          { "value": "Real-time", "label": "Detection" }
+        ],
+        "previewImage": "/gradient-pink.png",
+        "slug": "fraud-detection"
+      }
+    ]
+  },
+  "pdPreview": {
+    "title": "Product Design",
+    "subtitle": "This is my working experience company wide with just a few selected projects",
+    "projects": [
+      {
+        "title": "Tide",
+        "role": "Senior Product Designer",
+        "company": "Tide",
+        "shortDescription": "Tide is transforming SME banking & business management with 1.6M+ members",
+        "previewImage": "/gradient-pink.png",
+        "slug": "tide",
+        "metrics": [{ "value": "95%", "label": "Accuracy" }]
+      },
+      {
+        "title": "Telenor", 
+        "role": "Service Designer",
+        "company": "Telenor",
+        "shortDescription": "Telecommunications companywith 1M+ Users",
+        "previewImage": "/gradient-pink.png",
+        "slug": "telenor",
+        "metrics": [{ "value": "95%", "label": "Accuracy" }]
+      },
+      {
+        "title": "Epam",
+        "role": "Product Designer", 
+        "company": "EPAM",
+        "shortDescription": "Software Engineering & Product Development Services",
+        "previewImage": "/gradient-pink.png",
+        "slug": "epam",
+        "metrics": [{ "value": "95%", "label": "Accuracy" }]
+      },
+       {
+        "title": "Mentormate",
+        "role": "Product Designer", 
+        "company": "Mentormate",
+        "shortDescription": "Software Engineering & Product Development Services",
+        "previewImage": "/gradient-pink.png",
+        "slug": "mentormate",
+        "metrics": [{ "value": "95%", "label": "Accuracy" }]
       }
     ]
   },

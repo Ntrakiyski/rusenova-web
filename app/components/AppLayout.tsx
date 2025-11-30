@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import Navigation from './Navigation';
+import { Navbar1 } from '@/components/navbar1';
 import ContactSection from './ContactSection';
 import Footer from './home/Footer';
 import homeContent from '@/app/data/homeContent.json';
@@ -15,9 +15,9 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const isHomePage = pathname === '/';
 
   return (
-    <div className={isHomePage ? "min-h-screen bg-[#f7f4ed]" : "min-h-screen bg-white"}>
+    <div className={`overflow-x-hidden ${isHomePage ? "min-h-screen bg-[#f7f4ed]" : "min-h-screen bg-white"}`}>
       {/* Navigation - background changes based on page */}
-      <Navigation isDark={!isHomePage} />
+      <Navbar1 />
 
       {/* Main content area */}
       <main>

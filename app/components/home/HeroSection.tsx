@@ -3,13 +3,15 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { HomeContent } from '@/types/project';
+import { typoClass } from '@/app/lib/typography';
 
 interface HeroSectionProps {
   content: HomeContent['hero'];
   colors: HomeContent['colors'];
+  typography: HomeContent['typography'];
 }
 
-export default function HeroSection({ content, colors }: HeroSectionProps) {
+export default function HeroSection({ content, colors, typography }: HeroSectionProps) {
 
   return (
     <section className={`relative pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden`} style={{ borderRadius: '0 0 60px 60px'}}>
@@ -19,7 +21,7 @@ export default function HeroSection({ content, colors }: HeroSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[18px] md:text-[24px] text-center"
+            className={`${typoClass(typography.hero.badge)} text-center`}
             style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.accent }}
           >
             {content.badge}
@@ -29,7 +31,7 @@ export default function HeroSection({ content, colors }: HeroSectionProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="font-['Bricolage_Grotesque:Bold',sans-serif] text-[36px] md:text-[64px] lg:text-[90px] text-center max-w-[1024px] leading-tight"
+            className={`${typoClass(typography.hero.title)} text-center max-w-[1024px] leading-tight`}
             style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.primary }}
           >
             {content.title}
@@ -39,7 +41,7 @@ export default function HeroSection({ content, colors }: HeroSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[16px] md:text-[20px] text-center max-w-[768px]"
+            className={`${typoClass(typography.hero.subtitle)} text-center max-w-[768px]`}
             style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.secondary }}
           >
             {content.subtitle}
@@ -78,10 +80,10 @@ export default function HeroSection({ content, colors }: HeroSectionProps) {
         </div>
       </div>
 
-      <div className="absolute bottom-[-80px] right-0 h-[200px] md:h-[250px] lg:h-[320px] w-auto hidden md:block">
+      <div className="absolute bottom-[-80px] right-0 h-[200px] md:h-[250px] lg:h-[320px] max-w-[40vw] w-auto hidden md:block">
         <div className="relative h-full">
           <div className="h-full relative">
-            <Image alt={content.image.alt} className="h-full w-auto object-contain pointer-events-none relative z-10" src={content.image.src} width={0} height={0} sizes="100vw" style={{ width: 'auto', height: '100%' }} />
+            <Image alt={content.image.alt} className="h-full w-auto object-contain pointer-events-none relative z-10 max-w-full" src={content.image.src} width={0} height={0} sizes="40vw" style={{ width: 'auto', height: '100%', maxWidth: '100%' }} />
           </div>
         </div>
       </div>

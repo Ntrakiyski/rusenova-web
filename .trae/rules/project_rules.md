@@ -1,0 +1,1 @@
+This project is a web application in nextjs and tailwind. It is about a portfolio. It has home page and two dynamicly generated pages - ml projects and pd projects. The data for those projects is in a ts file in the data folder in a json like format. THere is also an admin interface that can edit the data for those pages. 

@@ -1,6 +1,7 @@
 import { mlProjects } from '@/app/data/mlProjects';
 import { productDesignProjects } from '@/app/data/productDesignProjects';
 import { Project } from '@/types/project';
+import homeContent from '@/app/data/homeContent.json';
 
 export function getAllProjects(): Project[] {
   return [...mlProjects, ...productDesignProjects];
@@ -17,4 +18,8 @@ export function getMLProjects(): Project[] {
 
 export function getProductDesignProjects(): Project[] {
   return productDesignProjects;
+}
+
+export function getMLProjectFromHomeContent(slug: string) {
+  return homeContent.mlPreview?.projects.find(project => project.slug === slug);
 }

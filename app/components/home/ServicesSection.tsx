@@ -2,13 +2,15 @@
 
 import { motion } from 'framer-motion';
 import { HomeContent } from '@/types/project';
+import { typoClass } from '@/app/lib/typography';
 
 interface ServicesSectionProps {
   content: HomeContent['services'];
   colors: HomeContent['colors'];
+  typography: HomeContent['typography'];
 }
 
-export default function ServicesSection({ content, colors }: ServicesSectionProps) {
+export default function ServicesSection({ content, colors, typography }: ServicesSectionProps) {
   const services = content.items;
 
   const containerVariants = {
@@ -40,7 +42,7 @@ export default function ServicesSection({ content, colors }: ServicesSectionProp
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
-            className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[16px] text-center w-full"
+            className={`${typoClass(typography.services.title)} text-center w-full`}
             style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.secondary }}
           >
             {content.title}
@@ -57,7 +59,7 @@ export default function ServicesSection({ content, colors }: ServicesSectionProp
               <motion.p
                 key={index}
                 variants={itemVariants}
-                className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[18px] md:text-[20px] text-center cursor-default"
+                className={`${typoClass(typography.services.item)} text-center cursor-default`}
                 style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.primary }}
               >
                 {service}

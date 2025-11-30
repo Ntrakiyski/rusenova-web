@@ -8,6 +8,7 @@ interface Metric {
   label: string;
   icon?: React.ReactNode;
   iconBg?: string;
+  iconSvg?: string;
 }
 
 interface MLWhatIBuildProps {
@@ -15,13 +16,15 @@ interface MLWhatIBuildProps {
   description: string;
   metrics: Metric[];
   background?: string;
+  bulletPoints?: string[];
 }
 
 export default function MLWhatIBuild({
   title,
   description,
   metrics,
-  background = 'bg-white'
+  background = 'bg-white',
+  bulletPoints
 }: MLWhatIBuildProps) {
   // Default icons for common metric types
   const getDefaultIcon = (label: string, iconBg: string = 'bg-[#dcfae6]') => {
@@ -74,48 +77,16 @@ export default function MLWhatIBuild({
               </h2>
             )}
             <div className="space-y-3">
-              <div className="flex items-start gap-2 sm:gap-3">
-                <div className="shrink-0 mt-1.5">
-                  <div className="w-2 h-2 rounded-full bg-[#f38300]" />
+              {bulletPoints && bulletPoints.map((point, index) => (
+                <div key={index} className="flex items-start gap-2 sm:gap-3">
+                  <div className="shrink-0 mt-1.5">
+                    <div className="w-2 h-2 rounded-full bg-[#f38300]" />
+                  </div>
+                  <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                    {point}
+                  </p>
                 </div>
-                <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                  A RAG (Retrieval-Augmented Generation) system with two-stage retrieval (vector search + AI re-ranking) for 40% better relevance
-                </p>
-              </div>
-              <div className="flex items-start gap-2 sm:gap-3">
-                <div className="shrink-0 mt-1.5">
-                  <div className="w-2 h-2 rounded-full bg-[#f38300]" />
-                </div>
-                <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                  A custom evaluation framework to measure how well the system actually performs
-                </p>
-              </div>
-              <div className="flex items-start gap-2 sm:gap-3">
-                <div className="shrink-0 mt-1.5">
-                  <div className="w-2 h-2 rounded-full bg-[#f38300]" />
-                </div>
-                <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                  {/* eslint-disable-next-line react/no-unescaped-entities */}
-                  Most LLMs struggle when they encounter information they haven't seen during training
-                </p>
-              </div>
-              <div className="flex items-start gap-2 sm:gap-3">
-                <div className="shrink-0 mt-1.5">
-                  <div className="w-2 h-2 rounded-full bg-[#f38300]" />
-                </div>
-                <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                  {/* eslint-disable-next-line react/no-unescaped-entities */}
-                  Without proper evaluation, you can't guarantee your results are correct
-                </p>
-              </div>
-              <div className="flex items-start gap-2 sm:gap-3">
-                <div className="shrink-0 mt-1.5">
-                  <div className="w-2 h-2 rounded-full bg-[#f38300]" />
-                </div>
-                <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                  The framework shows exactly where the system fails and by how much
-                </p>
-              </div>
+              ))}
             </div>
           </div>
 
@@ -126,7 +97,12 @@ export default function MLWhatIBuild({
               {metrics.map((metric, index) => (
                 <div key={index} className="bg-[#F7F4ED] rounded-[16px] p-4 w-full">
                   <div className="flex items-center gap-3 w-full">
-                    {metric.icon || getDefaultIcon(metric.label, metric.iconBg)}
+                    {metric.icon
+                      || (metric.iconSvg ? (
+                        <div className={`${metric.iconBg || 'bg-[#dcfae6]'} rounded-full w-12 h-12 flex items-center justify-center shrink-0`}>
+                          <div dangerouslySetInnerHTML={{ __html: metric.iconSvg }} />
+                        </div>
+                      ) : getDefaultIcon(metric.label, metric.iconBg))}
                     <div className="flex-1 min-w-0">
                       <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-lg sm:text-xl mb-1" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
                         {metric.value}

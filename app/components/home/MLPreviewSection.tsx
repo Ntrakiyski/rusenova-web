@@ -4,14 +4,18 @@ import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project, HomeContent } from '@/types/project';
+import Image from 'next/image';
+import { typoClass } from '@/app/lib/typography';
 import Link from 'next/link';
 
 interface MLPreviewSectionProps {
-  mlData: Project[];
+  mlData?: (Project | NonNullable<HomeContent['mlPreview']>['projects'][0])[];
   colors?: HomeContent['colors'];
+  typography?: HomeContent['typography'];
+  content?: HomeContent['mlPreview'];
 }
 
-export default function MLPreviewSection({ mlData, colors }: MLPreviewSectionProps) {
+export default function MLPreviewSection({ mlData, colors, typography, content }: MLPreviewSectionProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scrollML = (direction: 'left' | 'right') => {
@@ -25,6 +29,9 @@ export default function MLPreviewSection({ mlData, colors }: MLPreviewSectionPro
     }
   };
 
+  // Use content.projects if available, otherwise fall back to mlData
+  const projects = content?.projects || mlData || [];
+
   return (
     <section id="ml" className="bg-white py-16 md:py-24">
       <div className="max-w-[1280px] mx-auto px-4 md:px-8">
@@ -37,16 +44,16 @@ export default function MLPreviewSection({ mlData, colors }: MLPreviewSectionPro
         >
           <div className="flex flex-col gap-5">
             <h2
-              className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[28px] md:text-[36px]"
+              className={`${typoClass(typography?.mlPreview.title)}`}
               style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#101828' }}
             >
-              Machine Learning & AI
+              {content?.title || "Machine Learning & AI"}
             </h2>
             <p
-              className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[16px] md:text-[20px] max-w-[768px]"
+              className={`${typoClass(typography?.mlPreview.subtitle)} max-w-[768px]`}
               style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.secondary || '#494848' }}
             >
-              Hands-on experimentation with fraud detection, retrieval systems, and autonomous agents.
+              {content?.subtitle || "Hands-on experimentation with fraud detection, retrieval systems, and autonomous agents."}
             </p>
           </div>
 
@@ -81,90 +88,81 @@ export default function MLPreviewSection({ mlData, colors }: MLPreviewSectionPro
           }}
         >
           <div className="flex gap-6 md:gap-8 min-w-max">
-            {mlData.map((project, index) => (
-              <Link
-                key={index}
-                href={`/ml/${project.slug}`}
-              >
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: index * 0.15 }}
-                  className="flex flex-col gap-5 w-[480px] shrink-0 cursor-pointer"
+            {projects.map((project, index) => (
+              <div key={index} id={`projects-${project.slug || project.id || index}`} className="max-w-[480px]">
+                <Link
+                  href={`/ml/${project.slug}`}
                 >
                   <div
-                    className="relative h-[280px] md:h-[320px] lg:h-[403px] overflow-hidden rounded-[24px]"
-                    style={{
-                      background: project.gradientColors.length >= 2
-                        ? `radial-gradient(58.25% 50.19% at 96.04% 96.28%, ${project.gradientColors[0]} 9.13%, ${project.gradientColors[1]} 54.81%, #F7F4ED 90.51%)`
-                        : project.gradientColors.length === 1
-                          ? `radial-gradient(58.25% 50.19% at 96.04% 96.28%, ${project.gradientColors[0]} 9.13%, #D9DADF 54.81%, #F7F4ED 90.51%)`
-                          : 'radial-gradient(58.25% 50.19% at 96.04% 96.28%, #D29C81 9.13%, #D9DADF 54.81%, #F7F4ED 90.51%)'
-                    }}
+                    className="relative h-[280px] md:h-[320px] lg:h-[403px] overflow-hidden rounded-[24px] bg-[#F7F4ED]"
                   >
-                    {project.metrics[0]?.value && (
+                    <div className="absolute bottom-0 right-0 w-full max-w-[264px] lg:max-w-[364px] aspect-square right-[-34%] bottom-[-47%] z-0 pointer-events-none">
+                      <div className="relative w-full h-full">
+                        <Image src={project.previewImage ?? '/gradient-pink.png'} alt="" aria-hidden fill className="object-contain" draggable={false} />
+                      </div>
+                    </div>
+                    {project.metrics?.[0]?.value && (
                       <motion.p
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.3 }}
-                        className="absolute left-[38px] top-[85px] font-['Bricolage_Grotesque:Light',sans-serif] text-[16px]"
+                        className={`absolute left-[38px] top-[85px] z-10 ${typoClass(typography?.mlPreview.metricText)}`}
                         style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
                       >
                         <span
                           className="font-['Bricolage_Grotesque:Bold',sans-serif]"
                           style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
                         >
-                          {project.metrics[0].value}
+                          {project.metrics?.[0]?.value}
                         </span>
-                        {' '}{project.metrics[0].label}
+                        {' '}{project.metrics?.[0]?.label}
                       </motion.p>
                     )}
-                    {project.metrics[1]?.value && (
+                    {project.metrics?.[1]?.value && (
                       <motion.p
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.4 }}
-                        className="absolute left-[146px] bottom-[86px] font-['Bricolage_Grotesque:Light',sans-serif] text-[16px]"
+                        className={`absolute left-[146px] bottom-[86px] z-10 ${typoClass(typography?.mlPreview.metricText)}`}
                         style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
                       >
                         <span
                           className="font-['Bricolage_Grotesque:Bold',sans-serif]"
                           style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
                         >
-                          {project.metrics[1].value}
+                          {project.metrics?.[1]?.value}
                         </span>
-                        {' '}{project.metrics[1].label}
+                        {' '}{project.metrics?.[1]?.label}
                       </motion.p>
                     )}
-                    {!project.metrics[0]?.value && project.metrics[0]?.label && (
+                    {!project.metrics?.[0]?.value && project.metrics?.[0]?.label && (
                       <p
-                        className="absolute left-[61px] bottom-[104px] font-['Bricolage_Grotesque:Light',sans-serif] text-[16px]"
+                        className={`absolute left-[61px] bottom-[104px] ${typoClass(typography?.mlPreview.metricText)}`}
                         style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
                       >
-                        {project.metrics[0].label}
+                        {project.metrics?.[0]?.label}
                       </p>
                     )}
                   </div>
 
                   <div className="flex flex-col gap-2">
                     <h3
-                      className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[20px] md:text-[24px]"
+                      className={`${typoClass(typography?.mlPreview.cardTitle)} mt-5`}
                       style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#101828' }}
                     >
                       {project.title}
                     </h3>
                     <p
-                      className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[16px]"
+                      className={`${typoClass(typography?.mlPreview.cardDescription)}`}
                       style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.secondary || '#494848' }}
                     >
                       {project.shortDescription}
                     </p>
                   </div>
-                </motion.div>
-              </Link>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
