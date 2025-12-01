@@ -23,7 +23,7 @@ export default function MLWhatIBuild({
   title,
   description,
   metrics,
-  background = 'bg-white',
+  background = 'bg-bg-white',
   bulletPoints
 }: MLWhatIBuildProps) {
   // Default icons for common metric types
@@ -72,7 +72,7 @@ export default function MLWhatIBuild({
           {/* Text Content - Left Side */}
           <div className="w-full lg:w-1/2">
             {title && (
-              <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-2xl sm:text-3xl mb-6" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+              <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-6">
                 {title}
               </h2>
             )}
@@ -80,9 +80,9 @@ export default function MLWhatIBuild({
               {bulletPoints && bulletPoints.map((point, index) => (
                 <div key={index} className="flex items-start gap-2 sm:gap-3">
                   <div className="shrink-0 mt-1.5">
-                    <div className="w-2 h-2 rounded-full bg-[#f38300]" />
+                    <div className="w-2 h-2 rounded-full bg-text-orange" />
                   </div>
-                  <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  <p className="font-bricolage text-text-primary text-text-md-regular">
                     {point}
                   </p>
                 </div>
@@ -95,7 +95,7 @@ export default function MLWhatIBuild({
             {/* Metrics Cards Section */}
             <div className="flex flex-col gap-4 w-full">
               {metrics.map((metric, index) => (
-                <div key={index} className="bg-[#F7F4ED] rounded-[16px] p-4 w-full">
+                <div key={index} className="bg-bg-light rounded-[16px] p-4 w-full">
                   <div className="flex items-center gap-3 w-full">
                     {metric.icon
                       || (metric.iconSvg ? (
@@ -104,10 +104,10 @@ export default function MLWhatIBuild({
                         </div>
                       ) : getDefaultIcon(metric.label, metric.iconBg))}
                     <div className="flex-1 min-w-0">
-                      <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-lg sm:text-xl mb-1" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                      <p className="font-bricolage text-text-primary text-text-xl-semibold mb-1">
                         {metric.value}
                       </p>
-                      <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-sm sm:text-base truncate" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                      <p className="font-bricolage text-text-secondary text-text-md-regular truncate">
                         {metric.label}
                       </p>
                     </div>

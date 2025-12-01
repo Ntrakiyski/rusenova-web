@@ -16,14 +16,14 @@ export default function PDSectionRight({
   description,
   achievements,
   images,
-  background = 'bg-[#f7f4ed]'
+  background = 'bg-bg-light'
 }: PDSectionRightProps) {
   // Function to highlight specific words in text
   const highlightWords = (text: string, wordsToHighlight: string[]) => {
     return text.split(new RegExp(`(${wordsToHighlight.join('|')})`, 'gi')).map((part, i) => {
       if (wordsToHighlight.some(word => word.toLowerCase() === part.toLowerCase())) {
         return (
-          <span key={i} className="font-['Bricolage_Grotesque:Bold',sans-serif] font-bold" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+          <span key={i} className="font-bricolage font-bold">
             {part}
           </span>
         );
@@ -68,18 +68,18 @@ export default function PDSectionRight({
             {/* Right Column: Text Content */}
             <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-[48px] items-start w-full lg:w-1/2 lg:order-2">
               {/* Title */}
-              <h2 className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold leading-8 sm:leading-10 md:leading-[40px] lg:leading-[44px] text-[#191818] text-lg sm:text-xl md:text-2xl lg:text-[36px] w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+              <h2 className="font-bricolage font-semibold text-display-md text-text-primary w-full">
                 {title}
               </h2>
 
               {/* Description */}
-              <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-6 sm:leading-7 md:leading-[22px] lg:leading-[24px] text-[#191818] text-sm sm:text-base md:text-[15px] lg:text-[16px] w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+              <p className="font-bricolage font-normal text-text-lg-regular text-text-primary w-full">
                 {highlightWords(description, wordsToHighlight)}
               </p>
 
               {/* Achievements */}
               <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[16px] items-start w-full">
-                <h3 className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold leading-7 sm:leading-8 md:leading-[28px] lg:leading-[30px] text-[#191818] text-base sm:text-lg md:text-xl lg:text-[20px] w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                <h3 className="font-bricolage font-semibold text-text-xl-semibold text-text-primary w-full">
                   What was achieved
                 </h3>
                 <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-[12px] items-start w-full">
@@ -92,11 +92,11 @@ export default function PDSectionRight({
                         <div className="size-3 sm:size-4 md:size-[12px] flex-shrink-0">
                           <div className="size-2 sm:size-3 md:size-[8px] rounded-full bg-[#F38300]"></div>
                         </div>
-                        <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-6 sm:leading-7 md:leading-[22px] lg:leading-[24px] text-[#191818] text-sm sm:text-base md:text-[15px] lg:text-[16px] flex-1" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 10" }}>
+                        <p className="font-bricolage font-normal text-text-lg-regular text-text-primary flex-1">
                           {parts.map((part, i) => {
                             if (i % 2 === 1) {
                               return (
-                                <span key={i} className="font-['Bricolage_Grotesque:Bold',sans-serif] font-bold" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                                <span key={i} className="font-bricolage font-bold">
                                   {part}
                                 </span>
                               );

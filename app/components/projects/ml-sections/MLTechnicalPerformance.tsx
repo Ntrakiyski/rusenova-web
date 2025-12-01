@@ -56,10 +56,10 @@ export default function MLTechnicalPerformance({
   title = 'Technical Performance',
   description = 'How catching fraud impacts the business revenue and how much we can save?',
   metrics = defaultMetrics,
-  background = 'bg-white'
+  background = 'bg-bg-white'
 }: MLTechnicalPerformanceProps) {
   // Find metrics with details for the right column
- const highlightedMetrics = metrics.filter(metric => metric.details);
+  const highlightedMetrics = metrics.filter(metric => metric.details);
   const leftMetrics = metrics.filter(metric => !metric.details);
 
   return (
@@ -68,12 +68,12 @@ export default function MLTechnicalPerformance({
         {/* Title Section */}
         <div className="mb-12">
           {title && (
-            <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-lg sm:text-xl max-w-[768px]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-secondary text-text-xl-regular max-w-[768px]">
               {description}
             </p>
           )}
@@ -87,37 +87,49 @@ export default function MLTechnicalPerformance({
                 <React.Fragment key={index}>
                   <div className="flex justify-between items-center py-6">
                     <div className="flex-1">
-                      <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-xl font-semibold mb-2" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                      <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-2">
                         {metric.name}
                       </h3>
-                      <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                      <p className="font-bricolage text-text-secondary text-text-md-regular">
                         {metric.description}
                       </p>
                     </div>
                     <div className="ml-6">
-                      <span className="font-['Bricolage_Grotesque',sans-serif] text-[#155DFC] text-3xl font-bold" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                      <span className="font-bricolage text-[#155DFC] text-display-sm font-bold">
                         {metric.value}
                       </span>
                     </div>
                   </div>
-                  {index < leftMetrics.length - 1 && (
-                    <div className="border-t border-[#E5E7EB] my-0"></div>
+                  {index !== leftMetrics.length - 1 && (
+                    <div className="w-full h-[1px] bg-border" />
                   )}
                 </React.Fragment>
               ))}
             </div>
           </div>
 
-          {/* Right Column - Highlighted metrics with title and description only */}
-          <div className="lg:w-[40%] flex flex-col justify-center space-y-6">
+          {/* Right Column - Highlighted metrics */}
+          <div className="lg:w-[40%] flex flex-col gap-6">
             {highlightedMetrics.map((metric, index) => (
-              <div key={index} className="p-0">
-                <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-xl font-semibold mb-3" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                  {metric.name}
-                </h3>
-                <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-base leading-relaxed" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
-                  {metric.details}
+              <div key={index} className="bg-[#EFF4FF] rounded-2xl p-8">
+                <div className="flex justify-between items-start mb-4">
+                  <h3 className="font-bricolage text-text-primary text-text-xl-semibold">
+                    {metric.name}
+                  </h3>
+                  <span className="font-bricolage text-[#155DFC] text-display-sm font-bold">
+                    {metric.value}
+                  </span>
+                </div>
+                <p className="font-bricolage text-text-secondary text-text-md-regular mb-6">
+                  {metric.description}
                 </p>
+                {metric.details && (
+                  <div className="bg-bg-white rounded-xl p-4 border border-border">
+                    <p className="font-bricolage text-text-secondary text-text-sm-regular italic">
+                      "{metric.details}"
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
           </div>

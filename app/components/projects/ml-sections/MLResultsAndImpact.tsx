@@ -18,7 +18,7 @@ export default function MLResultsAndImpact({
   outcomes,
   businessValue,
   image,
-  background = 'bg-[#252222]'
+  background = 'bg-bg-dark'
 }: MLResultsAndImpactProps) {
    return (
     <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative`} style={{ minHeight: '760px' }}>
@@ -26,12 +26,12 @@ export default function MLResultsAndImpact({
         {/* Title and Description Row */}
         <div className="mb-8 md:mb-12 text-center">
           {title && (
-            <h2 className="font-['Bricolage_Grotesque',sans-serif] text-white text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage text-text-white text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-['Inter',sans-serif] text-white text-lg sm:text-xl max-w-[768px] mx-auto leading-[30px]">
+            <p className="font-bricolage text-text-white text-text-xl-regular max-w-[768px] mx-auto leading-[30px]">
               {description}
             </p>
           )}
@@ -55,7 +55,7 @@ export default function MLResultsAndImpact({
         {/* Cards Row - Two Columns */}
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Quantifiable Outcomes Card */}
-          <div className="bg-white rounded-[12px] overflow-hidden flex-1">
+          <div className="bg-bg-white rounded-[12px] overflow-hidden flex-1">
             <div className="p-4 sm:p-6 pb-0 pt-6 sm:pt-8">
               <div className="flex flex-col gap-4 items-center mb-4 sm:mb-6">
                 <div className="bg-blue-100 rounded-[8px] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
@@ -67,7 +67,7 @@ export default function MLResultsAndImpact({
                     className="w-5 sm:w-6 h-5 sm:h-6"
                   />
                 </div>
-                <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-xl sm:text-2xl text-center" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                <h3 className="font-bricolage text-text-primary text-display-xs font-semibold text-center">
                   Quantifiable Outcomes
                 </h3>
               </div>
@@ -85,7 +85,7 @@ export default function MLResultsAndImpact({
                         className="w-4 sm:w-5 h-4 sm:h-5"
                       />
                     </div>
-                    <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-base sm:text-xl leading-relaxed" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                    <p className="font-bricolage text-text-secondary text-text-lg-regular sm:text-text-xl-regular leading-relaxed">
                       {item}
                     </p>
                   </div>
@@ -95,7 +95,7 @@ export default function MLResultsAndImpact({
           </div>
 
           {/* Business Value Card */}
-          <div className="bg-white rounded-[12px] overflow-hidden flex-1">
+          <div className="bg-bg-white rounded-[12px] overflow-hidden flex-1">
             <div className="p-4 sm:p-6 pb-0 pt-6 sm:pt-8">
               <div className="flex flex-col gap-4 items-center mb-4 sm:mb-6">
                 <div className="bg-[#dcfae6] rounded-[8px] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
@@ -107,7 +107,7 @@ export default function MLResultsAndImpact({
                     className="w-5 sm:w-6 h-5 sm:h-6"
                   />
                 </div>
-                <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-xl sm:text-2xl text-center" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                <h3 className="font-bricolage text-text-primary text-display-xs font-semibold text-center">
                   Business Value
                 </h3>
               </div>
@@ -125,7 +125,7 @@ export default function MLResultsAndImpact({
                         className="w-4 sm:w-5 h-4 sm:h-5"
                       />
                     </div>
-                    <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-base sm:text-xl leading-relaxed" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                    <p className="font-bricolage text-text-secondary text-text-lg-regular sm:text-text-xl-regular leading-relaxed">
                       {item}
                     </p>
                   </div>

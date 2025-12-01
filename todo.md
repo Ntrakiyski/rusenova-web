@@ -1,3 +1,4 @@
-how to make the navigation so that it doesnt break my ui and i dont have to add a lot of padding in the hero sections of the pages that use this navigation;
+# Approach
+use the long-card-gradient and set as image inside the container that holds the cards. move this image absolute, top bottom and right negative positions so that it starts 130px from the top of the container and 743px for the left side of the container. 
 
-font sizes colors to be like in figma
+# 

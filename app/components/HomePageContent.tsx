@@ -39,13 +39,13 @@ export default function HomePageContent() {
   return (
     <>
       {/* Hero Section */}
-      <HeroSection content={typedHomeContent.hero as typeof typedHomeContent.hero & { buttons: Array<{text: string; link: string; style: "primary" | "secondary"}>} } colors={typedHomeContent.colors} typography={typedHomeContent.typography} />
+      <HeroSection content={typedHomeContent.hero as typeof typedHomeContent.hero & { buttons: Array<{text: string; link: string; style: "primary" | "secondary"}>} } colors={typedHomeContent.colors} />
 
       {/* Services Section */}
-      <ServicesSection content={typedHomeContent.services} colors={typedHomeContent.colors} typography={typedHomeContent.typography} />
+      <ServicesSection content={typedHomeContent.services} colors={typedHomeContent.colors} />
 
       {/* Features Section */}
-      <FeaturesSection content={typedHomeContent.features} colors={typedHomeContent.colors} typography={typedHomeContent.typography} />
+      <FeaturesSection content={typedHomeContent.features} colors={typedHomeContent.colors} />
 
       {/* ML Preview Section */}
       <section id="projects">
@@ -53,13 +53,12 @@ export default function HomePageContent() {
           content={typedHomeContent.mlPreview}
           mlData={mlData}
           colors={typedHomeContent.colors}
-          typography={typedHomeContent.typography}
         />
       </section>
 
       {/* About Section */}
       <section id="about">
-        <AboutSection content={typedHomeContent.about} colors={typedHomeContent.colors} typography={typedHomeContent.typography} />
+        <AboutSection content={typedHomeContent.about} colors={typedHomeContent.colors} />
       </section>
 
       {/* Product Design Preview Section */}
@@ -68,7 +67,6 @@ export default function HomePageContent() {
           content={typedHomeContent.pdPreview}
           pdData={pdData}
           colors={typedHomeContent.colors}
-          typography={typedHomeContent.typography}
         />
       </section>
     </>

@@ -26,14 +26,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
           <div className="flex flex-col gap-4 lg:col-span-2">
             <h3
-              className="font-['Bricolage_Grotesque:96pt_ExtraBold',sans-serif] text-white text-[24px]"
-              style={{ fontVariationSettings: "'opsz' 96, 'wdth' 100" }}
+              className="font-bricolage font-extrabold text-white text-display-xs"
             >
               Gloria
             </h3>
             <p
-              className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[#babcc0] text-[16px] max-w-[400px]"
-              style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+              className="font-bricolage font-normal text-text-light-gray text-text-lg-regular max-w-[400px]"
             >
               Building intelligent systems that bridge the gap between cutting-edge machine learning and delightful user experiences.
             </p>
@@ -69,8 +67,7 @@ export default function Footer() {
 
           <div className="flex flex-col gap-4">
             <h4
-              className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-white text-[16px]"
-              style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+              className="font-bricolage font-semibold text-white text-text-lg-regular"
             >
               Services
             </h4>
@@ -79,8 +76,7 @@ export default function Footer() {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[#babcc0] hover:text-white text-[14px] transition-colors"
-                    style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                    className="font-bricolage font-normal text-text-light-gray hover:text-white text-sm transition-colors"
                   >
                     {link.label}
                   </a>
@@ -91,8 +87,7 @@ export default function Footer() {
 
           <div className="flex flex-col gap-4">
             <h4
-              className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-white text-[16px]"
-              style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+              className="font-bricolage font-semibold text-white text-text-lg-regular"
             >
               Projects
             </h4>
@@ -100,8 +95,7 @@ export default function Footer() {
               <li>
                 <NextLink
                   href="/ml/rag-evaluation-system"
-                  className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[#babcc0] hover:text-white text-[14px] transition-colors"
-                  style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                  className="font-bricolage font-normal text-text-light-gray hover:text-white text-sm transition-colors"
                 >
                   RAG + Evaluation pipeline
                 </NextLink>
@@ -109,8 +103,7 @@ export default function Footer() {
               <li>
                 <NextLink
                   href="/ml/fraud-detection-system"
-                  className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[#babcc0] hover:text-white text-[14px] transition-colors"
-                  style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                  className="font-bricolage font-normal text-text-light-gray hover:text-white text-sm transition-colors"
                 >
                   Fraud detection system
                 </NextLink>
@@ -118,8 +111,7 @@ export default function Footer() {
               <li>
                 <NextLink
                   href="/ml/real-time-meeting-agent"
-                  className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[#babcc0] hover:text-white text-[14px] transition-colors"
-                  style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                  className="font-bricolage font-normal text-text-light-gray hover:text-white text-sm transition-colors"
                 >
                   Real-time meeting agent
                 </NextLink>
@@ -129,8 +121,7 @@ export default function Footer() {
 
           <div className="flex flex-col gap-4">
             <h4
-              className="font-['Bricolage_Grotesque:SemiBold',sans-serif] text-white text-[16px]"
-              style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+              className="font-bricolage font-semibold text-white text-text-lg-regular"
             >
               Company
             </h4>
@@ -139,8 +130,7 @@ export default function Footer() {
                 <li key={index}>
                   <NextLink
                     href={link.href}
-                    className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[#babcc0] hover:text-white text-[14px] transition-colors"
-                    style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                    className="font-bricolage font-normal text-text-light-gray hover:text-white text-sm transition-colors"
                   >
                     {link.label}
                   </NextLink>
@@ -152,23 +142,20 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-12 pt-8 border-t border-white/10">
           <p
-            className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[#babcc0] text-[14px] text-center md:text-left"
-            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+            className="font-bricolage font-normal text-text-light-gray text-sm text-center md:text-left"
           >
             © 2025 Gloria. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <a
               href="#"
-              className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[#babcc0] hover:text-white text-[14px] transition-colors"
-              style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+              className="font-bricolage font-normal text-text-light-gray hover:text-white text-sm transition-colors"
             >
               Privacy Policy
             </a>
             <a
               href="#"
-              className="font-['Bricolage_Grotesque:Regular',sans-serif] text-[#babcc0] hover:text-white text-[14px] transition-colors"
-              style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+              className="font-bricolage font-normal text-text-light-gray hover:text-white text-sm transition-colors"
             >
               Terms of Service
             </a>

@@ -25,7 +25,7 @@ export default function Epam({ projectData }: EpamProps) {
         subtitle={(projectData as any).heroDescription || projectData.shortDescription}
         titleHighlight={(projectData as any).titleHighlight || ''}
         descriptionHighlight={(projectData as any).heroDescriptionHighlight || ''}
-        background={(projectData as any).heroBackground || 'bg-[#252222]'}
+        background={(projectData as any).heroBackground || 'bg-bg-dark'}
       />
 
       {/* 2. Nutshell Section */}
@@ -53,7 +53,7 @@ export default function Epam({ projectData }: EpamProps) {
               description={section.description}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
-              background="bg-[#f7f4ed]"
+              background="bg-bg-light"
             />
           );
         } else {
@@ -64,7 +64,7 @@ export default function Epam({ projectData }: EpamProps) {
               description={section.description}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
-              background="bg-[#f7f4ed]"
+              background="bg-bg-light"
             />
           );
         }

@@ -19,7 +19,7 @@ export default function MLHero({
   background
 }: MLHeroProps) {
   // Always use the same dark background as navigation: #252222
-  const heroBackground = background || 'bg-[#252222]';
+  const heroBackground = background || 'bg-bg-dark';
 
   return (
     <section 
@@ -29,10 +29,10 @@ export default function MLHero({
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
           {/* Hero Text */}
           <div className="flex-1 w-full">
-            <h1 className="font-['Bricolage_Grotesque',sans-serif] text-white text-3xl sm:text-4xl md:text-5xl lg:text-[70px] xl:text-[90px] leading-tight mb-6" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h1 className="font-bricolage text-text-white text-display-2xl font-medium mb-6">
               {title}
             </h1>
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-white text-base sm:text-lg md:text-xl max-w-[480px]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-white text-text-xl-regular max-w-[480px]">
               {subtitle}
             </p>
           </div>

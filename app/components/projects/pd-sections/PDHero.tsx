@@ -15,7 +15,7 @@ export default function PDHero({
   subtitle,
   titleHighlight,
   descriptionHighlight,
-  background = 'bg-[#252222]/95'
+  background = 'bg-bg-dark/95'
 }: PDHeroProps) {
   // Split subtitle to highlight the titleHighlight part
   const subtitleParts = subtitle.split(titleHighlight || '');
@@ -30,7 +30,7 @@ export default function PDHero({
     wordsToHighlight.forEach(word => {
       if (word) {
         const regex = new RegExp(`(${word})`, 'gi');
-        highlightedText = highlightedText.replace(regex, '<span class="font-[\'Bricolage_Grotesque:Bold\',sans-serif] font-bold text-[#f38300]" style="{ fontVariationSettings: \'opsz\' 14, \'wdth\' 100 }">$1</span>');
+        highlightedText = highlightedText.replace(regex, '<span class="font-bricolage font-bold text-text-orange">$1</span>');
       }
     });
     
@@ -47,11 +47,11 @@ export default function PDHero({
                 <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-[48px] items-center w-full">
                   <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[24px] items-center w-full">
                     <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[16px] items-center w-full">
-                      <h1 className="font-['Bricolage_Grotesque:Bold',sans-serif] font-bold leading-tight sm:leading-[40px] md:leading-[60px] lg:leading-[120px] text-2xl sm:text-3xl md:text-5xl lg:text-[90px] text-center text-white tracking-[-0.5px] sm:tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.8px] max-w-full md:max-w-[500px] lg:max-w-[800px] mx-auto w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                      <h1 className="font-bricolage font-bold text-display-2xl text-center text-white max-w-full md:max-w-[500px] lg:max-w-[800px] mx-auto w-full">
                         {title}
                       </h1>
                     </div>
-                    <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-6 sm:leading-7 md:leading-8 lg:leading-[30px] max-w-full md:max-w-[512px] lg:max-w-[768px] text-[#babcc0] text-sm sm:text-base md:text-lg lg:text-[20px] text-center w-full px-2" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                    <p className="font-bricolage font-normal text-text-xl-regular max-w-full md:max-w-[512px] lg:max-w-[768px] text-text-light-gray text-center w-full px-2">
                       {descriptionHighlight ? (
                         <span 
                           dangerouslySetInnerHTML={{ 
@@ -62,7 +62,7 @@ export default function PDHero({
                         <React.Fragment>
                           {subtitleParts[0]}
                           {titleHighlight && (
-                            <span className="font-['Bricolage_Grotesque:Bold',sans-serif] font-bold text-[#f38300]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                            <span className="font-bricolage font-bold text-text-orange">
                               {titleHighlight}
                             </span>
                           )}

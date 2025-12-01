@@ -32,7 +32,7 @@ export default function Telenor({ projectData }: TelenorProps) {
         subtitle={(projectData.heroDescription || projectData.shortDescription) ?? ""}
         titleHighlight={projectData.titleHighlight || ''}
         descriptionHighlight={projectData.heroDescriptionHighlight || ''}
-        background={projectData.heroBackground || 'bg-[#252222]'}
+        background={projectData.heroBackground || 'bg-bg-dark'}
       />
 
       {/* 2. Telenor Intro Section */}
@@ -68,7 +68,7 @@ export default function Telenor({ projectData }: TelenorProps) {
               description={section.description}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
-              background="bg-[#f7f4ed]"
+              background="bg-bg-light"
             />
           );
         } else {
@@ -79,7 +79,7 @@ export default function Telenor({ projectData }: TelenorProps) {
               description={section.description}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
-              background="bg-[#f7f4ed]"
+              background="bg-bg-light"
             />
           );
         }

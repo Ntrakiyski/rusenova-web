@@ -16,7 +16,7 @@ export default function MLChallenge({
   title,
   description,
   challenges,
-  background = 'bg-white',
+  background = 'bg-bg-white',
   image
 }: MLChallengeProps) {
   // Helper function to render challenge content
@@ -35,12 +35,12 @@ export default function MLChallenge({
         {/* Title and Description Row */}
         <div className="mb-12">
           {title && (
-            <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-lg sm:text-xl max-w-[768px]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-primary text-text-xl-regular max-w-[768px]">
               {description}
             </p>
           )}
@@ -54,9 +54,9 @@ export default function MLChallenge({
               {challenges.map((challenge, index) => (
                 <div key={index} className="flex gap-2 sm:gap-3 items-start">
                   <div className="pt-2 shrink-0">
-                    <div className="w-3 h-3 rounded-full bg-[#f38300]" />
+                    <div className="w-3 h-3 rounded-full bg-text-orange" />
                   </div>
-                  <p className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-sm sm:text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  <p className="font-bricolage text-text-primary text-text-md-regular">
                     {renderChallengeContent(challenge)}
                   </p>
                 </div>
@@ -65,8 +65,8 @@ export default function MLChallenge({
           </div>
 
           {/* RAG Results Image - Right Column */}
-          <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
-            <div className="relative w-full h-auto">
+          <div className="w-full lg:w-1/2 flex justify-center">
+            <div className="relative w-full h-auto max-w-[400px]">
               <Image 
                 src={image || "/rag-results.png"} 
                 alt="RAG Results Visualization" 

@@ -13,19 +13,19 @@ export default function MLKeyResultsOnly({
   title,
   description,
   image,
-  background = 'bg-[#252222]'
+  background = 'bg-bg-dark'
 }: MLKeyResultsOnlyProps) {
   return (
     <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10`} style={{ minHeight: '760px' }}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="mb-12 w-full">
           {title && (
-            <h2 className="font-['Bricolage_Grotesque',sans-serif] text-white text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage text-text-white text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-white text-lg sm:text-xl max-w-[768px] mb-8" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-white text-text-xl-regular max-w-[768px] mb-8">
               {description}
             </p>
           )}

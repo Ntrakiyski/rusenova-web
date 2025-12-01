@@ -33,13 +33,18 @@ export function Heading1({
   className = '',
   style = {},
 }: Omit<HeadingProps, 'level'>) {
-  const baseClasses = `font-['Bricolage_Grotesque:${fontWeight}',sans-serif]`;
-  const fontVariation = { fontVariationSettings: "'opsz' 14, 'wdth' 100" };
+  const weightClasses = {
+    'Regular': 'font-normal',
+    'SemiBold': 'font-semibold',
+    'Bold': 'font-bold',
+    'ExtraBold': 'font-extrabold',
+    'Light': 'font-light',
+  };
 
   return (
     <h1
-      className={`${baseClasses} text-[36px] md:text-[48px] lg:text-[64px] leading-tight ${className}`}
-      style={{ ...fontVariation, ...style }}
+      className={`font-bricolage ${weightClasses[fontWeight]} text-display-2xl ${className}`}
+      style={style}
     >
       {children}
     </h1>
@@ -52,13 +57,18 @@ export function Heading2({
   className = '',
   style = {},
 }: Omit<HeadingProps, 'level'>) {
-  const baseClasses = `font-['Bricolage_Grotesque:${fontWeight}',sans-serif]`;
-  const fontVariation = { fontVariationSettings: "'opsz' 14, 'wdth' 100" };
+  const weightClasses = {
+    'Regular': 'font-normal',
+    'SemiBold': 'font-semibold',
+    'Bold': 'font-bold',
+    'ExtraBold': 'font-extrabold',
+    'Light': 'font-light',
+  };
 
   return (
     <h2
-      className={`${baseClasses} text-[28px] md:text-[36px] leading-[44px] ${className}`}
-      style={{ ...fontVariation, ...style }}
+      className={`font-bricolage ${weightClasses[fontWeight]} text-display-md ${className}`}
+      style={style}
     >
       {children}
     </h2>
@@ -71,13 +81,18 @@ export function Heading3({
   className = '',
   style = {},
 }: Omit<HeadingProps, 'level'>) {
-  const baseClasses = `font-['Bricolage_Grotesque:${fontWeight}',sans-serif]`;
-  const fontVariation = { fontVariationSettings: "'opsz' 14, 'wdth' 100" };
+  const weightClasses = {
+    'Regular': 'font-normal',
+    'SemiBold': 'font-semibold',
+    'Bold': 'font-bold',
+    'ExtraBold': 'font-extrabold',
+    'Light': 'font-light',
+  };
 
   return (
     <h3
-      className={`${baseClasses} text-[24px] md:text-[28px] leading-[36px] ${className}`}
-      style={{ ...fontVariation, ...style }}
+      className={`font-bricolage ${weightClasses[fontWeight]} text-display-xs ${className}`}
+      style={style}
     >
       {children}
     </h3>
@@ -90,13 +105,18 @@ export function Heading4({
   className = '',
   style = {},
 }: Omit<HeadingProps, 'level'>) {
-  const baseClasses = `font-['Bricolage_Grotesque:${fontWeight}',sans-serif]`;
-  const fontVariation = { fontVariationSettings: "'opsz' 14, 'wdth' 100" };
+  const weightClasses = {
+    'Regular': 'font-normal',
+    'SemiBold': 'font-semibold',
+    'Bold': 'font-bold',
+    'ExtraBold': 'font-extrabold',
+    'Light': 'font-light',
+  };
 
   return (
     <h4
-      className={`${baseClasses} text-[20px] leading-[30px] ${className}`}
-      style={{ ...fontVariation, ...style }}
+      className={`font-bricolage ${weightClasses[fontWeight]} text-text-xl-semibold ${className}`}
+      style={style}
     >
       {children}
     </h4>
@@ -114,28 +134,37 @@ export function BodyText({
   className = '',
   style = {},
 }: BodyTextProps) {
-  const baseClasses = `font-['Bricolage_Grotesque:${fontWeight}',sans-serif]`;
-  const fontVariation = { fontVariationSettings: "'opsz' 14, 'wdth' 100" };
+  // Map fontWeight to Tailwind classes
+  const weightClasses = {
+    'Regular': 'font-normal',
+    'SemiBold': 'font-semibold',
+    'Bold': 'font-bold',
+  };
 
+  // Map size to Tailwind classes
   const sizeClasses = {
-    sm: 'text-[14px] leading-[20px]',
-    md: 'text-[16px] leading-[24px]',
-    lg: 'text-[18px] leading-[28px]',
-    xl: 'text-[20px] leading-[30px]',
+    // sm (14px) -> text-sm
+    // md (16px) -> text-text-lg-regular (16px fixed)
+    // lg (18px) -> text-text-md-regular (16-20px fluid)
+    // xl (20px) -> text-text-xl-regular (20-22px)
+    sm: 'text-sm',
+    md: 'text-text-lg-regular',
+    lg: 'text-text-md-regular',
+    xl: 'text-text-xl-regular',
   };
 
   const colorClasses = {
-    primary: 'text-[#191818]',
-    secondary: 'text-[#494848]',
-    tertiary: 'text-[#babcc0]',
+    primary: 'text-text-primary',
+    secondary: 'text-text-secondary',
+    tertiary: 'text-text-light-gray',
     white: 'text-white',
-    accent: 'text-[#f0633f]',
+    accent: 'text-text-orange',
   };
 
   return (
     <p
-      className={`${baseClasses} ${sizeClasses[size]} ${colorClasses[color]} ${className}`}
-      style={{ ...fontVariation, ...style }}
+      className={`font-bricolage ${weightClasses[fontWeight]} ${sizeClasses[size]} ${colorClasses[color]} ${className}`}
+      style={style}
     >
       {children}
     </p>
@@ -188,19 +217,22 @@ export function Highlight({
   className?: string;
   style?: React.CSSProperties;
 }) {
-  const baseClasses = `font-['Bricolage_Grotesque:${fontWeight}',sans-serif]`;
-  const fontVariation = { fontVariationSettings: "'opsz' 14, 'wdth' 100" };
+  const weightClasses = {
+    'Regular': 'font-normal',
+    'SemiBold': 'font-semibold',
+    'Bold': 'font-bold',
+  };
 
   const colorClasses = {
-    primary: 'text-[#191818]',
-    accent: 'text-[#f38300]',
+    primary: 'text-text-primary',
+    accent: 'text-text-orange',
     white: 'text-white',
   };
 
   return (
     <span
-      className={`${baseClasses} ${colorClasses[color]} ${className}`}
-      style={{ ...fontVariation, ...style }}
+      className={`font-bricolage ${weightClasses[fontWeight]} ${colorClasses[color]} ${className}`}
+      style={style}
     >
       {children}
     </span>

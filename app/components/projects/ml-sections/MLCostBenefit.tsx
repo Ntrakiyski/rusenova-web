@@ -19,19 +19,19 @@ export default function MLCostBenefit({
   title,
   description,
   items,
-  background = 'bg-white'
+  background = 'bg-bg-white'
 }: MLCostBenefitProps) {
   return (
     <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10 flex items-center`} style={{ minHeight: '760px' }}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="mb-12 w-full">
           {title && (
-            <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-lg sm:text-xl max-w-[768px]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-secondary text-text-xl-regular max-w-[768px]">
               {description}
             </p>
           )}
@@ -41,9 +41,9 @@ export default function MLCostBenefit({
               {items.map((item, index) => (
                 <div
                   key={index}
-                  className={`w-full md:w-auto rounded-lg ${item.isHighlighted ? 'bg-[#fef6e6]' : 'bg-white'}`}
+                  className={`w-full md:w-auto rounded-lg ${item.isHighlighted ? 'bg-bg-light' : 'bg-bg-white'}`}
                 >
-                  <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] font-bold text-xl mb-4" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-4">
                     {item.title}
                   </h3>
                   {Array.isArray(item.content) ? (
@@ -51,8 +51,7 @@ export default function MLCostBenefit({
                       {item.content.map((bullet, bulletIndex) => (
                         <div
                           key={bulletIndex}
-                          className="font-['Bricolage_Grotesque',sans-serif] text-[#191818]"
-                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                          className="font-bricolage text-text-primary text-text-md-regular"
                         >
                           {bullet}
                         </div>
@@ -60,8 +59,7 @@ export default function MLCostBenefit({
                     </div>
                   ) : (
                     <p
-                      className="font-['Bricolage_Grotesque',sans-serif] text-[#191818]"
-                      style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                      className="font-bricolage text-text-primary text-text-md-regular"
                     >
                       {item.content}
                     </p>

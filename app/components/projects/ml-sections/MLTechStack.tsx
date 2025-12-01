@@ -19,18 +19,18 @@ export default function MLTechStack({
   technologies = [],
   categories = [],
   categorizedTechnologies,
-  background = 'bg-white'
+  background = 'bg-bg-white'
 }: MLTechStackProps) {
   return (
     <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10 flex items-center`} style={{ minHeight: '760px' }}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="flex flex-col gap-8 mb-16">
-          <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl md:text-4xl font-semibold text-left" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+          <h2 className="font-bricolage text-text-primary text-display-md font-semibold text-left">
             {title}
           </h2>
           {description && (
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-lg md:text-xl leading-relaxed max-w-[800px] text-left" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-secondary text-text-xl-regular leading-relaxed max-w-[800px] text-left">
               {description}
             </p>
           )}
@@ -43,16 +43,16 @@ export default function MLTechStack({
               <div className="flex flex-col gap-8">
                 {Object.entries(categorizedTechnologies).map(([category, techList]) => (
                   <div key={category} className="flex flex-col">
-                    <h3 className="font-['Inter',sans-serif] text-lg font-semibold text-[#191818] mb-6">
+                    <h3 className="font-inter text-text-lg-semibold text-text-primary mb-6">
                       {category}
                     </h3>
                     <div className="flex flex-wrap gap-3">
                       {techList.map((tech, techIndex) => (
                         <div
                           key={techIndex}
-                          className="px-4 py-2 border border-[#DDDDDD] rounded-lg shadow-sm bg-white"
+                          className="px-4 py-2 border border-border rounded-lg shadow-sm bg-bg-white"
                         >
-                          <span className="font-['Inter',sans-serif] text-sm font-semibold text-[#191818]">
+                          <span className="font-inter text-text-sm-semibold text-text-primary">
                             {tech}
                           </span>
                         </div>
@@ -66,16 +66,16 @@ export default function MLTechStack({
                 {/* Technologies Category Row */}
                 {technologies.length > 0 && (
                   <div className="flex flex-col">
-                    <h3 className="font-['Inter',sans-serif] text-lg font-semibold text-[#191818] mb-6">
+                    <h3 className="font-inter text-text-lg-semibold text-text-primary mb-6">
                       Technologies
                     </h3>
                     <div className="flex flex-wrap gap-3">
                       {technologies.map((tech, index) => (
                         <div
                           key={index}
-                          className="px-4 py-2 border border-[#DDDDDD] rounded-lg shadow-sm bg-white"
+                          className="px-4 py-2 border border-border rounded-lg shadow-sm bg-bg-white"
                         >
-                          <span className="font-['Inter',sans-serif] text-sm font-semibold text-[#191818]">
+                          <span className="font-inter text-text-sm-semibold text-text-primary">
                             {tech}
                           </span>
                         </div>
@@ -87,16 +87,16 @@ export default function MLTechStack({
                 {/* Categories Row */}
                 {categories.length > 0 && (
                   <div className="flex flex-col">
-                    <h3 className="font-['Inter',sans-serif] text-lg font-semibold text-[#191818] mb-6">
+                    <h3 className="font-inter text-text-lg-semibold text-text-primary mb-6">
                       Categories
                     </h3>
                     <div className="flex flex-wrap gap-3">
                       {categories.map((category, index) => (
                         <div
                           key={index}
-                          className="px-4 py-2 border border-[#DDDDDD] rounded-lg shadow-sm bg-white"
+                          className="px-4 py-2 border border-border rounded-lg shadow-sm bg-bg-white"
                         >
-                          <span className="font-['Inter',sans-serif] text-sm font-semibold text-[#191818]">
+                          <span className="font-inter text-text-sm-semibold text-text-primary">
                             {category}
                           </span>
                         </div>

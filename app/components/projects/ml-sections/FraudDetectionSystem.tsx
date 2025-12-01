@@ -72,7 +72,7 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
   ) as ProductionDeploymentSection | undefined;
 
   return (
-    <div className="bg-white w-full min-h-screen relative overflow-x-hidden">
+    <div className="bg-bg-white w-full min-h-screen relative overflow-x-hidden">
       {/* ML-Hero Section */}
       <MLHero
         title={(projectData as any).heroTitle || projectData.title}

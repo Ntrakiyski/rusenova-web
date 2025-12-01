@@ -38,7 +38,7 @@ export default function RagEvaluationSystem({ projectData, homeContentData }: Ra
   const techStackSection = projectData.sections.find((section): section is import('@/types/project').TechStackSection => section.type === 'tech-stack');
 
   return (
-    <div className="bg-white w-full min-h-screen relative overflow-x-hidden">
+    <div className="bg-bg-white w-full min-h-screen relative overflow-x-hidden">
       {/* Hero Section */}
       <MLHero
         title={projectData.title ?? (homeContentData?.title ?? "")}

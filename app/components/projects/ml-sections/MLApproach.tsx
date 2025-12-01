@@ -19,19 +19,19 @@ export default function MLApproach({
   title,
   description,
   cards,
-  background = 'bg-white'
+  background = 'bg-bg-white'
 }: MLApproachProps) {
   return (
     <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10`} style={{ minHeight: '760px' }}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
         <div className="mb-12 w-full">
           {title && (
-            <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-lg sm:text-xl max-w-[768px]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-secondary text-text-xl-regular max-w-[768px]">
               {description}
             </p>
           )}
@@ -42,11 +42,11 @@ export default function MLApproach({
           <div className="relative z-10 p-8 md:p-16">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {cards.map((card, index) => (
-                <div key={index} className="bg-white rounded-[12px] p-6 border border-[#dddddd]">
-                  <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-xl mb-3" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                <div key={index} className="bg-bg-white rounded-[12px] p-6">
+                  <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-3">
                     {card.title}
                   </h3>
-                  <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  <p className="font-bricolage text-text-secondary text-text-md-regular">
                     {card.description}
                   </p>
                 </div>

@@ -26,7 +26,7 @@ export default function Tide({ projectData }: TideProps) {
         subtitle={(projectData as any).heroDescription || projectData.shortDescription}
         titleHighlight={(projectData as any).titleHighlight || ''}
         descriptionHighlight={(projectData as any).heroDescriptionHighlight || ''}
-        background={(projectData as any).heroBackground || 'bg-[#252222]'}
+        background={(projectData as any).heroBackground || 'bg-bg-dark'}
       />
 
       {/* 2. Intro Section */}

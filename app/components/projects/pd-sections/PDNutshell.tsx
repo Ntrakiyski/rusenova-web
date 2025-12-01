@@ -18,7 +18,7 @@ export default function PDNutshell({ title, features }: PDNutshellProps) {
     return text.split(new RegExp(`(${wordsToHighlight.join('|')})`, 'gi')).map((part, i) => {
       if (wordsToHighlight.some(word => word.toLowerCase() === part.toLowerCase())) {
         return (
-          <span key={i} className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+          <span key={i} className="font-bricolage font-semibold">
             {part}
           </span>
         );
@@ -36,7 +36,7 @@ export default function PDNutshell({ title, features }: PDNutshellProps) {
           {/* Features Grid with Title - all items in 3 column grid on desktop */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-[64px] w-full">
             {/* Title as first grid item */}
-            <h2 className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold leading-8 sm:leading-10 md:leading-[40px] lg:leading-[44px] text-[#191818] text-lg sm:text-xl md:text-2xl lg:text-[36px] text-center lg:text-left">
+            <h2 className="font-bricolage font-semibold text-display-md text-text-primary text-center lg:text-left">
               {title}
             </h2>
             
@@ -44,10 +44,10 @@ export default function PDNutshell({ title, features }: PDNutshellProps) {
             {features.map((feature, index) => (
               <div key={index} className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[16px] items-start min-h-px min-w-px w-full">
                 <div className="flex flex-col gap-2 sm:gap-4 md:gap-6 lg:gap-[8px] items-start w-full">
-                  <h3 className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold leading-normal sm:leading-6 md:leading-7 lg:leading-[normal] text-[#191818] text-base sm:text-lg md:text-xl lg:text-[20px] w-full" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  <h3 className="font-bricolage font-semibold text-text-xl-semibold text-text-primary w-full">
                     {feature.title}
                   </h3>
-                  <p className="font-['Bricolage_Grotesque:Regular',sans-serif] font-normal leading-6 sm:leading-7 md:leading-[22px] lg:leading-[24px] text-[#494848] text-sm sm:text-base md:text-[15px] lg:text-[16px] w-full whitespace-pre-wrap" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  <p className="font-bricolage font-normal text-text-lg-regular text-text-secondary w-full whitespace-pre-wrap">
                     {highlightWords(feature.description, wordsToHighlight)}
                   </p>
                 </div>

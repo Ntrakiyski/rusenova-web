@@ -49,13 +49,13 @@ export default function ContactSection({ content }: ContactSectionProps) {
             >
               <div className="flex flex-col gap-5">
                 <h2
-                  className="font-['Inter:Semi_Bold',sans-serif] text-white text-[36px] leading-[44px] tracking-[-0.72px]"
+                  className="font-bricolage font-semibold text-white text-display-md leading-[44px] tracking-[-0.72px]"
                 >
                   {contactContent.title}
                 </h2>
 
                 <p
-                  className="font-['Inter:Regular',sans-serif] text-white text-[20px] leading-[30px]"
+                  className="font-bricolage font-normal text-white text-text-xl-regular leading-[30px]"
                 >
                   {contactContent.subtitle}
                 </p>
@@ -69,7 +69,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
                     className="px-[18px] py-[12px] rounded-lg border border-white hover:bg-white/5 transition-colors shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]"
                   >
                     <span
-                      className="font-['Inter:Semi_Bold',sans-serif] text-white text-[16px] leading-[24px]"
+                      className="font-bricolage font-semibold text-white text-text-lg-regular leading-[24px]"
                     >
                       Email
                     </span>
@@ -85,7 +85,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
                     className="px-[18px] py-[12px] rounded-lg bg-white hover:bg-white/90 transition-colors border border-[#7f56d9] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]"
                   >
                     <span
-                      className="font-['Inter:Semi_Bold',sans-serif] text-[#212121] text-[16px] leading-[24px]"
+                      className="font-bricolage font-semibold text-[#212121] text-text-lg-regular leading-[24px]"
                     >
                       LinkedIn
                     </span>
@@ -103,7 +103,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
             >
               <div className="flex flex-col gap-5">
                 <p
-                  className="font-['Inter:Regular',sans-serif] text-white text-[20px] leading-[30px]"
+                  className="font-bricolage font-normal text-white text-text-xl-regular leading-[30px]"
                 >
                   I&apos;m currently seeking opportunities in:
                 </p>
@@ -116,7 +116,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
                         className="backdrop-blur-sm backdrop-filter bg-[rgba(255,255,255,0.03)] px-6 py-3 rounded-[10px] h-12 flex items-center justify-center"
                       >
                         <p
-                          className="font-['Inter:Bold',sans-serif] text-white text-[15.6px] leading-[24px] whitespace-nowrap"
+                          className="font-bricolage font-bold text-white text-text-lg-regular leading-[24px] whitespace-nowrap"
                         >
                           {opportunity}
                         </p>
@@ -131,7 +131,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
                         className="backdrop-blur-sm backdrop-filter bg-[rgba(255,255,255,0.03)] px-6 py-3 rounded-[10px] h-12 flex items-center justify-center"
                       >
                         <p
-                          className="font-['Inter:Bold',sans-serif] text-white text-[15.6px] leading-[24px] whitespace-nowrap"
+                          className="font-bricolage font-bold text-white text-text-lg-regular leading-[24px] whitespace-nowrap"
                         >
                           {opportunity}
                         </p>
@@ -143,7 +143,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
             </motion.div>
           </div>
 
-          <div className="absolute bottom-0 right-0 pointer-events-none translate-y-16">
+          <div className="absolute bottom-0 right-[-83px] pointer-events-none translate-y-16">
             <div className="relative w-[250px] h-[250px]">
               <Image
                 alt=""

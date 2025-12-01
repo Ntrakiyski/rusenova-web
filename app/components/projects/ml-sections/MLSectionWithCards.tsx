@@ -20,7 +20,7 @@ export default function MLSectionWithCards({
   title,
   description,
   cards,
-  background = 'bg-white'
+  background = 'bg-bg-white'
 }: MLSectionWithCardsProps) {
   return (
     <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10 flex items-center`} style={{ minHeight: '760px' }}>
@@ -28,12 +28,12 @@ export default function MLSectionWithCards({
         {/* Title and Description Row */}
         <div className="mb-12">
           {title && (
-            <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-lg sm:text-xl max-w-[768px]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-secondary text-text-xl-regular max-w-[768px]">
               {description}
             </p>
           )}
@@ -46,14 +46,14 @@ export default function MLSectionWithCards({
               {/* First Row - First Two Cards */}
               <div className="flex flex-col md:flex-row gap-6 flex-1">
                 {cards.slice(0, 2).map((card, index) => (
-                  <div key={index} className="bg-white rounded-2xl p-6 border border-[#E5E7EB] flex flex-col items-center text-center flex-1">
+                  <div key={index} className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center flex-1">
                     <div className={`${index === 0 ? 'bg-[#EFF4FF]' : 'bg-[#FEEFEE]'} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
                       {card.icon}
                     </div>
-                    <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-xl font-semibold mb-4">
+                    <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-4">
                       {card.title}
                     </h3>
-                    <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-base leading-relaxed">
+                    <p className="font-bricolage text-text-secondary text-text-md-regular leading-relaxed">
                       {card.description}
                     </p>
                   </div>
@@ -62,14 +62,14 @@ export default function MLSectionWithCards({
 
               {/* Second Row - Third Card */}
               {cards[2] && (
-                <div className="bg-white rounded-2xl p-6 border border-[#E5E7EB] flex flex-col items-center text-center lg:w-1/3">
+                <div className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center lg:w-1/3">
                   <div className="bg-[#FEF6EE] rounded-lg w-16 h-16 flex items-center justify-center mb-4">
                     {cards[2].icon}
                   </div>
-                  <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-xl font-semibold mb-4">
+                  <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-4">
                     {cards[2].title}
                   </h3>
-                  <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-base leading-relaxed">
+                  <p className="font-bricolage text-text-secondary text-text-md-regular leading-relaxed">
                     {cards[2].description}
                   </p>
                 </div>

@@ -133,8 +133,7 @@ export default function Navigation({}: NavigationProps) {
               />
             </div>
             <p
-              className={`font-['Bricolage_Grotesque:96pt_ExtraBold',sans-serif] ${textColor} text-[20px] md:text-[24px]`}
-              style={{ fontVariationSettings: "'opsz' 96, 'wdth' 100" }}
+              className={`font-bricolage font-extrabold ${textColor} text-display-xs`}
             >
               Gloria
             </p>
@@ -151,12 +150,11 @@ export default function Navigation({}: NavigationProps) {
                     e.preventDefault();
                     handleNavClick(item.href);
                   }}
-                  className={`block px-4 py-3 font-['Bricolage_Grotesque:Regular',sans-serif] ${
+                  className={`block px-4 py-3 font-bricolage font-normal ${
                     isActive ? (isHomePage ? 'text-[#191818]' : 'text-white') : linkColor
-                  } text-[16px] cursor-pointer ${
+                  } text-text-lg-regular cursor-pointer ${
                     isActive ? 'underline decoration-2 underline-offset-4' : ''
                   }`}
-                  style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
                 >
                   {item.label}
                 </Link>
@@ -185,12 +183,11 @@ export default function Navigation({}: NavigationProps) {
                     e.preventDefault();
                     handleNavClick(item.href);
                   }}
-                  className={`block px-4 py-3 font-['Bricolage_Grotesque:Regular',sans-serif] ${
+                  className={`block px-4 py-3 font-bricolage font-normal ${
                     isActive ? (isHomePage ? 'text-[#191818]' : 'text-white') : linkColor
-                  } text-[16px] cursor-pointer ${
+                  } text-text-lg-regular cursor-pointer ${
                     isActive ? 'underline decoration-2 underline-offset-4' : ''
                   }`}
-                  style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
                 >
                   {item.label}
                 </Link>

@@ -14,7 +14,7 @@ export default function MLArchitecture({
   title,
   description,
   image,
-  background = 'bg-white'
+  background = 'bg-bg-white'
 }: MLArchitectureProps) {
   return (
     <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative`} style={{ minHeight: '760px' }}>
@@ -22,12 +22,12 @@ export default function MLArchitecture({
         {/* Title and Description Row */}
         <div className="mb-12">
           {title && (
-            <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-lg sm:text-xl max-w-[768px]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-secondary text-text-xl-regular max-w-[768px]">
               {description}
             </p>
           )}

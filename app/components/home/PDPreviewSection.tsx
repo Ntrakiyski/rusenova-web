@@ -5,18 +5,16 @@ import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project, HomeContent } from '@/types/project';
 import Image from 'next/image';
-import { typoClass } from '@/app/lib/typography';
 import Link from 'next/link';
 
 interface PDPreviewSectionProps {
   pdData?: (Project | NonNullable<HomeContent['pdPreview']>['projects'][0])[];
   colors?: HomeContent['colors'];
   onProjectClick?: (slug: string) => void;
-  typography?: HomeContent['typography'];
   content?: HomeContent['pdPreview'];
 }
 
-export default function PDPreviewSection({ pdData, colors, typography, content }: PDPreviewSectionProps) {
+export default function PDPreviewSection({ pdData, colors, content }: PDPreviewSectionProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scrollPD = (direction: 'left' | 'right') => {
@@ -41,53 +39,37 @@ export default function PDPreviewSection({ pdData, colors, typography, content }
         >
           <div className="flex flex-col gap-5">
             <h2
-              className={`${typoClass(typography?.pdPreview.title)}`}
-              style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#101828' }}
+              className={`text-display-md font-bricolage font-semibold`}
+              style={{ color: colors?.text.primary || '#101828' }}
             >
               {content?.title || "Product Design"}
             </h2>
             <p
-              className={`${typoClass(typography?.pdPreview.subtitle)} max-w-[768px]`}
-              style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.secondary || '#494848' }}
+              className={`text-text-xl-regular font-bricolage max-w-[768px]`}
+              style={{ color: colors?.text.secondary || '#494848' }}
             >
               {content?.subtitle || "This is my working experience company wide with just a few selected projects"}
             </p>
           </div>
-
-          <div className="hidden lg:flex gap-2">
-            <button
-              onClick={() => scrollPD('left')}
-              className="flex items-center justify-center w-10 h-10 rounded-lg border border-[#e5e7eb] bg-white hover:bg-[#f7f4ed] transition-colors"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft className="w-5 h-5 text-[#191818]" />
-            </button>
-            <button
-              onClick={() => scrollPD('right')}
-              className="flex items-center justify-center w-10 h-10 rounded-lg border border-[#e5e7eb] bg-white hover:bg-[#f7f4ed] transition-colors"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-5 h-5 text-[#191818]" />
-            </button>
-          </div>
         </div>
+      </div>
 
-        <div
-          ref={scrollRef}
-          className="overflow-x-auto -mx-4 md:-mx-8 px-4 md:px-8 pb-4 scrollbar-hide"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-          }}
-        >
-          <div className="flex gap-6 md:gap-8 min-w-max">
+      <div
+        ref={scrollRef}
+        className="w-full overflow-x-auto pb-4 scrollbar-hide"
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        }}
+      >
+        <div className="flex gap-6 md:gap-8 min-w-max px-[max(16px,calc((100%-1280px)/2+16px))] md:px-[max(32px,calc((100%-1280px)/2+32px))]">
             {projects.map((exp, index) => (
               <div key={index} id={`experience-${exp.slug || exp.id || index}`} >
                 <Link
                   href={`/product-design/${exp.slug}`}
                 >
                   <motion.div
-                    className="flex flex-col gap-5 w-[480px] shrink-0 cursor-pointer"
+                    className="flex flex-col gap-5 w-[80vw] md:w-[480px] shrink-0 cursor-pointer"
                   >
                     <div
                       className="relative h-[280px] md:h-[320px] lg:h-[403px] overflow-hidden rounded-[24px] bg-[#F7F4ED]"
@@ -99,12 +81,11 @@ export default function PDPreviewSection({ pdData, colors, typography, content }
                       </div>
                       {exp.metrics[0] && exp.metrics[0].value && (
                         <p
-                          className="absolute left-[38px] top-[85px] z-10 font-['Bricolage_Grotesque:Light',sans-serif] text-[16px]"
-                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
+                          className="absolute left-[38px] top-[85px] z-10 text-text-lg-regular font-bricolage"
+                          style={{ color: colors?.text.primary || '#191818' }}
                         >
                           <span
-                            className="font-['Bricolage_Grotesque:Bold',sans-serif]"
-                            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                            className="font-bold"
                           >
                             {exp.metrics[0].value}
                           </span>
@@ -113,20 +94,19 @@ export default function PDPreviewSection({ pdData, colors, typography, content }
                       )}
                       {!exp.metrics[0]?.value && exp.metrics[0]?.label && (
                         <p
-                          className="absolute left-[38px] top-[85px] z-10 font-['Bricolage_Grotesque:Light',sans-serif] text-[14px] max-w-[calc(100%-76px)]"
-                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
+                          className="absolute left-[38px] top-[85px] z-10 text-text-lg-regular font-bricolage max-w-[calc(100%-76px)]"
+                          style={{ color: colors?.text.primary || '#191818' }}
                         >
                           {exp.metrics[0].label}
                         </p>
                       )}
                       {exp.metrics[1] && exp.metrics[1].value && (
                         <p
-                          className="absolute left-[146px] bottom-[86px] z-10 font-['Bricolage_Grotesque:Light',sans-serif] text-[16px]"
-                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
+                          className="absolute left-[146px] bottom-[86px] z-10 text-text-lg-regular font-bricolage"
+                          style={{ color: colors?.text.primary || '#191818' }}
                         >
                           <span
-                            className="font-['Bricolage_Grotesque:Bold',sans-serif]"
-                            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                            className="font-bold"
                           >
                             {exp.metrics[1].value}
                           </span>
@@ -137,22 +117,14 @@ export default function PDPreviewSection({ pdData, colors, typography, content }
 
                     <div className="flex flex-col gap-2">
                       <h3
-                        className={`${typoClass(typography?.pdPreview.cardTitle)}`}
-                        style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#101828' }}
+                        className={`text-display-xs font-bricolage font-semibold`}
+                        style={{ color: colors?.text.primary || '#101828' }}
                       >
                         {exp.title}
                       </h3>
-                      {exp.role && (
-                        <p
-                          className={`${typoClass(typography?.pdPreview.role)}`}
-                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.secondary || '#494848' }}
-                        >
-                          {exp.role}
-                        </p>
-                      )}
                       <p
-                        className={`${typoClass(typography?.pdPreview.cardDescription)}`}
-                        style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.secondary || '#494848' }}
+                        className={`text-text-lg-regular font-bricolage`}
+                        style={{ color: colors?.text.secondary || '#494848' }}
                       >
                         {exp.shortDescription}
                       </p>
@@ -163,7 +135,6 @@ export default function PDPreviewSection({ pdData, colors, typography, content }
             ))}
           </div>
         </div>
-      </div>
     </section>
   );
 }

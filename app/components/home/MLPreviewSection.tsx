@@ -5,17 +5,15 @@ import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project, HomeContent } from '@/types/project';
 import Image from 'next/image';
-import { typoClass } from '@/app/lib/typography';
 import Link from 'next/link';
 
 interface MLPreviewSectionProps {
   mlData?: (Project | NonNullable<HomeContent['mlPreview']>['projects'][0])[];
   colors?: HomeContent['colors'];
-  typography?: HomeContent['typography'];
   content?: HomeContent['mlPreview'];
 }
 
-export default function MLPreviewSection({ mlData, colors, typography, content }: MLPreviewSectionProps) {
+export default function MLPreviewSection({ mlData, colors, content }: MLPreviewSectionProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scrollML = (direction: 'left' | 'right') => {
@@ -44,52 +42,32 @@ export default function MLPreviewSection({ mlData, colors, typography, content }
         >
           <div className="flex flex-col gap-5">
             <h2
-              className={`${typoClass(typography?.mlPreview.title)}`}
-              style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#101828' }}
+              className={`text-display-md font-bricolage font-semibold`}
+              style={{ color: colors?.text.primary || '#101828' }}
             >
               {content?.title || "Machine Learning & AI"}
             </h2>
             <p
-              className={`${typoClass(typography?.mlPreview.subtitle)} max-w-[768px]`}
-              style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.secondary || '#494848' }}
+              className={`text-text-xl-regular font-bricolage max-w-[768px]`}
+              style={{ color: colors?.text.secondary || '#494848' }}
             >
               {content?.subtitle || "Hands-on experimentation with fraud detection, retrieval systems, and autonomous agents."}
             </p>
           </div>
-
-          <div className="hidden lg:flex gap-2">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => scrollML('left')}
-              className="flex items-center justify-center w-10 h-10 rounded-lg border border-[#e5e7eb] bg-white hover:bg-[#f7f4ed] transition-colors"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft className="w-5 h-5 text-[#191818]" />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => scrollML('right')}
-              className="flex items-center justify-center w-10 h-10 rounded-lg border border-[#e5e7eb] bg-white hover:bg-[#f7f4ed] transition-colors"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-5 h-5 text-[#191818]" />
-            </motion.button>
-          </div>
         </motion.div>
+      </div>
 
-        <div
-          ref={scrollRef}
-          className="overflow-x-auto -mx-4 md:-mx-8 px-4 md:px-8 pb-4 scrollbar-hide"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-          }}
-        >
-          <div className="flex gap-6 md:gap-8 min-w-max">
+      <div
+        ref={scrollRef}
+        className="w-full overflow-x-auto pb-4 scrollbar-hide"
+        style={{
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        }}
+      >
+        <div className="flex gap-6 md:gap-8 min-w-max px-[max(16px,calc((100%-1280px)/2+16px))] md:px-[max(32px,calc((100%-1280px)/2+32px))]">
             {projects.map((project, index) => (
-              <div key={index} id={`projects-${project.slug || project.id || index}`} className="max-w-[480px]">
+              <div key={index} id={`projects-${project.slug || project.id || index}`} className="w-[80vw] md:w-[480px] shrink-0">
                 <Link
                   href={`/ml/${project.slug}`}
                 >
@@ -107,12 +85,11 @@ export default function MLPreviewSection({ mlData, colors, typography, content }
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.3 }}
-                        className={`absolute left-[38px] top-[85px] z-10 ${typoClass(typography?.mlPreview.metricText)}`}
-                        style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
+                        className={`absolute left-[38px] top-[85px] z-10 text-text-lg-regular font-bricolage`}
+                        style={{ color: colors?.text.primary || '#191818' }}
                       >
                         <span
-                          className="font-['Bricolage_Grotesque:Bold',sans-serif]"
-                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                          className="font-bold"
                         >
                           {project.metrics?.[0]?.value}
                         </span>
@@ -125,12 +102,11 @@ export default function MLPreviewSection({ mlData, colors, typography, content }
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.4 }}
-                        className={`absolute left-[146px] bottom-[86px] z-10 ${typoClass(typography?.mlPreview.metricText)}`}
-                        style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
+                        className={`absolute left-[146px] bottom-[86px] z-10 text-text-lg-regular font-bricolage`}
+                        style={{ color: colors?.text.primary || '#191818' }}
                       >
                         <span
-                          className="font-['Bricolage_Grotesque:Bold',sans-serif]"
-                          style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                          className="font-bold"
                         >
                           {project.metrics?.[1]?.value}
                         </span>
@@ -139,8 +115,8 @@ export default function MLPreviewSection({ mlData, colors, typography, content }
                     )}
                     {!project.metrics?.[0]?.value && project.metrics?.[0]?.label && (
                       <p
-                        className={`absolute left-[61px] bottom-[104px] ${typoClass(typography?.mlPreview.metricText)}`}
-                        style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#191818' }}
+                        className={`absolute left-[61px] bottom-[104px] text-text-lg-regular font-bricolage`}
+                        style={{ color: colors?.text.primary || '#191818' }}
                       >
                         {project.metrics?.[0]?.label}
                       </p>
@@ -149,14 +125,14 @@ export default function MLPreviewSection({ mlData, colors, typography, content }
 
                   <div className="flex flex-col gap-2">
                     <h3
-                      className={`${typoClass(typography?.mlPreview.cardTitle)} mt-5`}
-                      style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.primary || '#101828' }}
+                      className={`text-display-xs font-bricolage font-semibold mt-5`}
+                      style={{ color: colors?.text.primary || '#101828' }}
                     >
                       {project.title}
                     </h3>
                     <p
-                      className={`${typoClass(typography?.mlPreview.cardDescription)}`}
-                      style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors?.text.secondary || '#494848' }}
+                      className={`text-text-lg-regular font-bricolage`}
+                      style={{ color: colors?.text.secondary || '#494848' }}
                     >
                       {project.shortDescription}
                     </p>
@@ -166,7 +142,6 @@ export default function MLPreviewSection({ mlData, colors, typography, content }
             ))}
           </div>
         </div>
-      </div>
     </section>
   );
 }

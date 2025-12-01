@@ -326,55 +326,6 @@ export interface HomeContent {
       }>;
     };
   };
-
-  typography: {
-    hero: {
-      badge: TypographyStyle;
-      title: TypographyStyle;
-      subtitle: TypographyStyle;
-    };
-    services: {
-      title: TypographyStyle;
-      item: TypographyStyle;
-    };
-    features: {
-      title: TypographyStyle;
-      subtitle: TypographyStyle;
-      itemTitle: TypographyStyle;
-      itemDescription: TypographyStyle;
-    };
-    mlPreview: {
-      title: TypographyStyle;
-      subtitle: TypographyStyle;
-      cardTitle: TypographyStyle;
-      cardDescription: TypographyStyle;
-      metricText: TypographyStyle;
-    };
-    pdPreview: {
-      title: TypographyStyle;
-      subtitle: TypographyStyle;
-      cardTitle: TypographyStyle;
-      role: TypographyStyle;
-      cardDescription: TypographyStyle;
-    };
-    about: {
-      badge: TypographyStyle;
-      title: TypographyStyle;
-      paragraph: TypographyStyle;
-      statsValue: TypographyStyle;
-      statsLabel: TypographyStyle;
-    };
-  };
-} 
-
-export interface TypographySize {
-  base?: number;
-  md?: number;
-  lg?: number;
+  
 }
 
-export interface TypographyStyle {
-  font: string;
-  weight: 'Light' | 'Regular' | 'SemiBold' | 'Bold';
-  size: TypographySize;
-}

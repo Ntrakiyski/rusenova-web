@@ -3,26 +3,24 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { HomeContent } from '@/types/project';
-import { typoClass } from '@/app/lib/typography';
 
 interface HeroSectionProps {
   content: HomeContent['hero'];
   colors: HomeContent['colors'];
-  typography: HomeContent['typography'];
 }
 
-export default function HeroSection({ content, colors, typography }: HeroSectionProps) {
+export default function HeroSection({ content, colors }: HeroSectionProps) {
 
   return (
-    <section className={`relative pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden`} style={{ borderRadius: '0 0 60px 60px'}}>
+    <section className={`relative pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden min-h-[768px] max-h-[90vh] flex flex-col justify-center`} style={{ borderRadius: '0 0 60px 60px', background: 'linear-gradient(156deg, #F7F4ED 79.59%, #FD681D 111.61%)' }}>
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 relative z-10">
         <div className="flex flex-col items-center gap-8 md:gap-12">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className={`${typoClass(typography.hero.badge)} text-center`}
-            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.accent }}
+            className={`text-display-xs font-bricolage font-semibold uppercase text-center`}
+            style={{ color: colors.text.accent }}
           >
             {content.badge}
           </motion.p>
@@ -31,8 +29,8 @@ export default function HeroSection({ content, colors, typography }: HeroSection
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className={`${typoClass(typography.hero.title)} text-center max-w-[1024px] leading-tight`}
-            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.primary }}
+            className={`text-display-2xl font-bricolage font-bold text-center max-w-[1024px]`}
+            style={{ color: colors.text.primary }}
           >
             {content.title}
           </motion.h1>
@@ -41,8 +39,8 @@ export default function HeroSection({ content, colors, typography }: HeroSection
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className={`${typoClass(typography.hero.subtitle)} text-center max-w-[768px]`}
-            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.secondary }}
+            className={`text-text-md-regular font-bricolage text-center max-w-[768px]`}
+            style={{ color: colors.text.secondary }}
           >
             {content.subtitle}
           </motion.p>
@@ -67,10 +65,10 @@ export default function HeroSection({ content, colors, typography }: HeroSection
                 onClick={() => window.open(button.link, '_blank')}
               >
                 <span
-                  className={`font-['Bricolage_Grotesque:SemiBold',sans-serif] text-[16px] ${
+                  className={`text-text-lg-semibold font-bricolage ${
                     button.style === 'primary' ? '' : 'text-white'
                   }`}
-                  style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: button.style === 'primary' ? colors.text.primary : undefined }}
+                  style={{ color: button.style === 'primary' ? colors.text.primary : undefined }}
                 >
                   {button.text}
                 </span>
@@ -80,13 +78,18 @@ export default function HeroSection({ content, colors, typography }: HeroSection
         </div>
       </div>
 
-      <div className="absolute bottom-[-80px] right-0 h-[200px] md:h-[250px] lg:h-[320px] max-w-[40vw] w-auto hidden md:block">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+        className="absolute bottom-[-80px] right-0 h-[200px] md:h-[250px] lg:h-[320px] max-w-[40vw] w-auto"
+      >
         <div className="relative h-full">
           <div className="h-full relative">
             <Image alt={content.image.alt} className="h-full w-auto object-contain pointer-events-none relative z-10 max-w-full" src={content.image.src} width={0} height={0} sizes="40vw" style={{ width: 'auto', height: '100%', maxWidth: '100%' }} />
           </div>
         </div>
-      </div>
+      </motion.div>
     </section> 
   )
 } 

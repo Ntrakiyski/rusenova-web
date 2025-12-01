@@ -2,15 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { HomeContent } from '@/types/project';
-import { typoClass } from '@/app/lib/typography';
 
 interface ServicesSectionProps {
   content: HomeContent['services'];
   colors: HomeContent['colors'];
-  typography: HomeContent['typography'];
 }
 
-export default function ServicesSection({ content, colors, typography }: ServicesSectionProps) {
+export default function ServicesSection({ content, colors }: ServicesSectionProps) {
   const services = content.items;
 
   const containerVariants = {
@@ -42,8 +40,8 @@ export default function ServicesSection({ content, colors, typography }: Service
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
-            className={`${typoClass(typography.services.title)} text-center w-full`}
-            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.secondary }}
+            className={`text-text-lg-regular font-bricolage text-center w-full`}
+            style={{ color: colors.text.secondary }}
           >
             {content.title}
           </motion.p>
@@ -59,8 +57,8 @@ export default function ServicesSection({ content, colors, typography }: Service
               <motion.p
                 key={index}
                 variants={itemVariants}
-                className={`${typoClass(typography.services.item)} text-center cursor-default`}
-                style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.primary }}
+                className={`text-text-xl-semibold font-bricolage text-center cursor-default`}
+                style={{ color: colors.text.primary }}
               >
                 {service}
               </motion.p>

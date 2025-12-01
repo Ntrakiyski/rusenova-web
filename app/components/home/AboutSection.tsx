@@ -3,15 +3,13 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { HomeContent } from '@/types/project';
-import { typoClass } from '@/app/lib/typography';
 
 interface AboutSectionProps {
   content: HomeContent['about'];
   colors: HomeContent['colors'];
-  typography: HomeContent['typography'];
 }
 
-export default function AboutSection({ content, colors, typography }: AboutSectionProps) {
+export default function AboutSection({ content, colors }: AboutSectionProps) {
   const stats = content.stats;
 
   return (
@@ -30,22 +28,11 @@ export default function AboutSection({ content, colors, typography }: AboutSecti
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className={`${typoClass(typography.about.badge)}`}
-              style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.accent }}
+              className={`text-text-md-semibold font-bricolage text-text-orange`}
             >
               {content.badge}
             </motion.span>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className={`${typoClass(typography.about.title)}`}
-              style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.primary }}
-            >
-              {content.title}
-            </motion.h2>
 
             <motion.div
               initial={{ opacity: 0 }}
@@ -54,11 +41,16 @@ export default function AboutSection({ content, colors, typography }: AboutSecti
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-col gap-4"
             >
+               <p
+                 className={`text-display-xs font-bricolage font-semibold text-text-primary`}
+               >
+                 I&apos;m Gloria
+               </p>
+
               {content.paragraphs.map((paragraph, index) => (
                 <p
                   key={index}
-                  className={`${typoClass(typography.about.paragraph)}`}
-                  style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.secondary }}
+                  className={`text-text-xl-regular font-bricolage text-text-secondary`}
                 >
                   {paragraph}
                 </p>
@@ -82,14 +74,12 @@ export default function AboutSection({ content, colors, typography }: AboutSecti
                   className="flex flex-col gap-1"
                 >
                   <span
-                    className={`${typoClass(typography.about.statsValue)}`}
-                    style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.primary }}
+                    className={`text-display-md font-bricolage font-semibold text-text-primary`}
                   >
                     {stat.value}
                   </span>
                   <span
-                    className={`${typoClass(typography.about.statsLabel)}`}
-                    style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.secondary }}
+                    className={`text-text-lg-regular font-bricolage text-text-secondary`}
                   >
                     {stat.label}
                   </span>

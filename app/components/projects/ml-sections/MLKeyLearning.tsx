@@ -20,12 +20,12 @@ export default function MLKeyLearning({
   title,
   description,
   learnings,
-  background = 'bg-white'
+  background = 'bg-bg-white'
 }: MLKeyLearningProps) {
   // Get background color based on learning type
   const getLearningBg = (type: 'technical' | 'business' | 'process' | undefined) => {
     // Use consistent background color F7F4ED for all cards
-    return 'bg-[#F7F4ED]';
+    return 'bg-bg-light';
   };
 
    return (
@@ -33,18 +33,18 @@ export default function MLKeyLearning({
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="mb-12 w-full">
           {title && (
-            <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-lg sm:text-xl max-w-[768px]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-secondary text-text-xl-regular max-w-[768px]">
               {description}
             </p>
           )}
         </div>
 
-        <div className="bg-white overflow-hidden w-full">
+        <div className="bg-bg-white overflow-hidden w-full">
           <div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {learnings.map((learning, index) => (
@@ -55,11 +55,11 @@ export default function MLKeyLearning({
                         {learning.icon}
                       </div>
                     )}
-                    <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-xl font-semibold" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                    <h3 className="font-bricolage text-text-primary text-text-xl-semibold">
                       {learning.title}
                     </h3>
                   </div>
-                  <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-base" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                  <p className="font-bricolage text-text-secondary text-text-md-regular">
                     {learning.description}
                   </p>
                 </div>

@@ -1,3 +1,25 @@
+/* Optional: Just for font imports and base resets */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage_Grotesque:wght@400;500;600;700&display=swap');
+
+
+/* app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+@layer base {
+  body {
+    @apply bg-bg-light text-text-primary;
+    font-family: 'Bricolage_Grotesque', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bricolage text-text-primary;
+  }
+
+  a {
+    @apply text-text-orange hover:opacity-80 transition-opacity;
+  }
+}

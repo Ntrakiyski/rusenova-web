@@ -32,7 +32,7 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
   );
 
   return (
-    <div className="bg-white w-full min-h-screen relative overflow-x-hidden">
+    <div className="bg-bg-white w-full min-h-screen relative overflow-x-hidden">
       {/* Hero Section */}
       <MLHero
         title={(projectData as any).heroTitle || projectData.title}

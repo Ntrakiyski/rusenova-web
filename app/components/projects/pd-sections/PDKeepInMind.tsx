@@ -23,11 +23,11 @@ export default function PDKeepInMind({ title, description }: PDKeepInMindProps) 
           {/* Title and Description in single column */}
           <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[20px] items-center w-full">
 
-            <h2 className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold leading-8 sm:leading-10 md:leading-[40px] lg:leading-[44px] text-lg sm:text-xl md:text-2xl lg:text-[36px] text-center text-white w-full max-w-[768px] mx-auto" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage font-semibold text-display-md text-center text-white w-full max-w-[768px] mx-auto">
               {title}
             </h2>
 
-            <p className="font-['Bricolage_Grotesque:SemiBold',sans-serif] font-semibold leading-normal sm:leading-6 md:leading-7 lg:leading-[normal] text-base sm:text-lg md:text-xl lg:text-[20px] text-center text-white w-full max-w-[768px] mx-auto" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage font-semibold text-text-xl-semibold text-center text-white w-full max-w-[768px] mx-auto">
               {description}
             </p>
           </div>

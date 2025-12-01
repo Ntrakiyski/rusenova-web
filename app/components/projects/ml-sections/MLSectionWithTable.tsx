@@ -19,7 +19,7 @@ export default function MLSectionWithTable({
   description,
   columns,
   rows,
-  background = 'bg-white'
+  background = 'bg-bg-white'
 }: MLSectionWithTableProps) {
   return (
     <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10`} style={{ minHeight: '760px' }}>
@@ -27,12 +27,12 @@ export default function MLSectionWithTable({
         {/* Title and Description Row */}
         <div className="mb-12">
           {title && (
-            <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-lg sm:text-xl max-w-[768px]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-secondary text-text-xl-regular max-w-[768px]">
               {description}
             </p>
           )}
@@ -43,11 +43,11 @@ export default function MLSectionWithTable({
 
           <div className="relative z-10 p-8 md:p-16">
             <div className="overflow-x-auto">
-              <table className="w-full bg-white rounded-[16px] border-[#dddddd] overflow-hidden">
+              <table className="w-full bg-bg-white rounded-[16px] border border-border overflow-hidden">
                 <thead>
-                  <tr className="border-b border-[#dddddd]">
+                  <tr className="border-b border-border">
                     {columns.map((column, index) => (
-                      <th key={index} className="text-left py-4 px-4 font-['Bricolage_Grotesque',sans-serif] text-[#191818] font-semibold" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                      <th key={index} className="text-left py-4 px-4 font-bricolage text-text-primary font-semibold">
                         {column}
                       </th>
                     ))}
@@ -60,7 +60,7 @@ export default function MLSectionWithTable({
                       className={`border-b border-[#f0f0f0] last:border-b-0 ${rowIndex === rows.length - 1 ? 'bg-[#8EB2F21F]' : ''}`}
                     >
                       {columns.map((column, colIndex) => (
-                        <td key={colIndex} className="py-4 px-4 font-['Bricolage_Grotesque',sans-serif] text-[#494848]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                        <td key={colIndex} className="py-4 px-4 font-bricolage text-text-secondary">
                           {row[column] || '-'}
                         </td>
                       ))}

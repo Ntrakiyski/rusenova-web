@@ -3,15 +3,13 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { HomeContent } from '@/types/project';
-import { typoClass } from '@/app/lib/typography';
 
 interface FeaturesSectionProps {
   content: HomeContent['features'];
   colors: HomeContent['colors'];
-  typography: HomeContent['typography'];
 }
 
-export default function FeaturesSection({ content, colors, typography }: FeaturesSectionProps) {
+export default function FeaturesSection({ content, colors }: FeaturesSectionProps) {
   const features = content.items;
 
   const featureContainerVariants = {
@@ -35,7 +33,7 @@ export default function FeaturesSection({ content, colors, typography }: Feature
   };
 
   return (
-    <section className={`relative py-16 md:py-24 overflow-hidden`} style={{ backgroundColor: content.backgroundColor }}>
+    <section className={`relative py-16 md:py-24 overflow-hidden bg-bg-dark`}>
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -45,14 +43,14 @@ export default function FeaturesSection({ content, colors, typography }: Feature
           className="flex flex-col items-center gap-5 mb-12 md:mb-16"
         >
           <h2
-            className={`${typoClass(typography.features.title)} text-center max-w-[768px]`}
-            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: 'white' }}
+            className={`text-display-md font-semibold text-center max-w-[768px]`}
+            style={{ color: 'white' }}
           >
             {content.title}
           </h2>
           <p
-            className={`${typoClass(typography.features.subtitle)} text-center max-w-[768px]`}
-            style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: 'white' }}
+            className={`text-text-xl-regular font-bricolage text-center max-w-[768px]`}
+            style={{ color: 'white' }}
           >
             {content.subtitle}
           </p>
@@ -83,14 +81,13 @@ export default function FeaturesSection({ content, colors, typography }: Feature
 
               <div className="flex flex-col gap-3 text-center">
                 <h3
-                  className={`${typoClass(typography.features.itemTitle)} text-white`}
-                  style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
+                  className={`text-text-xl-semibold font-bricolage text-white`}
                 >
                   {feature.title}
                 </h3>
                 <p
-                  className={`${typoClass(typography.features.itemDescription)}`}
-                  style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100", color: colors.text.muted }}
+                  className={`text-text-lg-regular font-bricolage`}
+                  style={{ color: colors.text.muted }}
                 >
                   {feature.description}
                 </p>

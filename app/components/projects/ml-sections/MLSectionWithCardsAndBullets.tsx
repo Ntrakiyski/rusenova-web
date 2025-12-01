@@ -39,7 +39,7 @@ export default function MLSectionWithCardsAndBullets({
   title,
   description,
   cards,
-  background = 'bg-white'
+  background = 'bg-bg-white'
 }: MLSectionWithCardsAndBulletsProps) {
   return (
     <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10`} style={{ minHeight: '760px' }}>
@@ -47,12 +47,12 @@ export default function MLSectionWithCardsAndBullets({
         {/* Title and Description Row */}
         <div className="mb-12">
           {title && (
-            <h2 className="font-['Bricolage_Grotesque',sans-serif] text-[#101828] text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-lg sm:text-xl max-w-[768px]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-secondary text-text-xl-regular max-w-[768px]">
               {description}
             </p>
           )}
@@ -65,16 +65,16 @@ export default function MLSectionWithCardsAndBullets({
               {/* First Row - Statistical and Domain Specific Cards */}
               <div className="flex flex-col md:flex-row gap-6 flex-1">
                 {/* Statistical Card */}
-                <div className="bg-white rounded-2xl p-6 border border-[#E5E7EB] flex flex-col items-center text-center flex-1">
+                <div className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center flex-1">
                   <div className="bg-[#EFF4FF] rounded-lg w-16 h-16 flex items-center justify-center mb-4">
                     <BarChartIcon />
                   </div>
-                  <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-xl font-semibold mb-6">
+                  <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-6">
                     {cards[0]?.title || 'Statistical'}
                   </h3>
                   <div className="space-y-4 w-full">
                     {cards[0]?.items.map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-[#4B5563] text-base">
+                      <div key={idx} className="flex items-center gap-2 text-text-secondary text-text-md-regular">
                         <Check className="w-5 h-5 text-[#155DFC] flex-shrink-0" />
                         <span className="text-left">{item}</span>
                       </div>
@@ -83,16 +83,16 @@ export default function MLSectionWithCardsAndBullets({
                 </div>
 
                 {/* Domain Specific Card */}
-                <div className="bg-white rounded-2xl p-6 border border-[#E5E7EB] flex flex-col items-center text-center flex-1">
+                <div className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center flex-1">
                   <div className="bg-[#E6F5EE] rounded-lg w-16 h-16 flex items-center justify-center mb-4">
                     <CubeIcon />
                   </div>
-                  <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-xl font-semibold mb-6">
+                  <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-6">
                     {cards[1]?.title || 'Domain Specific'}
                   </h3>
                   <div className="space-y-4 w-full">
                     {cards[1]?.items.map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-[#4B5563] text-base">
+                      <div key={idx} className="flex items-center gap-2 text-text-secondary text-text-md-regular">
                         <Check className="w-5 h-5 text-[#00A55E] flex-shrink-0" />
                         <span className="text-left">{item}</span>
                       </div>
@@ -102,16 +102,16 @@ export default function MLSectionWithCardsAndBullets({
               </div>
 
               {/* Second Row - Advanced Card */}
-              <div className="bg-white rounded-2xl p-6 border border-[#E5E7EB] flex flex-col items-center text-center lg:w-1/3">
+              <div className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center lg:w-1/3">
                 <div className="bg-[#FFF8E6] rounded-lg w-16 h-16 flex items-center justify-center mb-4">
                   <StarIcon />
                 </div>
-                <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-xl font-semibold mb-6">
+                <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-6">
                   {cards[2]?.title || 'Advanced'}
                 </h3>
                 <div className="space-y-4 w-full">
                   {cards[2]?.items.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-[#4B5563] text-base">
+                    <div key={idx} className="flex items-center gap-2 text-text-secondary text-text-md-regular">
                       <Check className="w-5 h-5 text-[#FFB020] flex-shrink-0" />
                       <span className="text-left">{item}</span>
                     </div>

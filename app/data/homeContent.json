@@ -15,44 +15,6 @@
     },
     "border": "#e5e7eb"
   },
-  "typography": {
-    "hero": {
-      "badge": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 18, "md": 24 } },
-      "title": { "font": "Bricolage_Grotesque", "weight": "Bold", "size": { "base": 36, "md": 64, "lg": 90 } },
-      "subtitle": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16, "md": 20 } }
-    },
-    "services": {
-      "title": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16 } },
-      "item": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 18, "md": 20 } }
-    },
-    "features": {
-      "title": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 28, "md": 36 } },
-      "subtitle": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16, "md": 20 } },
-      "itemTitle": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 20 } },
-      "itemDescription": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16 } }
-    },
-    "mlPreview": {
-      "title": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 28, "md": 36 } },
-      "subtitle": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16, "md": 20 } },
-      "cardTitle": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 20, "md": 24 } },
-      "cardDescription": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16 } },
-      "metricText": { "font": "Bricolage_Grotesque", "weight": "Light", "size": { "base": 16 } }
-    },
-    "pdPreview": {
-      "title": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 28, "md": 36 } },
-      "subtitle": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16, "md": 20 } },
-      "cardTitle": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 20, "md": 24 } },
-      "role": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 16 } },
-      "cardDescription": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16 } }
-    },
-    "about": {
-      "badge": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 14, "md": 16 } },
-      "title": { "font": "Bricolage_Grotesque", "weight": "SemiBold", "size": { "base": 28, "md": 36 } },
-      "paragraph": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 16, "md": 18 } },
-      "statsValue": { "font": "Bricolage_Grotesque", "weight": "Bold", "size": { "base": 32, "md": 40 } },
-      "statsLabel": { "font": "Bricolage_Grotesque", "weight": "Regular", "size": { "base": 14 } }
-    }
-  },
   "hero": {
     "backgroundColor": "#f7f4ed",
     "badge": "HUMAN & AI",
@@ -133,7 +95,7 @@
           { "value": "60%", "label": "False Positive Reduction" },
           { "value": "Real-time", "label": "Detection" }
         ],
-        "previewImage": "/gradient-pink.png",
+        "previewImage": "/gradient-green.png",
         "slug": "fraud-detection"
       }
     ]
@@ -156,7 +118,7 @@
         "role": "Service Designer",
         "company": "Telenor",
         "shortDescription": "Telecommunications companywith 1M+ Users",
-        "previewImage": "/gradient-pink.png",
+        "previewImage": "/gradient-green.png",
         "slug": "telenor",
         "metrics": [{ "value": "95%", "label": "Accuracy" }]
       },
@@ -165,7 +127,7 @@
         "role": "Product Designer", 
         "company": "EPAM",
         "shortDescription": "Software Engineering & Product Development Services",
-        "previewImage": "/gradient-pink.png",
+        "previewImage": "/gradient-purple.png",
         "slug": "epam",
         "metrics": [{ "value": "95%", "label": "Accuracy" }]
       },

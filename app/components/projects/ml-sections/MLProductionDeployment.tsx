@@ -20,7 +20,7 @@ export default function MLProductionDeployment({
   title,
   description,
   cards,
-  background = 'bg-black'
+  background = 'bg-bg-dark'
 }: MLProductionDeploymentProps) {
 
    return (
@@ -28,12 +28,12 @@ export default function MLProductionDeployment({
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="mb-12 w-full">
           {title && (
-            <h2 className="font-['Bricolage_Grotesque',sans-serif] text-white text-3xl sm:text-4xl mb-5" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <h2 className="font-bricolage text-text-white text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-['Bricolage_Grotesque',sans-serif] text-white text-lg sm:text-xl max-w-[768px]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+            <p className="font-bricolage text-text-white text-text-xl-regular max-w-[768px]">
               {description}
             </p>
           )}
@@ -41,12 +41,12 @@ export default function MLProductionDeployment({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {cards.map((card, index) => (
-            <div key={index} className="bg-white rounded-[12px] p-[34px]">
+            <div key={index} className="bg-bg-white rounded-[12px] p-[34px]">
               <div className="flex flex-col gap-6 items-center mb-6">
                 <div className="bg-blue-100 rounded-[8px] w-12 h-12 flex items-center justify-center">
                   {card.icon}
                 </div>
-                <h3 className="font-['Bricolage_Grotesque',sans-serif] text-[#191818] text-2xl text-center" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                <h3 className="font-bricolage text-text-primary text-display-xs font-semibold text-center">
                   {card.title}
                 </h3>
               </div>
@@ -56,7 +56,7 @@ export default function MLProductionDeployment({
                     <div className="shrink-0 mt-0.5 text-green-500">
                       <Check className="w-5 h-5" />
                     </div>
-                    <p className="font-['Bricolage_Grotesque',sans-serif] text-[#494848] text-xl leading-[30px]" style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}>
+                    <p className="font-bricolage text-text-secondary text-text-xl-regular leading-[30px]">
                       {bullet}
                     </p>
                   </div>
