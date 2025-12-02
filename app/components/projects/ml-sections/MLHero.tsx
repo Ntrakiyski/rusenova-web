@@ -2,11 +2,16 @@
 
 import React from 'react';
 import Image from 'next/image';
+import {
+  VideoPlayer,
+  VideoPlayerContent,
+} from '@/components/ui/shadcn-io/video-player';
 
 interface MLHeroProps {
   title: string;
   subtitle: string;
   heroImage: string;
+  heroVideo?: string;
   decorationImage?: string;
   background?: string;
 }
@@ -15,6 +20,7 @@ export default function MLHero({
   title,
   subtitle,
   heroImage,
+  heroVideo,
   decorationImage,
   background
 }: MLHeroProps) {
@@ -37,16 +43,33 @@ export default function MLHero({
             </p>
           </div>
 
-          {/* Hero Image */}
+          {/* Hero Image or Video */}
           <div className="flex-1 w-full relative">
             <div className="relative w-full">
-              <Image
-                src={heroImage}
-                alt={`${title} Hero`}
-                className="w-full rounded-[12px]"
-                width={592}
-                height={400}
-              />
+              {heroVideo ? (
+                <div className="w-full rounded-[12px] overflow-hidden shadow-xl relative">
+                  <VideoPlayer suppressHydrationWarning>
+                    <VideoPlayerContent 
+                      slot="media" 
+                      src={heroVideo} 
+                      className="w-full aspect-video" 
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      suppressHydrationWarning 
+                    />
+                  </VideoPlayer>
+                </div>
+              ) : (
+                <Image
+                  src={heroImage}
+                  alt={`${title} Hero`}
+                  className="w-full rounded-[12px]"
+                  width={592}
+                  height={400}
+                />
+              )}
             </div>
           </div>
         </div>

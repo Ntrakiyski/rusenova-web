@@ -45,7 +45,7 @@ export default function MLSegmentAnalysis({
         </div>
 
         <div className="bg-bg-dark overflow-hidden w-full">
-          <div className="grid grid-cols-1 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left Column - Strengths */}
             <div>
               <h3 className="font-bricolage text-text-white text-display-xs font-bold mb-6">

@@ -44,6 +44,7 @@ export default function RagEvaluationSystem({ projectData, homeContentData }: Ra
         title={projectData.title ?? (homeContentData?.title ?? "")}
         subtitle={projectData.shortDescription ?? (homeContentData?.shortDescription ?? "")}
         heroImage={projectData.heroImage ?? "/rag-hero.png"}
+        heroVideo={projectData.heroVideo}
       />
 
       {/* What I Build Section */}
@@ -125,6 +126,7 @@ export default function RagEvaluationSystem({ projectData, homeContentData }: Ra
           outcomes={resultsSection.outcomes}
           businessValue={resultsSection.businessValue}
           image={resultsSection.image}
+          video={resultsSection.video}
         />
       )}
 

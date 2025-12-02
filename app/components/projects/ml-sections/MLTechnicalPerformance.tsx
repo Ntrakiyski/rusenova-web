@@ -79,9 +79,9 @@ export default function MLTechnicalPerformance({
           )}
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Left Column - Non-highlighted metrics */}
-          <div className="lg:w-[60%]">
+          <div className="w-full">
             <div className="space-y-0">
               {leftMetrics.map((metric, index) => (
                 <React.Fragment key={index}>
@@ -95,41 +95,27 @@ export default function MLTechnicalPerformance({
                       </p>
                     </div>
                     <div className="ml-6">
-                      <span className="font-bricolage text-[#155DFC] text-display-sm font-bold">
+                      <span className="font-bricolage text-[#155DFC] text-[19px] font-bold">
                         {metric.value}
                       </span>
                     </div>
                   </div>
-                  {index !== leftMetrics.length - 1 && (
-                    <div className="w-full h-[1px] bg-border" />
-                  )}
+                  <div className="w-full h-[1px] bg-border" />
                 </React.Fragment>
               ))}
             </div>
           </div>
 
           {/* Right Column - Highlighted metrics */}
-          <div className="lg:w-[40%] flex flex-col gap-6">
-            {highlightedMetrics.map((metric, index) => (
-              <div key={index} className="bg-[#EFF4FF] rounded-2xl p-8">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="font-bricolage text-text-primary text-text-xl-semibold">
-                    {metric.name}
-                  </h3>
-                  <span className="font-bricolage text-[#155DFC] text-display-sm font-bold">
-                    {metric.value}
-                  </span>
-                </div>
-                <p className="font-bricolage text-text-secondary text-text-md-regular mb-6">
+          <div className="w-full flex flex-col gap-6">
+            {highlightedMetrics.slice(0, 2).map((metric, index) => (
+              <div key={index} className="">
+                <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-2">
+                  {metric.name}
+                </h3>
+                <p className="font-bricolage text-text-secondary text-text-md-regular">
                   {metric.description}
                 </p>
-                {metric.details && (
-                  <div className="bg-bg-white rounded-xl p-4 border border-border">
-                    <p className="font-bricolage text-text-secondary text-text-sm-regular italic">
-                      "{metric.details}"
-                    </p>
-                  </div>
-                )}
               </div>
             ))}
           </div>

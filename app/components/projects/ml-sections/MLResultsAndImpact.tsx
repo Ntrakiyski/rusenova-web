@@ -2,6 +2,10 @@
 
 import React from 'react';
 import Image from 'next/image';
+import {
+  VideoPlayer,
+  VideoPlayerContent,
+} from '@/components/ui/shadcn-io/video-player';
 
 interface MLResultsAndImpactProps {
   title: string;
@@ -9,6 +13,7 @@ interface MLResultsAndImpactProps {
   outcomes: string[];
   businessValue: string[];
   image?: string;
+  video?: string;
   background?: string;
 }
 
@@ -18,10 +23,11 @@ export default function MLResultsAndImpact({
   outcomes,
   businessValue,
   image,
+  video,
   background = 'bg-bg-dark'
 }: MLResultsAndImpactProps) {
    return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative`} style={{ minHeight: '760px' }}>
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative rounded-bl-[32px] rounded-br-[32px] overflow-hidden`} style={{ minHeight: '760px' }}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="mb-8 md:mb-12 text-center">
@@ -37,17 +43,33 @@ export default function MLResultsAndImpact({
           )}
         </div>
 
-        {/* Image Row */}
-        {image && (
+        {/* Image or Video Row */}
+        {(image || video) && (
           <div className="mb-8 flex justify-center">
             <div className="w-full max-w-[1216px]">
-              <Image
-                src={image}
-                alt={title || 'Results'}
-                className="w-full rounded-[12px] border border-white"
-                width={1216}
-                height={600}
-              />
+              {video ? (
+                <div className="w-full rounded-[12px] border border-white overflow-hidden relative shadow-xl">
+                  <VideoPlayer>
+                    <VideoPlayerContent 
+                      slot="media" 
+                      src={video} 
+                      className="w-full aspect-video" 
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                  </VideoPlayer>
+                </div>
+              ) : (
+                <Image
+                  src={image!}
+                  alt={title || 'Results'}
+                  className="w-full rounded-[12px] border border-white"
+                  width={1216}
+                  height={600}
+                />
+              )}
             </div>
           </div>
         )}
@@ -60,8 +82,8 @@ export default function MLResultsAndImpact({
               <div className="flex flex-col gap-4 items-center mb-4 sm:mb-6">
                 <div className="bg-blue-100 rounded-[8px] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
                   <Image
-                    src="/file.svg"
-                    alt="File icon"
+                    src="/bar-chart-square.png"
+                    alt="Chart icon"
                     width={24}
                     height={24}
                     className="w-5 sm:w-6 h-5 sm:h-6"
@@ -78,8 +100,8 @@ export default function MLResultsAndImpact({
                   <div key={index} className="flex gap-2 sm:gap-3 items-start">
                     <div className="shrink-0 mt-0.5">
                       <Image
-                        src="/file.svg"
-                        alt="Bullet point"
+                        src="/Check icon.svg"
+                        alt="Check icon"
                         width={16}
                         height={16}
                         className="w-4 sm:w-5 h-4 sm:h-5"
@@ -100,8 +122,8 @@ export default function MLResultsAndImpact({
               <div className="flex flex-col gap-4 items-center mb-4 sm:mb-6">
                 <div className="bg-[#dcfae6] rounded-[8px] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
                   <Image
-                    src="/file.svg"
-                    alt="File icon"
+                    src="/line-chart-up.svg"
+                    alt="Chart icon"
                     width={24}
                     height={24}
                     className="w-5 sm:w-6 h-5 sm:h-6"
@@ -118,8 +140,8 @@ export default function MLResultsAndImpact({
                   <div key={index} className="flex gap-2 sm:gap-3 items-start">
                     <div className="shrink-0 mt-0.5">
                       <Image
-                        src="/file.svg"
-                        alt="Bullet point"
+                        src="/Check icon.svg"
+                        alt="Check icon"
                         width={16}
                         height={16}
                         className="w-4 sm:w-5 h-4 sm:h-5"

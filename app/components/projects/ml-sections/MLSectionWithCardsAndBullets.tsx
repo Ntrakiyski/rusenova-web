@@ -1,12 +1,13 @@
 'use client';
 
 import React from 'react';
-import { Check } from 'lucide-react';
 import GradientBackground from '@/app/components/ui/GradientBackground';
 
 interface CardWithBullets {
   title: string;
   items: string[];
+  icon?: string;
+  bg?: string;
 }
 
 interface MLSectionWithCardsAndBulletsProps {
@@ -64,60 +65,61 @@ export default function MLSectionWithCardsAndBullets({
             <div className="flex flex-col lg:flex-row gap-6">
               {/* First Row - Statistical and Domain Specific Cards */}
               <div className="flex flex-col md:flex-row gap-6 flex-1">
-                {/* Statistical Card */}
-                <div className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center flex-1">
-                  <div className="bg-[#EFF4FF] rounded-lg w-16 h-16 flex items-center justify-center mb-4">
-                    <BarChartIcon />
+                {cards.slice(0, 2).map((card, index) => (
+                  <div key={index} className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center flex-1">
+                    <div className={`${card.bg || (index === 0 ? 'bg-[#EFF4FF]' : 'bg-[#E6F5EE]')} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
+                      {card.icon ? (
+                        <img src={card.icon} alt="" className="w-6 h-6" />
+                      ) : (
+                        index === 0 ? <BarChartIcon /> : <CubeIcon />
+                      )}
+                    </div>
+                    <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-6">
+                      {card.title}
+                    </h3>
+                    <div className="space-y-4 w-full">
+                      {card.items.map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-text-secondary text-text-md-regular">
+                          <img 
+                            src="/Check icon.svg" 
+                            alt="Check" 
+                            className="w-6 h-6 flex-shrink-0"
+                          />
+                          <span className="text-left">{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-6">
-                    {cards[0]?.title || 'Statistical'}
-                  </h3>
-                  <div className="space-y-4 w-full">
-                    {cards[0]?.items.map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-text-secondary text-text-md-regular">
-                        <Check className="w-5 h-5 text-[#155DFC] flex-shrink-0" />
-                        <span className="text-left">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Domain Specific Card */}
-                <div className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center flex-1">
-                  <div className="bg-[#E6F5EE] rounded-lg w-16 h-16 flex items-center justify-center mb-4">
-                    <CubeIcon />
-                  </div>
-                  <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-6">
-                    {cards[1]?.title || 'Domain Specific'}
-                  </h3>
-                  <div className="space-y-4 w-full">
-                    {cards[1]?.items.map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-text-secondary text-text-md-regular">
-                        <Check className="w-5 h-5 text-[#00A55E] flex-shrink-0" />
-                        <span className="text-left">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                ))}
               </div>
 
               {/* Second Row - Advanced Card */}
-              <div className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center lg:w-1/3">
-                <div className="bg-[#FFF8E6] rounded-lg w-16 h-16 flex items-center justify-center mb-4">
-                  <StarIcon />
+              {cards[2] && (
+                <div className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center lg:w-1/3">
+                  <div className={`${cards[2].bg || 'bg-[#FFF8E6]'} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
+                    {cards[2].icon ? (
+                      <img src={cards[2].icon} alt="" className="w-6 h-6" />
+                    ) : (
+                      <StarIcon />
+                    )}
+                  </div>
+                  <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-6">
+                    {cards[2].title}
+                  </h3>
+                  <div className="space-y-4 w-full">
+                    {cards[2].items.map((item, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-text-secondary text-text-md-regular">
+                          <img 
+                            src="/Check icon.svg" 
+                            alt="Check" 
+                            className="w-6 h-6 flex-shrink-0"
+                          />
+                        <span className="text-left">{item}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-6">
-                  {cards[2]?.title || 'Advanced'}
-                </h3>
-                <div className="space-y-4 w-full">
-                  {cards[2]?.items.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-text-secondary text-text-md-regular">
-                      <Check className="w-5 h-5 text-[#FFB020] flex-shrink-0" />
-                      <span className="text-left">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </GradientBackground>

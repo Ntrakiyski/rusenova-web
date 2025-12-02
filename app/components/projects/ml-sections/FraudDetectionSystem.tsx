@@ -78,6 +78,7 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
         title={(projectData as any).heroTitle || projectData.title}
         subtitle={(projectData as any).heroDescription || projectData.shortDescription}
         heroImage={projectData.heroImage ?? "/rag-hero.png"}
+        heroVideo={projectData.heroVideo}
         decorationImage="/rag-results.png"
         background={(projectData as any).heroBackground}
       />
@@ -114,13 +115,16 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
           description={sectionWithCards.description}
           cards={sectionWithCards.cards.map(card => ({
             ...card,
-            icon: card.icon ? (
+            icon: card.icon && card.icon.startsWith('/') ? (
+              <img src={card.icon} alt="" className="w-6 h-6" />
+            ) : card.icon ? (
               <div dangerouslySetInnerHTML={{ __html: card.icon }} />
             ) : (
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="12" cy="12" r="10" stroke="#155DFC" strokeWidth="2"/>
               </svg>
-            )
+            ),
+            iconBg: card.iconBg
           }))}
         />
       )}
@@ -150,6 +154,7 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
           title={keyResultsSection.title}
           description={keyResultsSection.description}
           image={keyResultsSection.image}
+          video={keyResultsSection.video}
         />
       )}
 
@@ -203,16 +208,7 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
         <MLProductionDeployment
           title={productionDeploymentSection.title}
           description={productionDeploymentSection.description}
-          cards={productionDeploymentSection.cards.map(card => ({
-            ...card,
-            icon: card.icon ? (
-              <div dangerouslySetInnerHTML={{ __html: card.icon }} />
-            ) : (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="10" stroke="#155DFC" strokeWidth="2"/>
-              </svg>
-            )
-          }))}
+          cards={productionDeploymentSection.cards}
         />
       )}
     </div>

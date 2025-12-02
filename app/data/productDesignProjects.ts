@@ -39,7 +39,7 @@ export const productDesignProjects: Project[] = [
           "Our messaging experiments drove a 10-30% increase in user engagement."
         ],
         "image": "/tide-coms.png",
-        "layout": "text-right"
+        "layout": "text-left"
       },
       {
         "type": "admin",
@@ -50,7 +50,7 @@ export const productDesignProjects: Project[] = [
           "Increased active usage of invoicing by 23% and accounting features through research-driven design decisions"
         ],
         "image": "/tide-admin.png",
-        "layout": "text-left"
+        "layout": "text-right"
       },
       {
         "type": "home-page-redesign",
@@ -62,7 +62,7 @@ export const productDesignProjects: Project[] = [
           "Developed a prioritization framework that balanced user needs with business goals, ensuring the most impactful data surfaced at the right moments"
         ],
         "image": "/tide-home.png",
-        "layout": "text-right"
+        "layout": "text-left"
       }
     ]
   },

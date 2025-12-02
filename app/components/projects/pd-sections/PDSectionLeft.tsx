@@ -50,17 +50,17 @@ export default function PDSectionLeft({
     <section className={`${background} w-full py-8 sm:py-12 md:py-16 lg:py-[96px] min-h-[760px]`} style={{ minHeight: '760px' }}>
       <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center w-full">
-
+{/* Title */}
+              <h2 className="font-bricolage font-semibold text-display-md text-text-primary w-full">
+                {title}
+              </h2>
           {/* Single row: Title with text content on left, image on right */}
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center w-full">
 
             {/* Left Column: Text Content */}
             <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-[48px] items-start w-full lg:w-1/2">
 
-              {/* Title */}
-              <h2 className="font-bricolage font-semibold text-display-md text-text-primary w-full">
-                {title}
-              </h2>
+              
 
               {/* Description */}
               <p className="font-bricolage font-normal text-text-lg-regular text-text-primary w-full">

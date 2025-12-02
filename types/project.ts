@@ -66,6 +66,7 @@ export interface ResultsSection extends BaseProjectSection {
   type: 'results';
   outcomes: string[];
   businessValue: string[];
+  video?: string;
 }
 
 export interface WhatIBuildSection extends Omit<BaseProjectSection, 'type'> {
@@ -79,7 +80,8 @@ export interface SectionWithCards extends Omit<BaseProjectSection, 'type'> {
   cards: Array<{
     title: string;
     description: string;
-    icon?: string; // SVG content as string (not used in current implementation - using static file.svg)
+    icon?: string; 
+    iconBg?: string;
   }>;
 }
 
@@ -88,6 +90,8 @@ export interface SectionWithCardsAndBullets extends Omit<BaseProjectSection, 'ty
   cards: Array<{
     title: string;
     items: string[];
+    icon?: string;
+    iconBg?: string;
   }>;
 }
 
@@ -100,6 +104,7 @@ export interface SectionWithTable extends Omit<BaseProjectSection, 'type'> {
 export interface KeyResultsOnlySection extends Omit<BaseProjectSection, 'type'> {
   type: 'key-results-only';
   image: string;
+  video?: string;
 }
 
 export interface TechnicalPerformanceSection extends Omit<BaseProjectSection, 'type'> {
@@ -185,6 +190,7 @@ export interface Project {
   shortDescription?: string;
   description?: string;
   heroImage?: string;
+  heroVideo?: string;
   heroTitle?: string;
   heroDescription?: string;
   titleHighlight?: string;

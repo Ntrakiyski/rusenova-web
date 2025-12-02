@@ -7,6 +7,7 @@ export const mlProjects: Project[] = [
     "title": "RAG+ Evaluation System",
     "shortDescription": "Reduced information retrieval time by 85% while achieving 92% answer accuracy through a custom RAG system with advanced evaluation framework",
     "heroImage": "/rag-hero.png",
+    "heroVideo": "/rag.mov",
     "sections": [
          {
         "type": "what-i-build",
@@ -126,7 +127,8 @@ export const mlProjects: Project[] = [
           "Reduced support ticket resolution time",
           "Enabled knowledge democratization across teams"
         ],
-        "image": "/rag-results.png"
+        "image": "/rag-results.png",
+        "video": "/rag.mov"
       },
       {
         "type": "tech-stack",
@@ -181,6 +183,7 @@ export const mlProjects: Project[] = [
       "#D7EBDF"
     ],
     "heroImage": "/fraud-hero.png",
+    "heroVideo": "/frauddetection.mov",
     "sections": [
       {
         "type": "what-i-build",
@@ -258,17 +261,20 @@ export const mlProjects: Project[] = [
           {
             "title": "Transaction analyses",
             "description": "Analyzed 284K transactions over 2 days",
-            "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M9 7H5C3.89543 7 3 7.89543 3 9V18C3 19.1046 3.89543 20 5 20H19C20.1046 20 21 19.1046 21 18V9C21 7.89543 20.1046 7 19 7H15M9 7V5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7M9 7H15\" stroke=\"#155DFC\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>"
+            "icon": "/info-square.svg",
+            "bg": "bg-[#E0EAFF]"
           },
           {
             "title": "Outliers",
             "description": "Discovered isolation forest outliers had 217× fraud concentration",
-            "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M16 3L21 8L16 13M8 3L3 8L8 13M14 21L14 3M10 21L10 14\" stroke=\"#DC26\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>"
+            "icon": "/info-square.svg",
+            "bg": "bg-[#E0EAFF]"
           },
           {
             "title": "High risk",
             "description": "Identified night transactions = 3× higher risk",
-            "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 9V12M12 15H12.01M5.07183 19H18.9282C20.4678 19 21.4301 17.333 20.6603 16L13.7321 4C12.9623 2.667 11.0378 2.66667 10.268 4L3.33978 16C2.56998 17.3333 3.53223 19 5.07183 19Z\" stroke=\"#DC2626\" strokeWidth=\"2\" strokeLinecap=\"round\" strokeLinejoin=\"round\"/></svg>"
+            "icon": "/info-square.svg",
+            "bg": "bg-[#E0EAFF]"
           }
         ]
       },
@@ -287,7 +293,9 @@ export const mlProjects: Project[] = [
               "hour cos",
               "is night",
               "Isolation Forest outlier scores"
-            ]
+            ],
+            "icon": "/info-square.svg",
+            "bg": "bg-[#E0EAFF]"
           },
           {
             "title": "Domain Specific",
@@ -295,7 +303,9 @@ export const mlProjects: Project[] = [
               "amount percentile",
               "is round_amount",
               "V14 amount interaction"
-            ]
+            ],
+            "icon": "/info-square.svg",
+            "bg": "bg-[#E0EAFF]"
           },
           {
             "title": "Advanced",
@@ -303,7 +313,9 @@ export const mlProjects: Project[] = [
               "distance to fraud",
               "feature entropy",
               "dominant feature value"
-            ]
+            ],
+            "icon": "/info-square.svg",
+            "bg": "bg-[#E0EAFF]"
           }
         ]
       },
@@ -346,7 +358,8 @@ export const mlProjects: Project[] = [
         "type": "key-results-only",
         "title": "Key Results",
         "description": "Created 21 custom features in 3 tiers. Top engineered feature (pca_magnitude) became #1 most important (34.5% model weight)",
-        "image": "/fraud-results.png"
+        "image": "/fraud-results.png",
+        "video": "/frauddetection.mov"
       },
       {
         "type": "technical-performance",
@@ -505,7 +518,7 @@ export const mlProjects: Project[] = [
         "cards": [
           {
             "title": "Data & Features",
-            "icon": "<svg className=\"w-6 h-6\" fill=\"none\" viewBox=\"0 0 24 24\"><path d=\"M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z\" stroke=\"#155DFC\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" /></svg>",
+            "icon": "info-square.svg",
             "bullets": [
               "Domain Specific",
               "Kafka: Transaction streaming (10K TPS)",
@@ -515,7 +528,7 @@ export const mlProjects: Project[] = [
           },
           {
             "title": "Model Serving",
-            "icon": "<svg className=\"w-6 h-6\" fill=\"none\" viewBox=\"0 0 24 24\"><path d=\"M12 2L2 7L12 12L22 7L12 2Z\" stroke=\"#079455\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" /><path d=\"M2 17L12 22L22 17\" stroke=\"#079455\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" /><path d=\"M2 12L12 17L22 12\" stroke=\"#07945\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" /></svg>",
+            "icon": "info-square.svg",
             "bullets": [
               "Domain Specific",
               "Kubernetes: Auto-scaling (2-10 pods)",
@@ -525,7 +538,7 @@ export const mlProjects: Project[] = [
           },
           {
             "title": "Monitoring",
-            "icon": "<svg className=\"w-6 h-6\" fill=\"none\" viewBox=\"0 0 24 24\"><path d=\"M3 12L5 10M5 10L12 3L19 10M5 10V20C5 20.523 5.44772 21 6 21H9M19 10L21 12M19 10V20C19 20.5523 18.5523 21 18 21H15M9 21C9.55228 21 10 20.5523 10 20V16C10 15.477 10.4477 15 11 15H13C13.5523 15 14 15.477 14 16V20C14 20.5523 14.4477 21 15 21M9 21H15\" stroke=\"#155DFC\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" /></svg>",
+            "icon": "info-square.svg",
             "bullets": [
               "Prometheus: Metrics collection",
               "Grafana: Real-time dashboards",
@@ -535,7 +548,7 @@ export const mlProjects: Project[] = [
           },
           {
             "title": "CI/CD Pipeline",
-            "icon": "<svg className=\"w-6 h-6\" fill=\"none\" viewBox=\"0 0 24 24\"><path d=\"M13 2L3 14H12L11 22L21 10H12L13 2Z\" stroke=\"#155DFC\" strokeLinecap=\"round\" strokeLinejoin=\"round\" strokeWidth=\"2\" /></svg>",
+            "icon": "info-square.svg",
             "bullets": [
               "GitHub Actions: Automated testing",
               "Model validation: Performance gates",

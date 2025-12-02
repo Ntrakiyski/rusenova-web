@@ -41,9 +41,11 @@ export default function MLSectionWithBullets({
                 {items.map((item, index) => (
                   <div key={index} className="flex gap-3 items-center">
                     <div className="shrink-0 mt-1">
-                      <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
+                      <img 
+                        src="/Check icon.svg" 
+                        alt="Check" 
+                        className="w-6 h-6"
+                      />
                     </div>
                     <p className="font-bricolage text-text-primary">
                       {item}

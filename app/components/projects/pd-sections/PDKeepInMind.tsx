@@ -27,7 +27,7 @@ export default function PDKeepInMind({ title, description }: PDKeepInMindProps) 
               {title}
             </h2>
 
-            <p className="font-bricolage font-semibold text-text-xl-semibold text-center text-white w-full max-w-[768px] mx-auto">
+            <p className="font-bricolage font-regular text-xl text-center text-white w-full max-w-[768px] mx-auto">
               {description}
             </p>
           </div>

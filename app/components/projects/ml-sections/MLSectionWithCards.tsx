@@ -6,7 +6,8 @@ import GradientBackground from '@/app/components/ui/GradientBackground';
 interface CardWithIcon {
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon: string;
+  bg?: string;
 }
 
 interface MLSectionWithCardsProps {
@@ -47,8 +48,8 @@ export default function MLSectionWithCards({
               <div className="flex flex-col md:flex-row gap-6 flex-1">
                 {cards.slice(0, 2).map((card, index) => (
                   <div key={index} className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center flex-1">
-                    <div className={`${index === 0 ? 'bg-[#EFF4FF]' : 'bg-[#FEEFEE]'} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
-                      {card.icon}
+                    <div className={`${card.bg || (index === 0 ? 'bg-[#EFF4FF]' : 'bg-[#FEEFEE]')} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
+                      <img src={card.icon} alt="" className="w-6 h-6" />
                     </div>
                     <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-4">
                       {card.title}
@@ -63,8 +64,8 @@ export default function MLSectionWithCards({
               {/* Second Row - Third Card */}
               {cards[2] && (
                 <div className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center lg:w-1/3">
-                  <div className="bg-[#FEF6EE] rounded-lg w-16 h-16 flex items-center justify-center mb-4">
-                    {cards[2].icon}
+                  <div className={`${cards[2].bg || 'bg-[#FEF6EE]'} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
+                    <img src={cards[2].icon} alt="" className="w-6 h-6" />
                   </div>
                   <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-4">
                     {cards[2].title}
