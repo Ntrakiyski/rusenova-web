@@ -81,7 +81,7 @@ export interface SectionWithCards extends Omit<BaseProjectSection, 'type'> {
     title: string;
     description: string;
     icon?: string; 
-    iconBg?: string;
+    bg?: string;
   }>;
 }
 
@@ -91,7 +91,7 @@ export interface SectionWithCardsAndBullets extends Omit<BaseProjectSection, 'ty
     title: string;
     items: string[];
     icon?: string;
-    iconBg?: string;
+    bg?: string;
   }>;
 }
 

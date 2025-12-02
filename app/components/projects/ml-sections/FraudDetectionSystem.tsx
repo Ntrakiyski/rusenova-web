@@ -124,7 +124,7 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
                 <circle cx="12" cy="12" r="10" stroke="#155DFC" strokeWidth="2"/>
               </svg>
             ),
-            iconBg: card.iconBg
+            bg: card.bg
           }))}
         />
       )}
