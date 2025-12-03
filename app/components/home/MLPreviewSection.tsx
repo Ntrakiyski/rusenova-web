@@ -67,16 +67,16 @@ export default function MLPreviewSection({ mlData, colors, content }: MLPreviewS
       >
         <div className="flex gap-6 md:gap-8 min-w-max px-[max(16px,calc((100%-1280px)/2+16px))] md:px-[max(32px,calc((100%-1280px)/2+32px))]">
             {projects.map((project, index) => (
-              <div key={index} id={`projects-${project.slug || project.id || index}`} className="w-[80vw] md:w-[480px] shrink-0">
+              <div key={index} id={`projects-${project.slug || project.id || index}`} className="w-[80vw] md:w-[583px] shrink-0">
                 <Link
                   href={`/ml/${project.slug}`}
                 >
                   <div
-                    className="relative h-[280px] md:h-[320px] lg:h-[403px] overflow-hidden rounded-[24px] bg-[#F7F4ED]"
+                    className="relative h-[403px] overflow-hidden rounded-[24px] bg-[#1F1F1F]"
                   >
-                    <div className="absolute bottom-0 right-0 w-full max-w-[264px] lg:max-w-[364px] aspect-square right-[-34%] bottom-[-47%] z-0 pointer-events-none">
+                    <div className="absolute left-[-193px] top-[83px] w-[2130px] h-[2130px] z-0 pointer-events-none">
                       <div className="relative w-full h-full">
-                        <Image src={project.previewImage ?? '/gradient-pink.png'} alt="" aria-hidden fill className="object-contain" draggable={false} />
+                        <Image src={project.previewImage ?? '/gradient-pink.png'} alt="" aria-hidden width={2130} height={2130} className="object-contain" draggable={false} />
                       </div>
                     </div>
                     {project.metrics?.[0]?.value && (
@@ -85,8 +85,8 @@ export default function MLPreviewSection({ mlData, colors, content }: MLPreviewS
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.3 }}
-                        className={`absolute left-[38px] top-[85px] z-10 text-text-lg-regular font-bricolage`}
-                        style={{ color: colors?.text.primary || '#191818' }}
+                        className={`absolute left-[38px] top-[85px] z-10 text-display-xs font-bricolage`}
+                        style={{ color: '#ffffff' }}
                       >
                         <span
                           className="font-bold"
@@ -102,8 +102,8 @@ export default function MLPreviewSection({ mlData, colors, content }: MLPreviewS
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.4 }}
-                        className={`absolute left-[146px] bottom-[86px] z-10 text-text-lg-regular font-bricolage`}
-                        style={{ color: colors?.text.primary || '#191818' }}
+                        className={`absolute left-[146px] bottom-[86px] z-10 text-display-xs font-bricolage`}
+                        style={{ color: '#ffffff' }}
                       >
                         <span
                           className="font-bold"
@@ -116,7 +116,7 @@ export default function MLPreviewSection({ mlData, colors, content }: MLPreviewS
                     {!project.metrics?.[0]?.value && project.metrics?.[0]?.label && (
                       <p
                         className={`absolute left-[61px] bottom-[104px] text-text-lg-regular font-bricolage`}
-                        style={{ color: colors?.text.primary || '#191818' }}
+                        style={{ color: '#ffffff' }}
                       >
                         {project.metrics?.[0]?.label}
                       </p>

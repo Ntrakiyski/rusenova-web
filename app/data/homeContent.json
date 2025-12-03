@@ -33,7 +33,7 @@
       }
     ],
     "image": {
-      "src": "/hero-diamond.png",
+      "src": "/crystal.png",
       "alt": ""
     }
   },
@@ -48,25 +48,20 @@
   "features": {
     "backgroundColor": "black",
     "title": "Building intelligence into your product",
-    "subtitle": "ML systems that work technically and experiences that work for humans—because you need both.",
+    "subtitle": "ML systems that work technically and experiences that work for humans - because you need both.",
     "items": [
-      {
-        "title": "AI integrations",
-        "description": "Automate repetitive workflows and eliminate manual tasks",
-        "icon": "/cubs.gif"
-      },
       {
         "title": "AI chatbots",
         "description": "Issues which resolves themselves 24/7",
         "icon": "/triangle.gif"
       },
       {
-        "title": "Custom AI apps",
+        "title": "AI/ML solution design",
         "description": "Specialized AI for your needs",
         "icon": "/cubs.gif"
       },
       {
-        "title": "Algorithm Advisory",
+        "title": "Algorithm design",
         "description": "Driving data-led business impact",
         "icon": "/triangle.gif"
       }
@@ -80,23 +75,49 @@
         "title": "RAG+ Evaluation System",
         "shortDescription": "Reduced information retrieval time by 85% while achieving 92% answer accuracy through a custom RAG system with advanced evaluation framework",
         "metrics": [
-          { "value": "92%", "label": "Precision" },
-          { "value": "89%", "label": "Recall" },
-          { "value": "89%", "label": "Time saved" }
+          {
+            "value": "92%",
+            "label": "Precision"
+          },
+          {
+            "value": "89%",
+            "label": "Response Accuracy  "
+          }
         ],
-        "previewImage": "/gradient-pink.png",
+        "previewImage": "/gradient-orange-blue.png",
         "slug": "rag-evaluation-system"
       },
       {
         "title": "Fraud Detection System",
-        "shortDescription": "Built a real-time fraud detection system that identifies suspicious transactions with 95% accuracy and reduces false positives by 60%",
+        "shortDescription": "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%",
         "metrics": [
-          { "value": "95%", "label": "Accuracy" },
-          { "value": "60%", "label": "False Positive Reduction" },
-          { "value": "Real-time", "label": "Detection" }
+          {
+            "value": "83.8%",
+            "label": "Fraud Caught"
+          },
+          {
+            "value": "74%",
+            "label": "Alert Accuracy"
+          }
         ],
-        "previewImage": "/gradient-green.png",
+        "previewImage": "/gradient-green-red.png",
         "slug": "fraud-detection"
+      },
+      {
+        "title": "Real time AI Assistant",
+        "shortDescription": "Real-time meeting assistant that helps you live in meetings with progress update, suggestions and insights.",
+        "metrics": [
+          {
+            "value": "83.8%",
+            "label": "Fraud Caught"
+          },
+          {
+            "value": "74%",
+            "label": "Alert Accuracy"
+          }
+        ],
+        "previewImage": "/gradient-orange-pink.png",
+        "slug": "ai-assistant"
       }
     ]
   },
@@ -109,50 +130,87 @@
         "role": "Senior Product Designer",
         "company": "Tide",
         "shortDescription": "Tide is transforming SME banking & business management with 1.6M+ members",
-        "previewImage": "/gradient-pink.png",
+        "previewImage": "/gradient-orange-pink.png",
         "slug": "tide",
-        "metrics": [{ "value": "95%", "label": "Accuracy" }]
+        "metrics": [
+          {
+            "value": " ",
+            "label": "Increased active usage of key services"
+          },
+          {
+            "value": " ",
+            "label": "decision-tree system that helped determine message priority"
+          }
+        ]
       },
       {
-        "title": "Telenor", 
+        "title": "Telenor",
         "role": "Service Designer",
         "company": "Telenor",
         "shortDescription": "Telecommunications companywith 1M+ Users",
-        "previewImage": "/gradient-green.png",
+        "previewImage": "/gradient-blue-red.png",
         "slug": "telenor",
-        "metrics": [{ "value": "95%", "label": "Accuracy" }]
+        "metrics": [
+          {
+            "value": " ",
+            "label": "Increased the number of paid bills by 28%"
+          },
+          {
+            "value": " ",
+            "label": "increasing daily active users by 12%"
+          }
+        ]
       },
       {
         "title": "Epam",
-        "role": "Product Designer", 
+        "role": "Product Designer",
         "company": "EPAM",
         "shortDescription": "Software Engineering & Product Development Services",
-        "previewImage": "/gradient-purple.png",
+        "previewImage": "/gradient-green-red.png",
         "slug": "epam",
-        "metrics": [{ "value": "95%", "label": "Accuracy" }]
+        "metrics": [
+          {
+            "value": " ",
+            "label": "Managed community of designers"
+          },
+          {
+            "value": " ",
+            "label": "Designed E-commerce white label platform"
+          }
+        ]
       },
-       {
+      {
         "title": "Mentormate",
-        "role": "Product Designer", 
+        "role": "Product Designer",
         "company": "Mentormate",
         "shortDescription": "Software Engineering & Product Development Services",
         "previewImage": "/gradient-pink.png",
         "slug": "mentormate",
-        "metrics": [{ "value": "95%", "label": "Accuracy" }]
+        "metrics": [
+          {
+            "value": " ",
+            "label": "Increased active usage of key services"
+          },
+          {
+            "value": " ",
+            "label": "decision-tree system that helped determine message priority"
+          }
+        ]
       }
     ]
   },
   "about": {
     "backgroundColor": "#f7f4ed",
     "badge": "ONE PERSON TEAM",
-    "title": "I'm Gloria",
+    "title": "Behind the sceene",
     "paragraphs": [
-      "I'm Gloria - a product designer, based in Bulgaria with 8 years of experience exploring how systems, data, and human behavior connect to shape meaningful experiences. I've always been drawn to the details that make complex systems feel seamless, from how a product behaves to how people move through its journey. My curiosity about data naturally led me to machine learning, where I found a new way to understand and design smarter experiences.",
-      "After studying statistics and ML and building several projects, I'm excited to merge these worlds — using design thinking to make AI more intuitive and human-centered. If you're working on something in that space, I'd love to collaborate"
+      "I'm Gloria - currently based in Bulgaria (but don't mind changing countries).",
+      "Product designer for 9 years, exploring how systems, data, and human behavior connect to shape meaningful experiences.",
+      "Now focusing on machine learning, as my curiosity about data and statistics naturally led me to combine it with product design."
     ],
     "stats": [
       {
-        "value": "8+",
+        "value": "9+",
         "label": "Years of Experience"
       },
       {

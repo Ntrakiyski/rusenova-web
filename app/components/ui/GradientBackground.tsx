@@ -13,21 +13,25 @@ interface GradientBackgroundProps {
   fromStop?: number;
   viaStop?: number;
   toStop?: number;
+  gradient?: boolean;
 }
 
 export default function GradientBackground({
   children,
   imagePath = '/long-card-gradient.png',
   className = '',
+  gradient = true,
 }: GradientBackgroundProps) {
   return (
     <div className={`relative ${className} overflow-hidden bg-[#F7F4ED]`}>
-      <img
-        src={imagePath}
-        alt=""
-        className="absolute top-[117px] left-[669px] max-w-none pointer-events-none select-none"
-        aria-hidden="true"
-      />
+      {gradient && (
+        <img
+          src={imagePath}
+          alt=""
+          className="absolute top-[30%] left-[669px] max-w-none pointer-events-none select-none"
+          aria-hidden="true"
+        />
+      )}
       <div className="relative z-10">
         {children}
       </div>

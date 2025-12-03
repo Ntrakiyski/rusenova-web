@@ -69,20 +69,20 @@ export default function PDPreviewSection({ pdData, colors, content }: PDPreviewS
                   href={`/product-design/${exp.slug}`}
                 >
                   <motion.div
-                    className="flex flex-col gap-5 w-[80vw] md:w-[480px] shrink-0 cursor-pointer"
+                    className="flex flex-col gap-5 w-[80vw] md:w-[583px] shrink-0 cursor-pointer"
                   >
                     <div
-                      className="relative h-[280px] md:h-[320px] lg:h-[403px] overflow-hidden rounded-[24px] bg-[#F7F4ED]"
+                      className="relative h-[403px] overflow-hidden rounded-[24px] bg-[#1F1F1F]"
                     >
-                      <div className="absolute bottom-0 right-0 w-full max-w-[264px] lg:max-w-[364px] aspect-square right-[-34%] bottom-[-47%] z-0 pointer-events-none">
+                      <div className="absolute left-[-193px] top-[83px] w-[2130px] h-[2130px] z-0 pointer-events-none">
                         <div className="relative w-full h-full">
-                          <Image src={exp.previewImage ?? '/gradient-pink.png'} alt="" aria-hidden fill className="object-contain" draggable={false} />
+                          <Image src={exp.previewImage ?? '/gradient-pink.png'} alt="" aria-hidden width={2130} height={2130} className="object-contain" draggable={false} />
                         </div>
                       </div>
                       {exp.metrics[0] && exp.metrics[0].value && (
                         <p
-                          className="absolute left-[38px] top-[85px] z-10 text-text-lg-regular font-bricolage"
-                          style={{ color: colors?.text.primary || '#191818' }}
+                          className="absolute left-[38px] top-[85px] z-10 text-display-xs font-bricolage"
+                          style={{ color: '#ffffff' }}
                         >
                           <span
                             className="font-bold"
@@ -94,16 +94,16 @@ export default function PDPreviewSection({ pdData, colors, content }: PDPreviewS
                       )}
                       {!exp.metrics[0]?.value && exp.metrics[0]?.label && (
                         <p
-                          className="absolute left-[38px] top-[85px] z-10 text-text-lg-regular font-bricolage max-w-[calc(100%-76px)]"
-                          style={{ color: colors?.text.primary || '#191818' }}
+                          className="absolute left-[38px] top-[85px] z-10 text-display-xs font-bricolage max-w-[calc(100%-76px)]"
+                          style={{ color: '#ffffff' }}
                         >
                           {exp.metrics[0].label}
                         </p>
                       )}
                       {exp.metrics[1] && exp.metrics[1].value && (
                         <p
-                          className="absolute left-[146px] bottom-[86px] z-10 text-text-lg-regular font-bricolage"
-                          style={{ color: colors?.text.primary || '#191818' }}
+                          className="absolute left-[146px] bottom-[86px] z-10 text-display-xs font-bricolage"
+                          style={{ color: '#ffffff' }}
                         >
                           <span
                             className="font-bold"

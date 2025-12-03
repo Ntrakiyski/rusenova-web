@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import GradientBackground from '../../ui/GradientBackground';
 
 interface TableRow {
   [key: string]: string | React.ReactNode;
@@ -39,8 +40,7 @@ export default function MLSectionWithTable({
         </div>
 
         {/* Table Row */}
-        <div className="rounded-3xl bg-[radial-gradient(134.07%_95.89%_at_92.97%_104.35%,rgba(244,77,46,0.90)_3.85%,rgba(240,132,76,0.90)_22.12%,#C1ABD8_37.02%,#D7DBED_46.63%,#F7F4ED_53.85%)] overflow-hidden relative w-full">
-
+        <GradientBackground gradient={false} className="rounded-3xl overflow-hidden relative w-full">
           <div className="relative z-10 p-8 md:p-16">
             <div className="overflow-x-auto">
               <table className="w-full bg-bg-white rounded-[16px] border border-border overflow-hidden">
@@ -61,7 +61,18 @@ export default function MLSectionWithTable({
                     >
                       {columns.map((column, colIndex) => (
                         <td key={colIndex} className="py-4 px-4 font-bricolage text-text-secondary">
-                          {row[column] || '-'}
+                          {rowIndex === rows.length - 1 && colIndex === columns.length - 1 ? (
+                            <div className="flex items-center gap-1">
+                              <img
+                                src="/Check icon.svg"
+                                alt={column}
+                                className="w-8 h-8 rounded-full"
+                              />
+                              <span className="text-text-primary font-semibold">{row[column] || '-'}</span>
+                            </div>
+                          ) : (
+                            row[column] || '-'
+                          )}
                         </td>
                       ))}
                     </tr>
@@ -70,7 +81,7 @@ export default function MLSectionWithTable({
               </table>
             </div>
           </div>
-        </div>
+        </GradientBackground>
       </div>
     </section>
   );

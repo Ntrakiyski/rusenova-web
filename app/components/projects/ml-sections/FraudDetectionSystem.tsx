@@ -162,6 +162,7 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
       {technicalPerformanceSection && (
         <MLTechnicalPerformance
           title={technicalPerformanceSection.title}
+          description={technicalPerformanceSection.description}
           metrics={technicalPerformanceSection.metrics}
         />
       )}

@@ -41,13 +41,13 @@ export default function MLSectionWithCards({
         </div>
 
         {/* Cards Row - Two Rows on Desktop */}
-        <GradientBackground className="rounded-3xl overflow-hidden relative w-full">
+        <GradientBackground gradient={false} className="rounded-3xl overflow-hidden relative w-full">
           <div className="relative z-10 p-8 md:p-16">
             <div className="flex flex-col lg:flex-row gap-6">
               {/* First Row - First Two Cards */}
               <div className="flex flex-col md:flex-row gap-6 flex-1">
                 {cards.slice(0, 2).map((card, index) => (
-                  <div key={index} className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center flex-1">
+                  <div key={index} className="bg-bg-white rounded-2xl p-6  flex flex-col items-center text-center flex-1">
                     <div className={`${card.bg || (index === 0 ? 'bg-[#EFF4FF]' : 'bg-[#FEEFEE]')} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
                       {typeof card.icon === 'string' ? (
                         <img src={card.icon} alt="" className="w-6 h-6" />

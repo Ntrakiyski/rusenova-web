@@ -36,8 +36,8 @@ export default function ContactSection({ content }: ContactSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="relative overflow-clip shadow-[0px_20px_24px_-4px_rgba(16,24,40,0.08),0px_8px_8px_-4px_rgba(16,24,40,0.03)]"
-            style={{ borderRadius: '60px 60px 60px 60px', background: 'linear-gradient(156deg, #252222 79.59%, #FD681D 111.61%)' }}
+          className="bg-bg-dark relative overflow-clip shadow-[0px_20px_24px_-4px_rgba(16,24,40,0.08),0px_8px_8px_-4px_rgba(16,24,40,0.03)]"
+            style={{ borderRadius: '60px 60px 60px 60px' }}
         >
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2">
             <motion.div
@@ -143,8 +143,19 @@ export default function ContactSection({ content }: ContactSectionProps) {
             </motion.div>
           </div>
 
-          <div className="absolute bottom-0 right-[-83px] pointer-events-none translate-y-16">
-            <div className="relative w-[250px] h-[250px]">
+          <div className="absolute bottom-[-1790px] right-[-1150px] pointer-events-none translate-y-16">
+            <div className="relative w-[2150px] h-[2150px]">
+              <Image
+                alt=""
+                className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
+                src="/gradient-orange-pink.png"
+                width={250}
+                height={250}
+              />
+            </div>
+          </div>
+          <div className="absolute bottom-[-60px] right-[-90px] pointer-events-none translate-y-16">
+            <div className="relative w-[300px] h-[300px]">
               <Image
                 alt=""
                 className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
