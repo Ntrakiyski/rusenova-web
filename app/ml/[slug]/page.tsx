@@ -34,7 +34,7 @@ export default async function MLProjectPage({ params }: MLProjectParams) {
       return <RagEvaluationSystem projectData={project} homeContentData={homeContentProject} />;
     case 'fraud-detection-system':
       return <FraudDetectionSystem projectData={project} />;
-    case 'real-time-meeting-agent':
+    case 'ai-meeting-assistant':
       return <RealTimeMeetingAgent projectData={project} />;
     default:
       notFound();

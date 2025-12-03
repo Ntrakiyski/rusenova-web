@@ -2,7 +2,7 @@ import { Project } from '@/types/project';
 
 export const productDesignProjects: Project[] = [
   {
-    "id": "tide",
+    "id": "Tide",
     "slug": "tide",
     "heroTitle": "Senior Product Designer",
     "heroDescription": "Tide is transforming SME banking & business management with 1.6M+ members across the UK, India, Germany & France.",
@@ -67,7 +67,7 @@ export const productDesignProjects: Project[] = [
     ]
   },
   {
-    "id": "telenor",
+    "id": "Telenor",
     "slug": "telenor",
     "heroTitle": "Service Designer",
     "heroDescription": "Back then Telenor was a telecommunication company with more than 1M users",
@@ -131,7 +131,7 @@ export const productDesignProjects: Project[] = [
     ]
   },
   {
-    "id": "epam",
+    "id": "Epam",
     "slug": "epam",
     "heroTitle": "Product Designer",
     "heroDescription": "Global software company offering end-to-end digital transformation services.",
@@ -170,7 +170,7 @@ export const productDesignProjects: Project[] = [
     ]
   },
   {
-    "id": "mentormate",
+    "id": "Mentormate",
     "slug": "mentormate",
     "heroTitle": "Service Design",
     "heroDescription": "Designing end-to-end service experiences for various clients and industries.",

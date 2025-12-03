@@ -18,7 +18,7 @@
   "hero": {
     "backgroundColor": "#f7f4ed",
     "badge": "HUMAN & AI",
-    "title": "Smart systems build for real people",
+    "title": "Smart systems built for real people",
     "subtitle": "Hi, I'm Gloria and I bend Product Design & Machine Learning to create better systems for great user experience",
     "buttons": [
       {
@@ -184,7 +184,7 @@
         "role": "Product Designer",
         "company": "Mentormate",
         "shortDescription": "Software Engineering & Product Development Services",
-        "previewImage": "/gradient-pink.png",
+        "previewImage": "/gradient-blue-red.png",
         "slug": "mentormate",
         "metrics": [
           {

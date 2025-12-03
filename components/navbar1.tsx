@@ -55,7 +55,7 @@ const Navbar1 = ({
   
   // Generate Projects menu items from ML projects
   const projectsItems = mlProjects.map((project, index) => ({
-    title: project.heroTitle || project.title || "Project",
+    title: project.title || "Project",
     description: project.heroDescription || project.description || "",
     icon: <Code className="size-5 shrink-0" />,
     url: `/ml/${project.slug || project.id || index}`,
@@ -64,7 +64,7 @@ const Navbar1 = ({
 
   // Generate Experience menu items from Product Design projects
   const experienceItems = productDesignProjects.map((project, index) => ({
-    title: project.heroTitle || project.title || "Experience",
+    title: project.id || project.title || "Experience",
     description: project.heroDescription || project.description || "",
     icon: <Briefcase className="size-5 shrink-0" />,
     url: `/product-design/${project.slug || project.id || index}`,
@@ -72,7 +72,6 @@ const Navbar1 = ({
   }));
 
   const menu: MenuItem[] = [
-    { title: "Home", url: "/" },
     {
       title: "Projects",
       url: "/ml",
@@ -193,7 +192,16 @@ const Navbar1 = ({
         <div className="flex items-center justify-between px-4 md:px-8 py-4 md:py-5">
           {/* Logo */}
           <Link
-            href={logo.url}
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              // Always navigate to home page and scroll to top
+              if (pathname !== '/') {
+                window.location.assign('/');
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
             className="flex items-center gap-3 cursor-pointer"
           >
             <div className="relative size-[32px] md:size-[40px]">
@@ -214,7 +222,7 @@ const Navbar1 = ({
           </Link>
 
           {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center gap-4">
+          <nav className="hidden md:flex items-center">
             {menu.map((item) => {
               const isActive = activeSection === item.title.toLowerCase();
               if (item.items && item.items.length > 0) {
@@ -242,12 +250,9 @@ const Navbar1 = ({
                           className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 first:rounded-t-lg last:rounded-b-lg"
                         >
                           <div className="flex items-center gap-3">
-                            <div className="text-gray-500">{subItem.icon}</div>
                             <div>
-                              <div className="font-medium">{subItem.title}</div>
-                              {subItem.description && (
-                                <p className="text-xs text-gray-500">{subItem.description}</p>
-                              )}
+                              <div className="text-text-lg-regular">{subItem.title}</div>
+                             
                             </div>
                           </div>
                         </Link>

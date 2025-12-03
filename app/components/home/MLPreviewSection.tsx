@@ -72,7 +72,7 @@ export default function MLPreviewSection({ mlData, colors, content }: MLPreviewS
                   href={`/ml/${project.slug}`}
                 >
                   <div
-                    className="relative h-[403px] overflow-hidden rounded-[24px] bg-[#1F1F1F]"
+                    className="relative h-[403px] overflow-hidden rounded-[24px] bg-[#1F1F1F] duration-300"
                   >
                     <div className="absolute left-[-193px] top-[83px] w-[2130px] h-[2130px] z-0 pointer-events-none">
                       <div className="relative w-full h-full">

@@ -20,6 +20,6 @@
   }
 
   a {
-    @apply text-text-orange hover:opacity-80 transition-opacity;
+    @apply text-text-orange hover:opacity-95 transition-opacity;
   }
 }

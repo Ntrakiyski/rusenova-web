@@ -38,7 +38,7 @@ export default function PDHero({
   };
 
   return (
-    <section className={`${background} w-full flex items-center justify-center`}>
+    <section className={`${background} w-full flex items-center justify-center pt-24 md:pt-32`}>
       <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[760px] items-center pb-0 pt-8 sm:pt-12 md:pt-[64px] lg:pt-[96px] relative w-full z-[1]">
           <div className="relative rounded-[16px] w-full">

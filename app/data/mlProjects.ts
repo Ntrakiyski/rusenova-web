@@ -581,7 +581,425 @@ export const mlProjects: Project[] = [
     ],
     "heroTitle": "Fraud Detection System",
     "heroDescription": "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%"
-  }
+  },
+  {
+  "id": "ai-meeting-assistant",
+  "slug": "ai-meeting-assistant",
+  "title": "Real-Time AI Meeting Assistant",
+  "shortDescription": "An AI copilot that joins Zoom/Teams to transcribe, summarize, and extract action items in real-time.",
+  "description": "Advanced NLP system that listens to meeting audio streams, identifies speakers, and generates live insights, progress updates, and Jira/Notion tasks with sub-second latency.",
+  "metrics": [
+    {
+      "value": "12h",
+      "label": "Weekly Time Saved"
+    },
+    {
+      "value": "98.5%",
+      "label": "Transcription Accuracy"
+    },
+    {
+      "value": "<200ms",
+      "label": "Insight Latency"
+    }
+  ],
+  "gradientColors": [
+    "#E0E7FF"
+  ],
+  "heroImage": "/meeting-assistant-hero.png",
+  "heroVideo": "/meeting-assistant-demo.mov",
+  "heroTitle": "Real-Time AI Meeting Assistant",
+  "heroDescription": "An AI-powered assistant that listens, summarizes, and organizes your meetings in real-time.",
+  "sections": [
+    {
+      "type": "what-i-build",
+      "title": "What I Built",
+      "description": "A real-time meeting assistant that transforms unstructured voice data into structured business intelligence.",
+      "bulletPoints": [
+        "Real-time audio ingestion pipeline compatible with Zoom, Teams, and Google Meet via virtual bot integration",
+        "Multi-speaker diarization engine to accurately attribute 'who said what' even during cross-talk",
+        "Live sentiment analysis and 'blocker detection' to flag project risks immediately",
+        "Automated workflow triggers: Verbal commitments become Jira tickets or Notion pages instantly",
+        "RAG (Retrieval-Augmented Generation) system that answers questions based on previous meeting context"
+      ],
+      "metrics": [
+        {
+          "value": "95%",
+          "label": "Action Item Recall"
+        },
+        {
+          "value": "30%",
+          "label": "Shorter Meetings"
+        },
+        {
+          "value": "0",
+          "label": "Manual Notes Taken"
+        }
+      ]
+    },
+    {
+      "type": "intro",
+      "title": "The Challenge",
+      "description": "Knowledge workers spend 40% of their time in meetings, yet 60% of the context is lost the moment the call ends.",
+      "content": [
+        "Manual note-taking distracts participants from active listening and engagement",
+        "Action items fall through the cracks, leading to project delays",
+        "Context switching between video calls and project management tools kills productivity",
+        "Lack of searchable history makes 'institutional memory' unreliable"
+      ],
+      "layout": "text-left-image-right"
+    },
+    {
+      "type": "approach",
+      "title": "Our Approach",
+      "description": "Leveraging Large Language Models (LLMs) and stream processing to create a 'second brain' for your conversations.",
+      "cards": [
+        {
+          "title": "Stream Processing",
+          "description": "WebRTC-based audio capture for low-latency raw stream handling"
+        },
+        {
+          "title": "Contextual Intelligence",
+          "description": "Dynamic context window management to remember details from 30 minutes ago"
+        },
+        {
+          "title": "Speaker Fingerprinting",
+          "description": "Vector-based voice signatures to identify team members instantly"
+        },
+        {
+          "title": "Privacy First",
+          "description": "PII redaction on the fly before data hits the persistence layer"
+        }
+      ]
+    },
+    {
+      "type": "architecture",
+      "title": "System Architecture",
+      "description": "Event-driven architecture designed to handle concurrent audio streams and heavy NLP inference loads.",
+      "image": "/architecture-diagram.png"
+    },
+    {
+      "type": "section-with-cards",
+      "title": "Understand the Data",
+      "description": "How we process voice",
+      "cards": [
+        {
+          "title": "Audio Segmentation",
+          "description": "Processed 500+ hours of noisy meeting audio for training",
+          "icon": "/wave-sound.svg",
+          "bg": "bg-[#E0EAFF]"
+        },
+        {
+          "title": "Intent Detection",
+          "description": "Identified 4 distinct intent types: Task, Decision, Question, Risk",
+          "icon": "/brain-circuit.svg",
+          "bg": "bg-[#E0EAFF]"
+        },
+        {
+          "title": "Silence Analysis",
+          "description": "Correlated long silences with disengagement or technical issues",
+          "icon": "/clock.svg",
+          "bg": "bg-[#E0EAFF]"
+        }
+      ]
+    },
+    {
+      "type": "section-with-cards-and-bullets",
+      "title": "Engineer High-Impact Features",
+      "description": "Built a custom NLP pipeline. The 'Commitment Extraction' feature became the most valued utility by PMs.",
+      "cards": [
+        {
+          "title": "NLP Features",
+          "items": [
+            "Named Entity Recognition (NER)",
+            "Sentiment Scoring",
+            "Topic Clustering",
+            "Summarization",
+            "Key Decision Extraction",
+            "Objection Handling Suggestions"
+          ],
+          "icon": "/code.svg",
+          "bg": "bg-[#E0EAFF]"
+        },
+        {
+          "title": "Integrations",
+          "items": [
+            "Jira Ticket Creation",
+            "Slack Notifications",
+            "Salesforce CRM Sync",
+            "Notion Page Generation"
+          ],
+          "icon": "/link.svg",
+          "bg": "bg-[#E0EAFF]"
+        },
+        {
+          "title": "Real-Time Assist",
+          "items": [
+            "Live Fact Checking",
+            "Agenda Adherence Tracking",
+            "Speaking Time Balance"
+          ],
+          "icon": "/zap.svg",
+          "bg": "bg-[#E0EAFF]"
+        }
+      ]
+    },
+    {
+      "type": "section-with-table",
+      "title": "Optimise for Business Outcomes",
+      "description": "Compared generic transcription APIs vs. our fine-tuned meeting model.",
+      "columns": [
+        "Solution",
+        "Tech Term Accuracy",
+        "Action Item Recall",
+        "Latency",
+        "Status"
+      ],
+      "rows": [
+        {
+          "Solution": "Generic Whisper API",
+          "Tech Term Accuracy": "72%",
+          "Action Item Recall": "65%",
+          "Latency": "4.5s",
+          "Status": "Too slow/inaccurate"
+        },
+        {
+          "Solution": "Human Note Taker",
+          "Tech Term Accuracy": "85%",
+          "Action Item Recall": "80%",
+          "Latency": "24 hours",
+          "Status": "Non-scalable"
+        },
+        {
+          "Solution": "Custom Fine-Tuned Model",
+          "Tech Term Accuracy": "96%",
+          "Action Item Recall": "95%",
+          "Latency": "0.8s",
+          "Status": "Production Ready"
+        }
+      ]
+    },
+    {
+      "type": "key-results-only",
+      "title": "Key Results",
+      "description": "Achieved 95% accuracy in extracting engineering tasks and assigning them to the correct owner automatically.",
+      "image": "/results-dashboard.png",
+      "video": "/meeting-assistant-demo.mov"
+    },
+    {
+      "type": "technical-performance",
+      "title": "Technical Performance",
+      "description": "Benchmarking the system under high-load scenarios with concurrent meetings.",
+      "metrics": [
+        {
+          "name": "Diarization Error",
+          "value": "<4%",
+          "description": "Correctly identifies speaker changes",
+          "details": "Even in heated debates with overlapping speech, the system correctly attributes quotes 96% of the time."
+        },
+        {
+          "name": "End-to-End Latency",
+          "value": "800ms",
+          "description": "From speech to text on screen"
+        },
+        {
+          "name": "Context Window",
+          "value": "128k",
+          "description": "Tokens supported for long meetings"
+        },
+        {
+          "name": "Hallucination Rate",
+          "value": "<0.1%",
+          "description": "Extremely low false fabrication",
+          "details": "Using RAG and strict prompt engineering, we ensure the AI never invents tasks that weren't discussed."
+        },
+        {
+          "name": "Concurrency",
+          "value": "500+",
+          "description": "Simultaneous meetings supported"
+        }
+      ]
+    },
+    {
+      "type": "cost-benefit",
+      "title": "Cost-Benefit Breakdown",
+      "description": "The ROI of automating meeting administration.",
+      "items": [
+        {
+          "title": "The Cost of Meetings",
+          "content": [
+            "Avg Engineer Salary: $80/hr",
+            "Avg PM Salary: $90/hr",
+            "Time spent organizing notes: 15 mins per hour of meeting",
+            "Cost of missed follow-up: Project delays"
+          ]
+        },
+        {
+          "title": "Manual Process",
+          "content": "Team of 5 in a 1hr meeting = $425 cost + $100 admin time = $525/meeting"
+        },
+        {
+          "title": "With AI Assistant",
+          "content": "Admin time reduced to 0. Cost per meeting = $0.50 (Compute). Savings = $99.50 per meeting."
+        }
+      ]
+    },
+    {
+      "type": "segment-analysis",
+      "title": "Segment Analysis (Honest Assessment)",
+      "description": "Where the model excels and where it is still learning.",
+      "segments": [
+        {
+          "name": "Strengths",
+          "metrics": [
+            {
+              "name": "Engineering Standups",
+              "value": "99% accuracy on technical jargon"
+            },
+            {
+              "name": "Sales Discovery Calls",
+              "value": "Excellent objection detection"
+            },
+            {
+              "name": "Structured Board Meetings",
+              "value": "Perfect minute generation"
+            }
+          ]
+        },
+        {
+          "name": "Weaknesses",
+          "metrics": [
+            {
+              "name": "Heavy Accents + Poor Mic",
+              "value": "88% accuracy - Needs audio enhancement"
+            },
+            {
+              "name": "Physical Whiteboard References",
+              "value": "Cannot see video context yet"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "key-learning",
+      "title": "Key Learning",
+      "description": "Transcribing text was easy. Understanding *intent* and *context* in a multi-person conversation was the real engineering challenge.",
+      "learnings": [
+        {
+          "title": "Audio Quality is King",
+          "description": "Implemented pre-processing noise cancellation to improve transcription by 15%."
+        },
+        {
+          "title": "Latency vs. Accuracy",
+          "description": "Moved to a streaming architecture (WebSockets) instead of batch processing to give users a 'live' feel."
+        },
+        {
+          "title": "Prompt Engineering for JSON",
+          "description": "Forcing LLMs to output strict JSON for integrations required extensive few-shot training."
+        },
+        {
+          "title": "User Trust",
+          "description": "Adding a 'Private Mode' that pauses recording was essential for adoption."
+        },
+        {
+          "title": "RAG for Context",
+          "description": "Injecting previous meeting summaries into the prompt drastically improved suggestion quality."
+        }
+      ]
+    },
+    {
+      "type": "tech-stack",
+      "title": "Technologies Used",
+      "description": "A high-performance stack built for real-time audio processing and LLM orchestration.",
+      "technologies": [
+        "Python 3.11",
+        "OpenAI Whisper (Fine-tuned)",
+        "GPT-4o",
+        "LangChain",
+        "Pinecone (Vector DB)",
+        "Redis",
+        "WebRTC",
+        "FastAPI",
+        "React / Next.js",
+        "Docker",
+        "Kubernetes",
+        "Kafka"
+      ],
+      "categories": [
+        "AI/ML Models",
+        "Real-time Infrastructure",
+        "Frontend & API"
+      ]
+    },
+    {
+      "type": "production-deployment",
+      "title": "Production Deployment Architecture",
+      "description": "Designed for horizontal scalability to handle thousands of simultaneous corporate meetings.",
+      "cards": [
+        {
+          "title": "Ingestion Layer",
+          "icon": "info-square.svg",
+          "bullets": [
+            "WebRTC Gateway for audio streams",
+            "Kafka for message buffering",
+            "Load Balancer (Round Robin)",
+            "Auto-scaling bot instances"
+          ]
+        },
+        {
+          "title": "Processing Core",
+          "icon": "info-square.svg",
+          "bullets": [
+            "GPU Cluster for Whisper Inference",
+            "Async Task Queue (Celery)",
+            "Redis for state management",
+            "PII Redaction Service"
+          ]
+        },
+        {
+          "title": "Data Persistence",
+          "icon": "info-square.svg",
+          "bullets": [
+            "PostgreSQL: User data & metadata",
+            "S3: Encrypted audio storage",
+            "Pinecone: Vector embeddings",
+            "ElasticSearch: Full-text search"
+          ]
+        },
+        {
+          "title": "DevOps & Security",
+          "icon": "info-square.svg",
+          "bullets": [
+            "SOC2 Compliant Logging",
+            "GitHub Actions CI/CD",
+            "Prometheus/Grafana Monitoring",
+            "End-to-End Encryption"
+          ]
+        }
+      ]
+    },
+    {
+      "type": "results",
+      "title": "Results & Impact",
+      "description": "Transforming how teams collaborate by removing the administrative burden of meetings.",
+      "outcomes": [
+        "12 hours saved per employee/week",
+        "95% reduction in 'forgotten' tasks",
+        "99.9% system uptime",
+        "Seamless integration with 50+ tools",
+        "Adopted by 15 enterprise teams in beta"
+      ],
+      "businessValue": [
+        "Estimated $500k annual productivity gain per 100 employees",
+        "Faster project delivery cycles",
+        "Improved employee satisfaction (less admin work)",
+        "Better accountability through automated tracking",
+        "Centralized knowledge base for the organization"
+      ],
+      "image": "/impact-graph.png"
+    }
+  ]
+}
 ];
 
 export default mlProjects;

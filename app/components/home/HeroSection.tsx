@@ -19,7 +19,7 @@ export default function HeroSection({ content, colors }: HeroSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className={`text-display-xs font-bricolage font-semibold uppercase text-center`}
+            className={`text-text-md-semibold font-bricolage uppercase text-center`}
             style={{ color: colors.text.accent }}
           >
             {content.badge}
