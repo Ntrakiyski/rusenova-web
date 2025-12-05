@@ -23,7 +23,7 @@ export default function MLSectionWithTable({
   background = 'bg-bg-white'
 }: MLSectionWithTableProps) {
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10`} style={{ minHeight: '760px' }}>
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10`}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="mb-12">
@@ -45,7 +45,7 @@ export default function MLSectionWithTable({
             <div className="overflow-x-auto">
               <table className="w-full bg-bg-white rounded-[16px] border border-border overflow-hidden">
                 <thead>
-                  <tr className="border-b border-border">
+                  <tr className="border-b border-stroke">
                     {columns.map((column, index) => (
                       <th key={index} className="text-left py-4 px-4 font-bricolage text-text-primary font-semibold">
                         {column}
@@ -57,7 +57,7 @@ export default function MLSectionWithTable({
                   {rows.map((row, rowIndex) => (
                     <tr
                       key={rowIndex}
-                      className={`border-b border-[#f0f0f0] last:border-b-0 ${rowIndex === rows.length - 1 ? 'bg-[#8EB2F21F]' : ''}`}
+                      className={`border-b border-stroke last:border-b-0 ${rowIndex === rows.length - 1 ? 'bg-bg-light' : ''}`}
                     >
                       {columns.map((column, colIndex) => (
                         <td key={colIndex} className="py-4 px-4 font-bricolage text-text-secondary">
@@ -67,6 +67,7 @@ export default function MLSectionWithTable({
                                 src="/Check icon.svg"
                                 alt={column}
                                 className="w-8 h-8 rounded-full"
+                                loading="lazy"
                               />
                               <span className="text-text-primary font-semibold">{row[column] || '-'}</span>
                             </div>

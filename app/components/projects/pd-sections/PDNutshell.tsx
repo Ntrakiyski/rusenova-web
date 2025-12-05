@@ -30,7 +30,7 @@ export default function PDNutshell({ title, features }: PDNutshellProps) {
   const wordsToHighlight = ['cross-functional', 'Experience Foundation', 'core product experience'];
 
   return (
-    <section className="bg-white w-full py-8 sm:py-12 md:py-16 lg:py-[96px]">
+    <section className="bg-white w-full py-8 sm:py-12 md:py-16 lg:py-5xl">
       <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="w-full">
           {/* Features Grid with Title - all items in 3 column grid on desktop */}

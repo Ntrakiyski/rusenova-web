@@ -10,6 +10,15 @@ interface MLArchitectureProps {
   background?: string;
 }
 
+/**
+ * MLArchitecture component displays the architecture section of an ML project.
+ * Shows project architecture with title, description, and visual diagram.
+ * 
+ * @param title - Section title
+ * @param description - Section description
+ * @param image - Architecture diagram image URL
+ * @param background - Optional background color class (defaults to bg-bg-white)
+ */
 export default function MLArchitecture({
   title,
   description,
@@ -17,7 +26,7 @@ export default function MLArchitecture({
   background = 'bg-bg-white'
 }: MLArchitectureProps) {
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative`} style={{ minHeight: '760px' }}>
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative`}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="mb-12">

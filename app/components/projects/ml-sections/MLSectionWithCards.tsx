@@ -24,7 +24,7 @@ export default function MLSectionWithCards({
   background = 'bg-bg-white'
 }: MLSectionWithCardsProps) {
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10 flex items-center`} style={{ minHeight: '760px' }}>
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10 flex items-center`}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="mb-12">
@@ -50,7 +50,7 @@ export default function MLSectionWithCards({
                   <div key={index} className="bg-bg-white rounded-2xl p-6  flex flex-col items-center text-center flex-1">
                     <div className={`${card.bg || (index === 0 ? 'bg-[#EFF4FF]' : 'bg-[#FEEFEE]')} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
                       {typeof card.icon === 'string' ? (
-                        <img src={card.icon} alt="" className="w-6 h-6" />
+                        <img src={card.icon} alt="" className="w-6 h-6" loading="lazy" />
                       ) : (
                         card.icon
                       )}
@@ -70,7 +70,7 @@ export default function MLSectionWithCards({
                 <div className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center lg:w-1/3">
                   <div className={`${cards[2].bg || 'bg-[#FEF6EE]'} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
                     {typeof cards[2].icon === 'string' ? (
-                      <img src={cards[2].icon} alt="" className="w-6 h-6" />
+                      <img src={cards[2].icon} alt="" className="w-6 h-6" loading="lazy" />
                     ) : (
                       cards[2].icon
                     )}

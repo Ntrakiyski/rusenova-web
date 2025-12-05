@@ -23,7 +23,7 @@ export default function GradientBackground({
   gradient = true,
 }: GradientBackgroundProps) {
   return (
-    <div className={`relative ${className} overflow-hidden bg-[#F7F4ED]`}>
+    <div className={`relative ${className} overflow-hidden bg-bg-dark`}>
       {gradient && (
         <img
           src={imagePath}

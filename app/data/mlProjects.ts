@@ -8,31 +8,38 @@ export const mlProjects: Project[] = [
     "shortDescription": "Reduced information retrieval time by 85% while achieving 92% answer accuracy through a custom RAG system with advanced evaluation framework",
     "heroImage": "/rag-hero.png",
     "heroVideo": "/rag.mov",
+    "metrics": [
+      {
+        "value": "92%",
+        "label": "Precision",
+        "icon": "/info-square.svg",
+        "iconBg": "bg-[#E0EAFF]"
+      },
+      {
+        "value": "89%",
+        "label": "Recall",
+        "icon": "/info-square.svg",
+        "iconBg": "bg-[#E0EAFF]"
+      },
+      {
+        "value": "85%",
+        "label": "Time Saved",
+        "icon": "/info-square.svg",
+        "iconBg": "bg-[#E0EAFF]"
+      }
+    ],
     "sections": [
          {
         "type": "what-i-build",
         "title": "What I Built",
         "description": "A comprehensive RAG system that transforms how organizations access and utilize their document repositories.",
+        "image": "/rag-results.png",
         "bulletPoints": [
           "A RAG (Retrieval-Augmented Generation) system with two-stage retrieval (vector search + AI re-ranking) for 40% better relevance",
           "A custom evaluation framework to measure how well the system actually performs",
           "Most LLMs struggle when they encounter information they haven't seen during training",
           "Without proper evaluation, you can't guarantee your results are correct",
           "The framework shows exactly where the system fails and by how much"
-        ],
-        "metrics": [
-          {
-            "value": "92%",
-            "label": "Precision"
-          },
-          {
-            "value": "89%",
-            "label": "Recall"
-          },
-          {
-            "value": "85%",
-            "label": "Time Saved"
-          }
         ]
       },
       {
@@ -45,7 +52,7 @@ export const mlProjects: Project[] = [
           "Manual information retrieval creates bottlenecks in decision-making and significantly increases onboarding time for new team members."
         ],
         "layout": "text-left-image-right",
-        "image": "/rag-challenge.png"
+        "image": "/fraud-key-learning.png"
       },
       {
         "type": "approach",
@@ -165,20 +172,26 @@ export const mlProjects: Project[] = [
     "title": "Fraud Detection System",
     "shortDescription": "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%",
     "description": "Advanced machine learning model trained on transaction patterns to identify fraudulent activities in real-time with high precision and low false positive rate.",
-    "metrics": [
-      {
-        "value": "83.8%",
-        "label": "Fraud Caught"
-      },
-      {
-        "value": "0.05%",
-        "label": "False Positives"
-      },
-      {
-        "value": "99.9%",
-        "label": "System Uptime"
-      }
-    ],
+"metrics": [
+    {
+      "value": "2.7M",
+      "label": "Annual Savings",
+      "icon": "/info-square.svg",
+      "iconBg": "bg-[#E0EAFF]"
+    },
+    {
+      "value": "83.8%",
+      "label": "Fraud Caught",
+      "icon": "/info-square.svg",
+      "iconBg": "bg-[#FEE4E2]"
+    },
+    {
+      "value": "75.2%",
+      "label": "Alert Accuracy",
+      "icon": "/info-square.svg",
+      "iconBg": "bg-[#FEE4E2]"
+    }
+  ],
     "gradientColors": [
       "#D7EBDF"
     ],
@@ -189,26 +202,13 @@ export const mlProjects: Project[] = [
         "type": "what-i-build",
         "title": "What I Built",
         "description": "An AI-powered fraud detection system that catches 84% of fraud while keeping false alarms under 0.05%.",
+        "image": "/fraud-key-learning.png",
         "bulletPoints": [
           "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%",
           "Advanced machine learning model trained on transaction patterns to identify fraudulent activities in real-time",
           "Created 21 custom features in 3 tiers - top engineered feature (pca_magnitude) became #1 most important (34.5% model weight)",
           "Compared 3 algorithms and selected XGBoost: 83.8% recall, 0.968 ROC-AUC, handling extreme class imbalance with scale_pos_weight=578",
           "Real-time processing with sub-100ms response time for transaction approvals"
-        ],
-        "metrics": [
-          {
-            "value": "83.8%",
-            "label": "Fraud Caught"
-          },
-          {
-            "value": "75.2%",
-            "label": "Precision"
-          },
-          {
-            "value": "0.048%",
-            "label": "False Alarm Rate"
-          }
         ]
       },
       {
@@ -591,15 +591,21 @@ export const mlProjects: Project[] = [
   "metrics": [
     {
       "value": "12h",
-      "label": "Weekly Time Saved"
+      "label": "Weekly Time Saved",
+      "icon": "/info-square.svg",
+      "iconBg": "bg-[#E0EAFF]"
     },
     {
       "value": "98.5%",
-      "label": "Transcription Accuracy"
+      "label": "Transcription Accuracy",
+      "icon": "/info-square.svg",
+      "iconBg": "bg-[#E0EAFF]"
     },
     {
       "value": "<200ms",
-      "label": "Insight Latency"
+      "label": "Insight Latency",
+      "icon": "/info-square.svg",
+      "iconBg": "bg-[#E0EAFF]"
     }
   ],
   "gradientColors": [
@@ -614,26 +620,13 @@ export const mlProjects: Project[] = [
       "type": "what-i-build",
       "title": "What I Built",
       "description": "A real-time meeting assistant that transforms unstructured voice data into structured business intelligence.",
+      "image": "/tide-home.png",
       "bulletPoints": [
         "Real-time audio ingestion pipeline compatible with Zoom, Teams, and Google Meet via virtual bot integration",
         "Multi-speaker diarization engine to accurately attribute 'who said what' even during cross-talk",
         "Live sentiment analysis and 'blocker detection' to flag project risks immediately",
         "Automated workflow triggers: Verbal commitments become Jira tickets or Notion pages instantly",
         "RAG (Retrieval-Augmented Generation) system that answers questions based on previous meeting context"
-      ],
-      "metrics": [
-        {
-          "value": "95%",
-          "label": "Action Item Recall"
-        },
-        {
-          "value": "30%",
-          "label": "Shorter Meetings"
-        },
-        {
-          "value": "0",
-          "label": "Manual Notes Taken"
-        }
       ]
     },
     {

@@ -13,6 +13,17 @@ interface MLTechStackProps {
   background?: string;
 }
 
+/**
+ * MLTechStack component displays the technology stack section of an ML project.
+ * Supports both flat technology list and categorized technology display.
+ * 
+ * @param title - Section title
+ * @param description - Section description
+ * @param technologies - Optional flat list of technologies
+ * @param categories - Optional list of category names
+ * @param categorizedTechnologies - Optional object mapping categories to technology arrays
+ * @param background - Optional background color class (defaults to bg-bg-white)
+ */
 export default function MLTechStack({
   title,
   description,
@@ -43,16 +54,16 @@ export default function MLTechStack({
               <div className="flex flex-col gap-8">
                 {Object.entries(categorizedTechnologies).map(([category, techList]) => (
                   <div key={category} className="flex flex-col">
-                    <h3 className="font-inter text-text-lg-semibold text-text-primary mb-6">
+                    <h3 className="font-bricolage text-text-lg-semibold text-text-primary mb-6">
                       {category}
                     </h3>
                     <div className="flex flex-wrap gap-3">
                       {techList.map((tech, techIndex) => (
                         <div
                           key={techIndex}
-                          className="px-4 py-2 border border-border rounded-lg shadow-sm bg-bg-white"
+                          className="px-4 py-2 border border-stroke rounded-lg shadow-sm bg-bg-white"
                         >
-                          <span className="font-inter text-text-sm-semibold text-text-primary">
+                          <span className="font-bricolage text-text-sm-semibold text-text-primary">
                             {tech}
                           </span>
                         </div>
@@ -66,16 +77,16 @@ export default function MLTechStack({
                 {/* Technologies Category Row */}
                 {technologies.length > 0 && (
                   <div className="flex flex-col">
-                    <h3 className="font-inter text-text-lg-semibold text-text-primary mb-6">
+                    <h3 className="font-bricolage text-text-lg-semibold text-text-primary mb-6">
                       Technologies
                     </h3>
                     <div className="flex flex-wrap gap-3">
                       {technologies.map((tech, index) => (
                         <div
                           key={index}
-                          className="px-4 py-2 border border-border rounded-lg shadow-sm bg-bg-white"
+                          className="px-4 py-2 border border-stroke rounded-lg shadow-sm bg-bg-white"
                         >
-                          <span className="font-inter text-text-sm-semibold text-text-primary">
+                          <span className="font-bricolage text-text-sm-semibold text-text-primary">
                             {tech}
                           </span>
                         </div>
@@ -87,16 +98,16 @@ export default function MLTechStack({
                 {/* Categories Row */}
                 {categories.length > 0 && (
                   <div className="flex flex-col">
-                    <h3 className="font-inter text-text-lg-semibold text-text-primary mb-6">
-                      Categories
-                    </h3>
+<h3 className="font-bricolage text-text-lg-semibold text-text-primary mb-6">
+                    Categories
+                  </h3>
                     <div className="flex flex-wrap gap-3">
                       {categories.map((category, index) => (
                         <div
                           key={index}
-                          className="px-4 py-2 border border-border rounded-lg shadow-sm bg-bg-white"
+                          className="px-4 py-2 border border-stroke rounded-lg shadow-sm bg-bg-white"
                         >
-                          <span className="font-inter text-text-sm-semibold text-text-primary">
+                          <span className="font-bricolage text-text-sm-semibold text-text-primary">
                             {category}
                           </span>
                         </div>

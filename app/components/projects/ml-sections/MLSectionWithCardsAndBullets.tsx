@@ -43,7 +43,7 @@ export default function MLSectionWithCardsAndBullets({
   background = 'bg-bg-white'
 }: MLSectionWithCardsAndBulletsProps) {
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10`} style={{ minHeight: '760px' }}>
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10`}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="mb-12">
@@ -69,7 +69,7 @@ export default function MLSectionWithCardsAndBullets({
                   <div key={index} className="bg-bg-white rounded-2xl p-6 flex flex-col items-center text-center flex-1">
                     <div className={`${card.bg || (index === 0 ? 'bg-[#EFF4FF]' : 'bg-[#E6F5EE]')} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
                       {card.icon ? (
-                        <img src={card.icon} alt="" className="w-6 h-6" />
+                        <img src={card.icon} alt="" className="w-6 h-6" loading="lazy" />
                       ) : (
                         index === 0 ? <BarChartIcon /> : <CubeIcon />
                       )}
@@ -98,7 +98,7 @@ export default function MLSectionWithCardsAndBullets({
                 <div className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center lg:w-1/3">
                   <div className={`${cards[2].bg || 'bg-[#FFF8E6]'} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
                     {cards[2].icon ? (
-                      <img src={cards[2].icon} alt="" className="w-6 h-6" />
+                      <img src={cards[2].icon} alt="" className="w-6 h-6" loading="lazy" />
                     ) : (
                       <StarIcon />
                     )}

@@ -17,6 +17,18 @@ interface MLResultsAndImpactProps {
   background?: string;
 }
 
+/**
+ * MLResultsAndImpact component displays the results and impact section of an ML project.
+ * Shows quantifiable outcomes and business value with optional image or video.
+ * 
+ * @param title - Section title
+ * @param description - Section description
+ * @param outcomes - Array of quantifiable outcomes
+ * @param businessValue - Array of business value points
+ * @param image - Optional image URL
+ * @param video - Optional video URL
+ * @param background - Optional background color class (defaults to bg-bg-dark)
+ */
 export default function MLResultsAndImpact({
   title,
   description,
@@ -24,20 +36,20 @@ export default function MLResultsAndImpact({
   businessValue,
   image,
   video,
-  background = 'bg-bg-dark'
+  background = 'bg-bg-light'
 }: MLResultsAndImpactProps) {
    return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative rounded-bl-[32px] rounded-br-[32px] overflow-hidden`} style={{ minHeight: '760px' }}>
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative rounded-bl-[32px] rounded-br-[32px] overflow-hidden`}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
-        <div className="mb-8 md:mb-12 text-center">
+        <div className="mb-8 md:mb-12">
           {title && (
-            <h2 className="font-bricolage text-text-white text-display-md font-semibold mb-5">
+            <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5 text-left">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-bricolage text-text-white text-text-xl-regular max-w-[768px] mx-auto leading-[30px]">
+            <p className="font-bricolage text-text-primary text-text-xl-regular max-w-[768px] leading-[30px] text-left">
               {description}
             </p>
           )}

@@ -2,10 +2,10 @@
 
 import React from 'react';
 
+// Updated Interface to match the actual data structure
 interface CostBenefitItem {
   title: string;
-  content: string | string[]; // Can be a string or array of strings for bullets
-  isHighlighted?: boolean;
+  content: string | string[];
 }
 
 interface MLCostBenefitProps {
@@ -15,6 +15,23 @@ interface MLCostBenefitProps {
   background?: string;
 }
 
+// Helper function to render content
+const renderContent = (content: string | string[]) => {
+  if (typeof content === 'string') {
+    return <p className="font-bricolage text-text-primary text-text-lg-regular">{content}</p>;
+  }
+
+  return (
+    <div className="space-y-2">
+      {content.map((line, idx) => (
+        <p key={idx} className="font-bricolage text-text-primary text-text-lg-regular">
+          {line}
+        </p>
+      ))}
+    </div>
+  );
+};
+
 export default function MLCostBenefit({
   title,
   description,
@@ -22,8 +39,8 @@ export default function MLCostBenefit({
   background = 'bg-bg-white'
 }: MLCostBenefitProps) {
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10 flex items-center`} style={{ minHeight: '760px' }}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <section className={`${background} py-16 md:py-24 relative z-10 flex items-center`}>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full w-full">
         <div className="mb-12 w-full">
           {title && (
             <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
@@ -37,36 +54,20 @@ export default function MLCostBenefit({
           )}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 justify-start items-start">
-              {items.map((item, index) => (
-                <div
-                  key={index}
-                  className={`w-full md:w-auto rounded-lg ${item.isHighlighted ? 'bg-bg-light' : 'bg-bg-white'}`}
-                >
-                  <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-4">
-                    {item.title}
-                  </h3>
-                  {Array.isArray(item.content) ? (
-                    <div className="space-y-2">
-                      {item.content.map((bullet, bulletIndex) => (
-                        <div
-                          key={bulletIndex}
-                          className="font-bricolage text-text-primary text-text-md-regular"
-                        >
-                          {bullet}
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p
-                      className="font-bricolage text-text-primary text-text-md-regular"
-                    >
-                      {item.content}
-                    </p>
-                  )}
-                </div>
-              ))}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-start items-stretch">
+          {items.map((item, index) => (
+            <div
+              key={index}
+              className="w-full rounded-xl border border-stroke bg-bg-white p-10 flex flex-col"
+            >
+              <h3 className="font-bricolage text-text-primary text-display-xs font-semibold mb-6">
+                {item.title}
+              </h3>
+
+              {renderContent(item.content)}
             </div>
+          ))}
+        </div>
       </div>
     </section>
   );

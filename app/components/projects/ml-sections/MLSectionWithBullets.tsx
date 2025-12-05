@@ -17,7 +17,7 @@ export default function MLSectionWithBullets({
   background = 'bg-bg-white'
 }: MLSectionWithBulletsProps) {
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10`} style={{ minHeight: '760px' }}>
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10`}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="mb-12">
@@ -35,19 +35,20 @@ export default function MLSectionWithBullets({
 
         {/* Content Row with Bullets */}
         <GradientBackground className="rounded-3xl overflow-hidden relative w-full max-w-[1216px]">
-          <div className="relative z-10 p-8 md:p-16">
-            <div className="w-full bg-bg-white rounded-[12px] p-8">
-              <div className="space-y-4">
+          <div className="relative z-10 px-16 py-16">
+            <div className="w-ful bg-bg-white rounded-[12px] p-3xl">
+              <div className="space-y-20">
                 {items.map((item, index) => (
-                  <div key={index} className="flex gap-3 items-center">
-                    <div className="shrink-0 mt-1">
+                  <div key={index} className="flex gap-20 items-center">
+                    {/* <div className="shrink-0 mt-1">
                       <img 
                         src="/Check icon.svg" 
                         alt="Check" 
                         className="w-6 h-6"
                       />
-                    </div>
-                    <p className="font-bricolage text-text-primary">
+                    </div> */}
+                    <p className="font-bricolage text-display-xs">
+                      
                       {item}
                     </p>
                   </div>

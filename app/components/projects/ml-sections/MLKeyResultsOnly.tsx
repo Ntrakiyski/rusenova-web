@@ -22,7 +22,7 @@ export default function MLKeyResultsOnly({
   background = 'bg-bg-dark'
 }: MLKeyResultsOnlyProps) {
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10 rounded-bl-[32px] rounded-br-[32px] overflow-hidden`} style={{ minHeight: '760px' }}>
+    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10 rounded-bl-[32px] rounded-br-[32px] overflow-hidden`}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="mb-12 w-full">
           {title && (

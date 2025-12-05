@@ -10,6 +10,8 @@ import MLArchitecture from './MLArchitecture';
 import MLSectionWithBullets from './MLSectionWithBullets';
 import MLResultsAndImpact from './MLResultsAndImpact';
 import MLTechStack from './MLTechStack';
+import MLMoreProjects from './MLMoreProjects';
+import { getMLProjects } from '@/app/utils/projectUtils';
 
 interface RagEvaluationSystemProps {
   projectData: Project;
@@ -45,21 +47,16 @@ export default function RagEvaluationSystem({ projectData, homeContentData }: Ra
         subtitle={projectData.shortDescription ?? (homeContentData?.shortDescription ?? "")}
         heroImage={projectData.heroImage ?? "/rag-hero.png"}
         heroVideo={projectData.heroVideo}
+        metrics={(projectData as any).metrics || []}
       />
 
       {/* What I Build Section */}
       {whatIBuildSection && (
         <MLWhatIBuild
           title={whatIBuildSection.title}
-          description={whatIBuildSection.description}
-          metrics={whatIBuildSection.metrics.map(m => ({
-            ...m,
-            icon: m.iconSvg ? (
-              <div dangerouslySetInnerHTML={{ __html: m.iconSvg }} />
-            ) : undefined,
-            iconBg: m.iconBg
-          }))}
           bulletPoints={whatIBuildSection.bulletPoints}
+          showImage={false}
+          image={whatIBuildSection.image}
         />
       )}
 
@@ -139,6 +136,11 @@ export default function RagEvaluationSystem({ projectData, homeContentData }: Ra
           categories={techStackSection.categories || []}
         />
       )}
+
+      {/* More Projects Section */}
+      <MLMoreProjects 
+        currentSlug="rag-evaluation-system"
+      />
     </div>
   );
 }

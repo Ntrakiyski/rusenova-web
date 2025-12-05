@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 import {
   SidebarProvider,
   Sidebar,
@@ -27,8 +30,10 @@ import AboutEditor from './AboutEditor';
 import ContactEditor from './ContactEditor';
 import FooterEditor from './FooterEditor';
 import ImagesEditor from './ImagesEditor';
+import PDProjectsTabs from './PDProjectsTabs';
+import PDProjectEditor from './PDProjectEditor';
 
-import { HomeContent } from '@/types/project';
+import { HomeContent, Project } from '@/types/project';
 
 export default function AdminPanel() {
   const [homeContent, setHomeContent] = useState<HomeContent | null>(null);
@@ -38,15 +43,23 @@ export default function AdminPanel() {
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const [activeView, setActiveView] = useState<'home' | 'ml' | 'pd'>('home');
 
+  // PD Projects state
+  const [pdProjects, setPdProjects] = useState<Project[]>([]);
+  const [selectedProjectSlug, setSelectedProjectSlug] = useState<string>('');
+  const [loadingPD, setLoadingPD] = useState(false);
+
   useEffect(() => {
     loadHomeContent();
-  }, []);
+    if (activeView === 'pd') {
+      loadPDProjects();
+    }
+  }, [activeView]);
 
   const loadHomeContent = async () => {
     try {
       const response = await fetch('/api/admin/home-content');
       if (!response.ok) throw new Error('Failed to load home content');
-      
+
       const data = await response.json();
       setHomeContent(data);
       setOriginalContent(JSON.parse(JSON.stringify(data))); // Deep copy
@@ -55,6 +68,56 @@ export default function AdminPanel() {
       setMessage({ type: 'error', text: 'Failed to load home content' });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadPDProjects = async () => {
+    setLoadingPD(true);
+    try {
+      const response = await fetch('/api/admin/pd-content');
+      if (!response.ok) throw new Error('Failed to load PD projects');
+
+      const data = await response.json();
+      if (data.success) {
+        setPdProjects(data.data);
+        if (data.data.length > 0 && !selectedProjectSlug) {
+          setSelectedProjectSlug(data.data[0].slug);
+        }
+      } else {
+        throw new Error(data.error || 'Failed to load PD projects');
+      }
+    } catch (error) {
+      console.error('Error loading PD projects:', error);
+      setMessage({ type: 'error', text: 'Failed to load PD projects' });
+    } finally {
+      setLoadingPD(false);
+    }
+  };
+
+  const savePDProject = async (project: Project) => {
+    try {
+      const response = await fetch('/api/admin/pd-content', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(project),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to save project');
+      }
+
+      const data = await response.json();
+      if (data.success) {
+        // Update local state
+        setPdProjects(prev => prev.map(p => p.slug === project.slug ? data.data : p));
+      } else {
+        throw new Error(data.error || 'Failed to save project');
+      }
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -361,12 +424,46 @@ export default function AdminPanel() {
           </Card>
         )}
         {activeView==='pd' && (
-          <Card className="bg-white border-gray-200 shadow-sm">
-            <CardHeader>
-              <CardTitle>PD Projects</CardTitle>
-              <CardDescription>none yet found here</CardDescription>
-            </CardHeader>
-          </Card>
+          <div className="space-y-6">
+            {loadingPD ? (
+              <Card className="bg-white border-gray-200 shadow-sm">
+                <CardContent className="flex items-center justify-center py-12">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-600">Loading PD projects...</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : pdProjects.length === 0 ? (
+              <Card className="bg-white border-gray-200 shadow-sm">
+                <CardHeader>
+                  <CardTitle>PD Projects</CardTitle>
+                  <CardDescription>No PD projects found</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button onClick={loadPDProjects} variant="outline">
+                    Refresh
+                  </Button>
+                </CardContent>
+              </Card>
+            ) : (
+              <>
+                <PDProjectsTabs
+                  projects={pdProjects}
+                  selectedProjectSlug={selectedProjectSlug}
+                  onSelectProject={setSelectedProjectSlug}
+                  onRefresh={loadPDProjects}
+                />
+                {selectedProjectSlug && (
+                  <PDProjectEditor
+                    project={pdProjects.find(p => p.slug === selectedProjectSlug)!}
+                    onSave={savePDProject}
+                    onRefresh={loadPDProjects}
+                  />
+                )}
+              </>
+            )}
+          </div>
         )}
       </div>
         </SidebarInset>

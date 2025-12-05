@@ -16,6 +16,8 @@ import MLSegmentAnalysis from './MLSegmentAnalysis';
 import MLKeyLearning from './MLKeyLearning';
 import MLProductionDeployment from './MLProductionDeployment';
 import MLTechStack from './MLTechStack';
+import MLMoreProjects from './MLMoreProjects';
+import { getMLProjects } from '@/app/utils/projectUtils';
 
 interface FraudDetectionSystemProps {
   projectData: Project;
@@ -81,21 +83,23 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
         heroVideo={projectData.heroVideo}
         decorationImage="/rag-results.png"
         background={(projectData as any).heroBackground}
+        metrics={(projectData as any).metrics || []}
       />
 
       {/* ML-What I Build Section */}
       {whatIBuildSection && (
         <MLWhatIBuild
           title={whatIBuildSection.title}
-          description={whatIBuildSection.description}
-          metrics={whatIBuildSection.metrics.map(m => ({
+          metrics={whatIBuildSection.metrics?.map(m => ({
             ...m,
             icon: m.iconSvg ? (
               <div dangerouslySetInnerHTML={{ __html: m.iconSvg }} />
             ) : undefined,
             iconBg: m.iconBg
-          }))}
+          })) || []}
           bulletPoints={whatIBuildSection.bulletPoints}
+          showImage={false}
+          image={whatIBuildSection.image}
         />
       )}
 
@@ -212,6 +216,11 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
           cards={productionDeploymentSection.cards}
         />
       )}
+
+      {/* More Projects Section */}
+      <MLMoreProjects 
+        currentSlug="fraud-detection-system"
+      />
     </div>
   );
 }

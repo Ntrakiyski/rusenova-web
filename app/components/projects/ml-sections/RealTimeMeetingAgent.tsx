@@ -35,6 +35,8 @@ import MLSegmentAnalysis from './MLSegmentAnalysis';
 import MLKeyLearning from './MLKeyLearning';
 import MLProductionDeployment from './MLProductionDeployment';
 import MLTechStack from './MLTechStack';
+import MLMoreProjects from './MLMoreProjects';
+import { getMLProjects } from '@/app/utils/projectUtils';
 
 interface RealTimeMeetingAgentProps {
   projectData: Project;
@@ -110,23 +112,23 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
         heroVideo={projectData.heroVideo}
         decorationImage={keyResultsSection?.image || '/rag-results.png'}
         background={(projectData as any).heroBackground}
+        metrics={(projectData as any).metrics || []}
       />
 
       {whatIBuildSection ? (
         <MLWhatIBuild
           title={whatIBuildSection.title}
-          description={whatIBuildSection.description}
-          metrics={whatIBuildSection.metrics.map(m => ({
-            ...m,
-            iconBg: m.iconBg,
-          }))}
           bulletPoints={whatIBuildSection.bulletPoints}
+          showImage={true}
+          image={whatIBuildSection.image}
         />
       ) : (
         <MLWhatIBuild
           title="What I Built"
           description={projectData.description || ''}
           metrics={projectData.metrics || []}
+          showImage={true}
+          image="/tide-home.png"
         />
       )}
 
@@ -259,6 +261,11 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
           image={resultsSection.image}
         />
       )}
+
+      {/* More Projects Section */}
+      <MLMoreProjects
+        currentSlug="ai-meeting-assistant"
+      />
     </div>
   );
 }

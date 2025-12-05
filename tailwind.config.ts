@@ -19,6 +19,12 @@ const config: Config = {
           'light-dark': '#373737', // light dark
           white: '#FFFFFF',
         },
+        // Additional colors for specific use cases
+        additional: {
+          blue: '#155DFC',       // used in MLTechnicalPerformance
+          blueLight: '#8EB2F21F', // used in MLSectionWithTable
+          grayLight: '#f0f0f0',  // used in MLSectionWithTable borders
+        },
         // Text colors
         text: {
           primary: '#191818',    // main text
@@ -29,6 +35,7 @@ const config: Config = {
         },
         // Stroke/Border colors
         stroke: '#DDDDDD',
+        strokeDark: '#444444',
       },
 
       // ─────────────────────────────────────────────────────

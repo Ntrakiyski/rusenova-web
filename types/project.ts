@@ -1,6 +1,7 @@
 export interface Metric {
   value: string;
   label: string;
+  icon?: string;
   iconSvg?: string;
   iconBg?: string;
 }
@@ -73,6 +74,7 @@ export interface WhatIBuildSection extends Omit<BaseProjectSection, 'type'> {
   type: 'what-i-build';
   metrics: Metric[];
   bulletPoints?: string[];
+  image?: string;
 }
 
 export interface SectionWithCards extends Omit<BaseProjectSection, 'type'> {
