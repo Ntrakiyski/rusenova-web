@@ -4,15 +4,12 @@ export const productDesignProjects: Project[] = [
   {
     "id": "Tide",
     "slug": "tide",
-    "heroTitle": "Senior Product Designer",
-    "heroDescription": "Tide is transforming SME banking & business management with 1.6M+ members across the UK, India, Germany & France.",
-    "heroDescriptionHighlight": "",
-    "titleHighlight": "1.6M+ members",
     "sections": [
       {
         "type": "intro",
         "title": "In a nutshell",
         "description": "",
+        "layout": "text-only",
         "content": [
           {
             "type": "feature",
@@ -24,47 +21,50 @@ export const productDesignProjects: Project[] = [
             "title": "Constant collaboration",
             "description": "This meant constant collaboration with engineering, product, marketing and design teams across the company, balancing user needs with business goals and technical constraints. Each project required understanding how different product areas connected and finding solutions that worked for everyone without disrupting existing workflows and products."
           }
-        ],
-        "layout": "text-only"
+        ]
       },
       {
         "type": "communication-framework",
         "title": "Communication Framework",
-        "description": "Messages were being sent across multiple channels with no consistent structure, creating noise for users and complexity for teams. Different systems handled different message types, and there was no shared approach for prioritizing what users needed to see.\n\nI had to build a company-wide framework for categorizing, prioritizing, and delivering messages based on urgency and whether action was required",
+        "description": "11Messages were being sent across multiple channels with no consistent structure, creating noise for users and complexity for teams. Different systems handled different message types, and there was no shared approach for prioritizing what users needed to see.\n\nI had to build a company-wide framework for categorizing, prioritizing, and delivering messages based on urgency and whether action was required",
+        "layout": "text-left",
+        "image": "/tide-coms.png",
         "achievements": [
           "Leading the and managing the strategy and the design of the framework",
           "Mapped and analyzed every message type across all product areas to identify user impact patterns",
           "Built a decision-tree system that helped teams determine optimal message priority, placement, timing, and design",
           "Delivered a scalable communication framework adopted company-wide, replacing the previous fragmented approach",
           "Our messaging experiments drove a 10-30% increase in user engagement."
-        ],
-        "image": "/tide-coms.png",
-        "layout": "text-left"
+        ]
       },
       {
         "type": "admin",
         "title": "Admin",
         "description": "Users struggled to find, access use specific products like accounting, invoicing and expenses.\n\nWe had to improve the discoverability and findability of the products without requiring major changes to existing product areas -making these features discoverable and accessible.",
+        "layout": "text-right",
+        "image": "/tide-admin.png",
         "achievements": [
           "Designed an intuitive entry point that seamlessly integrated with the existing product architecture",
           "Increased active usage of invoicing by 23% and accounting features through research-driven design decisions"
-        ],
-        "image": "/tide-admin.png",
-        "layout": "text-right"
+        ]
       },
       {
         "type": "home-page-redesign",
         "title": "Home Page Redesign",
         "description": "The home page needed to surface the most important daily information for small business owners while balancing competing priorities from multiple product teams - all without overwhelming users.\n\nWe had to Identify what businesses actually need to daily and design a home page that prioritizes those needs while accommodating stakeholder requirements across the organization.",
+        "layout": "text-left",
+        "image": "/tide-home.png",
         "achievements": [
           "Started with early-state wireframes mapping the most critical information and its temporal relevance — understanding which past and future data periods different user types actually cared about",
           "Conducted iterative research and testing to identify which information genuinely drove daily user decisions and delight",
           "Developed a prioritization framework that balanced user needs with business goals, ensuring the most impactful data surfaced at the right moments"
-        ],
-        "image": "/tide-home.png",
-        "layout": "text-left"
+        ]
       }
-    ]
+    ],
+    "heroTitle": "Senior Product Designer",
+    "heroDescription": "Tide is transforming SME banking & business management with 1.6M+ members across the UK, India, Germany & France.",
+    "titleHighlight": "1.6M+ members",
+    "heroDescriptionHighlight": ""
   },
   {
     "id": "Telenor",

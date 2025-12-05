@@ -46,9 +46,9 @@ const Navbar1 = ({
 
   // Use cream background on home page, dark on other pages
   const isHomePage = pathname === '/';
-  const bgColor = isHomePage ? 'bg-[#f7f4ed]' : 'bg-[#252222]';
-  const textColor = isHomePage ? 'text-[#191818]' : 'text-white';
-  const linkColor = isHomePage ? 'text-[#191818] hover:underline' : 'text-white hover:underline';
+  const bgColor = isHomePage ? 'bg-[#f7f4ed]' : 'bg-[#f7f4ed]';
+  const textColor = isHomePage ? 'text-[#191818]' : 'text-[#191818]';
+  const linkColor = isHomePage ? 'text-[#191818] hover:underline' : 'text-[#191818] hover:underline';
 
   // Determine if we should use dark background for mobile menu
   const mobileMenuBgColor = isHomePage ? 'bg-[#f7f4ed]/95' : 'bg-[#252222]/95';

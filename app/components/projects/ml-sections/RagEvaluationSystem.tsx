@@ -57,6 +57,7 @@ export default function RagEvaluationSystem({ projectData, homeContentData }: Ra
           bulletPoints={whatIBuildSection.bulletPoints}
           showImage={false}
           image={whatIBuildSection.image}
+          boldWords={whatIBuildSection.boldWords}
         />
       )}
 

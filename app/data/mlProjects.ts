@@ -1,5 +1,6 @@
 import { Project } from '@/types/project';
 
+
 export const mlProjects: Project[] = [
   {
     "id": "rag-evaluation-system",
@@ -7,7 +8,7 @@ export const mlProjects: Project[] = [
     "title": "RAG+ Evaluation System",
     "shortDescription": "Reduced information retrieval time by 85% while achieving 92% answer accuracy through a custom RAG system with advanced evaluation framework",
     "heroImage": "/rag-hero.png",
-    "heroVideo": "/rag.mov",
+    "heroVideo": "/rag.gif",
     "metrics": [
       {
         "value": "92%",
@@ -135,7 +136,7 @@ export const mlProjects: Project[] = [
           "Enabled knowledge democratization across teams"
         ],
         "image": "/rag-results.png",
-        "video": "/rag.mov"
+        "video": "/rag-big.gif"
       },
       {
         "type": "tech-stack",
@@ -196,7 +197,7 @@ export const mlProjects: Project[] = [
       "#D7EBDF"
     ],
     "heroImage": "/fraud-hero.png",
-    "heroVideo": "/frauddetection.mov",
+    "heroVideo": "/frauddetection.gif",
     "sections": [
       {
         "type": "what-i-build",
@@ -359,7 +360,7 @@ export const mlProjects: Project[] = [
         "title": "Key Results",
         "description": "Created 21 custom features in 3 tiers. Top engineered feature (pca_magnitude) became #1 most important (34.5% model weight)",
         "image": "/fraud-results.png",
-        "video": "/frauddetection.mov"
+        "video": "/frauddetection-big.gif"
       },
       {
         "type": "technical-performance",
@@ -401,21 +402,16 @@ export const mlProjects: Project[] = [
         "description": "How catching fraud impacts the business revenue and how much we can save?",
         "items": [
           {
-            "title": "Research & Service Design",
-            "content": [
-              "Average fraud: $122 per transaction",
-              "Cost to investigate a false alarm: $5",
-              "Cost if a customer calls to complain: $10",
-              "Dataset covers 2 days → scaled to annual projections"
-            ]
-          },
-          {
             "title": "Without a System",
-            "content": "All 492 frauds succeed = -$3.3M lost per year"
+            "icon": "/info-square.svg",
+            "iconBg": "bg-[#E0EAFF]",
+            "content": ["All 492 frauds succeed = -$3.3M lost per year"]
           },
           {
             "title": "With a System",
-            "content": "Fraud Prevented: 413 frauds → $2.77M saved\nMissed: 79 frauds → $535K loss"
+            "icon": "/info-square.svg",
+            "iconBg": "bg-[#E0EAFF]",
+            "content": ["Fraud Prevented: 413 frauds → $2.77M saved", "Missed: 79 frauds → $535K loss"]
           }
         ]
       },
@@ -423,67 +419,50 @@ export const mlProjects: Project[] = [
         "type": "segment-analysis",
         "title": "Segment Analysis (Honest Assessment)",
         "description": "Balancing recall (catch fraud) vs. precision (minimize false alarms) without business context. Solved by calculating cost-benefit tradeoffs at different thresholds.",
-        "segments": [
+        "items": [
           {
-            "name": "Strengths",
-            "metrics": [
-              {
-                "name": "High-value fraud (>$500)",
-                "value": "94% recall - Excellent"
-              },
-              {
-                "name": "Medium transactions ($100-$500)",
-                "value": "89% recall"
-              },
-              {
-                "name": "Night transactions",
-                "value": "91% recall"
-              },
-              {
-                "name": "Isolation Forest for feature creation",
-                "value": "Outlier scores had 217x fraud concentration"
-              }
+            "title": "Strengths",
+            "icon": "/info-square.svg",
+            "iconBg": "bg-[#E0EAFF]",
+            "content": [
+              "High-value fraud (>$500): 94% recall - Excellent",
+              "Medium transactions ($100-$500): 89% recall",
+              "Night transactions: 91% recall",
+              "Isolation Forest for feature creation: Outlier scores had 217x fraud concentration"
             ]
           },
           {
-            "name": "Weaknesses",
-            "metrics": [
-              {
-                "name": "Micro-transactions (<$10)",
-                "value": "78% recall - Needs improvement"
-              },
-              {
-                "name": "Very small frauds likely card testing patterns",
-                "value": ""
-              }
+            "title": "Weaknesses",
+            "icon": "/info-square.svg",
+            "iconBg": "bg-[#E0EAFF]",
+            "content": [
+              "Micro-transactions (<$10): 78% recall - Needs improvement",
+              "Very small frauds likely card testing patterns"
             ]
           }
         ]
       },
       {
         "type": "key-learning",
-        "title": "Key Learning",
-        "description": "I expected the algorithm to be the hard part. It wasn't. The real challenge was understanding what 'suspicious' means in 284,000 transactions and translating that intuition into mathematical features a computer could use.",
+        "title": "What Worked Well",
+        "image": "/fraud-key-learning.png",
+        "description": "",
         "learnings": [
           {
             "title": "Balancing recall vs precision",
-            "description": "Balancing recall (catch fraud) vs. precision (minimize false alarms) without business context. Solved by calculating cost-benefit tradeoffs at different thresholds."
+            "boldWords": "Balancing recall vs precision"
           },
           {
             "title": "Feature engineering over algorithm choice",
-            "description": "Custom features delivered more value than model selection"
+            "boldWords": "Feature engineering over algorithm choice"
           },
           {
             "title": "Business-driven threshold optimization",
-            "description": "Cost-benefit analysis over arbitrary metrics"
+            "boldWords": "Business-driven threshold optimization"
           },
           {
             "title": "Segment analysis",
-            "description": "Identifying high-value transaction weakness led to actionable improvements"
-          },
-          {
-            "title": "Isolation Forest for feature creation",
-            "description": "Outlier scores had 217x fraud concentration"
+            "boldWords": "Segment analysis"
           }
         ]
       },
@@ -585,49 +564,47 @@ export const mlProjects: Project[] = [
   {
   "id": "ai-meeting-assistant",
   "slug": "ai-meeting-assistant",
-  "title": "Real-Time AI Meeting Assistant",
+  "title": "Real-Time AI Assistant",
   "shortDescription": "An AI copilot that joins Zoom/Teams to transcribe, summarize, and extract action items in real-time.",
   "description": "Advanced NLP system that listens to meeting audio streams, identifies speakers, and generates live insights, progress updates, and Jira/Notion tasks with sub-second latency.",
+  "heroImage": "/meeting-assistant-hero.png",
+  "heroVideo": "/real-time-assistant.gif",
+  "heroTitle": "Real-Time Meeting Agent",
+  "heroDescription": "Real-time AI Meeting agent which reduces meeting follow-up time by 75%",
   "metrics": [
     {
-      "value": "12h",
-      "label": "Weekly Time Saved",
+      "value": "<2 second latency",
+      "label": "for real-time transcription",
       "icon": "/info-square.svg",
       "iconBg": "bg-[#E0EAFF]"
     },
     {
-      "value": "98.5%",
-      "label": "Transcription Accuracy",
+      "value": "90% accuracy",
+      "label": "in agenda progress tracking",
       "icon": "/info-square.svg",
       "iconBg": "bg-[#E0EAFF]"
     },
     {
-      "value": "<200ms",
-      "label": "Insight Latency",
+      "value": "3-5 actionable insights",
+      "label": "generated per 15-minute segment",
       "icon": "/info-square.svg",
       "iconBg": "bg-[#E0EAFF]"
     }
   ],
   "gradientColors": [
-    "#E0E7FF"
+    "#E0E7FF" 
   ],
-  "heroImage": "/meeting-assistant-hero.png",
-  "heroVideo": "/meeting-assistant-demo.mov",
-  "heroTitle": "Real-Time AI Meeting Assistant",
-  "heroDescription": "An AI-powered assistant that listens, summarizes, and organizes your meetings in real-time.",
   "sections": [
     {
       "type": "what-i-build",
       "title": "What I Built",
       "description": "A real-time meeting assistant that transforms unstructured voice data into structured business intelligence.",
-      "image": "/tide-home.png",
+      "image": "/assistant.png",
       "bulletPoints": [
-        "Real-time audio ingestion pipeline compatible with Zoom, Teams, and Google Meet via virtual bot integration",
-        "Multi-speaker diarization engine to accurately attribute 'who said what' even during cross-talk",
-        "Live sentiment analysis and 'blocker detection' to flag project risks immediately",
-        "Automated workflow triggers: Verbal commitments become Jira tickets or Notion pages instantly",
-        "RAG (Retrieval-Augmented Generation) system that answers questions based on previous meeting context"
-      ]
+        "Three-layer architecture – speech recognition, natural language understanding, and intelligent analysis",
+        "Four core capabilities – real-time transcription, automatic insight extraction, agenda progress tracking, and proactive suggestions"
+      ],
+      "boldWords": ["Three-layer architecture ","Four core capabilities"]
     },
     {
       "type": "intro",
@@ -776,7 +753,7 @@ export const mlProjects: Project[] = [
       "title": "Key Results",
       "description": "Achieved 95% accuracy in extracting engineering tasks and assigning them to the correct owner automatically.",
       "image": "/results-dashboard.png",
-      "video": "/meeting-assistant-demo.mov"
+      "video": "/real-time-assistant-big.gif"
     },
     {
       "type": "technical-performance",
@@ -840,35 +817,24 @@ export const mlProjects: Project[] = [
       "type": "segment-analysis",
       "title": "Segment Analysis (Honest Assessment)",
       "description": "Where the model excels and where it is still learning.",
-      "segments": [
+      "items": [
         {
-          "name": "Strengths",
-          "metrics": [
-            {
-              "name": "Engineering Standups",
-              "value": "99% accuracy on technical jargon"
-            },
-            {
-              "name": "Sales Discovery Calls",
-              "value": "Excellent objection detection"
-            },
-            {
-              "name": "Structured Board Meetings",
-              "value": "Perfect minute generation"
-            }
+          "title": "Strengths",
+          "icon": "/info-square.svg",
+          "iconBg": "bg-[#E0EAFF]",
+          "content": [
+            "Engineering Standups: 99% accuracy on technical jargon",
+            "Sales Discovery Calls: Excellent objection detection",
+            "Structured Board Meetings: Perfect minute generation"
           ]
         },
         {
-          "name": "Weaknesses",
-          "metrics": [
-            {
-              "name": "Heavy Accents + Poor Mic",
-              "value": "88% accuracy - Needs audio enhancement"
-            },
-            {
-              "name": "Physical Whiteboard References",
-              "value": "Cannot see video context yet"
-            }
+          "title": "Weaknesses",
+          "icon": "/info-square.svg",
+          "iconBg": "bg-[#E0EAFF]",
+          "content": [
+            "Heavy Accents + Poor Mic: 88% accuracy - Needs audio enhancement",
+            "Physical Whiteboard References: Cannot see video context yet"
           ]
         }
       ]
@@ -880,23 +846,23 @@ export const mlProjects: Project[] = [
       "learnings": [
         {
           "title": "Audio Quality is King",
-          "description": "Implemented pre-processing noise cancellation to improve transcription by 15%."
+          "boldWords": "Implemented pre-processing noise cancellation to improve transcription by 15%."
         },
         {
           "title": "Latency vs. Accuracy",
-          "description": "Moved to a streaming architecture (WebSockets) instead of batch processing to give users a 'live' feel."
+          "boldWords": "Moved to a streaming architecture (WebSockets) instead of batch processing to give users a 'live' feel."
         },
         {
           "title": "Prompt Engineering for JSON",
-          "description": "Forcing LLMs to output strict JSON for integrations required extensive few-shot training."
+          "boldWords": "Forcing LLMs to output strict JSON for integrations required extensive few-shot training."
         },
         {
           "title": "User Trust",
-          "description": "Adding a 'Private Mode' that pauses recording was essential for adoption."
+          "boldWords": "Adding a 'Private Mode' that pauses recording was essential for adoption."
         },
         {
           "title": "RAG for Context",
-          "description": "Injecting previous meeting summaries into the prompt drastically improved suggestion quality."
+          "boldWords": "Injecting previous meeting summaries into the prompt drastically improved suggestion quality."
         }
       ]
     },

@@ -189,7 +189,7 @@ export default function AdminPanel() {
 
   return (
     <SidebarProvider>
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen w-full bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -234,7 +234,7 @@ export default function AdminPanel() {
         </div>
       )}
 
-      <div className="flex min-h-screen">
+      <div className="flex min-h-screen" style={{ '--sidebar-width': '0px' } as React.CSSProperties}>
         <Sidebar collapsible="none" className="border-r bg-white text-gray-900">
           <SidebarContent>
             <SidebarGroup>
@@ -262,7 +262,7 @@ export default function AdminPanel() {
           </SidebarContent>
         </Sidebar>
         <SidebarInset>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-8" style={{ maxWidth: 'none' }}>
         {activeView==='home' && (
           <Tabs defaultValue="hero" className="space-y-6">
             <TabsList className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-2 bg-white">

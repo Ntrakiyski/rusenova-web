@@ -59,7 +59,7 @@ export default function Tide({ projectData }: TideProps) {
             <PDSectionLeft
               key={section.type}
               title={section.title}
-              description={section.description}
+              description={section.description || ''}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
             />
@@ -69,7 +69,7 @@ export default function Tide({ projectData }: TideProps) {
             <PDSectionRight
               key={section.type}
               title={section.title}
-              description={section.description}
+              description={section.description || ''}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
             />

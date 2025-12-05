@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { HomeContent } from '@/types/project';
+import { Mail, Linkedin } from 'lucide-react'; 
 
 interface HeroSectionProps {
   content: HomeContent['hero'];
@@ -49,31 +50,31 @@ export default function HeroSection({ content, colors }: HeroSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row gap-3 md:gap-5 w-full sm:w-auto"
+            className="flex flex-row gap-3 md:gap-5 justify-center"
           >
-            {content.buttons.map((button, index) => (
-              <motion.button
-                key={index}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                className={`box-border flex items-center justify-center px-5 py-3 rounded-lg border shadow-sm transition-colors ${
-                  button.style === 'primary' 
-                    ? `border-[${colors.text.primary}] bg-white hover:bg-[${colors.background}]`
-                    : `border-[${colors.secondary}] bg-[${colors.secondary}] hover:bg-[${colors.text.primary}]`
-                }`}
-                onClick={() => window.open(button.link, '_blank')}
-              >
-                <span
-                  className={`text-text-lg-semibold font-bricolage ${
-                    button.style === 'primary' ? '' : 'text-white'
-                  }`}
-                  style={{ color: button.style === 'primary' ? colors.text.primary : undefined }}
-                >
-                  {button.text}
-                </span>
-              </motion.button>
-            ))}
+            {content.buttons.map((button, index) => {
+                // Determine layout based on index: Left (0) = Mail, Right (1) = Linkedin
+                const isLeft = index === 0;
+                const Icon = isLeft ? Mail : Linkedin;
+                
+                // Set Background classes: Left = text-orange, Right = text-dark
+                const bgClass = isLeft ? 'bg-text-orange border-text-orange' : 'bg-bg-dark border-text-dark';
+
+                return (
+                  <motion.button
+                    key={index}
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    // Applied dynamic bgClass, fixed sizes, and circle shape
+                    className={`box-border flex items-center justify-center w-12 h-12 rounded-full border shadow-md transition-colors hover:opacity-90 ${bgClass}`}
+                    onClick={() => window.open(button.link, '_blank')}
+                  >
+                    {/* Icon is always white */}
+                    <Icon className="w-5 h-5 text-white" />
+                  </motion.button>
+                );
+            })}
           </motion.div>
         </div>
       </div>
@@ -96,4 +97,4 @@ export default function HeroSection({ content, colors }: HeroSectionProps) {
       </motion.div>
     </section> 
   )
-} 
+}

@@ -121,6 +121,7 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
           bulletPoints={whatIBuildSection.bulletPoints}
           showImage={true}
           image={whatIBuildSection.image}
+          boldWords={whatIBuildSection.boldWords}
         />
       ) : (
         <MLWhatIBuild
@@ -149,83 +150,25 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
         />
       )}
 
-      {sectionWithCards && (
-        <MLSectionWithCards
-          title={sectionWithCards.title}
-          description={sectionWithCards.description}
-          cards={sectionWithCards.cards.map(card => ({
-            ...card,
-            icon: card.icon && card.icon.startsWith('/')
-              ? (<img src={card.icon} alt="" className="w-6 h-6" />)
-              : card.icon
-                ? (<div dangerouslySetInnerHTML={{ __html: card.icon }} />)
-                : (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="#155DFC" strokeWidth="2"/>
-                  </svg>
-                ),
-            bg: card.bg,
-          }))}
+{productionDeploymentSection && (
+        <MLProductionDeployment
+          title={productionDeploymentSection.title}
+          description={productionDeploymentSection.description}
+          cards={productionDeploymentSection.cards}
         />
       )}
 
-      {sectionWithCardsAndBullets && (
-        <MLSectionWithCardsAndBullets
-          title={sectionWithCardsAndBullets.title}
-          description={sectionWithCardsAndBullets.description}
-          cards={sectionWithCardsAndBullets.cards}
-        />
-      )}
-
-      {sectionWithTable && (
-        <MLSectionWithTable
-          title={sectionWithTable.title}
-          description={sectionWithTable.description}
-          columns={sectionWithTable.columns}
-          rows={sectionWithTable.rows}
-        />
-      )}
-
-      {keyResultsSection && (
-        <MLKeyResultsOnly
-          title={keyResultsSection.title}
-          description={keyResultsSection.description}
-          image={keyResultsSection.image}
-          video={keyResultsSection.video}
-        />
-      )}
-
-      {technicalPerformanceSection && (
-        <MLTechnicalPerformance
-          title={technicalPerformanceSection.title}
-          description={technicalPerformanceSection.description}
-          metrics={technicalPerformanceSection.metrics}
-        />
-      )}
-
-      {costBenefitSection && (
-        <MLCostBenefit
-          title={costBenefitSection.title}
-          description={costBenefitSection.description}
-          items={costBenefitSection.items}
-        />
-      )}
+      
 
       {segmentAnalysisSection && (
         <MLSegmentAnalysis
           title={segmentAnalysisSection.title}
           description={segmentAnalysisSection.description}
-          segments={segmentAnalysisSection.segments}
+          items={segmentAnalysisSection.items}
         />
       )}
 
-      {keyLearningSection && (
-        <MLKeyLearning
-          title={keyLearningSection.title}
-          description={keyLearningSection.description}
-          learnings={keyLearningSection.learnings}
-        />
-      )}
+  
 
       {techStackSection && (
         <MLTechStack
@@ -236,31 +179,6 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
         />
       )}
 
-      {productionDeploymentSection && (
-        <MLProductionDeployment
-          title={productionDeploymentSection.title}
-          description={productionDeploymentSection.description}
-          cards={productionDeploymentSection.cards}
-        />
-      )}
-
-      {architectureSection && (
-        <MLArchitecture
-          title={architectureSection.title}
-          description={architectureSection.description}
-          image={architectureSection.image || '/rag-results.png'}
-        />
-      )}
-
-      {resultsSection && (
-        <MLResultsAndImpact
-          title={resultsSection.title}
-          description={resultsSection.description}
-          outcomes={resultsSection.outcomes}
-          businessValue={resultsSection.businessValue}
-          image={resultsSection.image}
-        />
-      )}
 
       {/* More Projects Section */}
       <MLMoreProjects

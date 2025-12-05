@@ -65,7 +65,7 @@ export default function Telenor({ projectData }: TelenorProps) {
             <PDSectionLeft
               key={section.type}
               title={section.title}
-              description={section.description}
+              description={section.description || ''}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
               background="bg-bg-light"
@@ -76,7 +76,7 @@ export default function Telenor({ projectData }: TelenorProps) {
             <PDSectionRight
               key={section.type}
               title={section.title}
-              description={section.description}
+              description={section.description || ''}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
               background="bg-bg-light"

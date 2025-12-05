@@ -18,6 +18,7 @@ const config: Config = {
           dark: '#252222',       // dark
           'light-dark': '#373737', // light dark
           white: '#FFFFFF',
+          orange: '#F38300',
         },
         // Additional colors for specific use cases
         additional: {

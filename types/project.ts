@@ -75,6 +75,7 @@ export interface WhatIBuildSection extends Omit<BaseProjectSection, 'type'> {
   metrics: Metric[];
   bulletPoints?: string[];
   image?: string;
+  boldWords?: string[];
 }
 
 export interface SectionWithCards extends Omit<BaseProjectSection, 'type'> {
@@ -124,25 +125,28 @@ export interface CostBenefitSection extends Omit<BaseProjectSection, 'type'> {
   items: Array<{
     title: string;
     content: string | string[];
+    icon?: string;
+    iconBg?: string;
   }>;
 }
 
 export interface SegmentAnalysisSection extends Omit<BaseProjectSection, 'type'> {
   type: 'segment-analysis';
-  segments: Array<{
-    name: string;
-    metrics: Array<{
-      name: string;
-      value: string;
-    }>;
+  items: Array<{
+    title: string;
+    content: string | string[];
+    icon?: string;
+    iconBg?: string;
   }>;
 }
 
-export interface KeyLearningSection extends Omit<BaseProjectSection, 'type'> {
+export interface KeyLearningSection extends Omit<BaseProjectSection, 'type' | 'description'> {
   type: 'key-learning';
+  description?: string;
+  image?: string;
   learnings: Array<{
     title: string;
-    description: string;
+    boldWords?: string;
   }>;
 }
 
@@ -336,4 +340,3 @@ export interface HomeContent {
   };
   
 }
-

@@ -40,7 +40,7 @@ export default function MLSectionWithTable({
         </div>
 
         {/* Table Row */}
-        <GradientBackground gradient={false} className="rounded-3xl overflow-hidden relative w-full">
+        <GradientBackground gradient={true} className="rounded-3xl overflow-hidden relative w-full">
           <div className="relative z-10 p-8 md:p-16">
             <div className="overflow-x-auto">
               <table className="w-full bg-bg-white rounded-[16px] border border-border overflow-hidden">
@@ -57,7 +57,7 @@ export default function MLSectionWithTable({
                   {rows.map((row, rowIndex) => (
                     <tr
                       key={rowIndex}
-                      className={`border-b border-stroke last:border-b-0 ${rowIndex === rows.length - 1 ? 'bg-bg-light' : ''}`}
+                      className={`border-b border-stroke last:border-b-0 ${rowIndex === rows.length - 1 ? 'bg-[#F1F6FD]' : ''}`}
                     >
                       {columns.map((column, colIndex) => (
                         <td key={colIndex} className="py-4 px-4 font-bricolage text-text-secondary">

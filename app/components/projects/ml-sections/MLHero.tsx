@@ -3,8 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import {
-  VideoPlayer,
-  VideoPlayerContent,
+  // VideoPlayer,
+  // VideoPlayerContent,
 } from '@/components/ui/shadcn-io/video-player';
 import type { Metric } from '@/types/project';
 
@@ -33,39 +33,33 @@ export default function MLHero({
 
   return (
     <section 
-      className={`${heroBackground} relative z-10 rounded-bl-[32px] rounded-br-[32px] overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[760px] 2xl:min-h-[760px] pt-24 md:pt-32`}
+      className={`bg-bg-light text-text-primary relative z-10 rounded-bl-[32px] rounded-br-[32px] overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px] xl:min-h-[760px] 2xl:min-h-[760px] pt-24 md:pt-32`}
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 h-full">
         {/* First Row: Text on Left, Video/Image on Right */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center mb-12">
           {/* Hero Text */}
           <div className="flex-1 w-full">
-            <h1 className="font-bricolage text-text-white text-display-2xl font-medium mb-6">
+            <h1 className="font-bricolage text-display-2xl font-medium mb-6">
               {title}
             </h1>
-            <p className="font-bricolage text-text-white text-text-xl-regular max-w-[480px]">
+            <p className="font-bricolage text-text-xl-regular max-w-[480px]">
               {subtitle}
             </p>
           </div>
 
-          {/* Hero Image or Video */}
+          {/* Hero Image or GIF */}
           <div className="flex-1 w-full relative">
             <div className="relative w-full">
               {heroVideo ? (
-                <div className="w-full rounded-[12px] overflow-hidden shadow-xl relative">
-                  <VideoPlayer suppressHydrationWarning>
-                    <VideoPlayerContent 
-                      slot="media" 
-                      src={heroVideo} 
-                      className="w-full aspect-video" 
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      suppressHydrationWarning 
-                    />
-                  </VideoPlayer>
-                </div>
+                // Video player commented out - using GIF instead
+                <Image
+                  src={heroVideo}
+                  alt={`${title} Animation`}
+                  className="w-full rounded-[12px] aspect-video"
+                  width={592}
+                  height={400}
+                />
               ) : (
                 <Image
                   src={heroImage}
@@ -87,11 +81,11 @@ export default function MLHero({
                 {metrics.map((metric, index) => (
                   <div
                     key={index} 
-                    className="border border-strokeDark rounded-[16px] p-6 w-full"
+                    className="border border-stroke rounded-[16px] p-6 w-full"
                   >
                     <div className="flex flex-col items-center text-center gap-4">
                       {metric.icon ? (
-                        <div className={`${metric.iconBg} rounded-full w-12 h-12 flex items-center justify-center shrink-0`}>
+                        <div className={`${metric.iconBg} rounded-[12px] w-12 h-12 flex items-center justify-center shrink-0`}>
                           <img 
                             src={metric.icon} 
                             alt={metric.label} 
@@ -101,7 +95,7 @@ export default function MLHero({
                           />
                         </div>
                       ) : (
-                        <div className={`${metric.iconBg || 'bg-[#E0EAFF]'} rounded-full w-12 h-12 flex items-center justify-center shrink-0`}>
+                        <div className={`${metric.iconBg || 'bg-[#E0EAFF]'} rounded-[12px] w-12 h-12 flex items-center justify-center shrink-0`}>
                           <img 
                             src="/info-square.svg" 
                             alt={metric.label} 
@@ -112,10 +106,10 @@ export default function MLHero({
                         </div>
                       )}
                       <div className="space-y-2">
-                        <p className="font-bricolage text-text-white text-text-xl-semibold">
+                        <p className="font-bricolage text-text-xl-semibold">
                           {metric.value}
                         </p>
-                        <p className="font-bricolage text-text-light-gray text-text-md-regular">
+                        <p className="font-bricolage text-text-md-regular">
                           {metric.label}
                         </p>
                       </div>

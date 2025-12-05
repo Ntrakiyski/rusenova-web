@@ -43,7 +43,7 @@ export default function MLSectionWithCardsAndBullets({
   background = 'bg-bg-white'
 }: MLSectionWithCardsAndBulletsProps) {
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10`}>
+    <section className={`py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10`}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="mb-12">
@@ -59,70 +59,35 @@ export default function MLSectionWithCardsAndBullets({
           )}
         </div>
 
-        {/* Cards Row - Two Rows on Desktop */}
-        <GradientBackground className="rounded-3xl overflow-hidden relative w-full" gradient={false}>
-          <div className="relative z-10 p-8 md:p-16">
-            <div className="flex flex-col lg:flex-row gap-6">
-              {/* First Row - Statistical and Domain Specific Cards */}
-              <div className="flex flex-col md:flex-row gap-6 flex-1">
-                {cards.slice(0, 2).map((card, index) => (
-                  <div key={index} className="bg-bg-white rounded-2xl p-6 flex flex-col items-center text-center flex-1">
-                    <div className={`${card.bg || (index === 0 ? 'bg-[#EFF4FF]' : 'bg-[#E6F5EE]')} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
-                      {card.icon ? (
-                        <img src={card.icon} alt="" className="w-6 h-6" loading="lazy" />
-                      ) : (
-                        index === 0 ? <BarChartIcon /> : <CubeIcon />
-                      )}
-                    </div>
-                    <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-6">
-                      {card.title}
-                    </h3>
-                    <div className="space-y-4 w-full">
-                      {card.items.map((item, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-text-secondary text-text-md-regular">
-                          <img 
-                            src="/Check icon.svg" 
-                            alt="Check" 
-                            className="w-6 h-6 flex-shrink-0"
-                          />
-                          <span className="text-left">{item}</span>
-                        </div>
-                      ))}
-                    </div>
+        {/* Cards Row - All Three Cards in One Row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {cards.map((card, index) => (
+            <div key={index} className="flex flex-col items-center text-center border border-stroke rounded-2xl p-6">
+              <div className={`${card.bg || (index === 0 ? 'bg-[#EFF4FF]' : index === 1 ? 'bg-[#E6F5EE]' : 'bg-[#FFF8E6]')} rounded-lg w-16 h-16 flex items-center justify-center mb-6`}>
+                {card.icon ? (
+                  <img src={card.icon} alt="" className="w-6 h-6" loading="lazy" />
+                ) : (
+                  index === 0 ? <BarChartIcon /> : index === 1 ? <CubeIcon /> : <StarIcon />
+                )}
+              </div>
+              <h3 className="font-bricolage text-text-primary text-display-xs font-semibold mb-6">
+                {card.title}
+              </h3>
+              <div className="space-y-4 w-full flex-1">
+                {card.items.map((item, idx) => (
+                  <div key={idx} className="flex items-center justify-start gap-2 text-text-secondary text-text-md-regular">
+                    {/* <img 
+                      src="/Check icon.svg" 
+                      alt="Check" 
+                      className="w-6 h-6 flex-shrink-0"
+                    /> */}
+                    <span>{item}</span>
                   </div>
                 ))}
               </div>
-
-              {/* Second Row - Advanced Card */}
-              {cards[2] && (
-                <div className="bg-bg-white rounded-2xl p-6 border border-border flex flex-col items-center text-center lg:w-1/3">
-                  <div className={`${cards[2].bg || 'bg-[#FFF8E6]'} rounded-lg w-16 h-16 flex items-center justify-center mb-4`}>
-                    {cards[2].icon ? (
-                      <img src={cards[2].icon} alt="" className="w-6 h-6" loading="lazy" />
-                    ) : (
-                      <StarIcon />
-                    )}
-                  </div>
-                  <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-6">
-                    {cards[2].title}
-                  </h3>
-                  <div className="space-y-4 w-full">
-                    {cards[2].items.map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-text-secondary text-text-md-regular">
-                          <img 
-                            src="/Check icon.svg" 
-                            alt="Check" 
-                            className="w-6 h-6 flex-shrink-0"
-                          />
-                        <span className="text-left">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
-          </div>
-        </GradientBackground>
+          ))}
+        </div>
       </div>
     </section>
   );

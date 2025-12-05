@@ -53,9 +53,9 @@ export default function MLChallenge({
             <div className="space-y-4 pl-0">
               {challenges.map((challenge, index) => (
                 <div key={index} className="flex gap-2 sm:gap-3 items-start">
-                  <div className="pt-2 shrink-0">
+                  {/* <div className="pt-2 shrink-0">
                     <div className="w-3 h-3 rounded-full bg-text-orange" />
-                  </div>
+                  </div> */}
                   <p className="font-bricolage text-text-primary text-text-md-regular">
                     {renderChallengeContent(challenge)}
                   </p>
