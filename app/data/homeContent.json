@@ -73,7 +73,7 @@
     "projects": [
       {
         "title": "RAG+ Evaluation System",
-        "shortDescription": "Reduced information retrieval time by 85% while achieving 92% answer accuracy through a custom RAG system with advanced evaluation framework",
+        "shortDescription": "Reduced information retrieval time by 85% while achieving 92% answer accuracy",
         "metrics": [
           {
             "value": "92%",
@@ -105,7 +105,7 @@
       },
       {
         "title": "Real time AI Assistant",
-        "shortDescription": "Real-time meeting assistant that helps you live in meetings with progress update, suggestions and insights.",
+        "shortDescription": "Real-time AI Meeting agent which reduces meeting follow-up time by 75%",
         "metrics": [
           {
             "value": "83.8%",

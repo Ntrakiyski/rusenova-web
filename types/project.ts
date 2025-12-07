@@ -37,6 +37,14 @@ export interface ApproachSection extends BaseProjectSection {
   cards: ProjectCard[];
 }
 
+export interface SystemApproachSection extends BaseProjectSection {
+  type: 'system-approach';
+description: string;
+cards: Array<{
+  title: string
+}>;
+}
+
 export interface ArchitectureSection extends BaseProjectSection {
   type: 'architecture';
 }
@@ -155,6 +163,7 @@ export interface ProductionDeploymentSection extends Omit<BaseProjectSection, 't
   cards: Array<{
     title: string;
     icon?: string; // SVG content as string (not used in current implementation - using static file.svg)
+    iconBg?: string;
     bullets: string[];
   }>;
 }
@@ -170,6 +179,7 @@ export interface GenericSection extends BaseProjectSection {
 export type ProjectSection =
   | IntroSection
   | ApproachSection
+  | SystemApproachSection
   | ArchitectureSection
   | SmartRetrievalSection
   | EvaluationSection

@@ -69,7 +69,7 @@ export default function AboutSection({ content, colors }: AboutSectionProps) {
                     {stat.value}
                   </span>
                   <span
-                    className={`text-text-lg-regular font-bricolage`}
+                    className={`text-text-lg-regular font-bricolage text-center`}
                     style={{ color: colors.text.secondary }}
                   >
                     {stat.label}

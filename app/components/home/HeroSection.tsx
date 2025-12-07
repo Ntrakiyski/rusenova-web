@@ -13,7 +13,7 @@ interface HeroSectionProps {
 export default function HeroSection({ content, colors }: HeroSectionProps) {
 
   return (
-    <section className={`relative pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden min-h-[768px] max-h-[90vh] flex flex-col justify-center`} style={{ borderRadius: '0 0 60px 60px' }}>
+    <section className={`relative pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden min-h-[70vh] md:min-h-[768px] max-h-[90vh] flex flex-col justify-center`} style={{ borderRadius: '0 0 60px 60px' }}>
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 relative z-10">
         <div className="flex flex-col items-center gap-8 md:gap-12">
           <motion.p

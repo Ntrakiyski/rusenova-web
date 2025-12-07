@@ -76,13 +76,13 @@ export default function MLWhatIBuild({
           {/* Image - Right Side - Conditionally Rendered */}
           {showImage && (
             <div className="w-full lg:w-1/2 flex flex-col items-center justify-center">
-              <div className="w-full max-w-[400px] h-auto flex justify-center items-center">
-                <img 
+              <div className="w-full max-w-[300px] h-auto flex justify-center items-center">
+                <Image
                   src={image}
                   alt="Project Image"
                   className="w-full rounded-[16px] mx-auto"
-                  style={{ maxWidth: '400px' }}
-                  loading="lazy"
+                  width={300}
+                  height={300}
                 />
               </div>
             </div>

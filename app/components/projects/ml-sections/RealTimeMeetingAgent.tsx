@@ -5,6 +5,7 @@ import {
   Project,
   IntroSection,
   ApproachSection,
+  SystemApproachSection,
   ArchitectureSection,
   ResultsSection,
   WhatIBuildSection,
@@ -23,6 +24,7 @@ import MLHero from './MLHero';
 import MLWhatIBuild from './MLWhatIBuild';
 import MLChallenge from './MLChallenge';
 import MLApproach from './MLApproach';
+import MLSystemApproach from './MLSystemApproach';
 import MLArchitecture from './MLArchitecture';
 import MLResultsAndImpact from './MLResultsAndImpact';
 import MLSectionWithCards from './MLSectionWithCards';
@@ -51,9 +53,9 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
     section.type === 'intro'
   ) as IntroSection | undefined;
 
-  const approachSection = projectData.sections.find((section): section is ApproachSection =>
-    section.type === 'approach'
-  ) as ApproachSection | undefined;
+  const approachSection = projectData.sections.find((section): section is ApproachSection | SystemApproachSection =>
+    section.type === 'approach' || section.type === 'system-approach'
+  ) as ApproachSection | SystemApproachSection | undefined;
 
   const architectureSection = projectData.sections.find((section): section is ArchitectureSection =>
     section.type === 'architecture'
@@ -142,8 +144,16 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
         />
       )}
 
-      {approachSection && (
+      {approachSection?.type === 'approach' && (
         <MLApproach
+          title={approachSection.title}
+          description={approachSection.description}
+          cards={approachSection.cards}
+        />
+      )}
+
+      {approachSection?.type === 'system-approach' && (
+        <MLSystemApproach
           title={approachSection.title}
           description={approachSection.description}
           cards={approachSection.cards}
@@ -160,11 +170,11 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
 
       
 
-      {segmentAnalysisSection && (
-        <MLSegmentAnalysis
-          title={segmentAnalysisSection.title}
-          description={segmentAnalysisSection.description}
-          items={segmentAnalysisSection.items}
+      {sectionWithCards && (
+        <MLSectionWithCards
+          title={sectionWithCards.title}
+          description={sectionWithCards.description}
+          cards={sectionWithCards.cards}
         />
       )}
 

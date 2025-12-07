@@ -1,12 +1,13 @@
 'use client';
 
 import React from 'react';
+// Assuming the import path is correct based on your snippet
 import GradientBackground from '@/app/components/ui/GradientBackground';
 
 interface CardWithIcon {
   title: string;
   description: string;
-  icon: React.ReactNode | string;
+  icon?: React.ReactNode | string;
   bg?: string;
 }
 
@@ -24,10 +25,10 @@ export default function MLSectionWithCards({
   background = 'bg-bg-white'
 }: MLSectionWithCardsProps) {
   return (
-    <section className={`py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <section className={`py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10 flex items-center w-full`}>
+      <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
-        <div className="mb-12">
+        <div className="mb-12 text-left w-full">
           {title && (
             <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
               {title}
@@ -40,16 +41,23 @@ export default function MLSectionWithCards({
           )}
         </div>
 
-        {/* Cards Row - All Three Cards in One Row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* 
+           Cards Row 
+           1. auto-fit: Creates as many columns as will fit.
+           2. minmax(220px, 1fr): Cards are at least 220px. If space allows, they stretch (1fr).
+        */}
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4 w-full">
           {cards.map((card, index) => (
-            <div key={index} className="flex flex-col items-center text-center border border-stroke rounded-2xl p-6">
+            <div 
+              key={index} 
+              className="flex flex-col items-center text-center border border-stroke rounded-2xl p-6 h-full"
+            >
               <div className={`${card.bg || (index === 0 ? 'bg-[#EFF4FF]' : index === 1 ? 'bg-[#FEEFEE]' : 'bg-[#FEF6EE]')} rounded-lg w-16 h-16 flex items-center justify-center mb-6`}>
-                {typeof card.icon === 'string' ? (
+                {card.icon && typeof card.icon === 'string' ? (
                   <img src={card.icon} alt="" className="w-6 h-6" loading="lazy" />
-                ) : (
+                ) : card.icon ? (
                   card.icon
-                )}
+                ) : null}
               </div>
               <h3 className="font-bricolage text-text-primary text-display-xs font-semibold mb-6">
                 {card.title}

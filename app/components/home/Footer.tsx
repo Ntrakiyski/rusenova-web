@@ -3,28 +3,14 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
 import Link from 'next/link';
 import NextLink from 'next/link';
+import productDesignProjects from '@/app/data/productDesignProjects';
 
 export default function Footer() {
-  const footerLinks = {
-    services: [
-      { label: 'Machine Learning', href: '#' },
-      { label: 'Product Design', href: '#' },
-      { label: 'AI Integration', href: '#' },
-      { label: 'Consulting', href: '#' }
-    ],
-    company: [
-      { label: 'About', href: '/#about' },
-      { label: 'Projects', href: '/#projects' },
-      { label: 'Experience', href: '/#experience' },
-      { label: 'Contact', href: '/#contact' }
-    ]
-  };
-
   return (
     <footer className="bg-[#191818] text-white">
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
-          <div className="flex flex-col gap-4 lg:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          <div className="flex flex-col gap-4">
             <h3
               className="font-bricolage font-extrabold text-white text-display-xs"
             >
@@ -69,26 +55,6 @@ export default function Footer() {
             <h4
               className="font-bricolage font-semibold text-white text-text-lg-regular"
             >
-              Services
-            </h4>
-            <ul className="flex flex-col gap-3">
-              {footerLinks.services.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={link.href}
-                    className="font-bricolage font-normal text-text-light-gray hover:text-white text-sm transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            <h4
-              className="font-bricolage font-semibold text-white text-text-lg-regular"
-            >
               Projects
             </h4>
             <ul className="flex flex-col gap-3">
@@ -123,16 +89,16 @@ export default function Footer() {
             <h4
               className="font-bricolage font-semibold text-white text-text-lg-regular"
             >
-              Company
+              Experience
             </h4>
             <ul className="flex flex-col gap-3">
-              {footerLinks.company.map((link, index) => (
+              {productDesignProjects.map((project, index) => (
                 <li key={index}>
                   <NextLink
-                    href={link.href}
+                    href={`/product-design/${project.slug}`}
                     className="font-bricolage font-normal text-text-light-gray hover:text-white text-sm transition-colors"
                   >
-                    {link.label}
+                    {project.heroTitle} at {project.id}
                   </NextLink>
                 </li>
               ))}
@@ -146,20 +112,6 @@ export default function Footer() {
           >
             © 2025 Gloria. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <a
-              href="#"
-              className="font-bricolage font-normal text-text-light-gray hover:text-white text-sm transition-colors"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="font-bricolage font-normal text-text-light-gray hover:text-white text-sm transition-colors"
-            >
-              Terms of Service
-            </a>
-          </div>
         </div>
       </div>
     </footer>

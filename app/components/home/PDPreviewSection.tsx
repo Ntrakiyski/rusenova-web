@@ -74,7 +74,7 @@ export default function PDPreviewSection({ pdData, colors, content }: PDPreviewS
                     <div
                       className="relative h-[403px] overflow-hidden rounded-[24px] bg-[#1F1F1F]"
                     >
-                      <div className="absolute left-[-193px] top-[83px] w-[2130px] h-[2130px] z-0 pointer-events-none">
+                      <div className="absolute left-[-150%] sm:left-[-50%] md:left-[-193px] top-[83px] w-[2130px] h-[2130px] z-0 pointer-events-none">
                         <div className="relative w-full h-full">
                           <Image src={exp.previewImage ?? '/gradient-pink.png'} alt="" aria-hidden width={2130} height={2130} className="object-contain" draggable={false} />
                         </div>

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { Mail, Linkedin } from 'lucide-react';
 
 
 interface ContactSectionProps {
@@ -30,7 +31,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
   const contactContent = content || fallbackContent;
   return (
     <section id="contact" className="relative py-20">
-      <div className="max-w-[1280px] mx-auto px-8">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -45,8 +46,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="flex flex-col justify-center p-16"
-            >
+              className="flex flex-col justify-center p-8 sm:p-16">
               <div className="flex flex-col gap-5">
                 <h2
                   className="font-bricolage font-semibold text-white text-display-md leading-[44px] tracking-[-0.72px]"
@@ -66,13 +66,8 @@ export default function ContactSection({ content }: ContactSectionProps) {
                     whileTap={{ scale: 0.98 }}
                     transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     href={contactContent.email}
-                    className="px-[18px] py-[12px] rounded-lg border border-white hover:bg-white/5 transition-colors shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]"
-                  >
-                    <span
-                      className="font-bricolage font-semibold text-white text-text-lg-regular leading-[24px]"
-                    >
-                      Email
-                    </span>
+                      className="box-border flex items-center justify-center w-12 h-12 rounded-full border shadow-md transition-colors hover:opacity-90 bg-text-orange border-text-orange">
+                    <Mail className="w-5 h-5 text-white" /> {/* White icon */}
                   </motion.a>
 
                   <motion.a
@@ -82,13 +77,8 @@ export default function ContactSection({ content }: ContactSectionProps) {
                     href={contactContent.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-[18px] py-[12px] rounded-lg bg-white hover:bg-white/90 transition-colors border border-[#7f56d9] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]"
-                  >
-                    <span
-                      className="font-bricolage font-semibold text-[#212121] text-text-lg-regular leading-[24px]"
-                    >
-                      LinkedIn
-                    </span>
+                    className="box-border flex items-center justify-center w-12 h-12 rounded-full border shadow-md transition-colors hover:opacity-90 bg-white border-white">
+                    <Linkedin className="w-5 h-5 text-text-primary" /> {/* White icon */}
                   </motion.a>
                 </div>
               </div>
@@ -99,13 +89,12 @@ export default function ContactSection({ content }: ContactSectionProps) {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-col justify-center p-16"
-            >
+              className="flex flex-col justify-center p-8 sm:p-16">
               <div className="flex flex-col gap-5">
                 <p
                   className="font-bricolage font-normal text-white text-text-xl-regular leading-[30px]"
                 >
-                  I&apos;m currently seeking opportunities in:
+                  I'm currently seeking opportunities in:
                 </p>
 
                 <div className="flex flex-col gap-3">

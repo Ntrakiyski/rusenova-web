@@ -13,20 +13,20 @@ export const mlProjects: Project[] = [
       {
         "value": "92%",
         "label": "Precision",
-        "icon": "/info-square.svg",
-        "iconBg": "bg-[#E0EAFF]"
+        "icon": "/aim.svg",
+        "iconBg": "bg-[#DCFAE6]"
       },
       {
         "value": "89%",
         "label": "Recall",
-        "icon": "/info-square.svg",
-        "iconBg": "bg-[#E0EAFF]"
+        "icon": "/marker-pin.svg",
+        "iconBg": "bg-[#F4EBFF]"
       },
       {
         "value": "85%",
         "label": "Time Saved",
-        "icon": "/info-square.svg",
-        "iconBg": "bg-[#E0EAFF]"
+        "icon": "/clock-check.svg",
+        "iconBg": "bg-[#FEF0C7]"
       }
     ],
     "sections": [
@@ -177,19 +177,19 @@ export const mlProjects: Project[] = [
     {
       "value": "2.7M",
       "label": "Annual Savings",
-      "icon": "/info-square.svg",
-      "iconBg": "bg-[#E0EAFF]"
+      "icon": "/piggy-bank.svg",
+      "iconBg": "bg-[#DCFAE6]"
     },
     {
       "value": "83.8%",
       "label": "Fraud Caught",
-      "icon": "/info-square.svg",
+      "icon": "/trend-up.svg",
       "iconBg": "bg-[#FEE4E2]"
     },
     {
       "value": "75.2%",
       "label": "Alert Accuracy",
-      "icon": "/info-square.svg",
+      "icon": "/alert-triangle.svg",
       "iconBg": "bg-[#FEE4E2]"
     }
   ],
@@ -257,7 +257,7 @@ export const mlProjects: Project[] = [
       {
         "type": "section-with-cards",
         "title": "Understand the Data",
-        "description": "What I did",
+        "description": "",
         "cards": [
           {
             "title": "Transaction analyses",
@@ -565,8 +565,8 @@ export const mlProjects: Project[] = [
   "id": "ai-meeting-assistant",
   "slug": "ai-meeting-assistant",
   "title": "Real-Time AI Assistant",
-  "shortDescription": "An AI copilot that joins Zoom/Teams to transcribe, summarize, and extract action items in real-time.",
-  "description": "Advanced NLP system that listens to meeting audio streams, identifies speakers, and generates live insights, progress updates, and Jira/Notion tasks with sub-second latency.",
+  "shortDescription": "Real-time AI Meeting agent which reduces meeting follow-up time by 75%",
+  "description": "Real-time AI Meeting agent which reduces meeting follow-up time by 75%",
   "heroImage": "/meeting-assistant-hero.png",
   "heroVideo": "/real-time-assistant.gif",
   "heroTitle": "Real-Time Meeting Agent",
@@ -581,14 +581,14 @@ export const mlProjects: Project[] = [
     {
       "value": "90% accuracy",
       "label": "in agenda progress tracking",
-      "icon": "/info-square.svg",
-      "iconBg": "bg-[#E0EAFF]"
+      "icon": "/trend-up.svg",
+      "iconBg": "bg-[#FEE4E2]"
     },
     {
       "value": "3-5 actionable insights",
       "label": "generated per 15-minute segment",
-      "icon": "/info-square.svg",
-      "iconBg": "bg-[#E0EAFF]"
+      "icon": "/alert-triangle.svg",
+      "iconBg": "bg-[#FEE4E2]"
     }
   ],
   "gradientColors": [
@@ -608,36 +608,33 @@ export const mlProjects: Project[] = [
     },
     {
       "type": "intro",
-      "title": "The Challenge",
-      "description": "Knowledge workers spend 40% of their time in meetings, yet 60% of the context is lost the moment the call ends.",
+      "title": "The Meeting Intelligence Gap",
+      "description": "The problem isn't only the meetings themselves, but the cognitive overhead required to capture, synthesize, and act on what was discussed.",
+      "image": "/meeting-assistant.png",
       "content": [
-        "Manual note-taking distracts participants from active listening and engagement",
-        "Action items fall through the cracks, leading to project delays",
-        "Context switching between video calls and project management tools kills productivity",
-        "Lack of searchable history makes 'institutional memory' unreliable"
+        "Information Loss - Critical decisions and action items get lost in conversation flow",
+        "Cognitive Overload - Participants can't fully engage while trying to take notes",
+        "Delayed Insights - By the time meeting notes are reviewed, context is lost",
+        "No Real-Time Guidance - Meetings drift off-topic without immediate feedback"
       ],
       "layout": "text-left-image-right"
     },
     {
-      "type": "approach",
-      "title": "Our Approach",
-      "description": "Leveraging Large Language Models (LLMs) and stream processing to create a 'second brain' for your conversations.",
+      "type": "system-approach",
+      "title": "Selecting The Right Approach",
+      "description": "The system processes audio in real-time, transforming raw speech into structured intelligence that helps teams stay focused and capture value",
       "cards": [
         {
-          "title": "Stream Processing",
-          "description": "WebRTC-based audio capture for low-latency raw stream handling"
+          "title": "Audio Input"
         },
         {
-          "title": "Contextual Intelligence",
-          "description": "Dynamic context window management to remember details from 30 minutes ago"
+          "title": "Whisper API"
         },
         {
-          "title": "Speaker Fingerprinting",
-          "description": "Vector-based voice signatures to identify team members instantly"
+          "title": "LLM Analyses"
         },
         {
-          "title": "Privacy First",
-          "description": "PII redaction on the fly before data hits the persistence layer"
+          "title": "Real-time UI"
         }
       ]
     },
@@ -649,26 +646,32 @@ export const mlProjects: Project[] = [
     },
     {
       "type": "section-with-cards",
-      "title": "Understand the Data",
-      "description": "How we process voice",
+      "title": "Performance Benchmarks",
+      "description": "",
       "cards": [
         {
-          "title": "Audio Segmentation",
-          "description": "Processed 500+ hours of noisy meeting audio for training",
-          "icon": "/wave-sound.svg",
-          "bg": "bg-[#E0EAFF]"
+          "title": "<2s Latency",
+          "description": "Audio to transcript",
+          "icon": "/info-square.png",
+          "bg": "bg-[#DBEAFE]"
         },
         {
-          "title": "Intent Detection",
-          "description": "Identified 4 distinct intent types: Task, Decision, Question, Risk",
-          "icon": "/brain-circuit.svg",
-          "bg": "bg-[#E0EAFF]"
+          "title": " 95%+ Parse Rate",
+          "description": "LLM response parsing",
+          "icon": "/trend-up.svg",
+          "bg": "bg-[#FEE4E2]"
         },
         {
-          "title": "Silence Analysis",
-          "description": "Correlated long silences with disengagement or technical issues",
-          "icon": "/clock.svg",
-          "bg": "bg-[#E0EAFF]"
+          "title": "99.2% Uptime",
+          "description": "API reliability",
+          "icon": "/alert-triangle.svg",
+          "bg": "bg-[#FEE4E2]"
+        },
+        {
+          "title": "87% Dedup Rate",
+          "description": "Duplicate reduction",
+          "icon": "/alert-triangle.svg",
+          "bg": "bg-[#FEE4E2]"
         }
       ]
     },
@@ -814,28 +817,39 @@ export const mlProjects: Project[] = [
       ]
     },
     {
-      "type": "segment-analysis",
-      "title": "Segment Analysis (Honest Assessment)",
-      "description": "Where the model excels and where it is still learning.",
-      "items": [
+      "type": "section-with-cards",
+      "title": "Performance Metrics",
+      "description": "Key performance indicators for the real-time meeting agent.",
+      "cards": [
         {
-          "title": "Strengths",
-          "icon": "/info-square.svg",
-          "iconBg": "bg-[#E0EAFF]",
-          "content": [
-            "Engineering Standups: 99% accuracy on technical jargon",
-            "Sales Discovery Calls: Excellent objection detection",
-            "Structured Board Meetings: Perfect minute generation"
-          ]
+          "title": "<2s Latency",
+          "description": "Audio to transcript conversion happens in under 2 seconds with 95%+ parse rate",
+          "icon": "/clock.svg",
+          "bg": "bg-[#E0EAFF]"
         },
         {
-          "title": "Weaknesses",
-          "icon": "/info-square.svg",
-          "iconBg": "bg-[#E0EAFF]",
-          "content": [
-            "Heavy Accents + Poor Mic: 88% accuracy - Needs audio enhancement",
-            "Physical Whiteboard References: Cannot see video context yet"
-          ]
+          "title": "99.2% Uptime",
+          "description": "Reliable API performance ensuring consistent meeting transcription service",
+          "icon": "/shield-check.svg",
+          "bg": "bg-[#FEE4E2]"
+        },
+        {
+          "title": "87% Dedup Rate",
+          "description": "Duplicate reduction through intelligent parsing and LLM response processing",
+          "icon": "/refresh-cw.svg",
+          "bg": "bg-[#FEF6EE]"
+        },
+        {
+          "title": "Real-time Processing",
+          "description": "Audio to transcript, LLM response parsing, and API reliability all optimized for real-time performance",
+          "icon": "/zap.svg",
+          "bg": "bg-[#DCF4E2]"
+        },
+        {
+          "title": "95%+ Parse Rate",
+          "description": "High accuracy in parsing speech to text with advanced error correction",
+          "icon": "/check-circle.svg",
+          "bg": "bg-[#E2F4DC]"
         }
       ]
     },
@@ -892,47 +906,43 @@ export const mlProjects: Project[] = [
     },
     {
       "type": "production-deployment",
-      "title": "Production Deployment Architecture",
-      "description": "Designed for horizontal scalability to handle thousands of simultaneous corporate meetings.",
+      "title": "Core Capabilities",
+      "description": "Built on a three-layer architecture combining speech recognition, natural language understanding, and intelligent analysis",
       "cards": [
         {
-          "title": "Ingestion Layer",
-          "icon": "info-square.svg",
+          "title": "Real-Time Transcription",
+          "icon": "chat.png",
+          "iconBg": "bg-[#FEF0C7]",
           "bullets": [
-            "WebRTC Gateway for audio streams",
-            "Kafka for message buffering",
-            "Load Balancer (Round Robin)",
-            "Auto-scaling bot instances"
+            "Sub-second audio-to-text conversion that handles overlapping speech, multiple speakers, and background noise effectively",
+            "Groq Whisper API + Stream Processing"
           ]
         },
         {
-          "title": "Processing Core",
-          "icon": "info-square.svg",
+          "title": "Intelligent Insight Extraction",
+          "icon": "star.png",
+          "iconBg": "bg-[#F4EBFF]",
           "bullets": [
-            "GPU Cluster for Whisper Inference",
-            "Async Task Queue (Celery)",
-            "Redis for state management",
-            "PII Redaction Service"
+            "Automatically identifies decisions, commitments, and key information using context-aware prompts that filter out fluff",
+            "Custom LLM Prompts + Context Windows"
           ]
         },
         {
-          "title": "Data Persistence",
-          "icon": "info-square.svg",
+          "title": "Agenda Progress Tracking",
+          "icon": "green-check.png",
+          "iconBg": "bg-[#DCFAE6]",
           "bullets": [
-            "PostgreSQL: User data & metadata",
-            "S3: Encrypted audio storage",
-            "Pinecone: Vector embeddings",
-            "ElasticSearch: Full-text search"
+            "Real-time semantic matching against agenda items to keep meetings on track and ensure all key topics are covered",
+            "Semantic Search + State Management"
           ]
         },
         {
-          "title": "DevOps & Security",
-          "icon": "info-square.svg",
+          "title": "Proactive Suggestions",
+          "icon": "gray-info.png",
+          "iconBg": "bg-[#F2F2F7]",
           "bullets": [
-            "SOC2 Compliant Logging",
-            "GitHub Actions CI/CD",
-            "Prometheus/Grafana Monitoring",
-            "End-to-End Encryption"
+            "Generates real-time recommendations, questions, and warnings to prevent off-topic drift and missed opportunities",
+            "Multi-class Classification"
           ]
         }
       ]

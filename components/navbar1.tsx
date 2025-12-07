@@ -51,7 +51,7 @@ const Navbar1 = ({
   const linkColor = isHomePage ? 'text-[#191818] hover:underline' : 'text-[#191818] hover:underline';
 
   // Determine if we should use dark background for mobile menu
-  const mobileMenuBgColor = isHomePage ? 'bg-[#f7f4ed]/95' : 'bg-[#252222]/95';
+  const mobileMenuBgColor = isHomePage ? 'bg-[#f7f4ed]' : 'bg-[#f7f4ed]';
   
   // Generate Projects menu items from ML projects
   const projectsItems = mlProjects.map((project, index) => ({
@@ -294,19 +294,28 @@ const Navbar1 = ({
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <nav className={`md:hidden ${mobileMenuBgColor} pb-4`}>
-            <div className="flex flex-col gap-2">
+          <nav className={`md:hidden ${mobileMenuBgColor} fixed inset-0 w-full h-screen overflow-y-auto pb-6`}>
+            <div className="absolute top-4 right-4 z-50">
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className={`p-2 ${textColor} hover:bg-[#e8e1d5] rounded-full transition-colors`}
+                aria-label="Close menu"
+              >
+                <X size={28} />
+              </button>
+            </div>
+            <div className="flex flex-col gap-4 justify-center items-start min-h-screen w-full px-6">
               {menu.map((item) => {
                 const isActive = activeSection === item.title.toLowerCase();
                 
                 if (item.items && item.items.length > 0) {
                   return (
                     <div key={item.title} className="px-4">
-                      <Accordion type="single" collapsible className="w-full">
+                      <Accordion type="single" collapsible className="w-full" defaultValue="Projects">
                         <AccordionItem value={item.title} className="border-b-0">
                           <AccordionTrigger className={`font-['Bricolage_Grotesque:Regular',sans-serif] ${
                             isActive ? (isHomePage ? 'text-[#191818]' : 'text-white') : linkColor
-                          } text-[16px] hover:no-underline`}>
+                          } text-[20px] hover:no-underline`}>
                             {item.title}
                           </AccordionTrigger>
                           <AccordionContent className="pb-2">
@@ -319,18 +328,18 @@ const Navbar1 = ({
                                     e.preventDefault();
                                     handleNavClick(subItem.url);
                                   }}
-                                  className={`block py-2 font-['Bricolage_Grotesque:Regular',sans-serif] ${
+                                  className={`block py-3 font-['Bricolage_Grotesque:Regular',sans-serif] ${
                                     linkColor
-                                  } text-[14px] cursor-pointer hover:underline`}
+                                  } text-[18px] cursor-pointer hover:underline`}
                                   style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
                                 >
                                   <div className="flex items-start gap-2">
-                                    <div className="mt-0.5">{subItem.icon}</div>
+                                    {/* <div className="mt-0.5">{subItem.icon}</div> */}
                                     <div>
                                       <div className="font-medium">{subItem.title}</div>
-                                      {subItem.description && (
+                                      {/* {subItem.description && (
                                         <p className="text-xs opacity-75 mt-1">{subItem.description}</p>
-                                      )}
+                                      )} */}
                                     </div>
                                   </div>
                                 </Link>
@@ -351,9 +360,9 @@ const Navbar1 = ({
                       e.preventDefault();
                       handleNavClick(item.url);
                     }}
-                    className={`block px-4 py-3 font-['Bricolage_Grotesque:Regular',sans-serif] ${
+                    className={`block px-4 py-5 font-['Bricolage_Grotesque:Regular',sans-serif] ${
                       isActive ? (isHomePage ? 'text-[#191818]' : 'text-white') : linkColor
-                    } text-[16px] cursor-pointer ${
+                    } text-[20px] cursor-pointer ${
                       isActive ? 'underline decoration-2 underline-offset-4' : ''
                     }`}
                     style={{ fontVariationSettings: "'opsz' 14, 'wdth' 100" }}
