@@ -92,9 +92,9 @@ export default function ContactSection({ content }: ContactSectionProps) {
               className="flex flex-col justify-center p-8 sm:p-16">
               <div className="flex flex-col gap-5">
                 <p
-                  className="font-bricolage font-normal text-white text-text-xl-regular leading-[30px]"
+                  className="font-bricolage font-normal text-white text-display-xs-semibold leading-[30px]"
                 >
-                  I'm currently seeking opportunities in:
+                  I build solutions using:
                 </p>
 
                 <div className="flex flex-col gap-3">
@@ -143,7 +143,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
               />
             </div>
           </div>
-          <div className="absolute bottom-[-60px] right-[-90px] pointer-events-none translate-y-16">
+          <div className="absolute bottom-[-120px] right-[-90px] pointer-events-none translate-y-16">
             <div className="relative w-[300px] h-[300px]">
               <Image
                 alt=""

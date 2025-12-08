@@ -32,6 +32,8 @@ import FooterEditor from './FooterEditor';
 import ImagesEditor from './ImagesEditor';
 import PDProjectsTabs from './PDProjectsTabs';
 import PDProjectEditor from './PDProjectEditor';
+import MLProjectsTabs from './MLProjectsTabs';
+import MLProjectEditor from './MLProjectEditor';
 
 import { HomeContent, Project } from '@/types/project';
 
@@ -48,10 +50,17 @@ export default function AdminPanel() {
   const [selectedProjectSlug, setSelectedProjectSlug] = useState<string>('');
   const [loadingPD, setLoadingPD] = useState(false);
 
+  // ML Projects state
+  const [mlProjects, setMlProjects] = useState<Project[]>([]);
+  const [selectedMLProjectSlug, setSelectedMLProjectSlug] = useState<string>('');
+  const [loadingML, setLoadingML] = useState(false);
+
   useEffect(() => {
     loadHomeContent();
     if (activeView === 'pd') {
       loadPDProjects();
+    } else if (activeView === 'ml') {
+      loadMLProjects();
     }
   }, [activeView]);
 
@@ -68,6 +77,55 @@ export default function AdminPanel() {
       setMessage({ type: 'error', text: 'Failed to load home content' });
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadMLProjects = async () => {
+    setLoadingML(true);
+    try {
+      const response = await fetch('/api/admin/ml-projects');
+      if (!response.ok) throw new Error('Failed to load ML projects');
+
+      const data = await response.json();
+      if (data.success) {
+        setMlProjects(data.data);
+        if (data.data.length > 0 && !selectedMLProjectSlug) {
+          setSelectedMLProjectSlug(data.data[0].slug);
+        }
+      } else {
+        throw new Error(data.error || 'Failed to load ML projects');
+      }
+    } catch (error) {
+      console.error('Error loading ML projects:', error);
+      setMessage({ type: 'error', text: 'Failed to load ML projects' });
+    } finally {
+      setLoadingML(false);
+    }
+  };
+
+  const saveMLProject = async (project: Project) => {
+    try {
+      const response = await fetch('/api/admin/ml-projects', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(project),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || 'Failed to save project');
+      }
+
+      const data = await response.json();
+      if (data.success) {
+        setMlProjects(prev => prev.map(p => p.slug === project.slug ? data.data : p));
+      } else {
+        throw new Error(data.error || 'Failed to save project');
+      }
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -416,12 +474,45 @@ export default function AdminPanel() {
           </Tabs>
         )}
         {activeView==='ml' && (
-          <Card className="bg-white border-gray-200 shadow-sm">
-            <CardHeader>
-              <CardTitle>ML Projects</CardTitle>
-              <CardDescription>none yet found here</CardDescription>
-            </CardHeader>
-          </Card>
+          <div className="space-y-6">
+            {loadingML ? (
+              <Card className="bg-white border-gray-200 shadow-sm">
+                <CardContent className="flex items-center justify-center py-12">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-600">Loading ML projects...</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : mlProjects.length === 0 ? (
+              <Card className="bg-white border-gray-200 shadow-sm">
+                <CardHeader>
+                  <CardTitle>ML Projects</CardTitle>
+                  <CardDescription>No ML projects found</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button onClick={loadMLProjects} variant="outline">
+                    Refresh
+                  </Button>
+                </CardContent>
+              </Card>
+            ) : (
+              <>
+                <MLProjectsTabs
+                  projects={mlProjects}
+                  selectedProjectSlug={selectedMLProjectSlug}
+                  onSelectProject={setSelectedMLProjectSlug}
+                />
+                {selectedMLProjectSlug && (
+                  <MLProjectEditor
+                    project={mlProjects.find(p => p.slug === selectedMLProjectSlug)!}
+                    onSave={saveMLProject}
+                    onRefresh={loadMLProjects}
+                  />
+                )}
+              </>
+            )}
+          </div>
         )}
         {activeView==='pd' && (
           <div className="space-y-6">

@@ -53,7 +53,7 @@ export default function Epam({ projectData }: EpamProps) {
               description={section.description || ''}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
-              background="bg-bg-light"
+              background="bg-white"
             />
           );
         } else {
@@ -64,7 +64,7 @@ export default function Epam({ projectData }: EpamProps) {
               description={section.description || ''}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
-              background="bg-bg-light"
+              background="bg-white"
             />
           );
         }

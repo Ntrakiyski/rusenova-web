@@ -29,17 +29,61 @@ export default function MLWhatIBuild({
   boldWords
 }: MLWhatIBuildProps) {
 
-  // create a function to bold certain words. i will provide a list of words to bold and you find them in the <p> element (in the bullets) and bold it.
-
-  const boldText = (text: string, wordsToBold: string[]) => {
-    return text.split(new RegExp(`(${wordsToBold.join('|')})`, 'gi')).map((part, i) => {
-      if (wordsToBold.some(word => word.toLowerCase() === part.toLowerCase())) {
+  // Function to bold specific words in text
+  const boldText = (text: string, wordsToBold: string[] = []) => {
+    // Filter out empty strings to avoid regex issues
+    const validWords = wordsToBold.filter(word => word && word.trim().length > 0);
+    
+    if (validWords.length === 0) {
+      return text;
+    }
+    
+    return text.split(new RegExp(`(${validWords.join('|')})`, 'gi')).map((part, i) => {
+      if (validWords.some(word => word.toLowerCase() === part.toLowerCase())) {
         return <span key={i} className="font-bold">{part}</span>;
       }
       return part;
     });
   };
-  const wordsToBold = boldWords || [];
+
+  // Helper function to bold text before the first "-" symbol (handles both hyphens and em dashes)
+  const renderBoldedContent = (content: string) => {
+    // If boldWords are provided, use the boldText function
+    if (boldWords && Array.isArray(boldWords) && boldWords.length > 0) {
+      return boldText(content, boldWords);
+    }
+    
+    // Otherwise, use the original logic for hyphens and em dashes
+    // Look for both regular hyphen (-) and em dash (–)
+    const hyphenIndex = content.indexOf('-');
+    const emDashIndex = content.indexOf('–');
+    
+    // Find the first occurrence of either
+    let dashIndex = -1;
+    if (hyphenIndex !== -1 && emDashIndex !== -1) {
+      dashIndex = Math.min(hyphenIndex, emDashIndex);
+    } else if (hyphenIndex !== -1) {
+      dashIndex = hyphenIndex;
+    } else if (emDashIndex !== -1) {
+      dashIndex = emDashIndex;
+    }
+    
+    // If no dash is found, return the content as is
+    if (dashIndex === -1) {
+      return <span>{content}</span>;
+    }
+    
+    // Split content into bold part and regular part
+    const boldText = content.substring(0, dashIndex).trim();
+    const regularText = content.substring(dashIndex).trim();
+    
+    return (
+      <span>
+        <span className="font-semibold">{boldText}</span>
+        <span> {regularText}</span>
+      </span>
+    );
+  };
 
 
    return (
@@ -65,7 +109,7 @@ export default function MLWhatIBuild({
                 return (
                   <div key={index} className="flex items-start gap-2 sm:gap-3">
                     <p className="font-bricolage text-text-md-regular text-text-primary">
-                      {boldText(point, wordsToBold)}
+                      {renderBoldedContent(point)}
                     </p>
                   </div>
                 );

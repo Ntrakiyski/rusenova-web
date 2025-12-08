@@ -15,6 +15,8 @@ export interface ProjectFeature {
   type: 'feature';
   title: string;
   description: string;
+  person?: string;
+  role?: string;
 }
 
 export interface BaseProjectSection {

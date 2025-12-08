@@ -86,13 +86,13 @@ export const productDesignProjects: Project[] = [
           },
           {
             "type": "feature",
-            "title": "Telenor",
-            "description": "“It was easy to work with Gloria because she is a communicative and team-oriented individual having customer-first thinking. She helped us not only designing but also defining our products and services.”\nStefan Dimitrov\nHead of Digital Sales & Marketing"
+            "title": "",
+            "description": "“It was easy to work with Gloria because she is a communicative and team-oriented individual having customer-first thinking. She helped us not only designing but also defining our products and services.”",
+            "person": "Stefan Dimitrov",
+            "role": "Head of Digital Sales & Marketing"
           }
         ],
-        "layout": "text-only",
-        "row1Image": "/telenor-example1.png",
-        "row2Image": "/telenor-example2.png"
+        "layout": "text-only"
       },
       {
         "type": "homepage-redesign",

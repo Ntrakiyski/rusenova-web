@@ -55,7 +55,7 @@ const Navbar1 = ({
   
   // Generate Projects menu items from ML projects
   const projectsItems = mlProjects.map((project, index) => ({
-    title: project.title || "Project",
+    title: project.heroTitle || project.title || "Project",
     description: project.heroDescription || project.description || "",
     icon: <Code className="size-5 shrink-0" />,
     url: `/ml/${project.slug || project.id || index}`,
@@ -64,7 +64,7 @@ const Navbar1 = ({
 
   // Generate Experience menu items from Product Design projects
   const experienceItems = productDesignProjects.map((project, index) => ({
-    title: project.id || project.title || "Experience",
+    title: project.title || project.title || project.id || "Experience",
     description: project.heroDescription || project.description || "",
     icon: <Briefcase className="size-5 shrink-0" />,
     url: `/product-design/${project.slug || project.id || index}`,
@@ -241,7 +241,7 @@ const Navbar1 = ({
                     <div className="absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                       {item.items.map((subItem) => (
                         <Link
-                          key={subItem.title}
+                          key={subItem.projectId}
                           href={subItem.url}
                           onClick={(e) => {
                             e.preventDefault();
@@ -322,7 +322,7 @@ const Navbar1 = ({
                             <div className="flex flex-col gap-2 pl-4">
                               {item.items.map((subItem) => (
                                 <Link
-                                  key={subItem.title}
+                                  key={subItem.projectId}
                                   href={subItem.url}
                                   onClick={(e) => {
                                     e.preventDefault();

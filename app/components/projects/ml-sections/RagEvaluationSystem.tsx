@@ -43,8 +43,8 @@ export default function RagEvaluationSystem({ projectData, homeContentData }: Ra
     <div className="bg-bg-white w-full min-h-screen relative overflow-x-hidden">
       {/* Hero Section */}
       <MLHero
-        title={projectData.title ?? (homeContentData?.title ?? "")}
-        subtitle={projectData.shortDescription ?? (homeContentData?.shortDescription ?? "")}
+        title={projectData.heroTitle ?? (homeContentData?.title ?? "")}
+        subtitle={projectData.heroDescription ?? ""}
         heroImage={projectData.heroImage ?? "/rag-hero.png"}
         heroVideo={projectData.heroVideo}
         metrics={(projectData as any).metrics || []}
@@ -57,7 +57,6 @@ export default function RagEvaluationSystem({ projectData, homeContentData }: Ra
           bulletPoints={whatIBuildSection.bulletPoints}
           showImage={false}
           image={whatIBuildSection.image}
-          boldWords={whatIBuildSection.boldWords}
         />
       )}
 

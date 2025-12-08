@@ -123,7 +123,6 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
           bulletPoints={whatIBuildSection.bulletPoints}
           showImage={true}
           image={whatIBuildSection.image}
-          boldWords={whatIBuildSection.boldWords}
         />
       ) : (
         <MLWhatIBuild
