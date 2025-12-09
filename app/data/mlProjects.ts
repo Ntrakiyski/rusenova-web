@@ -20,13 +20,13 @@ export const mlProjects: Project[] = [
       {
         "type": "intro",
         "title": "The Challenge",
-        "description": "Imagine searching through hundreds of PDF documents to find one answer. Now imagine getting that answer in seconds, with sources cited.",
+        "description": "",
         "layout": "text-left-image-right",
         "image": "/fraud-key-learning.png",
         "content": [
-          "Organizations struggle to extract insights from vast document repositories, with teams spending hours daily searching through technical documentation.",
-          "Traditional keyword search misses 60% of relevant information due to semantic gaps, leading to duplicated work and missed opportunities.",
-          "Manual information retrieval creates bottlenecks in decision-making and significantly increases onboarding time for new team members."
+          "Organizations struggle to extract insights from vast document repositories, with teams spending hours daily searching through technical documentation",
+          "Traditional keyword search misses 60% of relevant information due to semantic gaps, leading to duplicated work and missed opportunities."
+          
         ]
       },
       {
@@ -55,7 +55,7 @@ export const mlProjects: Project[] = [
       {
         "type": "architecture",
         "title": "The Architecture",
-        "description": "A comprehensive system designed to handle document processing, semantic search, and intelligent retrieval with precision.",
+        "description": "Understands what you're really asking (not just keywords), checks every relevant document instantly and brings you the best answers.",
         "image": "/rag-architecture.png"
       },
       {
@@ -63,7 +63,7 @@ export const mlProjects: Project[] = [
         "title": "Smart Retrieval System",
         "description": "The system understands intent, not just matching words. Searching \"How do I reset?\" finds answers about \"reinitialization\" too.",
         "items": [
-          "Vector embeddings (OpenAI) + LanceDB for semantic search",
+          "Vector embeddings OpenAI + LanceDB for semantic search",
           "Cohere re-ranking reduced false positives by 35%",
           "Achieved 92% precision vs. 67% baseline keyword search",
           "L2 distance metric for optimal similarity matching"
@@ -72,7 +72,7 @@ export const mlProjects: Project[] = [
       {
         "type": "evaluation",
         "title": "Evaluation Framework",
-        "description": "Every answer is tested like a student's homework - we know if it's right, not just plausible.",
+        "description": "Every answer is tested and we know if it's correct or not.",
         "items": [
           "Built custom metrics: Precision, Recall, Mean Reciprocal Rank (MRR)",
           "AI-powered answer correctness validation using GPT-4",
@@ -94,21 +94,21 @@ export const mlProjects: Project[] = [
       {
         "type": "results",
         "title": "Results & Impact",
-        "description": "Real Impact: What used to take a team member half their morning now happens while their coffee is brewing. That's 15+ hours back per person, per week—time now spent solving problems instead of searching for answers.",
+        "description": "What used to take a team member half their morning now happens while their coffee is brewing.",
         "image": "/rag-results.png",
         "outcomes": [
-          "92% Precision, 89% Recall on test dataset",
+          "92% Precision",
+          "89% Recall on test dataset",
           "85% reduction in information retrieval time",
-          "98% user satisfaction in pilot testing",
-          "System processes 10,000+ document pages",
           "0.94 Mean Reciprocal Rank for ranking quality"
+          
         ],
         "businessValue": [
-          "Decreased onboarding time from weeks to days",
-          "Eliminated duplicate research efforts",
-          "Improved decision-making speed by 3×",
-          "Reduced support ticket resolution time",
-          "Enabled knowledge democratization across teams"
+          "Saves teams hours on documentation search",
+          "Enables instant access to knowledge",
+          "Scales to handle growing document repositories",
+          "Improves decision-making with faster insights"
+        
         ],
         "video": "/rag-big.gif"
       },
@@ -168,7 +168,7 @@ export const mlProjects: Project[] = [
     "id": "fraud-detection-system",
     "slug": "fraud-detection-system",
     "heroTitle": "Fraud Detection System",
-    "heroDescription": "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%",
+    "heroDescription": "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%, deployed in <50ms",
     "heroImage": "/fraud-hero.png",
     "heroVideo": "/frauddetection.gif",
     "gradientColors": [
@@ -201,11 +201,10 @@ export const mlProjects: Project[] = [
         "description": "An AI-powered fraud detection system that catches 84% of fraud while keeping false alarms under 0.05%.",
         "image": "/fraud-key-learning.png",
         "bulletPoints": [
-          "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%",
-          "Advanced machine learning model trained on transaction patterns to identify fraudulent activities in real-time",
-          "Created 21 custom features in 3 tiers - top engineered feature (pca_magnitude) became #1 most important (34.5% model weight)",
-          "Compared 3 algorithms and selected XGBoost: 83.8% recall, 0.968 ROC-AUC, handling extreme class imbalance with scale_pos_weight=578",
-          "Real-time processing with sub-100ms response time for transaction approvals"
+          "Fraud detection system to test feature performance across multiple algorithms and optimize for the highest fraud detection rate",
+          "The dataset revealed the core challenge: while credit card fraud costs businesses $32 billion annually, only 0.17% of transactions are actually fraudulent",
+          "This extreme imbalance makes some traditional approaches ineffective, with most systems either missing fraud or drowning analysts in false alarms"
+          
         ]
       },
       {
@@ -222,24 +221,24 @@ export const mlProjects: Project[] = [
       },
       {
         "type": "approach",
-        "title": "Our Approach",
-        "description": "Combining supervised and unsupervised learning techniques to create a robust fraud detection system.",
+        "title": "Selecting a right approach",
+        "description": "Instead of jumping straight to testing algorithms. I started by asking: 'What makes a transaction suspicious?' This human-centered question shaped everything that followed.",
         "cards": [
           {
-            "title": "Hybrid Model Architecture",
-            "description": "Combining deep learning with traditional ML for optimal performance"
+            "title": "Data Analyses",
+            "description": "Analyzed 284K transactions to uncover risk patterns "
           },
           {
-            "title": "Real-time Processing",
-            "description": "Sub-100ms response time for transaction approvals"
+            "title": "Feature engineering",
+            "description": "Created 21 custom features combining domain knowledge with statistical methods"
           },
           {
-            "title": "Adaptive Learning",
-            "description": "Continuous model updates without downtime"
+            "title": "Algorithm testing",
+            "description": "Compared three algorithms and selected XGBoost"
           },
           {
-            "title": "Explainable AI",
-            "description": "Providing clear reasons for fraud flags to compliance teams"
+            "title": "Business results",
+            "description": "Calculated $2.7M annual value and performed segment analysis to translate model performance"
           }
         ]
       },
@@ -251,11 +250,11 @@ export const mlProjects: Project[] = [
       },
       {
         "type": "section-with-cards",
-        "title": "Understand the Data",
+        "title": "Data Analyses",
         "description": "",
         "cards": [
           {
-            "title": "Transaction analyses",
+            "title": "Transactions",
             "description": "Analyzed 284K transactions over 2 days",
             "icon": "/info-square.svg",
             "bg": "bg-[#E0EAFF]"
@@ -276,19 +275,17 @@ export const mlProjects: Project[] = [
       },
       {
         "type": "section-with-cards-and-bullets",
-        "title": "Engineer High-Impact Features",
+        "title": "Feature engineering",
         "description": "Created 21 custom features in 3 tiers. Top engineered feature (pca_magnitude) became #1 most important (34.5% model weight)",
         "cards": [
           {
             "title": "Statistical",
             "items": [
               "pca magnitude",
-              "log amount",
-              "amount zscore",
-              "hour sin",
-              "hour cos",
-              "is night",
+              "log amount, amount zscore",
+              "hour sin, hour cos, is night",
               "Isolation Forest outlier scores"
+            
             ],
             "icon": "/info-square.svg",
             "bg": "bg-[#E0EAFF]"
@@ -317,8 +314,8 @@ export const mlProjects: Project[] = [
       },
       {
         "type": "section-with-table",
-        "title": "Optimise for Business Outcomes",
-        "description": "Compared 3 algorithms and selected XGBoost: 83.8% recall, 0.968 ROC-AUC, handling extreme class imbalance with scale_pos_weight=578",
+        "title": "Algorithm testing",
+        "description": "Compared 3 algorithms and selected XGBoost: 83.8% recall, handling extreme class imbalance",
         "columns": [
           "Algorithm",
           "Recall",
@@ -352,8 +349,8 @@ export const mlProjects: Project[] = [
       },
       {
         "type": "key-results-only",
-        "title": "Key Results",
-        "description": "Created 21 custom features in 3 tiers. Top engineered feature (pca_magnitude) became #1 most important (34.5% model weight)",
+        "title": "Business results",
+        "description": "Real-time performance dashboard",
         "image": "/fraud-results.png",
         "video": "/frauddetection-big.gif"
       },
@@ -425,7 +422,7 @@ export const mlProjects: Project[] = [
             "icon": "/info-square.svg",
             "iconBg": "bg-[#E0EAFF]",
             "content": [
-              "High-value fraud (>$500): 94% recall - Excellent",
+              "High-value fraud (>$500): 94% recall",
               "Medium transactions ($100-$500): 89% recall",
               "Night transactions: 91% recall",
               "Isolation Forest for feature creation: Outlier scores had 217x fraud concentration"
@@ -436,7 +433,7 @@ export const mlProjects: Project[] = [
             "icon": "/info-square.svg",
             "iconBg": "bg-[#E0EAFF]",
             "content": [
-              "Micro-transactions (<$10): 78% recall - Needs improvement",
+              "Micro-transactions (<$10): 78% recall",
               "Very small frauds likely card testing patterns"
             ]
           }
