@@ -15,6 +15,8 @@ export interface ProjectFeature {
   type: 'feature';
   title: string;
   description: string;
+  person?: string;
+  role?: string;
 }
 
 export interface BaseProjectSection {
@@ -35,6 +37,14 @@ export interface IntroSection extends BaseProjectSection {
 export interface ApproachSection extends BaseProjectSection {
   type: 'approach';
   cards: ProjectCard[];
+}
+
+export interface SystemApproachSection extends BaseProjectSection {
+  type: 'system-approach';
+description: string;
+cards: Array<{
+  title: string
+}>;
 }
 
 export interface ArchitectureSection extends BaseProjectSection {
@@ -75,6 +85,7 @@ export interface WhatIBuildSection extends Omit<BaseProjectSection, 'type'> {
   metrics: Metric[];
   bulletPoints?: string[];
   image?: string;
+  boldWords?: string[];
 }
 
 export interface SectionWithCards extends Omit<BaseProjectSection, 'type'> {
@@ -124,25 +135,28 @@ export interface CostBenefitSection extends Omit<BaseProjectSection, 'type'> {
   items: Array<{
     title: string;
     content: string | string[];
+    icon?: string;
+    iconBg?: string;
   }>;
 }
 
 export interface SegmentAnalysisSection extends Omit<BaseProjectSection, 'type'> {
   type: 'segment-analysis';
-  segments: Array<{
-    name: string;
-    metrics: Array<{
-      name: string;
-      value: string;
-    }>;
+  items: Array<{
+    title: string;
+    content: string | string[];
+    icon?: string;
+    iconBg?: string;
   }>;
 }
 
-export interface KeyLearningSection extends Omit<BaseProjectSection, 'type'> {
+export interface KeyLearningSection extends Omit<BaseProjectSection, 'type' | 'description'> {
   type: 'key-learning';
+  description?: string;
+  image?: string;
   learnings: Array<{
     title: string;
-    description: string;
+    boldWords?: string;
   }>;
 }
 
@@ -151,6 +165,7 @@ export interface ProductionDeploymentSection extends Omit<BaseProjectSection, 't
   cards: Array<{
     title: string;
     icon?: string; // SVG content as string (not used in current implementation - using static file.svg)
+    iconBg?: string;
     bullets: string[];
   }>;
 }
@@ -166,6 +181,7 @@ export interface GenericSection extends BaseProjectSection {
 export type ProjectSection =
   | IntroSection
   | ApproachSection
+  | SystemApproachSection
   | ArchitectureSection
   | SmartRetrievalSection
   | EvaluationSection
@@ -336,4 +352,3 @@ export interface HomeContent {
   };
   
 }
-

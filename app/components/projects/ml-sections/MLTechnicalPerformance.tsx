@@ -29,7 +29,7 @@ export default function MLTechnicalPerformance({
 
   return (
     <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10 flex items-center`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+      <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title Section */}
         <div className="mb-12 w-full">
           {title && (
@@ -38,7 +38,7 @@ export default function MLTechnicalPerformance({
             </h2>
           )}
           {description && (
-            <p className="font-bricolage text-text-secondary text-text-xl-regular">
+            <p className="font-bricolage text-text-secondary text-text-xl-regular min-w-0">
               {description}
             </p>
           )}
@@ -51,11 +51,11 @@ export default function MLTechnicalPerformance({
               {leftMetrics.length > 0 ? leftMetrics.map((metric, index) => (
                 <React.Fragment key={index}>
                   <div className="flex justify-between items-center py-6">
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-2">
                         {metric.name}
                       </h3>
-                      <p className="font-bricolage text-text-secondary text-text-md-regular">
+                      <p className="font-bricolage text-text-secondary text-text-md-regular min-w-0">
                         {metric.description}
                       </p>
                     </div>
@@ -73,18 +73,18 @@ export default function MLTechnicalPerformance({
           </div>
 
           {/* Right Column - Highlighted metrics with details */}
-          <div className="pl-8 col-span-12 lg:col-span-5 w-full flex flex-col gap-6">
+          {/* <div className="pl-8 col-span-12 lg:col-span-5 w-full flex flex-col gap-6">
             {highlightedMetrics.length > 0 ? highlightedMetrics.slice(0, 2).map((metric, index) => (
               <div key={index} className="">
                 <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-2">
                   {metric.name}
                 </h3>
-                <p className="font-bricolage text-text-secondary text-text-md-regular">
+                <p className="font-bricolage text-text-secondary text-text-md-regular min-w-0">
                   {metric.details}
                 </p>
               </div>
             )) : <p>No highlighted metrics</p>}
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

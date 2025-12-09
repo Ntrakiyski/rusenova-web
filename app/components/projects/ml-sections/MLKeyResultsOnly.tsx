@@ -2,8 +2,8 @@
 
 import React from 'react';
 import {
-  VideoPlayer,
-  VideoPlayerContent,
+  // VideoPlayer,
+  // VideoPlayerContent,
 } from '@/components/ui/shadcn-io/video-player';
 
 interface MLKeyResultsOnlyProps {
@@ -19,19 +19,19 @@ export default function MLKeyResultsOnly({
   description,
   image,
   video,
-  background = 'bg-bg-dark'
+  background = 'bg-bg-light'
 }: MLKeyResultsOnlyProps) {
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10 rounded-bl-[32px] rounded-br-[32px] overflow-hidden`}>
+    <section className={`${background} py-16 md:py-24 relative z-10 rounded-bl-[32px] rounded-br-[32px] overflow-hidden`}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         <div className="mb-12 w-full">
           {title && (
-            <h2 className="font-bricolage text-text-white text-display-md font-semibold mb-5">
+            <h2 className="font-bricolage text-display-md font-semibold mb-5">
               {title}
             </h2>
           )}
           {description && (
-            <p className="font-bricolage text-text-white text-text-xl-regular max-w-[768px] mb-8">
+            <p className="font-bricolage text-text-xl-regular max-w-[768px] mb-8">
               {description}
             </p>
           )}
@@ -39,18 +39,13 @@ export default function MLKeyResultsOnly({
 
         <div className="flex justify-center">
           {video ? (
-            <div className="w-full max-w-full h-auto rounded-[12px] overflow-hidden relative shadow-xl">
-              <VideoPlayer>
-                <VideoPlayerContent 
-                  slot="media" 
-                  src={video} 
-                  className="w-full aspect-video" 
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
-              </VideoPlayer>
+            // Video player commented out - using GIF instead
+            <div className="w-full max-w-full h-auto rounded-[12px] overflow-hidden relative">
+              <img
+                src={video}
+                alt={title || "Key Results"}
+                className="w-full aspect-video"
+              />
             </div>
           ) : (
             <img

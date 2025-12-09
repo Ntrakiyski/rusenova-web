@@ -32,7 +32,6 @@ export default function Tide({ projectData }: TideProps) {
       {/* 2. Intro Section */}
       {introSection && (
         <PDNutshell
-          title={introSection.title}
           features={Array.isArray(introSection.content) ? introSection.content.map((item: any) => ({
             title: typeof item === 'string' ? '' : (item.title || ''),
             description: typeof item === 'string' ? item : (item.description || '')
@@ -59,7 +58,7 @@ export default function Tide({ projectData }: TideProps) {
             <PDSectionLeft
               key={section.type}
               title={section.title}
-              description={section.description}
+              description={section.description || ''}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
             />
@@ -69,7 +68,7 @@ export default function Tide({ projectData }: TideProps) {
             <PDSectionRight
               key={section.type}
               title={section.title}
-              description={section.description}
+              description={section.description || ''}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
             />

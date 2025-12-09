@@ -4,55 +4,30 @@ export const mlProjects: Project[] = [
   {
     "id": "rag-evaluation-system",
     "slug": "rag-evaluation-system",
-    "title": "RAG+ Evaluation System",
-    "shortDescription": "Reduced information retrieval time by 85% while achieving 92% answer accuracy through a custom RAG system with advanced evaluation framework",
-    "heroImage": "/rag-hero.png",
-    "heroVideo": "/rag.mov",
-    "metrics": [
-      {
-        "value": "92%",
-        "label": "Precision",
-        "icon": "/info-square.svg",
-        "iconBg": "bg-[#E0EAFF]"
-      },
-      {
-        "value": "89%",
-        "label": "Recall",
-        "icon": "/info-square.svg",
-        "iconBg": "bg-[#E0EAFF]"
-      },
-      {
-        "value": "85%",
-        "label": "Time Saved",
-        "icon": "/info-square.svg",
-        "iconBg": "bg-[#E0EAFF]"
-      }
-    ],
     "sections": [
-         {
+      {
         "type": "what-i-build",
         "title": "What I Built",
         "description": "A comprehensive RAG system that transforms how organizations access and utilize their document repositories.",
         "image": "/rag-results.png",
         "bulletPoints": [
-          "A RAG (Retrieval-Augmented Generation) system with two-stage retrieval (vector search + AI re-ranking) for 40% better relevance",
-          "A custom evaluation framework to measure how well the system actually performs",
-          "Most LLMs struggle when they encounter information they haven't seen during training",
-          "Without proper evaluation, you can't guarantee your results are correct",
-          "The framework shows exactly where the system fails and by how much"
+          "RAG with dedicated Evaluation Framework – essential for validating system performance",
+          "Critical for unseen information – evaluation framework is especially important for data LLMs haven't encountered during training",
+          "Guarantees correctness – ensures results are accurate and reliable",
+          "Enables measurement and improvement – identifies failure points and failure rates to systematically enhance the system"
         ]
       },
       {
         "type": "intro",
         "title": "The Challenge",
-        "description": "Imagine searching through hundreds of PDF documents to find one answer. Now imagine getting that answer in seconds, with sources cited.",
-        "content": [
-          "Organizations struggle to extract insights from vast document repositories, with teams spending hours daily searching through technical documentation.",
-          "Traditional keyword search misses 60% of relevant information due to semantic gaps, leading to duplicated work and missed opportunities.",
-          "Manual information retrieval creates bottlenecks in decision-making and significantly increases onboarding time for new team members."
-        ],
+        "description": "",
         "layout": "text-left-image-right",
-        "image": "/fraud-key-learning.png"
+        "image": "/fraud-key-learning.png",
+        "content": [
+          "Organizations struggle to extract insights from vast document repositories, with teams spending hours daily searching through technical documentation",
+          "Traditional keyword search misses 60% of relevant information due to semantic gaps, leading to duplicated work and missed opportunities."
+          
+        ]
       },
       {
         "type": "approach",
@@ -80,7 +55,7 @@ export const mlProjects: Project[] = [
       {
         "type": "architecture",
         "title": "The Architecture",
-        "description": "A comprehensive system designed to handle document processing, semantic search, and intelligent retrieval with precision.",
+        "description": "Understands what you're really asking (not just keywords), checks every relevant document instantly and brings you the best answers.",
         "image": "/rag-architecture.png"
       },
       {
@@ -88,7 +63,7 @@ export const mlProjects: Project[] = [
         "title": "Smart Retrieval System",
         "description": "The system understands intent, not just matching words. Searching \"How do I reset?\" finds answers about \"reinitialization\" too.",
         "items": [
-          "Vector embeddings (OpenAI) + LanceDB for semantic search",
+          "Vector embeddings OpenAI + LanceDB for semantic search",
           "Cohere re-ranking reduced false positives by 35%",
           "Achieved 92% precision vs. 67% baseline keyword search",
           "L2 distance metric for optimal similarity matching"
@@ -97,7 +72,7 @@ export const mlProjects: Project[] = [
       {
         "type": "evaluation",
         "title": "Evaluation Framework",
-        "description": "Every answer is tested like a student's homework - we know if it's right, not just plausible.",
+        "description": "Every answer is tested and we know if it's correct or not.",
         "items": [
           "Built custom metrics: Precision, Recall, Mean Reciprocal Rank (MRR)",
           "AI-powered answer correctness validation using GPT-4",
@@ -119,23 +94,23 @@ export const mlProjects: Project[] = [
       {
         "type": "results",
         "title": "Results & Impact",
-        "description": "Real Impact: What used to take a team member half their morning now happens while their coffee is brewing. That's 15+ hours back per person, per week—time now spent solving problems instead of searching for answers.",
+        "description": "What used to take a team member half their morning now happens while their coffee is brewing.",
+        "image": "/rag-results.png",
         "outcomes": [
-          "92% Precision, 89% Recall on test dataset",
+          "92% Precision",
+          "89% Recall on test dataset",
           "85% reduction in information retrieval time",
-          "98% user satisfaction in pilot testing",
-          "System processes 10,000+ document pages",
           "0.94 Mean Reciprocal Rank for ranking quality"
+          
         ],
         "businessValue": [
-          "Decreased onboarding time from weeks to days",
-          "Eliminated duplicate research efforts",
-          "Improved decision-making speed by 3×",
-          "Reduced support ticket resolution time",
-          "Enabled knowledge democratization across teams"
+          "Saves teams hours on documentation search",
+          "Enables instant access to knowledge",
+          "Scales to handle growing document repositories",
+          "Improves decision-making with faster insights"
+        
         ],
-        "image": "/rag-results.png",
-        "video": "/rag.mov"
+        "video": "/rag-big.gif"
       },
       {
         "type": "tech-stack",
@@ -164,39 +139,61 @@ export const mlProjects: Project[] = [
         ]
       }
     ],
-    "heroTitle": "RAG+ Evaluation System"
+    "heroImage": "/rag-hero.png",
+    "heroVideo": "/rag.gif",
+    "heroTitle": "RAG+ Evaluation System",
+    "heroDescription": "Reduced information retrieval time by 85% while achieving 92% answer accuracy through a custom RAG system with advanced evaluation framework",
+    "metrics": [
+      {
+        "value": "92%",
+        "label": "Precision",
+        "icon": "/aim.svg",
+        "iconBg": "bg-[#DCFAE6]"
+      },
+      {
+        "value": "89%",
+        "label": "Recall",
+        "icon": "/marker-pin.svg",
+        "iconBg": "bg-[#F4EBFF]"
+      },
+      {
+        "value": "85%",
+        "label": "Time Saved",
+        "icon": "/clock-check.svg",
+        "iconBg": "bg-[#FEF0C7]"
+      }
+    ]
   },
   {
     "id": "fraud-detection-system",
     "slug": "fraud-detection-system",
-    "title": "Fraud Detection System",
-    "shortDescription": "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%",
-    "description": "Advanced machine learning model trained on transaction patterns to identify fraudulent activities in real-time with high precision and low false positive rate.",
-"metrics": [
-    {
-      "value": "2.7M",
-      "label": "Annual Savings",
-      "icon": "/info-square.svg",
-      "iconBg": "bg-[#E0EAFF]"
-    },
-    {
-      "value": "83.8%",
-      "label": "Fraud Caught",
-      "icon": "/info-square.svg",
-      "iconBg": "bg-[#FEE4E2]"
-    },
-    {
-      "value": "75.2%",
-      "label": "Alert Accuracy",
-      "icon": "/info-square.svg",
-      "iconBg": "bg-[#FEE4E2]"
-    }
-  ],
+    "heroTitle": "Fraud Detection System",
+    "heroDescription": "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%, deployed in <50ms",
+    "heroImage": "/fraud-hero.png",
+    "heroVideo": "/frauddetection.gif",
     "gradientColors": [
       "#D7EBDF"
     ],
-    "heroImage": "/fraud-hero.png",
-    "heroVideo": "/frauddetection.mov",
+    "metrics": [
+      {
+        "value": "2.7M",
+        "label": "Annual Savings",
+        "icon": "/piggy-bank.svg",
+        "iconBg": "bg-[#DCFAE6]"
+      },
+      {
+        "value": "83.8%",
+        "label": "Fraud Caught",
+        "icon": "/trend-up.svg",
+        "iconBg": "bg-[#FEE4E2]"
+      },
+      {
+        "value": "75.2%",
+        "label": "Alert Accuracy",
+        "icon": "/alert-triangle.svg",
+        "iconBg": "bg-[#FEE4E2]"
+      }
+    ],
     "sections": [
       {
         "type": "what-i-build",
@@ -204,11 +201,10 @@ export const mlProjects: Project[] = [
         "description": "An AI-powered fraud detection system that catches 84% of fraud while keeping false alarms under 0.05%.",
         "image": "/fraud-key-learning.png",
         "bulletPoints": [
-          "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%",
-          "Advanced machine learning model trained on transaction patterns to identify fraudulent activities in real-time",
-          "Created 21 custom features in 3 tiers - top engineered feature (pca_magnitude) became #1 most important (34.5% model weight)",
-          "Compared 3 algorithms and selected XGBoost: 83.8% recall, 0.968 ROC-AUC, handling extreme class imbalance with scale_pos_weight=578",
-          "Real-time processing with sub-100ms response time for transaction approvals"
+          "Fraud detection system to test feature performance across multiple algorithms and optimize for the highest fraud detection rate",
+          "The dataset revealed the core challenge: while credit card fraud costs businesses $32 billion annually, only 0.17% of transactions are actually fraudulent",
+          "This extreme imbalance makes some traditional approaches ineffective, with most systems either missing fraud or drowning analysts in false alarms"
+          
         ]
       },
       {
@@ -225,24 +221,24 @@ export const mlProjects: Project[] = [
       },
       {
         "type": "approach",
-        "title": "Our Approach",
-        "description": "Combining supervised and unsupervised learning techniques to create a robust fraud detection system.",
+        "title": "Selecting a right approach",
+        "description": "Instead of jumping straight to testing algorithms. I started by asking: 'What makes a transaction suspicious?' This human-centered question shaped everything that followed.",
         "cards": [
           {
-            "title": "Hybrid Model Architecture",
-            "description": "Combining deep learning with traditional ML for optimal performance"
+            "title": "Data Analyses",
+            "description": "Analyzed 284K transactions to uncover risk patterns "
           },
           {
-            "title": "Real-time Processing",
-            "description": "Sub-100ms response time for transaction approvals"
+            "title": "Feature engineering",
+            "description": "Created 21 custom features combining domain knowledge with statistical methods"
           },
           {
-            "title": "Adaptive Learning",
-            "description": "Continuous model updates without downtime"
+            "title": "Algorithm testing",
+            "description": "Compared three algorithms and selected XGBoost"
           },
           {
-            "title": "Explainable AI",
-            "description": "Providing clear reasons for fraud flags to compliance teams"
+            "title": "Business results",
+            "description": "Calculated $2.7M annual value and performed segment analysis to translate model performance"
           }
         ]
       },
@@ -252,14 +248,13 @@ export const mlProjects: Project[] = [
         "description": "Scalable, fault-tolerant architecture designed for high-volume transaction processing.",
         "image": "/rag-results.png"
       },
-      
       {
         "type": "section-with-cards",
-        "title": "Understand the Data",
-        "description": "What I did",
+        "title": "Data Analyses",
+        "description": "",
         "cards": [
           {
-            "title": "Transaction analyses",
+            "title": "Transactions",
             "description": "Analyzed 284K transactions over 2 days",
             "icon": "/info-square.svg",
             "bg": "bg-[#E0EAFF]"
@@ -280,19 +275,17 @@ export const mlProjects: Project[] = [
       },
       {
         "type": "section-with-cards-and-bullets",
-        "title": "Engineer High-Impact Features",
+        "title": "Feature engineering",
         "description": "Created 21 custom features in 3 tiers. Top engineered feature (pca_magnitude) became #1 most important (34.5% model weight)",
         "cards": [
           {
             "title": "Statistical",
             "items": [
               "pca magnitude",
-              "log amount",
-              "amount zscore",
-              "hour sin",
-              "hour cos",
-              "is night",
+              "log amount, amount zscore",
+              "hour sin, hour cos, is night",
               "Isolation Forest outlier scores"
+            
             ],
             "icon": "/info-square.svg",
             "bg": "bg-[#E0EAFF]"
@@ -321,8 +314,8 @@ export const mlProjects: Project[] = [
       },
       {
         "type": "section-with-table",
-        "title": "Optimise for Business Outcomes",
-        "description": "Compared 3 algorithms and selected XGBoost: 83.8% recall, 0.968 ROC-AUC, handling extreme class imbalance with scale_pos_weight=578",
+        "title": "Algorithm testing",
+        "description": "Compared 3 algorithms and selected XGBoost: 83.8% recall, handling extreme class imbalance",
         "columns": [
           "Algorithm",
           "Recall",
@@ -356,10 +349,10 @@ export const mlProjects: Project[] = [
       },
       {
         "type": "key-results-only",
-        "title": "Key Results",
-        "description": "Created 21 custom features in 3 tiers. Top engineered feature (pca_magnitude) became #1 most important (34.5% model weight)",
+        "title": "Business results",
+        "description": "Real-time performance dashboard",
         "image": "/fraud-results.png",
-        "video": "/frauddetection.mov"
+        "video": "/frauddetection-big.gif"
       },
       {
         "type": "technical-performance",
@@ -401,21 +394,21 @@ export const mlProjects: Project[] = [
         "description": "How catching fraud impacts the business revenue and how much we can save?",
         "items": [
           {
-            "title": "Research & Service Design",
+            "title": "Without a System",
+            "icon": "/info-square.svg",
+            "iconBg": "bg-[#E0EAFF]",
             "content": [
-              "Average fraud: $122 per transaction",
-              "Cost to investigate a false alarm: $5",
-              "Cost if a customer calls to complain: $10",
-              "Dataset covers 2 days → scaled to annual projections"
+              "All 492 frauds succeed = -$3.3M lost per year"
             ]
           },
           {
-            "title": "Without a System",
-            "content": "All 492 frauds succeed = -$3.3M lost per year"
-          },
-          {
             "title": "With a System",
-            "content": "Fraud Prevented: 413 frauds → $2.77M saved\nMissed: 79 frauds → $535K loss"
+            "icon": "/info-square.svg",
+            "iconBg": "bg-[#E0EAFF]",
+            "content": [
+              "Fraud Prevented: 413 frauds → $2.77M saved",
+              "Missed: 79 frauds → $535K loss"
+            ]
           }
         ]
       },
@@ -423,67 +416,50 @@ export const mlProjects: Project[] = [
         "type": "segment-analysis",
         "title": "Segment Analysis (Honest Assessment)",
         "description": "Balancing recall (catch fraud) vs. precision (minimize false alarms) without business context. Solved by calculating cost-benefit tradeoffs at different thresholds.",
-        "segments": [
+        "items": [
           {
-            "name": "Strengths",
-            "metrics": [
-              {
-                "name": "High-value fraud (>$500)",
-                "value": "94% recall - Excellent"
-              },
-              {
-                "name": "Medium transactions ($100-$500)",
-                "value": "89% recall"
-              },
-              {
-                "name": "Night transactions",
-                "value": "91% recall"
-              },
-              {
-                "name": "Isolation Forest for feature creation",
-                "value": "Outlier scores had 217x fraud concentration"
-              }
+            "title": "Strengths",
+            "icon": "/info-square.svg",
+            "iconBg": "bg-[#E0EAFF]",
+            "content": [
+              "High-value fraud (>$500): 94% recall",
+              "Medium transactions ($100-$500): 89% recall",
+              "Night transactions: 91% recall",
+              "Isolation Forest for feature creation: Outlier scores had 217x fraud concentration"
             ]
           },
           {
-            "name": "Weaknesses",
-            "metrics": [
-              {
-                "name": "Micro-transactions (<$10)",
-                "value": "78% recall - Needs improvement"
-              },
-              {
-                "name": "Very small frauds likely card testing patterns",
-                "value": ""
-              }
+            "title": "Weaknesses",
+            "icon": "/info-square.svg",
+            "iconBg": "bg-[#E0EAFF]",
+            "content": [
+              "Micro-transactions (<$10): 78% recall",
+              "Very small frauds likely card testing patterns"
             ]
           }
         ]
       },
       {
         "type": "key-learning",
-        "title": "Key Learning",
-        "description": "I expected the algorithm to be the hard part. It wasn't. The real challenge was understanding what 'suspicious' means in 284,000 transactions and translating that intuition into mathematical features a computer could use.",
+        "title": "What Worked Well",
+        "image": "/fraud-key-learning.png",
+        "description": "",
         "learnings": [
           {
             "title": "Balancing recall vs precision",
-            "description": "Balancing recall (catch fraud) vs. precision (minimize false alarms) without business context. Solved by calculating cost-benefit tradeoffs at different thresholds."
+            "boldWords": "Balancing recall vs precision"
           },
           {
             "title": "Feature engineering over algorithm choice",
-            "description": "Custom features delivered more value than model selection"
+            "boldWords": "Feature engineering over algorithm choice"
           },
           {
             "title": "Business-driven threshold optimization",
-            "description": "Cost-benefit analysis over arbitrary metrics"
+            "boldWords": "Business-driven threshold optimization"
           },
           {
             "title": "Segment analysis",
-            "description": "Identifying high-value transaction weakness led to actionable improvements"
-          },
-          {
-            "title": "Isolation Forest for feature creation",
-            "description": "Outlier scores had 217x fraud concentration"
+            "boldWords": "Segment analysis"
           }
         ]
       },
@@ -578,421 +554,412 @@ export const mlProjects: Project[] = [
         ],
         "image": "/rag-results.png"
       }
-    ],
-    "heroTitle": "Fraud Detection System",
-    "heroDescription": "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%"
+    ]
   },
   {
-  "id": "ai-meeting-assistant",
-  "slug": "ai-meeting-assistant",
-  "title": "Real-Time AI Meeting Assistant",
-  "shortDescription": "An AI copilot that joins Zoom/Teams to transcribe, summarize, and extract action items in real-time.",
-  "description": "Advanced NLP system that listens to meeting audio streams, identifies speakers, and generates live insights, progress updates, and Jira/Notion tasks with sub-second latency.",
-  "metrics": [
-    {
-      "value": "12h",
-      "label": "Weekly Time Saved",
-      "icon": "/info-square.svg",
-      "iconBg": "bg-[#E0EAFF]"
-    },
-    {
-      "value": "98.5%",
-      "label": "Transcription Accuracy",
-      "icon": "/info-square.svg",
-      "iconBg": "bg-[#E0EAFF]"
-    },
-    {
-      "value": "<200ms",
-      "label": "Insight Latency",
-      "icon": "/info-square.svg",
-      "iconBg": "bg-[#E0EAFF]"
-    }
-  ],
-  "gradientColors": [
-    "#E0E7FF"
-  ],
-  "heroImage": "/meeting-assistant-hero.png",
-  "heroVideo": "/meeting-assistant-demo.mov",
-  "heroTitle": "Real-Time AI Meeting Assistant",
-  "heroDescription": "An AI-powered assistant that listens, summarizes, and organizes your meetings in real-time.",
-  "sections": [
-    {
-      "type": "what-i-build",
-      "title": "What I Built",
-      "description": "A real-time meeting assistant that transforms unstructured voice data into structured business intelligence.",
-      "image": "/tide-home.png",
-      "bulletPoints": [
-        "Real-time audio ingestion pipeline compatible with Zoom, Teams, and Google Meet via virtual bot integration",
-        "Multi-speaker diarization engine to accurately attribute 'who said what' even during cross-talk",
-        "Live sentiment analysis and 'blocker detection' to flag project risks immediately",
-        "Automated workflow triggers: Verbal commitments become Jira tickets or Notion pages instantly",
-        "RAG (Retrieval-Augmented Generation) system that answers questions based on previous meeting context"
-      ]
-    },
-    {
-      "type": "intro",
-      "title": "The Challenge",
-      "description": "Knowledge workers spend 40% of their time in meetings, yet 60% of the context is lost the moment the call ends.",
-      "content": [
-        "Manual note-taking distracts participants from active listening and engagement",
-        "Action items fall through the cracks, leading to project delays",
-        "Context switching between video calls and project management tools kills productivity",
-        "Lack of searchable history makes 'institutional memory' unreliable"
-      ],
-      "layout": "text-left-image-right"
-    },
-    {
-      "type": "approach",
-      "title": "Our Approach",
-      "description": "Leveraging Large Language Models (LLMs) and stream processing to create a 'second brain' for your conversations.",
-      "cards": [
-        {
-          "title": "Stream Processing",
-          "description": "WebRTC-based audio capture for low-latency raw stream handling"
-        },
-        {
-          "title": "Contextual Intelligence",
-          "description": "Dynamic context window management to remember details from 30 minutes ago"
-        },
-        {
-          "title": "Speaker Fingerprinting",
-          "description": "Vector-based voice signatures to identify team members instantly"
-        },
-        {
-          "title": "Privacy First",
-          "description": "PII redaction on the fly before data hits the persistence layer"
-        }
-      ]
-    },
-    {
-      "type": "architecture",
-      "title": "System Architecture",
-      "description": "Event-driven architecture designed to handle concurrent audio streams and heavy NLP inference loads.",
-      "image": "/architecture-diagram.png"
-    },
-    {
-      "type": "section-with-cards",
-      "title": "Understand the Data",
-      "description": "How we process voice",
-      "cards": [
-        {
-          "title": "Audio Segmentation",
-          "description": "Processed 500+ hours of noisy meeting audio for training",
-          "icon": "/wave-sound.svg",
-          "bg": "bg-[#E0EAFF]"
-        },
-        {
-          "title": "Intent Detection",
-          "description": "Identified 4 distinct intent types: Task, Decision, Question, Risk",
-          "icon": "/brain-circuit.svg",
-          "bg": "bg-[#E0EAFF]"
-        },
-        {
-          "title": "Silence Analysis",
-          "description": "Correlated long silences with disengagement or technical issues",
-          "icon": "/clock.svg",
-          "bg": "bg-[#E0EAFF]"
-        }
-      ]
-    },
-    {
-      "type": "section-with-cards-and-bullets",
-      "title": "Engineer High-Impact Features",
-      "description": "Built a custom NLP pipeline. The 'Commitment Extraction' feature became the most valued utility by PMs.",
-      "cards": [
-        {
-          "title": "NLP Features",
-          "items": [
-            "Named Entity Recognition (NER)",
-            "Sentiment Scoring",
-            "Topic Clustering",
-            "Summarization",
-            "Key Decision Extraction",
-            "Objection Handling Suggestions"
-          ],
-          "icon": "/code.svg",
-          "bg": "bg-[#E0EAFF]"
-        },
-        {
-          "title": "Integrations",
-          "items": [
-            "Jira Ticket Creation",
-            "Slack Notifications",
-            "Salesforce CRM Sync",
-            "Notion Page Generation"
-          ],
-          "icon": "/link.svg",
-          "bg": "bg-[#E0EAFF]"
-        },
-        {
-          "title": "Real-Time Assist",
-          "items": [
-            "Live Fact Checking",
-            "Agenda Adherence Tracking",
-            "Speaking Time Balance"
-          ],
-          "icon": "/zap.svg",
-          "bg": "bg-[#E0EAFF]"
-        }
-      ]
-    },
-    {
-      "type": "section-with-table",
-      "title": "Optimise for Business Outcomes",
-      "description": "Compared generic transcription APIs vs. our fine-tuned meeting model.",
-      "columns": [
-        "Solution",
-        "Tech Term Accuracy",
-        "Action Item Recall",
-        "Latency",
-        "Status"
-      ],
-      "rows": [
-        {
-          "Solution": "Generic Whisper API",
-          "Tech Term Accuracy": "72%",
-          "Action Item Recall": "65%",
-          "Latency": "4.5s",
-          "Status": "Too slow/inaccurate"
-        },
-        {
-          "Solution": "Human Note Taker",
-          "Tech Term Accuracy": "85%",
-          "Action Item Recall": "80%",
-          "Latency": "24 hours",
-          "Status": "Non-scalable"
-        },
-        {
-          "Solution": "Custom Fine-Tuned Model",
-          "Tech Term Accuracy": "96%",
-          "Action Item Recall": "95%",
-          "Latency": "0.8s",
-          "Status": "Production Ready"
-        }
-      ]
-    },
-    {
-      "type": "key-results-only",
-      "title": "Key Results",
-      "description": "Achieved 95% accuracy in extracting engineering tasks and assigning them to the correct owner automatically.",
-      "image": "/results-dashboard.png",
-      "video": "/meeting-assistant-demo.mov"
-    },
-    {
-      "type": "technical-performance",
-      "title": "Technical Performance",
-      "description": "Benchmarking the system under high-load scenarios with concurrent meetings.",
-      "metrics": [
-        {
-          "name": "Diarization Error",
-          "value": "<4%",
-          "description": "Correctly identifies speaker changes",
-          "details": "Even in heated debates with overlapping speech, the system correctly attributes quotes 96% of the time."
-        },
-        {
-          "name": "End-to-End Latency",
-          "value": "800ms",
-          "description": "From speech to text on screen"
-        },
-        {
-          "name": "Context Window",
-          "value": "128k",
-          "description": "Tokens supported for long meetings"
-        },
-        {
-          "name": "Hallucination Rate",
-          "value": "<0.1%",
-          "description": "Extremely low false fabrication",
-          "details": "Using RAG and strict prompt engineering, we ensure the AI never invents tasks that weren't discussed."
-        },
-        {
-          "name": "Concurrency",
-          "value": "500+",
-          "description": "Simultaneous meetings supported"
-        }
-      ]
-    },
-    {
-      "type": "cost-benefit",
-      "title": "Cost-Benefit Breakdown",
-      "description": "The ROI of automating meeting administration.",
-      "items": [
-        {
-          "title": "The Cost of Meetings",
-          "content": [
-            "Avg Engineer Salary: $80/hr",
-            "Avg PM Salary: $90/hr",
-            "Time spent organizing notes: 15 mins per hour of meeting",
-            "Cost of missed follow-up: Project delays"
-          ]
-        },
-        {
-          "title": "Manual Process",
-          "content": "Team of 5 in a 1hr meeting = $425 cost + $100 admin time = $525/meeting"
-        },
-        {
-          "title": "With AI Assistant",
-          "content": "Admin time reduced to 0. Cost per meeting = $0.50 (Compute). Savings = $99.50 per meeting."
-        }
-      ]
-    },
-    {
-      "type": "segment-analysis",
-      "title": "Segment Analysis (Honest Assessment)",
-      "description": "Where the model excels and where it is still learning.",
-      "segments": [
-        {
-          "name": "Strengths",
-          "metrics": [
-            {
-              "name": "Engineering Standups",
-              "value": "99% accuracy on technical jargon"
-            },
-            {
-              "name": "Sales Discovery Calls",
-              "value": "Excellent objection detection"
-            },
-            {
-              "name": "Structured Board Meetings",
-              "value": "Perfect minute generation"
-            }
-          ]
-        },
-        {
-          "name": "Weaknesses",
-          "metrics": [
-            {
-              "name": "Heavy Accents + Poor Mic",
-              "value": "88% accuracy - Needs audio enhancement"
-            },
-            {
-              "name": "Physical Whiteboard References",
-              "value": "Cannot see video context yet"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "type": "key-learning",
-      "title": "Key Learning",
-      "description": "Transcribing text was easy. Understanding *intent* and *context* in a multi-person conversation was the real engineering challenge.",
-      "learnings": [
-        {
-          "title": "Audio Quality is King",
-          "description": "Implemented pre-processing noise cancellation to improve transcription by 15%."
-        },
-        {
-          "title": "Latency vs. Accuracy",
-          "description": "Moved to a streaming architecture (WebSockets) instead of batch processing to give users a 'live' feel."
-        },
-        {
-          "title": "Prompt Engineering for JSON",
-          "description": "Forcing LLMs to output strict JSON for integrations required extensive few-shot training."
-        },
-        {
-          "title": "User Trust",
-          "description": "Adding a 'Private Mode' that pauses recording was essential for adoption."
-        },
-        {
-          "title": "RAG for Context",
-          "description": "Injecting previous meeting summaries into the prompt drastically improved suggestion quality."
-        }
-      ]
-    },
-    {
-      "type": "tech-stack",
-      "title": "Technologies Used",
-      "description": "A high-performance stack built for real-time audio processing and LLM orchestration.",
-      "technologies": [
-        "Python 3.11",
-        "OpenAI Whisper (Fine-tuned)",
-        "GPT-4o",
-        "LangChain",
-        "Pinecone (Vector DB)",
-        "Redis",
-        "WebRTC",
-        "FastAPI",
-        "React / Next.js",
-        "Docker",
-        "Kubernetes",
-        "Kafka"
-      ],
-      "categories": [
-        "AI/ML Models",
-        "Real-time Infrastructure",
-        "Frontend & API"
-      ]
-    },
-    {
-      "type": "production-deployment",
-      "title": "Production Deployment Architecture",
-      "description": "Designed for horizontal scalability to handle thousands of simultaneous corporate meetings.",
-      "cards": [
-        {
-          "title": "Ingestion Layer",
-          "icon": "info-square.svg",
-          "bullets": [
-            "WebRTC Gateway for audio streams",
-            "Kafka for message buffering",
-            "Load Balancer (Round Robin)",
-            "Auto-scaling bot instances"
-          ]
-        },
-        {
-          "title": "Processing Core",
-          "icon": "info-square.svg",
-          "bullets": [
-            "GPU Cluster for Whisper Inference",
-            "Async Task Queue (Celery)",
-            "Redis for state management",
-            "PII Redaction Service"
-          ]
-        },
-        {
-          "title": "Data Persistence",
-          "icon": "info-square.svg",
-          "bullets": [
-            "PostgreSQL: User data & metadata",
-            "S3: Encrypted audio storage",
-            "Pinecone: Vector embeddings",
-            "ElasticSearch: Full-text search"
-          ]
-        },
-        {
-          "title": "DevOps & Security",
-          "icon": "info-square.svg",
-          "bullets": [
-            "SOC2 Compliant Logging",
-            "GitHub Actions CI/CD",
-            "Prometheus/Grafana Monitoring",
-            "End-to-End Encryption"
-          ]
-        }
-      ]
-    },
-    {
-      "type": "results",
-      "title": "Results & Impact",
-      "description": "Transforming how teams collaborate by removing the administrative burden of meetings.",
-      "outcomes": [
-        "12 hours saved per employee/week",
-        "95% reduction in 'forgotten' tasks",
-        "99.9% system uptime",
-        "Seamless integration with 50+ tools",
-        "Adopted by 15 enterprise teams in beta"
-      ],
-      "businessValue": [
-        "Estimated $500k annual productivity gain per 100 employees",
-        "Faster project delivery cycles",
-        "Improved employee satisfaction (less admin work)",
-        "Better accountability through automated tracking",
-        "Centralized knowledge base for the organization"
-      ],
-      "image": "/impact-graph.png"
-    }
-  ]
-}
+    "id": "ai-meeting-assistant",
+    "slug": "ai-meeting-assistant",
+    "heroTitle": "Real-Time Meeting Agent",
+    "heroDescription": "Real-time AI Meeting agent which reduces meeting follow-up time by 75%",
+    "heroImage": "/meeting-assistant-hero.png",
+    "heroVideo": "/real-time-assistant.gif",
+    "gradientColors": [
+      "#E0E7FF"
+    ],
+    "metrics": [
+      {
+        "value": "<2 second latency",
+        "label": "for real-time transcription",
+        "icon": "/info-square.svg",
+        "iconBg": "bg-[#E0EAFF]"
+      },
+      {
+        "value": "90% accuracy",
+        "label": "in agenda progress tracking",
+        "icon": "/trend-up.svg",
+        "iconBg": "bg-[#FEE4E2]"
+      },
+      {
+        "value": "3-5 actionable insights",
+        "label": "generated per 15-minute segment",
+        "icon": "/alert-triangle.svg",
+        "iconBg": "bg-[#FEE4E2]"
+      }
+    ],
+    "sections": [
+      {
+        "type": "what-i-build",
+        "title": "What I Built",
+        "description": "A real-time meeting assistant that transforms unstructured voice data into structured business intelligence.",
+        "image": "/assistant.png",
+        "bulletPoints": [
+          "Three-layer architecture – speech recognition, natural language understanding, and intelligent analysis",
+          "Four core capabilities – real-time transcription, automatic insight extraction, agenda progress tracking, and proactive suggestions"
+        ]
+      },
+      {
+        "type": "intro",
+        "title": "The Meeting Intelligence Gap",
+        "description": "The problem isn't only the meetings themselves, but the cognitive overhead required to capture, synthesize, and act on what was discussed.",
+        "layout": "text-left-image-right",
+        "image": "/meeting-assistant.png",
+        "content": [
+          "Information Loss - Critical decisions and action items get lost in conversation flow",
+          "Cognitive Overload - Participants can't fully engage while trying to take notes",
+          "Delayed Insights - By the time meeting notes are reviewed, context is lost",
+          "No Real-Time Guidance - Meetings drift off-topic without immediate feedback"
+        ]
+      },
+      {
+        "type": "system-approach",
+        "title": "Selecting The Right Approach",
+        "description": "The system processes audio in real-time, transforming raw speech into structured intelligence that helps teams stay focused and capture value",
+        "cards": [
+          {
+            "title": "Audio Input"
+          },
+          {
+            "title": "Whisper API"
+          },
+          {
+            "title": "LLM Analyses"
+          },
+          {
+            "title": "Real-time UI"
+          }
+        ]
+      },
+      {
+        "type": "architecture",
+        "title": "System Architecture",
+        "description": "Event-driven architecture designed to handle concurrent audio streams and heavy NLP inference loads.",
+        "image": "/architecture-diagram.png"
+      },
+      {
+        "type": "section-with-cards",
+        "title": "Performance Benchmarks",
+        "description": "",
+        "cards": [
+          {
+            "title": "<2s Latency",
+            "description": "Audio to transcript",
+            "icon": "/info-square.png",
+            "bg": "bg-[#DBEAFE]"
+          },
+          {
+            "title": " 95%+ Parse Rate",
+            "description": "LLM response parsing",
+            "icon": "/trend-up.svg",
+            "bg": "bg-[#FEE4E2]"
+          },
+          {
+            "title": "99.2% Uptime",
+            "description": "API reliability",
+            "icon": "/alert-triangle.svg",
+            "bg": "bg-[#FEE4E2]"
+          },
+          {
+            "title": "87% Dedup Rate",
+            "description": "Duplicate reduction",
+            "icon": "/alert-triangle.svg",
+            "bg": "bg-[#FEE4E2]"
+          }
+        ]
+      },
+      {
+        "type": "section-with-cards-and-bullets",
+        "title": "Engineer High-Impact Features",
+        "description": "Built a custom NLP pipeline. The 'Commitment Extraction' feature became the most valued utility by PMs.",
+        "cards": [
+          {
+            "title": "NLP Features",
+            "items": [
+              "Named Entity Recognition (NER)",
+              "Sentiment Scoring",
+              "Topic Clustering",
+              "Summarization",
+              "Key Decision Extraction",
+              "Objection Handling Suggestions"
+            ],
+            "icon": "/code.svg",
+            "bg": "bg-[#E0EAFF]"
+          },
+          {
+            "title": "Integrations",
+            "items": [
+              "Jira Ticket Creation",
+              "Slack Notifications",
+              "Salesforce CRM Sync",
+              "Notion Page Generation"
+            ],
+            "icon": "/link.svg",
+            "bg": "bg-[#E0EAFF]"
+          },
+          {
+            "title": "Real-Time Assist",
+            "items": [
+              "Live Fact Checking",
+              "Agenda Adherence Tracking",
+              "Speaking Time Balance"
+            ],
+            "icon": "/zap.svg",
+            "bg": "bg-[#E0EAFF]"
+          }
+        ]
+      },
+      {
+        "type": "section-with-table",
+        "title": "Optimise for Business Outcomes",
+        "description": "Compared generic transcription APIs vs. our fine-tuned meeting model.",
+        "columns": [
+          "Solution",
+          "Tech Term Accuracy",
+          "Action Item Recall",
+          "Latency",
+          "Status"
+        ],
+        "rows": [
+          {
+            "Solution": "Generic Whisper API",
+            "Tech Term Accuracy": "72%",
+            "Action Item Recall": "65%",
+            "Latency": "4.5s",
+            "Status": "Too slow/inaccurate"
+          },
+          {
+            "Solution": "Human Note Taker",
+            "Tech Term Accuracy": "85%",
+            "Action Item Recall": "80%",
+            "Latency": "24 hours",
+            "Status": "Non-scalable"
+          },
+          {
+            "Solution": "Custom Fine-Tuned Model",
+            "Tech Term Accuracy": "96%",
+            "Action Item Recall": "95%",
+            "Latency": "0.8s",
+            "Status": "Production Ready"
+          }
+        ]
+      },
+      {
+        "type": "key-results-only",
+        "title": "Key Results",
+        "description": "Achieved 95% accuracy in extracting engineering tasks and assigning them to the correct owner automatically.",
+        "image": "/results-dashboard.png",
+        "video": "/real-time-assistant-big.gif"
+      },
+      {
+        "type": "technical-performance",
+        "title": "Technical Performance",
+        "description": "Benchmarking the system under high-load scenarios with concurrent meetings.",
+        "metrics": [
+          {
+            "name": "Diarization Error",
+            "value": "<4%",
+            "description": "Correctly identifies speaker changes",
+            "details": "Even in heated debates with overlapping speech, the system correctly attributes quotes 96% of the time."
+          },
+          {
+            "name": "End-to-End Latency",
+            "value": "800ms",
+            "description": "From speech to text on screen"
+          },
+          {
+            "name": "Context Window",
+            "value": "128k",
+            "description": "Tokens supported for long meetings"
+          },
+          {
+            "name": "Hallucination Rate",
+            "value": "<0.1%",
+            "description": "Extremely low false fabrication",
+            "details": "Using RAG and strict prompt engineering, we ensure the AI never invents tasks that weren't discussed."
+          },
+          {
+            "name": "Concurrency",
+            "value": "500+",
+            "description": "Simultaneous meetings supported"
+          }
+        ]
+      },
+      {
+        "type": "cost-benefit",
+        "title": "Cost-Benefit Breakdown",
+        "description": "The ROI of automating meeting administration.",
+        "items": [
+          {
+            "title": "The Cost of Meetings",
+            "content": [
+              "Avg Engineer Salary: $80/hr",
+              "Avg PM Salary: $90/hr",
+              "Time spent organizing notes: 15 mins per hour of meeting",
+              "Cost of missed follow-up: Project delays"
+            ]
+          },
+          {
+            "title": "Manual Process",
+            "content": "Team of 5 in a 1hr meeting = $425 cost + $100 admin time = $525/meeting"
+          },
+          {
+            "title": "With AI Assistant",
+            "content": "Admin time reduced to 0. Cost per meeting = $0.50 (Compute). Savings = $99.50 per meeting."
+          }
+        ]
+      },
+      {
+        "type": "section-with-cards",
+        "title": "Performance Metrics",
+        "description": "Key performance indicators for the real-time meeting agent.",
+        "cards": [
+          {
+            "title": "<2s Latency",
+            "description": "Audio to transcript conversion happens in under 2 seconds with 95%+ parse rate",
+            "icon": "/clock.svg",
+            "bg": "bg-[#E0EAFF]"
+          },
+          {
+            "title": "99.2% Uptime",
+            "description": "Reliable API performance ensuring consistent meeting transcription service",
+            "icon": "/shield-check.svg",
+            "bg": "bg-[#FEE4E2]"
+          },
+          {
+            "title": "87% Dedup Rate",
+            "description": "Duplicate reduction through intelligent parsing and LLM response processing",
+            "icon": "/refresh-cw.svg",
+            "bg": "bg-[#FEF6EE]"
+          },
+          {
+            "title": "Real-time Processing",
+            "description": "Audio to transcript, LLM response parsing, and API reliability all optimized for real-time performance",
+            "icon": "/zap.svg",
+            "bg": "bg-[#DCF4E2]"
+          },
+          {
+            "title": "95%+ Parse Rate",
+            "description": "High accuracy in parsing speech to text with advanced error correction",
+            "icon": "/check-circle.svg",
+            "bg": "bg-[#E2F4DC]"
+          }
+        ]
+      },
+      {
+        "type": "key-learning",
+        "title": "Key Learning",
+        "description": "Transcribing text was easy. Understanding *intent* and *context* in a multi-person conversation was the real engineering challenge.",
+        "learnings": [
+          {
+            "title": "Audio Quality is King",
+            "boldWords": "Implemented pre-processing noise cancellation to improve transcription by 15%."
+          },
+          {
+            "title": "Latency vs. Accuracy",
+            "boldWords": "Moved to a streaming architecture (WebSockets) instead of batch processing to give users a 'live' feel."
+          },
+          {
+            "title": "Prompt Engineering for JSON",
+            "boldWords": "Forcing LLMs to output strict JSON for integrations required extensive few-shot training."
+          },
+          {
+            "title": "User Trust",
+            "boldWords": "Adding a 'Private Mode' that pauses recording was essential for adoption."
+          },
+          {
+            "title": "RAG for Context",
+            "boldWords": "Injecting previous meeting summaries into the prompt drastically improved suggestion quality."
+          }
+        ]
+      },
+      {
+        "type": "tech-stack",
+        "title": "Technologies Used",
+        "description": "A high-performance stack built for real-time audio processing and LLM orchestration.",
+        "technologies": [
+          "Python 3.11",
+          "OpenAI Whisper (Fine-tuned)",
+          "GPT-4o",
+          "LangChain",
+          "Pinecone (Vector DB)",
+          "Redis",
+          "WebRTC",
+          "FastAPI",
+          "React / Next.js",
+          "Docker",
+          "Kubernetes",
+          "Kafka"
+        ],
+        "categories": [
+          "AI/ML Models",
+          "Real-time Infrastructure",
+          "Frontend & API"
+        ]
+      },
+      {
+        "type": "production-deployment",
+        "title": "Core Capabilities",
+        "description": "Built on a three-layer architecture combining speech recognition, natural language understanding, and intelligent analysis",
+        "cards": [
+          {
+            "title": "Real-Time Transcription",
+            "icon": "chat.png",
+            "iconBg": "bg-[#FEF0C7]",
+            "bullets": [
+              "Sub-second audio-to-text conversion that handles overlapping speech, multiple speakers, and background noise effectively",
+              "Groq Whisper API + Stream Processing"
+            ]
+          },
+          {
+            "title": "Intelligent Insight Extraction",
+            "icon": "star.png",
+            "iconBg": "bg-[#F4EBFF]",
+            "bullets": [
+              "Automatically identifies decisions, commitments, and key information using context-aware prompts that filter out fluff",
+              "Custom LLM Prompts + Context Windows"
+            ]
+          },
+          {
+            "title": "Agenda Progress Tracking",
+            "icon": "green-check.png",
+            "iconBg": "bg-[#DCFAE6]",
+            "bullets": [
+              "Real-time semantic matching against agenda items to keep meetings on track and ensure all key topics are covered",
+              "Semantic Search + State Management"
+            ]
+          },
+          {
+            "title": "Proactive Suggestions",
+            "icon": "gray-info.png",
+            "iconBg": "bg-[#F2F2F7]",
+            "bullets": [
+              "Generates real-time recommendations, questions, and warnings to prevent off-topic drift and missed opportunities",
+              "Multi-class Classification"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "results",
+        "title": "Results & Impact",
+        "description": "Transforming how teams collaborate by removing the administrative burden of meetings.",
+        "image": "/impact-graph.png",
+        "outcomes": [
+          "12 hours saved per employee/week",
+          "95% reduction in 'forgotten' tasks",
+          "99.9% system uptime",
+          "Seamless integration with 50+ tools",
+          "Adopted by 15 enterprise teams in beta"
+        ],
+        "businessValue": [
+          "Estimated $500k annual productivity gain per 100 employees",
+          "Faster project delivery cycles",
+          "Improved employee satisfaction (less admin work)",
+          "Better accountability through automated tracking",
+          "Centralized knowledge base for the organization"
+        ]
+      }
+    ]
+  }
 ];
 
 export default mlProjects;

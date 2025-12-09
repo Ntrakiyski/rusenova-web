@@ -19,7 +19,7 @@ export default function MLChallenge({
   background = 'bg-bg-white',
   image
 }: MLChallengeProps) {
-  // Helper function to render challenge content
+  // Helper function to render challenge content with bold text before "-"
   const renderChallengeContent = (challenge: string | ProjectFeature) => {
     if (typeof challenge === 'string') {
       return challenge;
@@ -27,6 +27,27 @@ export default function MLChallenge({
       return challenge.description;
     }
     return '';
+  };
+
+  // Helper function to bold text before the first "-" symbol
+  const renderBoldedContent = (content: string) => {
+    const dashIndex = content.indexOf('-');
+    
+    // If no dash is found, return the content as is
+    if (dashIndex === -1) {
+      return <span>{content}</span>;
+    }
+    
+    // Split content into bold part and regular part
+    const boldText = content.substring(0, dashIndex).trim();
+    const regularText = content.substring(dashIndex).trim();
+    
+    return (
+      <span>
+        <span className="font-semibold">{boldText}</span>
+        <span> {regularText}</span>
+      </span>
+    );
   };
 
   return (
@@ -53,11 +74,11 @@ export default function MLChallenge({
             <div className="space-y-4 pl-0">
               {challenges.map((challenge, index) => (
                 <div key={index} className="flex gap-2 sm:gap-3 items-start">
-                  <div className="pt-2 shrink-0">
+                  {/* <div className="pt-2 shrink-0">
                     <div className="w-3 h-3 rounded-full bg-text-orange" />
-                  </div>
+                  </div> */}
                   <p className="font-bricolage text-text-primary text-text-md-regular">
-                    {renderChallengeContent(challenge)}
+                    {renderBoldedContent(renderChallengeContent(challenge))}
                   </p>
                 </div>
               ))}

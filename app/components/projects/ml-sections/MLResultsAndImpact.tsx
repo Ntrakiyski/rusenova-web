@@ -3,8 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import {
-  VideoPlayer,
-  VideoPlayerContent,
+  // VideoPlayer,
+  // VideoPlayerContent,
 } from '@/components/ui/shadcn-io/video-player';
 
 interface MLResultsAndImpactProps {
@@ -60,18 +60,15 @@ export default function MLResultsAndImpact({
           <div className="mb-8 flex justify-center">
             <div className="w-full max-w-[1216px]">
               {video ? (
+                // Video player commented out - using GIF instead
                 <div className="w-full rounded-[12px] border border-white overflow-hidden relative shadow-xl">
-                  <VideoPlayer>
-                    <VideoPlayerContent 
-                      slot="media" 
-                      src={video} 
-                      className="w-full aspect-video" 
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                    />
-                  </VideoPlayer>
+                  <Image
+                    src={video}
+                    alt={title || 'Results'}
+                    className="w-full aspect-video"
+                    width={1216}
+                    height={600}
+                  />
                 </div>
               ) : (
                 <Image
@@ -110,7 +107,7 @@ export default function MLResultsAndImpact({
               <div className="flex flex-col gap-3 sm:gap-4">
                 {outcomes.map((item, index) => (
                   <div key={index} className="flex gap-2 sm:gap-3 items-start">
-                    <div className="shrink-0 mt-0.5">
+                    {/* <div className="shrink-0 mt-0.5">
                       <Image
                         src="/Check icon.svg"
                         alt="Check icon"
@@ -118,7 +115,7 @@ export default function MLResultsAndImpact({
                         height={16}
                         className="w-4 sm:w-5 h-4 sm:h-5"
                       />
-                    </div>
+                    </div> */}
                     <p className="font-bricolage text-text-secondary text-text-lg-regular sm:text-text-xl-regular leading-relaxed">
                       {item}
                     </p>
@@ -151,13 +148,13 @@ export default function MLResultsAndImpact({
                 {businessValue.map((item, index) => (
                   <div key={index} className="flex gap-2 sm:gap-3 items-start">
                     <div className="shrink-0 mt-0.5">
-                      <Image
+                      {/* <Image
                         src="/Check icon.svg"
                         alt="Check icon"
                         width={16}
                         height={16}
                         className="w-4 sm:w-5 h-4 sm:h-5"
-                      />
+                      /> */}
                     </div>
                     <p className="font-bricolage text-text-secondary text-text-lg-regular sm:text-text-xl-regular leading-relaxed">
                       {item}

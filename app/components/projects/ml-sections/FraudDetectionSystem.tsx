@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image';
 import { Project, WhatIBuildSection, SectionWithCards, SectionWithCardsAndBullets, SectionWithTable, KeyResultsOnlySection, TechnicalPerformanceSection, CostBenefitSection, SegmentAnalysisSection, KeyLearningSection, ProductionDeploymentSection, TechStackSection, ApproachSection } from '@/types/project';
 import MLHero from './MLHero';
 import MLWhatIBuild from './MLWhatIBuild';
@@ -17,7 +15,7 @@ import MLKeyLearning from './MLKeyLearning';
 import MLProductionDeployment from './MLProductionDeployment';
 import MLTechStack from './MLTechStack';
 import MLMoreProjects from './MLMoreProjects';
-import { getMLProjects } from '@/app/utils/projectUtils';
+
 
 interface FraudDetectionSystemProps {
   projectData: Project;
@@ -100,6 +98,7 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
           bulletPoints={whatIBuildSection.bulletPoints}
           showImage={false}
           image={whatIBuildSection.image}
+          boldWords={whatIBuildSection.boldWords}
         />
       )}
 
@@ -171,6 +170,26 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
         />
       )}
 
+        {/* ML-Segment Analysis */}
+        {segmentAnalysisSection && (
+        <MLSegmentAnalysis
+          title={segmentAnalysisSection.title}
+          description={segmentAnalysisSection.description}
+          items={segmentAnalysisSection.items}
+        />
+      )}
+
+         {/* ML-Key Learning */}
+         {keyLearningSection && (
+        <MLKeyLearning
+          title={keyLearningSection.title}
+          learnings={keyLearningSection.learnings}
+          boldWords={keyLearningSection.learnings.map(l => l.boldWords || '').filter(Boolean)}
+          image={keyLearningSection.image}
+          showImage={true}
+        />
+      )}
+
       {/* ML-Cost-Benefit */}
       {costBenefitSection && (
         <MLCostBenefit
@@ -180,23 +199,7 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
         />
       )}
 
-      {/* ML-Segment Analysis */}
-      {segmentAnalysisSection && (
-        <MLSegmentAnalysis
-          title={segmentAnalysisSection.title}
-          description={segmentAnalysisSection.description}
-          segments={segmentAnalysisSection.segments}
-        />
-      )}
-
-      {/* ML-Key Learning */}
-      {keyLearningSection && (
-        <MLKeyLearning
-          title={keyLearningSection.title}
-          description={keyLearningSection.description}
-          learnings={keyLearningSection.learnings}
-        />
-      )}
+  
 
       {/* ML-TechStack */}
       {techStackSection && (

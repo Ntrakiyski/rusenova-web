@@ -63,13 +63,13 @@ export default function AboutSection({ content, colors }: AboutSectionProps) {
                   className="flex flex-col gap-1"
                 >
                   <span
-                    className={`text-display-md font-bricolage font-semibold`}
-                    style={{ color: colors.text.primary }}
+                    className={`text-display-md font-bricolage font-semibold text-text-orange text-center`}
+                
                   >
                     {stat.value}
                   </span>
                   <span
-                    className={`text-text-lg-regular font-bricolage`}
+                    className={`text-text-lg-regular font-bricolage text-center`}
                     style={{ color: colors.text.secondary }}
                   >
                     {stat.label}

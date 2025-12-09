@@ -5,6 +5,7 @@ import {
   Project,
   IntroSection,
   ApproachSection,
+  SystemApproachSection,
   ArchitectureSection,
   ResultsSection,
   WhatIBuildSection,
@@ -23,6 +24,7 @@ import MLHero from './MLHero';
 import MLWhatIBuild from './MLWhatIBuild';
 import MLChallenge from './MLChallenge';
 import MLApproach from './MLApproach';
+import MLSystemApproach from './MLSystemApproach';
 import MLArchitecture from './MLArchitecture';
 import MLResultsAndImpact from './MLResultsAndImpact';
 import MLSectionWithCards from './MLSectionWithCards';
@@ -51,9 +53,9 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
     section.type === 'intro'
   ) as IntroSection | undefined;
 
-  const approachSection = projectData.sections.find((section): section is ApproachSection =>
-    section.type === 'approach'
-  ) as ApproachSection | undefined;
+  const approachSection = projectData.sections.find((section): section is ApproachSection | SystemApproachSection =>
+    section.type === 'approach' || section.type === 'system-approach'
+  ) as ApproachSection | SystemApproachSection | undefined;
 
   const architectureSection = projectData.sections.find((section): section is ArchitectureSection =>
     section.type === 'architecture'
@@ -141,7 +143,7 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
         />
       )}
 
-      {approachSection && (
+      {approachSection?.type === 'approach' && (
         <MLApproach
           title={approachSection.title}
           description={approachSection.description}
@@ -149,83 +151,33 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
         />
       )}
 
+      {approachSection?.type === 'system-approach' && (
+        <MLSystemApproach
+          title={approachSection.title}
+          description={approachSection.description}
+          cards={approachSection.cards}
+        />
+      )}
+
+{productionDeploymentSection && (
+        <MLProductionDeployment
+          title={productionDeploymentSection.title}
+          description={productionDeploymentSection.description}
+          cards={productionDeploymentSection.cards}
+        />
+      )}
+
+      
+
       {sectionWithCards && (
         <MLSectionWithCards
           title={sectionWithCards.title}
           description={sectionWithCards.description}
-          cards={sectionWithCards.cards.map(card => ({
-            ...card,
-            icon: card.icon && card.icon.startsWith('/')
-              ? (<img src={card.icon} alt="" className="w-6 h-6" />)
-              : card.icon
-                ? (<div dangerouslySetInnerHTML={{ __html: card.icon }} />)
-                : (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="#155DFC" strokeWidth="2"/>
-                  </svg>
-                ),
-            bg: card.bg,
-          }))}
+          cards={sectionWithCards.cards}
         />
       )}
 
-      {sectionWithCardsAndBullets && (
-        <MLSectionWithCardsAndBullets
-          title={sectionWithCardsAndBullets.title}
-          description={sectionWithCardsAndBullets.description}
-          cards={sectionWithCardsAndBullets.cards}
-        />
-      )}
-
-      {sectionWithTable && (
-        <MLSectionWithTable
-          title={sectionWithTable.title}
-          description={sectionWithTable.description}
-          columns={sectionWithTable.columns}
-          rows={sectionWithTable.rows}
-        />
-      )}
-
-      {keyResultsSection && (
-        <MLKeyResultsOnly
-          title={keyResultsSection.title}
-          description={keyResultsSection.description}
-          image={keyResultsSection.image}
-          video={keyResultsSection.video}
-        />
-      )}
-
-      {technicalPerformanceSection && (
-        <MLTechnicalPerformance
-          title={technicalPerformanceSection.title}
-          description={technicalPerformanceSection.description}
-          metrics={technicalPerformanceSection.metrics}
-        />
-      )}
-
-      {costBenefitSection && (
-        <MLCostBenefit
-          title={costBenefitSection.title}
-          description={costBenefitSection.description}
-          items={costBenefitSection.items}
-        />
-      )}
-
-      {segmentAnalysisSection && (
-        <MLSegmentAnalysis
-          title={segmentAnalysisSection.title}
-          description={segmentAnalysisSection.description}
-          segments={segmentAnalysisSection.segments}
-        />
-      )}
-
-      {keyLearningSection && (
-        <MLKeyLearning
-          title={keyLearningSection.title}
-          description={keyLearningSection.description}
-          learnings={keyLearningSection.learnings}
-        />
-      )}
+  
 
       {techStackSection && (
         <MLTechStack
@@ -236,31 +188,6 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
         />
       )}
 
-      {productionDeploymentSection && (
-        <MLProductionDeployment
-          title={productionDeploymentSection.title}
-          description={productionDeploymentSection.description}
-          cards={productionDeploymentSection.cards}
-        />
-      )}
-
-      {architectureSection && (
-        <MLArchitecture
-          title={architectureSection.title}
-          description={architectureSection.description}
-          image={architectureSection.image || '/rag-results.png'}
-        />
-      )}
-
-      {resultsSection && (
-        <MLResultsAndImpact
-          title={resultsSection.title}
-          description={resultsSection.description}
-          outcomes={resultsSection.outcomes}
-          businessValue={resultsSection.businessValue}
-          image={resultsSection.image}
-        />
-      )}
 
       {/* More Projects Section */}
       <MLMoreProjects

@@ -37,7 +37,7 @@ export default function MLSectionWithBullets({
         <GradientBackground className="rounded-3xl overflow-hidden relative w-full max-w-[1216px]">
           <div className="relative z-10 px-16 py-16">
             <div className="w-ful bg-bg-white rounded-[12px] p-3xl">
-              <div className="space-y-20">
+              <div className="space-y-6">
                 {items.map((item, index) => (
                   <div key={index} className="flex gap-20 items-center">
                     {/* <div className="shrink-0 mt-1">

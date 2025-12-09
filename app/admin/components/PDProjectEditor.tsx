@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { CheckCircle2, AlertCircle, Save, RefreshCw } from 'lucide-react';
 import { Project } from '@/types/project';
+import ImagePicker from './ImagePicker';
 
 interface PDProjectEditorProps {
   project: Project;
@@ -187,11 +188,10 @@ export default function PDProjectEditor({
 
               <div>
                 <Label htmlFor="previewImage">Preview Image</Label>
-                <Input
-                  id="previewImage"
+                <ImagePicker
+                  label=""
                   value={editedProject.previewImage || ''}
-                  onChange={(e) => handleProjectFieldChange('previewImage', e.target.value)}
-                  placeholder="e.g., /gradient-orange-pink.png"
+                  onChange={(val) => handleProjectFieldChange('previewImage', val)}
                 />
               </div>
             </CardContent>
@@ -209,12 +209,11 @@ export default function PDProjectEditor({
                 {editedProject.sections.map((section, index) => (
                   <div
                     key={index}
-                    className={`border rounded-lg p-3 cursor-pointer transition-colors ${
+                    className={`border rounded-lg p-3 transition-colors ${
                       selectedSectionIndex === index
                         ? 'border-orange-500 bg-orange-50'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
-                    onClick={() => setSelectedSectionIndex(selectedSectionIndex === index ? null : index)}
                   >
                     <div className="flex items-center justify-between">
                       <div>
@@ -229,9 +228,23 @@ export default function PDProjectEditor({
                         <span className="px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded">
                           {index + 1}
                         </span>
-                        <span className={`w-2 h-2 rounded-full ${
-                          selectedSectionIndex === index ? 'bg-orange-500' : 'bg-gray-300'
-                        }`} />
+                        <button
+                          type="button"
+                          onClick={() => setSelectedSectionIndex(selectedSectionIndex === index ? null : index)}
+                          className="p-1 rounded hover:bg-gray-200 transition-colors"
+                          aria-label={selectedSectionIndex === index ? "Collapse section" : "Expand section"}
+                        >
+                          <svg
+                            className={`w-4 h-4 transition-transform ${
+                              selectedSectionIndex === index ? 'rotate-180' : ''
+                            }`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
                       </div>
                     </div>
                     {selectedSectionIndex === index && (
@@ -259,10 +272,10 @@ export default function PDProjectEditor({
                           {section.image && (
                             <div>
                               <Label htmlFor={`section-image-${index}`}>Image</Label>
-                              <Input
-                                id={`section-image-${index}`}
+                              <ImagePicker
+                                label=""
                                 value={section.image}
-                                onChange={(e) => handleSectionFieldChange(index, 'image', e.target.value)}
+                                onChange={(val) => handleSectionFieldChange(index, 'image', val)}
                               />
                             </div>
                           )}

@@ -50,10 +50,10 @@ export default function Mentormate({ projectData }: MentormateProps) {
             <PDSectionLeft
               key={section.type}
               title={section.title}
-              description={section.description}
+              description={section.description || ''}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
-              background="bg-bg-light"
+              background="bg-white"
             />
           );
         } else {
@@ -61,10 +61,10 @@ export default function Mentormate({ projectData }: MentormateProps) {
             <PDSectionRight
               key={section.type}
               title={section.title}
-              description={section.description}
+              description={section.description || ''}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
-              background="bg-bg-light"
+              background="bg-white"
             />
           );
         }

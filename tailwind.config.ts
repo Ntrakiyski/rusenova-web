@@ -18,6 +18,7 @@ const config: Config = {
           dark: '#252222',       // dark
           'light-dark': '#373737', // light dark
           white: '#FFFFFF',
+          orange: '#F38300',
         },
         // Additional colors for specific use cases
         additional: {
@@ -65,6 +66,10 @@ const config: Config = {
         'display-xs': [
           'clamp(20px, 4vw, 24px)',
           { lineHeight: '32px', letterSpacing: '-0.01em' },
+        ],
+        'display-xs-semibold': [
+          'clamp(20px, 4vw, 24px)',
+          { lineHeight: '32px', letterSpacing: '-0.01em', fontWeight: '600' },
         ],
 
         // Text xl regular: Mobile/Tablet 20px → Desktop 22px

@@ -2,7 +2,8 @@
 
 import React from 'react';
 import PDHero from './PDHero';
-import PDTelenorIntro from './PDTelenorIntro';
+import PDNutshell from './PDNutshell';
+import PDTelenorImages from './PDTelenorImages';
 import PDSelectedWork from './PDSelectedWork';
 import PDSectionLeft from './PDSectionLeft';
 import PDSectionRight from './PDSectionRight';
@@ -35,26 +36,28 @@ export default function Telenor({ projectData }: TelenorProps) {
         background={projectData.heroBackground || 'bg-bg-dark'}
       />
 
-      {/* 2. Telenor Intro Section */}
+      {/* 2. Nutshell Section */}
       {introSection && (
-        <PDTelenorIntro
-          title={introSection.title}
-          row1Image={(introSection as { row1Image?: string }).row1Image || "/rag-results.png"}
-          row2Image={(introSection as { row2Image?: string }).row2Image || "/rag-results.png"}
-          features={Array.isArray(introSection.content) ? introSection.content.map((item: string | { title?: string; description?: string }) => ({
+        <PDNutshell
+          features={Array.isArray(introSection.content) ? introSection.content.map((item: any) => ({
             title: typeof item === 'string' ? '' : (item.title || ''),
-            description: typeof item === 'string' ? item : (item.description || '')
+            description: typeof item === 'string' ? item : (item.description || ''),
+            person: typeof item === 'string' ? undefined : (item.person || undefined),
+            role: typeof item === 'string' ? undefined : (item.role || undefined)
           })) : []}
         />
       )}
 
-      {/* 3. Selected Work Section */}
+      {/* 3. Telenor Images Section */}
+      <PDTelenorImages />
+
+      {/* 4. Selected Work Section */}
       <PDSelectedWork
         title="Selected Work"
         description="Featured below are select projects from my broader portfolio. Happy to dive deeper into specific work"
       />
 
-      {/* 4. Project Sections */}
+      {/* 5. Project Sections */}
       {projectSections.map((section) => {
         const layout = section.layout || 'text-left';
         const achievements = (section as { achievements?: string[] }).achievements || [];
@@ -65,7 +68,7 @@ export default function Telenor({ projectData }: TelenorProps) {
             <PDSectionLeft
               key={section.type}
               title={section.title}
-              description={section.description}
+              description={section.description || ''}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
               background="bg-bg-light"
@@ -76,7 +79,7 @@ export default function Telenor({ projectData }: TelenorProps) {
             <PDSectionRight
               key={section.type}
               title={section.title}
-              description={section.description}
+              description={section.description || ''}
               achievements={achievements}
               images={image ? [image] : ["/rag-results.png"]}
               background="bg-bg-light"
@@ -85,7 +88,7 @@ export default function Telenor({ projectData }: TelenorProps) {
         }
       })}
 
-      {/* 5. Keep In Mind Section */}
+      {/* 6. Keep In Mind Section */}
       <PDKeepInMind
         title="Keep in mind"
         description="What you see here is a snapshot - each project has layers of research, collaboration, and tough decisions that shaped the outcome. If something catches your eye, let's talk about how that experience translates to what you're working on."
