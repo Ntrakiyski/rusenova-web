@@ -61,7 +61,7 @@ export default function MLTechStack({
                       {techList.map((tech, techIndex) => (
                         <div
                           key={techIndex}
-                          className="px-4 py-2 border border-stroke rounded-lg shadow-sm bg-bg-white"
+                          className="px-4 py-2 border border-stroke rounded-lg bg-bg-white"
                         >
                           <span className="font-bricolage text-text-sm-semibold text-text-primary">
                             {tech}
@@ -84,7 +84,7 @@ export default function MLTechStack({
                       {technologies.map((tech, index) => (
                         <div
                           key={index}
-                          className="px-4 py-2 border border-stroke rounded-lg shadow-sm bg-bg-white"
+                          className="px-4 py-2 border border-stroke rounded-lg bg-bg-white"
                         >
                           <span className="font-bricolage text-text-sm-semibold text-text-primary">
                             {tech}
@@ -105,7 +105,7 @@ export default function MLTechStack({
                       {categories.map((category, index) => (
                         <div
                           key={index}
-                          className="px-4 py-2 border border-stroke rounded-lg shadow-sm bg-bg-white"
+                          className="px-4 py-2 border border-stroke rounded-lg bg-bg-white"
                         >
                           <span className="font-bricolage text-text-sm-semibold text-text-primary">
                             {category}

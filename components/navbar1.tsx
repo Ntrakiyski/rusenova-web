@@ -20,6 +20,7 @@ interface MenuItem {
   description?: string;
   icon?: React.ReactNode;
   items?: MenuItem[];
+  projectId?: string | number;
 }
 
 interface Navbar1Props {
@@ -270,7 +271,7 @@ const Navbar1 = ({
                     handleNavClick(item.url);
                   }}
                   className={`block px-4 py-3 font-['Bricolage_Grotesque:Regular',sans-serif] ${
-                    isActive ? (isHomePage ? 'text-[#191818]' : 'text-white') : linkColor
+                    isActive ? (isHomePage ? 'text-[#191818]' : 'text-[#191818]') : linkColor
                   } text-[16px] cursor-pointer ${
                     isActive ? 'underline decoration-2 underline-offset-4' : ''
                   }`}

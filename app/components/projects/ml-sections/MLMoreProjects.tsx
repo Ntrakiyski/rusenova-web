@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
-import { Project } from '@/types/project';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getMLProjects } from '@/app/utils/projectUtils';
@@ -15,17 +14,6 @@ interface MLMoreProjectsProps {
 export default function MLMoreProjects({ currentSlug }: MLMoreProjectsProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scrollML = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const scrollAmount = 420;
-      const newScrollPosition = scrollRef.current.scrollLeft + (direction === 'right' ? scrollAmount : -scrollAmount);
-      scrollRef.current.scrollTo({
-        left: newScrollPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
-
   // Get all ML projects and filter out the current project
   const allMLProjects = getMLProjects();
   const otherProjects = allMLProjects.filter(project => project.slug !== currentSlug);
@@ -34,11 +22,28 @@ export default function MLMoreProjects({ currentSlug }: MLMoreProjectsProps) {
   if (!otherProjects.length) {
     return null;
   }
+  
 
   // Get the gradient image for each project from homeContent.json
   const getProjectGradient = (projectSlug: string) => {
-    const project = homeContent.mlPreview?.projects.find(p => p.slug === projectSlug);
-    return project?.previewImage || '/gradient-orange-pink.png';
+    const project = homeContent.mlPreview;
+    const projectData = project?.projects.find(p => p.slug === projectSlug);
+    return projectData?.previewImage || '/gradient-orange-pink.png';
+
+  };
+
+  // Get the title for each project from homeContent.json
+  const getProjectTitle = (projectSlug: string) => {
+    const project = homeContent.mlPreview;
+    const projectData = project?.projects.find(p => p.slug === projectSlug);
+    return projectData?.title || '';
+  };
+
+  // Get the short description for each project from homeContent.json
+  const getProjectShortDescription = (projectSlug: string) => {
+    const project = homeContent.mlPreview;
+    const projectData = project?.projects.find(p => p.slug === projectSlug);
+    return projectData?.shortDescription || '';
   };
 
   return (
@@ -54,9 +59,9 @@ export default function MLMoreProjects({ currentSlug }: MLMoreProjectsProps) {
           <div className="flex flex-col gap-5">
             <h2
               className={`text-display-md font-bricolage font-semibold`}
-              style={{ color: '#101828' }}
+              style={{ color: '#bl' }}
             >
-              {homeContent.mlPreview?.title || "More ML Projects"}
+              {homeContent.mlPreview.title || "More ML Projects"}
             </h2>
             <p
               className={`text-text-xl-regular font-bricolage max-w-[768px]`}
@@ -139,13 +144,13 @@ export default function MLMoreProjects({ currentSlug }: MLMoreProjectsProps) {
                     className={`text-display-xs font-bricolage font-semibold mt-5`}
                     style={{ color: '#101828' }}
                   >
-                    {project.title}
+                    {getProjectTitle(project.slug)}
                   </h3>
                   <p
                     className={`text-text-lg-regular font-bricolage`}
                     style={{ color: '#494848' }}
                   >
-                    {project.shortDescription}
+                    {getProjectShortDescription(project.slug)}
                   </p>
                 </div>
               </Link>

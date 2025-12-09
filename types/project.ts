@@ -36,7 +36,12 @@ export interface IntroSection extends BaseProjectSection {
 
 export interface ApproachSection extends BaseProjectSection {
   type: 'approach';
-  cards: ProjectCard[];
+  cards: Array<{
+    title: string;
+    description: string;
+    icon?: string;
+    iconBg?: string;
+  }>;
 }
 
 export interface SystemApproachSection extends BaseProjectSection {

@@ -19,7 +19,7 @@
     "backgroundColor": "#f7f4ed",
     "badge": "HUMAN & AI",
     "title": "Smart systems built for real people",
-    "subtitle": "Bending Product Design & Machine Learning to create better systems for great user experience",
+    "subtitle": "Bending product design & machine learning to create better systems for great user experience",
     "buttons": [
       {
         "text": "Email",
@@ -214,12 +214,12 @@
         "label": "Years of Experience"
       },
       {
-        "value": "3",
-        "label": "Major Companies"
+        "value": "20+",
+        "label": "Shipped Products"
       },
       {
-        "value": "100%",
-        "label": "Passion for AI & Design"
+        "value": "2m+",
+        "label": "Users Impacted"
       }
     ],
     "image": {

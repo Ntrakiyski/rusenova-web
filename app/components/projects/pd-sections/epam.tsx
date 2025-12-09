@@ -7,6 +7,9 @@ import PDSectionLeft from './PDSectionLeft';
 import PDSectionRight from './PDSectionRight';
 import PDKeepInMind from './PDKeepInMind';
 import { Project, IntroSection } from '@/types/project';
+import PDSelectedWork from './PDSelectedWork';
+import PDSlider from './PDSlider';
+
 
 interface EpamProps {
   projectData: Project;
@@ -39,6 +42,11 @@ export default function Epam({ projectData }: EpamProps) {
         />
       )}
 
+       <PDSelectedWork
+        title="Selected Work"
+        description="Featured below are select projects from my broader portfolio. Happy to dive deeper into specific work"
+      />
+
       {/* 3. Project Sections - Pattern: image left, image right, image left */}
       {projectSections.map((section, index) => {
         const achievements = (section as any).achievements || [];
@@ -70,7 +78,16 @@ export default function Epam({ projectData }: EpamProps) {
         }
       })}
 
-      {/* 4. Keep In Mind Section */}
+      {/* 4. PDSlider Section - After the right/left sections */}
+      {/* <PDSlider
+        title="Additional Project Highlights"
+        description="Here are some additional highlights from the project showcasing different aspects and outcomes."
+        achievements={["Increased user engagement", "Improved design consistency", "Enhanced user experience"]}
+        sliderImages={["/tide_admin1.svg", "/mentormate-golf.png", "/mentormate-golf.png"]}
+        background="bg-white"
+      /> */}
+
+      {/* 5. Keep In Mind Section */}
       <PDKeepInMind
         title="Keep in mind"
         description="What you see here is a snapshot - each project has layers of research, collaboration, and tough decisions that shaped the outcome. If something catches your eye, let's talk about how that experience translates to what you're working on."

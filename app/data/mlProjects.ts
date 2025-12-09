@@ -11,10 +11,10 @@ export const mlProjects: Project[] = [
         "description": "A comprehensive RAG system that transforms how organizations access and utilize their document repositories.",
         "image": "/rag-results.png",
         "bulletPoints": [
-          "RAG with dedicated Evaluation Framework – essential for validating system performance",
-          "Critical for unseen information – evaluation framework is especially important for data LLMs haven't encountered during training",
-          "Guarantees correctness – ensures results are accurate and reliable",
-          "Enables measurement and improvement – identifies failure points and failure rates to systematically enhance the system"
+          "RAG with dedicated Evaluation Framework - essential for validating system performance",
+          "Critical for unseen information - evaluation framework is especially important for data LLMs haven't encountered during training",
+          "Guarantees correctness - ensures results are accurate and reliable",
+          "Enables measurement and improvement - identifies failure points and failure rates to systematically enhance the system"
         ]
       },
       {
@@ -226,18 +226,26 @@ export const mlProjects: Project[] = [
         "cards": [
           {
             "title": "Data Analyses",
+            "icon": "/info-square.svg",
+            "iconBg": "bg-[#E0EAFF]",
             "description": "Analyzed 284K transactions to uncover risk patterns "
           },
           {
             "title": "Feature engineering",
+            "icon": "/info-square.svg",
+            "iconBg": "bg-[#E0EAFF]",
             "description": "Created 21 custom features combining domain knowledge with statistical methods"
           },
           {
             "title": "Algorithm testing",
+            "icon": "/info-square.svg",
+            "iconBg": "bg-[#E0EAFF]",
             "description": "Compared three algorithms and selected XGBoost"
           },
           {
             "title": "Business results",
+            "icon": "/info-square.svg",
+            "iconBg": "bg-[#E0EAFF]",
             "description": "Calculated $2.7M annual value and performed segment analysis to translate model performance"
           }
         ]
@@ -262,14 +270,14 @@ export const mlProjects: Project[] = [
           {
             "title": "Outliers",
             "description": "Discovered isolation forest outliers had 217× fraud concentration",
-            "icon": "/info-square.svg",
-            "bg": "bg-[#E0EAFF]"
+            "icon": "/trend-up.svg",
+            "bg": "bg-[#FEE4E2]"
           },
           {
             "title": "High risk",
             "description": "Identified night transactions = 3× higher risk",
-            "icon": "/info-square.svg",
-            "bg": "bg-[#E0EAFF]"
+            "icon": "/alert-triangle.svg",
+            "bg": "bg-[#FEE4E2]"
           }
         ]
       },
@@ -287,7 +295,7 @@ export const mlProjects: Project[] = [
               "Isolation Forest outlier scores"
             
             ],
-            "icon": "/info-square.svg",
+            "icon": "/bar-chart.svg",
             "bg": "bg-[#E0EAFF]"
           },
           {
@@ -297,8 +305,8 @@ export const mlProjects: Project[] = [
               "is round_amount",
               "V14 amount interaction"
             ],
-            "icon": "/info-square.svg",
-            "bg": "bg-[#E0EAFF]"
+            "icon": "/cube.svg",
+            "bg": "bg-[#DCFAE6]"
           },
           {
             "title": "Advanced",
@@ -307,8 +315,8 @@ export const mlProjects: Project[] = [
               "feature entropy",
               "dominant feature value"
             ],
-            "icon": "/info-square.svg",
-            "bg": "bg-[#E0EAFF]"
+            "icon": "/star.svg",
+            "bg": "bg-[#FEF0C7]"
           }
         ]
       },
@@ -395,16 +403,16 @@ export const mlProjects: Project[] = [
         "items": [
           {
             "title": "Without a System",
-            "icon": "/info-square.svg",
-            "iconBg": "bg-[#E0EAFF]",
+            "icon": "/alert-triangle.svg",
+            "iconBg": "bg-[#FEE4E2]",
             "content": [
               "All 492 frauds succeed = -$3.3M lost per year"
             ]
           },
           {
             "title": "With a System",
-            "icon": "/info-square.svg",
-            "iconBg": "bg-[#E0EAFF]",
+            "icon": "/green-check.svg",
+            "iconBg": "bg-[#DCFAE6]",
             "content": [
               "Fraud Prevented: 413 frauds → $2.77M saved",
               "Missed: 79 frauds → $535K loss"
@@ -419,8 +427,8 @@ export const mlProjects: Project[] = [
         "items": [
           {
             "title": "Strengths",
-            "icon": "/info-square.svg",
-            "iconBg": "bg-[#E0EAFF]",
+            "icon": "/green-check.svg",
+            "iconBg": "bg-[#DCFAE6]",
             "content": [
               "High-value fraud (>$500): 94% recall",
               "Medium transactions ($100-$500): 89% recall",
@@ -430,8 +438,8 @@ export const mlProjects: Project[] = [
           },
           {
             "title": "Weaknesses",
-            "icon": "/info-square.svg",
-            "iconBg": "bg-[#E0EAFF]",
+            "icon": "/alert-triangle.svg",
+            "iconBg": "bg-[#FEE4E2]",
             "content": [
               "Micro-transactions (<$10): 78% recall",
               "Very small frauds likely card testing patterns"
@@ -443,23 +451,23 @@ export const mlProjects: Project[] = [
         "type": "key-learning",
         "title": "What Worked Well",
         "image": "/fraud-key-learning.png",
-        "description": "",
+        "description": " ",
         "learnings": [
           {
-            "title": "Balancing recall vs precision",
-            "boldWords": "Balancing recall vs precision"
-          },
-          {
             "title": "Feature engineering over algorithm choice",
-            "boldWords": "Feature engineering over algorithm choice"
+            "boldWords": "Feature engineering"
           },
           {
             "title": "Business-driven threshold optimization",
-            "boldWords": "Business-driven threshold optimization"
+            "boldWords": "Business-driven threshold"
           },
           {
             "title": "Segment analysis",
-            "boldWords": "Segment analysis"
+            "boldWords": " "
+          },
+          {
+            "title": "Isolation Forest for feature creation",
+            "boldWords": "Isolation Forest"
           }
         ]
       },
@@ -593,8 +601,8 @@ export const mlProjects: Project[] = [
         "description": "A real-time meeting assistant that transforms unstructured voice data into structured business intelligence.",
         "image": "/assistant.png",
         "bulletPoints": [
-          "Three-layer architecture – speech recognition, natural language understanding, and intelligent analysis",
-          "Four core capabilities – real-time transcription, automatic insight extraction, agenda progress tracking, and proactive suggestions"
+          "Three-layer architecture - speech recognition, natural language understanding, and intelligent analysis",
+          "Four core capabilities - real-time transcription, automatic insight extraction, agenda progress tracking, and proactive suggestions"
         ]
       },
       {

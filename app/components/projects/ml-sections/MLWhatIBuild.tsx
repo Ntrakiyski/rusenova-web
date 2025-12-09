@@ -21,6 +21,37 @@ interface MLWhatIBuildProps {
   boldWords?: string[];
 }
 
+// List of words to bold - add your words here
+const WORDS_TO_BOLD = ['feature performance across multiple algorithms', '0.17% of transactions are actually fraudulent', 'RAG with dedicated Evaluation Framework', 'Critical for unseen information', 'Guarantees correctness', 'Enables measurement and improvement','Three-layer architecture', 'Four core capabilities'];
+
+// Function to bold specific words in text
+const boldSpecificWords = (text: string, wordsToBold: string[] = WORDS_TO_BOLD): React.ReactNode => {
+  if (!text || wordsToBold.length === 0) {
+    return text;
+  }
+
+  // Create a regex pattern that matches any of the words (case-insensitive)
+  const pattern = wordsToBold
+    .map(word => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) // Escape special regex characters
+    .join('|');
+  
+  const regex = new RegExp(`(${pattern})`, 'gi');
+
+  // Split text by the regex and wrap matches in <strong> tags
+  const parts = text.split(regex);
+
+  return parts.map((part, index) => {
+    // If the part matches any of our target words (case-insensitive), wrap it in strong tags
+    const isMatch = wordsToBold.some(word => part.toLowerCase() === word.toLowerCase());
+    
+    return isMatch ? (
+      <strong key={index} className="font-semibold">{part}</strong>
+    ) : (
+      <span key={index}>{part}</span>
+    );
+  });
+};
+
 export default function MLWhatIBuild({
   title = "What I Built",
   bulletPoints,
@@ -28,80 +59,17 @@ export default function MLWhatIBuild({
   image = "/tide-home.png",
   boldWords
 }: MLWhatIBuildProps) {
-
-  // Function to bold specific words in text
-  const boldText = (text: string, wordsToBold: string[] = []) => {
-    // Filter out empty strings to avoid regex issues
-    const validWords = wordsToBold.filter(word => word && word.trim().length > 0);
-    
-    if (validWords.length === 0) {
-      return text;
-    }
-    
-    return text.split(new RegExp(`(${validWords.join('|')})`, 'gi')).map((part, i) => {
-      if (validWords.some(word => word.toLowerCase() === part.toLowerCase())) {
-        return <span key={i} className="font-bold">{part}</span>;
-      }
-      return part;
-    });
-  };
-
-  // Helper function to bold text before the first "-" symbol (handles both hyphens and em dashes)
-  const renderBoldedContent = (content: string) => {
-    // If boldWords are provided, use the boldText function
-    if (boldWords && Array.isArray(boldWords) && boldWords.length > 0) {
-      return boldText(content, boldWords);
-    }
-    
-    // Otherwise, use the original logic for hyphens and em dashes
-    // Look for both regular hyphen (-) and em dash (–)
-    const hyphenIndex = content.indexOf('-');
-    const emDashIndex = content.indexOf('–');
-    
-    // Find the first occurrence of either
-    let dashIndex = -1;
-    if (hyphenIndex !== -1 && emDashIndex !== -1) {
-      dashIndex = Math.min(hyphenIndex, emDashIndex);
-    } else if (hyphenIndex !== -1) {
-      dashIndex = hyphenIndex;
-    } else if (emDashIndex !== -1) {
-      dashIndex = emDashIndex;
-    }
-    
-    // If no dash is found, return the content as is
-    if (dashIndex === -1) {
-      return <span>{content}</span>;
-    }
-    
-    // Split content into bold part and regular part
-    const boldText = content.substring(0, dashIndex).trim();
-    const regularText = content.substring(dashIndex).trim();
-    
-    return (
-      <span>
-        <span className="font-semibold">{boldText}</span>
-        <span> {regularText}</span>
-      </span>
-    );
-  };
-
-
-   return (
+  return (
     <section className={`bg-bg-white py-16 md:py-24 lg:py-32 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10 flex items-center`}>
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center w-full">
         
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-stretch h-full w-full">
           
           {/* Text Content - Left Side */}
-          {/* 
-             Logic Change:
-             Left column stays at 50% width regardless of image availability.
-             Image column occupies remaining space when present.
-          */}
           <div className="w-full lg:w-1/2 flex flex-col justify-center">
             {title && (
               <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-6">
-                {title}
+                {boldSpecificWords(title)}
               </h2>
             )}
             <div className="space-y-3">
@@ -109,7 +77,7 @@ export default function MLWhatIBuild({
                 return (
                   <div key={index} className="flex items-start gap-2 sm:gap-3">
                     <p className="font-bricolage text-text-md-regular text-text-primary">
-                      {renderBoldedContent(point)}
+                      {boldSpecificWords(point)}
                     </p>
                   </div>
                 );

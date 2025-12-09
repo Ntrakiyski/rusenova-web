@@ -10,6 +10,37 @@ interface MLSectionWithBulletsProps {
   background?: string;
 }
 
+// List of words to bold - add your words here
+const WORDS_TO_BOLD = ['OpenAI + LanceDB', '92% precision', 'Precision, Recall, Mean Reciprocal Rank','AI-powered answer correctness', 'Indexer → Datastore → Retriever → Generator', 'sub-second retrieval'];
+
+// Function to bold specific words in text
+const boldSpecificWords = (text: string, wordsToBold: string[] = WORDS_TO_BOLD): React.ReactNode => {
+  if (!text || wordsToBold.length === 0) {
+    return text;
+  }
+
+  // Create a regex pattern that matches any of the words (case-insensitive)
+  const pattern = wordsToBold
+    .map(word => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) // Escape special regex characters
+    .join('|');
+  
+  const regex = new RegExp(`(${pattern})`, 'gi');
+
+  // Split text by the regex and wrap matches in <strong> tags
+  const parts = text.split(regex);
+
+  return parts.map((part, index) => {
+    // If the part matches any of our target words (case-insensitive), wrap it in strong tags
+    const isMatch = wordsToBold.some(word => part.toLowerCase() === word.toLowerCase());
+    
+    return isMatch ? (
+      <strong key={index} className="font-semibold">{part}</strong>
+    ) : (
+      <span key={index}>{part}</span>
+    );
+  });
+};
+
 export default function MLSectionWithBullets({
   title,
   description,
@@ -23,12 +54,12 @@ export default function MLSectionWithBullets({
         <div className="mb-12">
           {title && (
             <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
-              {title}
+              {boldSpecificWords(title)}
             </h2>
           )}
           {description && (
             <p className="font-bricolage text-text-secondary text-text-xl-regular max-w-[768px]">
-              {description}
+              {boldSpecificWords(description)}
             </p>
           )}
         </div>
@@ -49,7 +80,7 @@ export default function MLSectionWithBullets({
                     </div> */}
                     <p className="font-bricolage text-display-xs">
                       
-                      {item}
+                      {boldSpecificWords(item)}
                     </p>
                   </div>
                 ))}

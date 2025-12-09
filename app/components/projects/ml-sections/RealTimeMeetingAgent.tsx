@@ -133,7 +133,6 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
           image="/tide-home.png"
         />
       )}
-
       {introSection && (
         <MLChallenge
           title={introSection.title}

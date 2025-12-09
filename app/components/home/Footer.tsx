@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#191818] text-white">
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           <div className="flex flex-col gap-4">
             <h3
               className="font-bricolage font-extrabold text-white text-display-xs"

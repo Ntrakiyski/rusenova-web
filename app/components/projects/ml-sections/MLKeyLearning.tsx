@@ -67,7 +67,7 @@ export default function MLKeyLearning({
                     <div className="w-2 h-2 rounded-full bg-text-orange" />
                   </div> */}
                   <div>
-                    <h3 className="font-bricolage text-text-primary text-text-md mb-1">
+                    <h3 className="font-bricolage text-text-md-regular text-text-primary text-text-md mb-1">
                       {boldText(learning.title, wordsToBold)}
                     </h3>
                   </div>

@@ -17,6 +17,37 @@ interface MLResultsAndImpactProps {
   background?: string;
 }
 
+// List of words to bold - add your words here
+const WORDS_TO_BOLD = ['92% precision','Saves teams hours', 'Scales'];
+
+// Function to bold specific words in text
+const boldSpecificWords = (text: string, wordsToBold: string[] = WORDS_TO_BOLD): React.ReactNode => {
+  if (!text || wordsToBold.length === 0) {
+    return text;
+  }
+
+  // Create a regex pattern that matches any of the words (case-insensitive)
+  const pattern = wordsToBold
+    .map(word => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) // Escape special regex characters
+    .join('|');
+  
+  const regex = new RegExp(`(${pattern})`, 'gi');
+
+  // Split text by the regex and wrap matches in <strong> tags with color
+  const parts = text.split(regex);
+
+  return parts.map((part, index) => {
+    // If the part matches any of our target words (case-insensitive), wrap it in strong tags with color
+    const isMatch = wordsToBold.some(word => part.toLowerCase() === word.toLowerCase());
+    
+    return isMatch ? (
+      <strong key={index} className="font-semibold" style={{ color: '#494848' }}>{part}</strong>
+    ) : (
+      <span key={index}>{part}</span>
+    );
+  });
+};
+
 /**
  * MLResultsAndImpact component displays the results and impact section of an ML project.
  * Shows quantifiable outcomes and business value with optional image or video.
@@ -117,7 +148,7 @@ export default function MLResultsAndImpact({
                       />
                     </div> */}
                     <p className="font-bricolage text-text-secondary text-text-lg-regular sm:text-text-xl-regular leading-relaxed">
-                      {item}
+                      {boldSpecificWords(item)}
                     </p>
                   </div>
                 ))}
@@ -157,7 +188,7 @@ export default function MLResultsAndImpact({
                       /> */}
                     </div>
                     <p className="font-bricolage text-text-secondary text-text-lg-regular sm:text-text-xl-regular leading-relaxed">
-                      {item}
+                      {boldSpecificWords(item)}
                     </p>
                   </div>
                 ))}

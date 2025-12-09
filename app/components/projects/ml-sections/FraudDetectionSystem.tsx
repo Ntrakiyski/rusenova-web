@@ -161,8 +161,19 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
         />
       )}
 
-      {/* ML-Technical Performance */}
-      {technicalPerformanceSection && (
+     
+
+         {/* ML-Cost-Benefit */}
+         {costBenefitSection && (
+        <MLCostBenefit
+          title={costBenefitSection.title}
+          description={costBenefitSection.description}
+          items={costBenefitSection.items}
+        />
+      )}
+
+       {/* ML-Technical Performance */}
+       {technicalPerformanceSection && (
         <MLTechnicalPerformance
           title={technicalPerformanceSection.title}
           description={technicalPerformanceSection.description}
@@ -179,6 +190,8 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
         />
       )}
 
+      
+
          {/* ML-Key Learning */}
          {keyLearningSection && (
         <MLKeyLearning
@@ -187,17 +200,10 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
           boldWords={keyLearningSection.learnings.map(l => l.boldWords || '').filter(Boolean)}
           image={keyLearningSection.image}
           showImage={true}
-        />
+      />
       )}
 
-      {/* ML-Cost-Benefit */}
-      {costBenefitSection && (
-        <MLCostBenefit
-          title={costBenefitSection.title}
-          description={costBenefitSection.description}
-          items={costBenefitSection.items}
-        />
-      )}
+   
 
   
 
@@ -212,13 +218,13 @@ export default function FraudDetectionSystem({ projectData }: FraudDetectionSyst
       )}
 
       {/* ML-Production Deployment */}
-      {productionDeploymentSection && (
+      {/* {productionDeploymentSection && (
         <MLProductionDeployment
           title={productionDeploymentSection.title}
           description={productionDeploymentSection.description}
           cards={productionDeploymentSection.cards}
         />
-      )}
+      )} */}
 
       {/* More Projects Section */}
       <MLMoreProjects 

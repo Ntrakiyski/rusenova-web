@@ -10,11 +10,11 @@ interface PDFeature {
 }
 
 interface PDNutshellProps {
-  title: string;
+  title?: string;
   features: PDFeature[];
 }
 
-export default function PDNutshell({ features }: { features: PDFeature[] }) {
+export default function PDNutshell({ title, features }: PDNutshellProps) {
   // Function to highlight specific words in description
   const highlightWords = (text: string, wordsToHighlight: string[]) => {
     return text.split(new RegExp(`(${wordsToHighlight.join('|')})`, 'gi')).map((part, i) => {
@@ -29,12 +29,21 @@ export default function PDNutshell({ features }: { features: PDFeature[] }) {
     });
   };
 
-  const wordsToHighlight = ['cross-functional', 'Experience Foundation', 'core product experience'];
+  const wordsToHighlight = ['cross-functional', 'Experience Foundation', 'core product experience','multiple client projects','design community', 'organizing conferences, facilitating learning activities, and mentoring designers', 'user research', 'service design'];
 
   return (
     <section className="bg-bg-light w-full py-8 sm:py-12 md:py-16 lg:py-5xl">
       <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="w-full">
+          {/* Title Section */}
+          {title && (
+            <div className="mb-6 lg:mb-8">
+              <h2 className="font-bricolage font-semibold text-display-md text-text-primary">
+                {title}
+              </h2>
+            </div>
+          )}
+          
           {/* Features Grid - 2 column layout with equal width */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-[64px] w-full">
             {/* Features */}

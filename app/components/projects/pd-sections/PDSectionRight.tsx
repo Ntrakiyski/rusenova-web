@@ -38,8 +38,10 @@ export default function PDSectionRight({
       return ['no consistent structure', 'company-wide framework'];
     } else if (projectTitle === 'Admin') {
       return ['discoverability', 'findability'];
-    } else if (projectTitle === 'Home Page Redesign') {
-      return ['daily information'];
+    } else if (projectTitle === 'Homepage Redesign') {
+      return ['daily information', 'increase the number of paid bills', 'valuable enough'];
+    } else if (projectTitle === 'Gamification') {
+      return ['valuable enough'];
     }
     return [];
   };
@@ -80,19 +82,14 @@ export default function PDSectionRight({
 
               {/* Achievements */}
               <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[16px] items-start w-full">
-                <h3 className="font-bricolage font-semibold text-text-xl-semibold text-text-primary w-full">
-                  What was achieved
-                </h3>
+               
                 <div className="flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-[12px] items-start w-full">
                   {achievements.map((achievement, index) => {
                     // Extract the bold part from achievement (text between **)
-                    const parts = achievement.split(/(managing|every message|decision-tree|company-wide|10-30% increase|intuitive entry point|Increased active usage)/);
+                    const parts = achievement.split(/(managing|every message|decision-tree|company-wide|10-30% increase|intuitive entry point|Increased active usage|increase the number of paid bills|activated for just a few minutes|doesn't require users to think about it beforehand|abroad|design conferences|learning activities|mentorship structures|golfer personas)/);
 
                     return (
                       <div key={index} className="flex gap-2 sm:gap-3 md:gap-[10px] items-center w-full">
-                        <div className="size-3 sm:size-4 md:size-[12px] flex-shrink-0">
-                          {/* <div className="size-2 sm:size-3 md:size-[8px] rounded-full bg-text-orange"></div> */}
-                        </div>
                         <p className="font-bricolage font-normal text-text-lg-regular text-text-primary flex-1">
                           {parts.map((part, i) => {
                             if (i % 2 === 1) {
