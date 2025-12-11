@@ -33,7 +33,7 @@ export default function FeaturesSection({ content }: FeaturesSectionProps) {
   };
 
   return (
-    <section className="relative py-16 md:py-24 overflow-hidden md: md:flex md:items-center">
+    <section className="relative py-16 md:py-24 overflow-hidden md: md:flex md:items-center min-h-[760px]">
       <div className="absolute inset-0 z-0 w-full h-full">
         <ParticleBackground 
           particleCount={500}

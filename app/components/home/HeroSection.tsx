@@ -15,8 +15,7 @@ interface HeroSectionProps {
 export default function HeroSection({ content, colors }: HeroSectionProps) {
   return (
     <section
-      className={`relative pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden h-[85vh] flex flex-col justify-center`}
-      style={{ borderRadius: "0 0 60px 60px" }}
+      className={`bg-bg-light relative pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden h-[85vh] flex flex-col justify-center rounded-b-[60px]`}
     >
       <div className="max-w-[1200px] mx-auto px-4 md:px-8 relative z-10">
         <div className="flex flex-col items-center gap-8 md:gap-12">

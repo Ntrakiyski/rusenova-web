@@ -45,14 +45,14 @@ const Navbar1 = ({
   const [activeSection, setActiveSection] = useState('home');
   const pathname = usePathname();
 
-  // Use cream background on home page, dark on other pages
+  // Use consistent styling - always use light background and dark text
   const isHomePage = pathname === '/';
-  const bgColor = isHomePage ? 'bg-[#f7f4ed]' : 'bg-[#f7f4ed]';
-  const textColor = isHomePage ? 'text-[#191818]' : 'text-[#191818]';
-  const linkColor = isHomePage ? 'text-[#191818] hover:underline' : 'text-[#191818] hover:underline';
+  const bgColor = 'bg-bg-light';
+  const textColor = 'text-text-primary';
+  const linkColor = 'text-text-primary hover:underline';
 
-  // Determine if we should use dark background for mobile menu
-  const mobileMenuBgColor = isHomePage ? 'bg-[#f7f4ed]' : 'bg-[#f7f4ed]';
+  // Mobile menu background
+  const mobileMenuBgColor = 'bg-bg-light';
   
   // Generate Projects menu items from ML projects
   const projectsItems = mlProjects.map((project, index) => ({
@@ -230,7 +230,7 @@ const Navbar1 = ({
                   <div key={item.title} className="relative group">
                     <button
                       className={`block px-4 py-3 font-['Bricolage_Grotesque:Regular',sans-serif] ${
-                        isActive ? (isHomePage ? 'text-[#191818]' : 'text-white') : linkColor
+                        isActive ? 'text-text-primary' : linkColor
                       } text-[16px] cursor-pointer ${
                         isActive ? 'underline decoration-2 underline-offset-4' : ''
                       }`}
@@ -270,7 +270,7 @@ const Navbar1 = ({
                     handleNavClick(item.url);
                   }}
                   className={`block px-4 py-3 font-['Bricolage_Grotesque:Regular',sans-serif] ${
-                    isActive ? (isHomePage ? 'text-[#191818]' : 'text-[#191818]') : linkColor
+                    isActive ? 'text-text-primary' : linkColor
                   } text-[16px] cursor-pointer ${
                     isActive ? 'underline decoration-2 underline-offset-4' : ''
                   }`}
@@ -298,7 +298,7 @@ const Navbar1 = ({
             <div className="absolute top-4 right-4 z-50">
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className={`p-2 ${textColor} hover:bg-[#e8e1d5] rounded-full transition-colors`}
+                className={`p-2 ${textColor} hover:bg-bg-white rounded-full transition-colors`}
                 aria-label="Close menu"
               >
                 <X size={28} />
@@ -314,7 +314,7 @@ const Navbar1 = ({
                       <Accordion type="single" collapsible className="w-full" defaultValue="Projects">
                         <AccordionItem value={item.title} className="border-b-0">
                           <AccordionTrigger className={`font-['Bricolage_Grotesque:Regular',sans-serif] ${
-                            isActive ? (isHomePage ? 'text-[#191818]' : 'text-white') : linkColor
+                            isActive ? 'text-text-primary' : linkColor
                           } text-[20px] hover:no-underline`}>
                             {item.title}
                           </AccordionTrigger>
@@ -361,7 +361,7 @@ const Navbar1 = ({
                       handleNavClick(item.url);
                     }}
                     className={`block px-4 py-5 font-['Bricolage_Grotesque:Regular',sans-serif] ${
-                      isActive ? (isHomePage ? 'text-[#191818]' : 'text-white') : linkColor
+                      isActive ? 'text-text-primary' : linkColor
                     } text-[20px] cursor-pointer ${
                       isActive ? 'underline decoration-2 underline-offset-4' : ''
                     }`}

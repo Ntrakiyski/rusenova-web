@@ -202,10 +202,10 @@ export const ParticleBackground: React.FC<ParticleBackgroundProps> = ({
     <div
       ref={containerRef}
       data-testid="particle-container"
-      className={`relative overflow-hidden bg-black ${className}`}
-      style={{ 
-        width: typeof width === 'number' ? `${width}px` : width, 
-        height: typeof height === 'number' ? `${height}px` : height 
+      className={`relative overflow-hidden bg-black h-full ${className}`}
+      style={{
+        width: typeof width === 'number' ? `${width}px` : width,
+        height: typeof height === 'number' ? `${height}px` : height
       }}
     >
       <div ref={mountRef} className="absolute inset-0 w-full h-full z-0" />

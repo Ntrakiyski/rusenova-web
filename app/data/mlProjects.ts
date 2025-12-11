@@ -896,11 +896,6 @@ export const mlProjects: Project[] = [
           "Docker",
           "Kubernetes",
           "Kafka"
-        ],
-        "categories": [
-          "AI/ML Models",
-          "Real-time Infrastructure",
-          "Frontend & API"
         ]
       },
       {
