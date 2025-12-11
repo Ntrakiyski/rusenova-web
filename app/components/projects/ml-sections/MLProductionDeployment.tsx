@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import React from 'react';
+import ParticleBackground from '@/app/components/home/ParticleBackground';
 
 interface DeploymentCard {
   title: string;
@@ -41,7 +42,7 @@ const boldSpecificWords = (text: string, wordsToBold: string[] = WORDS_TO_BOLD):
     const isMatch = wordsToBold.some(word => part.toLowerCase() === word.toLowerCase());
     
     return isMatch ? (
-      <strong key={index} className="font-semibold" style={{ color: '#494848' }}>{part}</strong>
+      <strong key={index} className="font-semibold text-text-lg-regular text-text-orange">{part}</strong>
     ) : (
       <span key={index}>{part}</span>
     );
@@ -68,8 +69,18 @@ export default function MLProductionDeployment({
 }: MLProductionDeploymentProps) {
 
    return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10 flex items-center`}>
-      <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <section className={`${background} py-16 md:py-24 lg:py-32 relative z-10 flex items-center`}>
+      {/* <div className="absolute inset-0 z-0">
+        <ParticleBackground 
+          particleCount={500}
+          connectionDistance={40}
+          particleOpacity={0.7}
+          rotationSpeedX={0.0010}
+          rotationSpeedY={0.0010}
+          className="w-full h-full"
+        />
+      </div> */}
+      <div className="max-w-[1000px] w-full mx-auto px-4 sm:px-6 lg:px-8 h-full relative z-10">
         <div className="mb-12 w-full">
           {title && (
             <h2 className="font-bricolage text-text-white text-display-md font-semibold mb-5">
@@ -85,12 +96,12 @@ export default function MLProductionDeployment({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {cards.map((card, index) => (
-            <div key={index} className="bg-bg-white rounded-[12px] p-[34px]">
+            <div key={index} className="bg-[#302D2D] bg-opacity-80 rounded-[12px] p-[34px]">
               <div className="flex flex-col gap-6 items-center mb-6">
                 <div className={`${card.iconBg || 'bg-blue-100'} rounded-[8px] w-12 h-12 flex items-center justify-center`}>
                    {renderIcon(card.icon)}
                 </div>
-                <h3 className="font-bricolage text-text-primary text-display-xs font-semibold text-center">
+                <h3 className="font-bricolage text-white text-display-xs font-semibold text-center">
                   {boldSpecificWords(card.title)}
                 </h3>
               </div>
@@ -104,7 +115,7 @@ export default function MLProductionDeployment({
                         className="w-6 h-6"
                       />
                     </div> */}
-                    <p className="font-bricolage text-text-secondary text-text-xl-regular leading-[30px]">
+                    <p className="font-bricolage text-text-light-gray text-text-xl-regular leading-[30px]">
                       {boldSpecificWords(bullet)}
                     </p>
                   </div>

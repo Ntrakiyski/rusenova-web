@@ -23,8 +23,8 @@ export default function MLSectionWithTable({
   background = 'bg-bg-white'
 }: MLSectionWithTableProps) {
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <section className={`py-16 md:py-24 lg:py-32 relative z-10`}>
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="mb-12">
           {title && (
@@ -40,8 +40,8 @@ export default function MLSectionWithTable({
         </div>
 
         {/* Table Row */}
-        <GradientBackground gradient={true} className="rounded-3xl overflow-hidden relative w-full">
-          <div className="relative z-10 p-8 md:p-16">
+        <GradientBackground gradient={true} className="bg-bg-light rounded-3xl overflow-hidden relative w-full">
+          <div className="relative z-10 p-8">
             <div className="overflow-x-auto">
               <table className="w-full bg-bg-white rounded-[16px] border border-border overflow-hidden">
                 <thead>

@@ -39,9 +39,9 @@ export default function PDHero({
   };
 
   return (
-    <section className={`${background} w-full flex items-center justify-center pt-24 md:pt-32 overflow-hidden relative`}>
+    <section className={`${background} w-full py-16 md:py-24 lg:py-32 min-h-[760px] overflow-hidden relative flex items-center justify-center`}>
       <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full">
-        <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-4xl min-h-[320px] sm:min-h-[400px] md:min-h-[480px] lg:min-h-[560px] xl:min-h-[608px] items-center pb-0 pt-8 sm:pt-12 md:pt-16 lg:pt-24 relative w-full z-[1]">
+        <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-4xl items-center relative w-full z-[1]">
           <div className="relative rounded-lg w-full">
             <div className="flex flex-col items-center overflow-clip rounded-[inherit] w-full">
               <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[32px] items-center pb-0 pt-6 sm:pt-8 md:pt-10 lg:pt-[40px] px-0 w-full">
@@ -76,7 +76,7 @@ export default function PDHero({
               </div>
             </div>
           </div>
-                 <div className="absolute bottom-[-1940px] right-[-850px] z-0 w-[2130px] h-[2130px]">
+                 <div className="absolute bottom-[-2140px] right-[-850px] z-0 w-[2130px] h-[2130px]">
   <Image
     alt=""
     className="pointer-events-none object-cover object-bottom-right"

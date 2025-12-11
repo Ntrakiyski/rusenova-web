@@ -6,10 +6,9 @@ import PDNutshell from './PDNutshell';
 import PDSectionLeft from './PDSectionLeft';
 import PDSectionRight from './PDSectionRight';
 import PDKeepInMind from './PDKeepInMind';
-import { Project, IntroSection } from '@/types/project';
+import { Project, IntroSection, GenericSection, ProjectFeature } from '@/types/project';
 import PDSelectedWork from './PDSelectedWork';
 import PDSlider from './PDSlider';
-
 
 interface EpamProps {
   projectData: Project;
@@ -24,18 +23,18 @@ export default function Epam({ projectData }: EpamProps) {
     <div className="min-h-screen w-full">
       {/* 1. Hero Header Section */}
       <PDHero
-        title={(projectData as any).heroTitle || projectData.title}
-        subtitle={(projectData as any).heroDescription || projectData.shortDescription}
-        titleHighlight={(projectData as any).titleHighlight || ''}
-        descriptionHighlight={(projectData as any).heroDescriptionHighlight || ''}
-        background={(projectData as any).heroBackground || 'bg-bg-dark'}
+        title={projectData.heroTitle || projectData.title || ''}
+        subtitle={projectData.heroDescription || projectData.shortDescription || ''}
+        titleHighlight={projectData.titleHighlight || ''}
+        descriptionHighlight={projectData.heroDescriptionHighlight || ''}
+        background={projectData.heroBackground || 'bg-bg-dark'}
       />
 
       {/* 2. Nutshell Section */}
       {introSection && (
         <PDNutshell
           title={introSection.title}
-          features={Array.isArray(introSection.content) ? introSection.content.map((item: any) => ({
+          features={Array.isArray(introSection.content) ? introSection.content.map((item: ProjectFeature | string) => ({
             title: typeof item === 'string' ? '' : (item.title || ''),
             description: typeof item === 'string' ? item : (item.description || '')
           })) : []}
@@ -47,15 +46,28 @@ export default function Epam({ projectData }: EpamProps) {
         description="Featured below are select projects from my broader portfolio. Happy to dive deeper into specific work"
       />
 
-      {/* 3. Project Sections - Pattern: image left, image right, image left */}
+      {/* 3. Project Sections - Replace PDSectionLeft with PDSlider */}
       {projectSections.map((section, index) => {
-        const achievements = (section as any).achievements || [];
-        const image = (section as any).image;
+        const achievements = (section as GenericSection).achievements || [];
+        const image = (section as GenericSection).image;
 
-        // Pattern: 0: left (image left), 1: right (image right), 2: left (image left)
-        if (index % 2 === 0) {
+        // Use PDSlider for the first section (index 0) instead of PDSectionLeft
+        if (index === 0) {
           return (
-            <PDSectionLeft
+            <PDSlider
+              key={section.type}
+              title={section.title}
+              description={section.description || ''}
+              achievements={achievements}
+              sliderImages={["/epam-ecom-1.svg", "/epam-ecom-2.svg", "/epam-ecom-3.svg"]}
+              background="bg-white"
+            />
+          );
+        }
+        // Pattern: 1: right (image right), 2: left (image left)
+        else if (index % 2 === 1) {
+          return (
+            <PDSectionRight
               key={section.type}
               title={section.title}
               description={section.description || ''}
@@ -66,7 +78,7 @@ export default function Epam({ projectData }: EpamProps) {
           );
         } else {
           return (
-            <PDSectionRight
+            <PDSectionLeft
               key={section.type}
               title={section.title}
               description={section.description || ''}
@@ -78,14 +90,7 @@ export default function Epam({ projectData }: EpamProps) {
         }
       })}
 
-      {/* 4. PDSlider Section - After the right/left sections */}
-      {/* <PDSlider
-        title="Additional Project Highlights"
-        description="Here are some additional highlights from the project showcasing different aspects and outcomes."
-        achievements={["Increased user engagement", "Improved design consistency", "Enhanced user experience"]}
-        sliderImages={["/tide_admin1.svg", "/mentormate-golf.png", "/mentormate-golf.png"]}
-        background="bg-white"
-      /> */}
+    
 
       {/* 5. Keep In Mind Section */}
       <PDKeepInMind

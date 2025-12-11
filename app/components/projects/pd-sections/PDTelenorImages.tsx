@@ -13,7 +13,7 @@ export default function PDTelenorImages({
   image2 = "/telenor-example1.png"
 }: PDTelenorImagesProps) {
   return (
-    <section className="w-full py-8 sm:py-12 md:py-16 lg:py-5xl">
+    <section className="w-full py-16 md:py-24 lg:py-32">
       <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center justify-between w-full">
           {/* Left Image */}

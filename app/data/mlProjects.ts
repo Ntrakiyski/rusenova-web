@@ -44,7 +44,7 @@ export const mlProjects: Project[] = [
           },
           {
             "title": "Real-Time Q&A Interface",
-            "description": "Source attribution with 200ms avg response time"
+            "description": "Source attribution with 3s avg response time"
           },
           {
             "title": "Production-Ready API",
@@ -110,7 +110,7 @@ export const mlProjects: Project[] = [
           "Improves decision-making with faster insights"
         
         ],
-        "video": "/rag-big.gif"
+        "video": "/rag-video.webm"
       },
       {
         "type": "tech-stack",
@@ -121,7 +121,7 @@ export const mlProjects: Project[] = [
           "OpenAI API",
           "Cohere",
           "LanceDB",
-          "Reflex",
+          "React",
           "Docling",
           "SQLAlchemy",
           "Alembic",
@@ -140,7 +140,7 @@ export const mlProjects: Project[] = [
       }
     ],
     "heroImage": "/rag-hero.png",
-    "heroVideo": "/rag.gif",
+    "heroVideo": "/rag-video.webm",
     "heroTitle": "RAG+ Evaluation System",
     "heroDescription": "Reduced information retrieval time by 85% while achieving 92% answer accuracy through a custom RAG system with advanced evaluation framework",
     "metrics": [
@@ -170,7 +170,7 @@ export const mlProjects: Project[] = [
     "heroTitle": "Fraud Detection System",
     "heroDescription": "An AI-powered system that catches 84% of fraud while keeping false alarms under 0.05%, deployed in <50ms",
     "heroImage": "/fraud-hero.png",
-    "heroVideo": "/frauddetection.gif",
+    "heroVideo": "/fraud-detection-video.webm",
     "gradientColors": [
       "#D7EBDF"
     ],
@@ -360,7 +360,7 @@ export const mlProjects: Project[] = [
         "title": "Business results",
         "description": "Real-time performance dashboard",
         "image": "/fraud-results.png",
-        "video": "/frauddetection-big.gif"
+        "video": "/fraud-detection-video.webm"
       },
       {
         "type": "technical-performance",
@@ -570,7 +570,7 @@ export const mlProjects: Project[] = [
     "heroTitle": "Real-Time Meeting Agent",
     "heroDescription": "Real-time AI Meeting agent which reduces meeting follow-up time by 75%",
     "heroImage": "/meeting-assistant-hero.png",
-    "heroVideo": "/real-time-assistant.gif",
+    "heroVideo": "/meeting-agent-video.webm",
     "gradientColors": [
       "#E0E7FF"
     ],
@@ -651,7 +651,7 @@ export const mlProjects: Project[] = [
           {
             "title": "<2s Latency",
             "description": "Audio to transcript",
-            "icon": "/info-square.png",
+            "icon": "/info-square.svg",
             "bg": "bg-[#DBEAFE]"
           },
           {
@@ -755,7 +755,7 @@ export const mlProjects: Project[] = [
         "title": "Key Results",
         "description": "Achieved 95% accuracy in extracting engineering tasks and assigning them to the correct owner automatically.",
         "image": "/results-dashboard.png",
-        "video": "/real-time-assistant-big.gif"
+        "video": "/meeting-agent-video.webm"
       },
       {
         "type": "technical-performance",

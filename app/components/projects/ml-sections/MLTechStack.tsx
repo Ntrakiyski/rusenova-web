@@ -33,8 +33,8 @@ export default function MLTechStack({
   background = 'bg-bg-white'
 }: MLTechStackProps) {
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10 flex items-center`} style={{ minHeight: '760px' }}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <section className={`${background} py-16 md:py-24 lg:py-32 relative z-10 flex items-center`}>
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="flex flex-col gap-8 mb-16">
           <h2 className="font-bricolage text-text-primary text-display-md font-semibold text-left">

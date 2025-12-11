@@ -32,7 +32,7 @@ export default function MLPreviewSection({ mlData, colors, content }: MLPreviewS
 
   return (
     <section id="ml" className="bg-white py-16 md:py-24">
-      <div className="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ export default function MLPreviewSection({ mlData, colors, content }: MLPreviewS
           msOverflowStyle: 'none',
         }}
       >
-        <div className="flex gap-6 md:gap-8 min-w-max px-[max(16px,calc((100%-1280px)/2+16px))] md:px-[max(32px,calc((100%-1280px)/2+32px))]">
+        <div className="flex gap-6 md:gap-8 min-w-max px-[max(16px,calc((100%-1200px)/2+16px))] md:px-[max(32px,calc((100%-1200px)/2+32px))]">
             {projects.map((project, index) => (
               <div key={index} id={`projects-${project.slug || project.id || index}`} className="w-[80vw] md:w-[583px] shrink-0">
                 <Link

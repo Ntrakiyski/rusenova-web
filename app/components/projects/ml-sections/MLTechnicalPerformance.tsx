@@ -28,8 +28,8 @@ export default function MLTechnicalPerformance({
   const leftMetrics = metrics;
 
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10 flex items-center`}>
-      <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <section className={`${background} py-16 md:py-24 lg:py-32 relative z-10 flex items-center`}>
+      <div className="max-w-[1000px] w-full mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title Section */}
         <div className="mb-12 w-full">
           {title && (

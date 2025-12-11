@@ -4,13 +4,13 @@
     "lastUpdated": "2025-01-29"
   },
   "colors": {
-    "primary": "#f0633f",
+    "primary": "#",
     "secondary": "#191818",
     "background": "#f7f4ed",
     "text": {
       "primary": "#191818",
       "secondary": "#494848",
-      "accent": "#f0633f",
+      "accent": "#",
       "muted": "#babcc0"
     },
     "border": "#e5e7eb"
@@ -22,12 +22,12 @@
     "subtitle": "Bending product design & machine learning to create better systems for great user experience",
     "buttons": [
       {
-        "text": "Email",
+        "text": "Copy Email",
         "link": "mailto:gloriarussenovaa@gmail.com",
         "style": "primary"
       },
       {
-        "text": "LinkedIn",
+        "text": "Connect me",
         "link": "https://www.linkedin.com/in/gloriarusenova/",
         "style": "secondary"
       }

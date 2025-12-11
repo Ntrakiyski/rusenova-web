@@ -725,7 +725,7 @@ export default function MLProjectEditor({ project, onSave, onRefresh }: MLProjec
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-xl font-semibold text-gray-900">Edit Project</h2>
+          <h2 className="text-xl font-semibold text-gray-1000">Edit Project</h2>
           <p className="text-sm text-gray-600">{editedProject.title}</p>
         </div>
         <div className="flex gap-3">
@@ -913,7 +913,7 @@ export default function MLProjectEditor({ project, onSave, onRefresh }: MLProjec
                         <Badge variant="secondary">{section.type}</Badge>
                         <span className="text-xs text-gray-500">#{index + 1}</span>
                       </div>
-                      <h4 className="font-medium text-gray-900 text-sm">
+                      <h4 className="font-medium text-gray-1000 text-sm">
                         {section.title || `Section ${index + 1}`}
                       </h4>
                       <p className="text-xs text-gray-500 line-clamp-2">{section.description}</p>

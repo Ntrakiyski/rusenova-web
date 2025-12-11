@@ -43,8 +43,8 @@ export default function MLSectionWithCardsAndBullets({
   background = 'bg-bg-white'
 }: MLSectionWithCardsAndBulletsProps) {
   return (
-    <section className={`py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <section className={`py-16 md:py-24 lg:py-32 relative z-10`}>
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="mb-12">
           {title && (
@@ -75,7 +75,7 @@ export default function MLSectionWithCardsAndBullets({
               </h3>
               <div className="space-y-4 w-full flex-1">
                 {card.items.map((item, idx) => (
-                  <div key={idx} className="flex items-center justify-start gap-2 text-text-secondary text-text-md-regular">
+                <div key={idx} className="flex text-left justify-start gap-2 text-text-secondary text-text-md-regular">
                     {/* <img 
                       src="/Check icon.svg" 
                       alt="Check" 

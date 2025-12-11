@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import animate from 'tailwindcss-animate'
 
 const config: Config = {
   content: [
@@ -87,7 +88,7 @@ const config: Config = {
         // Text md regular: Mobile 16px → Tablet/Desktop 20px
         'text-md-regular': [
           'clamp(16px, 2vw, 20px)',
-          { lineHeight: '30px' },
+          { lineHeight: '24px' },
         ],
 
         // Text md semibold: Mobile 16px → Tablet/Desktop 20px
@@ -157,7 +158,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [animate],
 }
 
 export default config

@@ -90,7 +90,7 @@ export default function MLProjectsAdmin() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">ML Projects Admin</h1>
+            <h1 className="text-2xl font-bold text-gray-1000">ML Projects Admin</h1>
             <p className="text-sm text-gray-600">Manage and edit machine learning projects</p>
           </div>
           <div className="flex items-center gap-3">

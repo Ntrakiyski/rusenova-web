@@ -73,7 +73,7 @@ export default function PDProjectEditor({
     <div className="space-y-6">
       {/* Save Button */}
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-gray-900">Edit Project</h2>
+        <h2 className="text-xl font-semibold text-gray-1000">Edit Project</h2>
         <div className="flex gap-3">
           <Button
             variant="outline"
@@ -217,7 +217,7 @@ export default function PDProjectEditor({
                   >
                     <div className="flex items-center justify-between">
                       <div>
-                        <h4 className="font-medium text-gray-900 text-sm">
+                        <h4 className="font-medium text-gray-1000 text-sm">
                           {section.title || `Section ${index + 1}`}
                         </h4>
                         <p className="text-xs text-gray-500 capitalize">

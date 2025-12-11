@@ -117,7 +117,7 @@ export default function Navigation({}: NavigationProps) {
         outline: 'none'
       }}
     >
-      <div className="max-w-[1280px] mx-auto">
+      <div className="max-w-[1200px] mx-auto">
         <div className="flex items-center justify-between px-4 md:px-8 py-4 md:py-5">
           <Link
             href="/"

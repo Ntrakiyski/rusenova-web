@@ -60,8 +60,8 @@ export default function MLWhatIBuild({
   boldWords
 }: MLWhatIBuildProps) {
   return (
-    <section className={`bg-bg-white py-16 md:py-24 lg:py-32 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10 flex items-center`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center w-full">
+    <section className={`bg-bg-white py-16 md:py-24 lg:py-32 relative z-10 flex items-center`}>
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center w-full">
         
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-stretch h-full w-full">
           

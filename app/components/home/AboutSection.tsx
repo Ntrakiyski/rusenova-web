@@ -12,7 +12,7 @@ interface AboutSectionProps {
 export default function AboutSection({ content, colors }: AboutSectionProps) {
   return (
     <section id="about" className={`py-16 md:py-24 bg-white`}>
-      <div className="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,6 +31,25 @@ export default function AboutSection({ content, colors }: AboutSectionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-stretch">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+          >
+            <div
+              className="relative rounded-2xl overflow-hidden mx-auto max-w-[409px] max-h-[436px] h-full  flex items-center justify-center"
+            >
+              <Image
+                src={content.image.src}
+                alt={content.image.alt}
+                className="h-full w-full object-cover object-[50%_20%]"
+                width={409}
+                height={436}
+              />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
@@ -64,7 +83,6 @@ export default function AboutSection({ content, colors }: AboutSectionProps) {
                 >
                   <span
                     className={`text-display-md font-bricolage font-semibold text-text-orange text-center`}
-                
                   >
                     {stat.value}
                   </span>
@@ -77,26 +95,6 @@ export default function AboutSection({ content, colors }: AboutSectionProps) {
                 </motion.div>
               ))}
             </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-          >
-            <div
-              className="relative rounded-2xl overflow-hidden mx-auto h-[550px] max-h-[550px] flex items-center justify-center"
-            >
-              <Image
-                src={content.image.src}
-                alt={content.image.alt}
-                className="h-full w-auto object-contain"
-                width={400}
-                height={533}
-                style={{ height: '100%', width: 'auto' }}
-              />
-            </div>
           </motion.div>
         </div>
       </div>

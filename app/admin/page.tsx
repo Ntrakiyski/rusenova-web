@@ -45,7 +45,7 @@ export default function AdminPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
         <div className="max-w-md w-full space-y-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900">Admin Login</h2>
+            <h2 className="text-3xl font-bold text-gray-1000">Admin Login</h2>
             <p className="mt-2 text-gray-600">Enter password to access admin panel</p>
           </div>
           <form onSubmit={handleLogin} className="mt-8 space-y-6">

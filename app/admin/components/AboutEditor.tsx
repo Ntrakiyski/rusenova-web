@@ -191,11 +191,13 @@ export default function AboutEditor({ about, onChange }: AboutEditorProps) {
       </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ImagePicker
-          label="About Image"
-          value={about.image.src}
-          onChange={(val) => onChange({ ...about, image: { ...about.image, src: val } })}
-        />
+        <div>
+          <ImagePicker
+            label="About Image"
+            value={about.image.src}
+            onChange={(val) => onChange({ ...about, image: { ...about.image, src: val } })}
+          />
+        </div>
 
         <div className="space-y-2">
           <Label htmlFor="image-alt">About Image Alt Text</Label>

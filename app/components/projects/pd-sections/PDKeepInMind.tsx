@@ -11,7 +11,7 @@ interface PDKeepInMindProps {
 export default function PDKeepInMind({ title, description }: PDKeepInMindProps) {
   return (
     <section
-      className="w-full py-8 sm:py-12 md:py-16 lg:py-5xl min-h-[540px] xl:min-h-[540px] max-h-[540px] flex items-center justify-center bg-bg-dark relative overflow-hidden"
+      className="w-full py-16 md:py-24 lg:py-32 flex items-center justify-center bg-bg-dark relative overflow-hidden"
     >
       <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center justify-center">
         <div className="flex flex-col gap-4 sm:gap-6 md:gap-8 lg:gap-[32px] py-0 w-full">

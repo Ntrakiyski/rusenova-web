@@ -49,8 +49,8 @@ export default function PDSectionRight({
   const wordsToHighlight = getWordsToHighlight(title);
 
   return (
-    <section className="bg-white w-full py-8 sm:py-12 md:py-16 lg:py-5xl min-h-[760px]">
-      <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
+    <section className="bg-white w-full py-16 md:py-24 lg:py-32">
+      <div className="max-w-[1000px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center w-full">
            {/* Title */}
               <h2 className="font-bricolage font-semibold text-display-md text-text-primary w-full">
@@ -59,7 +59,7 @@ export default function PDSectionRight({
           {/* Single row: Image on left, text content on right */}
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center w-full">
             {/* Left Column: Image */}
-            <div className="w-full lg:w-1/2 min-h-[200px] lg:min-h-[560px] max-h-[40vh] lg:max-h-[560px] overflow-clip rounded-lg lg:order-1">
+            <div className="w-full lg:w-1/2 aspect-video overflow-clip rounded-lg lg:order-1">
               <div className="w-full h-[200px] lg:h-[560px] relative flex items-center justify-center">
                 <Image
                   alt="RAG project results visualization"

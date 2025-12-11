@@ -26,7 +26,7 @@ export default function PDTelenorIntro({
   const row2Feature = features[1];
 
   return (
-    <section className="bg-white w-full py-8 sm:py-12 md:py-16 lg:py-5xl min-h-[760px] xl:min-h-[760px]">
+    <section className="bg-white w-full py-16 md:py-24 lg:py-32">
       <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center w-full">
 
@@ -43,7 +43,7 @@ export default function PDTelenorIntro({
             </div>
             
             {/* Right Column - Image */}
-            <div className="w-full lg:w-1/2 h-[200px] sm:h-[300px] md:min-h-96 lg:min-h-[357px] max-h-[357px] overflow-clip rounded-lg relative">
+            <div className="w-full lg:w-1/2 aspect-video overflow-clip rounded-lg relative">
               <Image
                 src={row1Image}
                 alt="Telenor project work"
@@ -56,7 +56,7 @@ export default function PDTelenorIntro({
           {/* Row 2: Image on the left */}
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center w-full">
             {/* Left Column - Image */}
-            <div className="w-full lg:w-1/2 h-[200px] sm:h-[300px] md:min-h-96 lg:min-h-[357px] max-h-[357px] overflow-clip rounded-lg relative">
+            <div className="w-full lg:w-1/2 aspect-video overflow-clip rounded-lg relative">
               <Image
                 src={row2Image}
                 alt="Telenor project work"

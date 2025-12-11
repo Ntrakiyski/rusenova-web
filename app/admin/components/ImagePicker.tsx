@@ -29,7 +29,7 @@ export default function ImagePicker({ label, value, onChange }: { label: string;
         <SelectTrigger className="w-full bg-white">
           <SelectValue placeholder={loading ? 'Loading...' : 'Select image'} />
         </SelectTrigger>
-        <SelectContent className="bg-white text-gray-900">
+        <SelectContent className="bg-white text-gray-1000">
           {images.map((img) => (
             <SelectItem key={img.path} value={img.path}>{img.name}</SelectItem>
           ))}
@@ -37,7 +37,7 @@ export default function ImagePicker({ label, value, onChange }: { label: string;
       </Select>
       {value ? (
         <div className="mt-2 border rounded-lg p-2 bg-white">
-          <img src={value} alt="preview" className="max-h-40 object-contain w-full" />
+          <img src={value} alt="preview" className="h-full w-full object-cover" />
           <div className="text-xs text-gray-500 mt-1">{value}</div>
         </div>
       ) : null}

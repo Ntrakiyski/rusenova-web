@@ -33,7 +33,7 @@ export default function PDPreviewSection({ pdData, colors, content }: PDPreviewS
 
   return (
     <section id="productdesign" className="bg-white py-16 md:py-24">
-      <div className="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-8">
         <div
           className="flex flex-col md:flex-row md:items-start md:justify-between gap-5 mb-12 md:mb-16"
         >
@@ -62,7 +62,7 @@ export default function PDPreviewSection({ pdData, colors, content }: PDPreviewS
           msOverflowStyle: 'none',
         }}
       >
-        <div className="flex gap-6 md:gap-8 min-w-max px-[max(16px,calc((100%-1280px)/2+16px))] md:px-[max(32px,calc((100%-1280px)/2+32px))]">
+        <div className="flex gap-6 md:gap-8 min-w-max px-[max(16px,calc((100%-1200px)/2+16px))] md:px-[max(32px,calc((100%-1200px)/2+32px))]">
             {projects.map((exp, index) => (
               <div key={index} id={`experience-${exp.slug || exp.id || index}`} >
                 <Link

@@ -112,8 +112,6 @@ export default function RealTimeMeetingAgent({ projectData }: RealTimeMeetingAge
         subtitle={(projectData as any).heroDescription || projectData.shortDescription || ''}
         heroImage={projectData.heroImage ?? '/rag-hero.png'}
         heroVideo={projectData.heroVideo}
-        decorationImage={keyResultsSection?.image || '/rag-results.png'}
-        background={(projectData as any).heroBackground}
         metrics={(projectData as any).metrics || []}
       />
 

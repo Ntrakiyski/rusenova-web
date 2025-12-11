@@ -22,8 +22,8 @@ export default function MLApproach({
   background = 'bg-bg-white'
 }: MLApproachProps) {
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center">
+    <section className={`py-16 md:py-24 lg:py-32 relative z-10`}>
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 bg-white h-full flex flex-col justify-center">
         <div className="mb-12 w-full">
           {title && (
             <h2 className="font-bricolage text-text-primary text-display-md font-semibold mb-5">
@@ -39,10 +39,10 @@ export default function MLApproach({
 
         <GradientBackground className="rounded-3xl overflow-hidden relative w-full">
 
-          <div className="relative z-10 p-8 md:p-16">
+          <div className="relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {cards.map((card, index) => (
-                <div key={index} className="bg-bg-white rounded-[12px] p-6">
+                <div key={index} className="bg-bg-light rounded-[12px] p-6">
                   <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-3">
                     {card.title}
                   </h3>

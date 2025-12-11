@@ -25,8 +25,8 @@ export default function MLSectionWithCards({
   background = 'bg-bg-white'
 }: MLSectionWithCardsProps) {
   return (
-    <section className={`py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative z-10 flex items-center w-full`}>
-      <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <section className={`py-16 md:py-24 lg:py-32 relative z-10 flex items-center w-full`}>
+      <div className="w-full max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="mb-12 text-left w-full">
           {title && (

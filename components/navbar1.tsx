@@ -189,7 +189,7 @@ const Navbar1 = ({
         outline: 'none'
       }}
     >
-      <div className="max-w-[1280px] mx-auto">
+      <div className="max-w-[1200px] mx-auto">
         <div className="flex items-center justify-between px-4 md:px-8 py-4 md:py-5">
           {/* Logo */}
           <Link
@@ -205,7 +205,7 @@ const Navbar1 = ({
             }}
             className="flex items-center gap-3 cursor-pointer"
           >
-            <div className="relative size-[32px] md:size-[40px]">
+            {/* <div className="relative size-[32px] md:size-[40px]">
               <Image
                 alt={logo.alt}
                 className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
@@ -213,10 +213,9 @@ const Navbar1 = ({
                 width={40}
                 height={40}
               />
-            </div>
+            </div> */}
             <p
-              className={`font-['Bricolage_Grotesque:96pt_ExtraBold',sans-serif] ${textColor} text-[20px] md:text-[24px]`}
-              style={{ fontVariationSettings: "'opsz' 96, 'wdth' 100" }}
+              className={`text-md-semibold font-bold text-text-primary text-[20px] md:text-[24px]`}
             >
               {logo.title}
             </p>

@@ -82,8 +82,8 @@ export default function MLChallenge({
   };
 
   return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] relative z-10`} style={{ minHeight: '760px' }}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <section className={`${background} py-16 md:py-24 lg:py-32 relative z-10`}>
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="mb-12">
           {title && (

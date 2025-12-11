@@ -7,7 +7,7 @@ export const productDesignProjects: Project[] = [
     "sections": [
       {
         "type": "intro",
-        "title": "In a nutshell",
+        "title": "",
         "description": "",
         "layout": "text-only",
         "content": [
@@ -43,7 +43,7 @@ export const productDesignProjects: Project[] = [
         "title": "Admin",
         "description": "Users struggled to find, access use specific products like accounting, invoicing and expenses. We had to improve the discoverability and findability of the products without requiring major changes to existing product areas - making these features discoverable and accessible.",
         "layout": "text-right",
-        "image": "/tide-admin.png",
+        "image": "/tide-admin-1.svg, /tide-admin-2.svg, /tide-admin-3.svg",
         "achievements": [
           "Designed an intuitive entry point that seamlessly integrated with the existing product architecture",
           "Increased active usage of invoicing by 23% and accounting features through research-driven design decisions"
@@ -54,7 +54,7 @@ export const productDesignProjects: Project[] = [
         "title": "Home Page Redesign",
         "description": "The home page needed to surface the most important daily information for small business owners while balancing competing priorities from multiple product teams - all without overwhelming users.",
         "layout": "text-left",
-        "image": "/tide-home.png",
+        "image": "/tide-home-1.svg, /tide-home-2.svg, /tide-home-3.svg",
         "achievements": [
           "Started with early-state wireframes mapping the most critical information and its temporal relevance - understanding which past and future data periods different user types actually cared about",
           "Conducted iterative research and testing to identify which information genuinely drove daily user decisions and delight",
@@ -105,7 +105,7 @@ export const productDesignProjects: Project[] = [
           "Immediate payment action - Added a direct Pay option for unpaid bills, eliminating the need to navigate to other tabs and reducing friction in the payment flow.",
           "Achieved 28% increase in bill payments and higher add-on activation rate following the redesign."
         ],
-        "image": "/telenor-home.png",
+        "image": "/telenor-home.svg",
         "layout": "text-left"
       },
       {
@@ -117,7 +117,7 @@ export const productDesignProjects: Project[] = [
           "I designed a travel insurance that doesn't require users to think about it beforehand.",
           "Instead, it notifies users when they are abroad, and they can decide whether they want to activate coverage."
         ],
-        "image": "/telenor-insurance.png",
+        "image": "/telenor-insurance.svg",
         "layout": "text-right"
       },
       {
@@ -128,51 +128,12 @@ export const productDesignProjects: Project[] = [
           "I designed gamified rewards platform where users instantly see their winnings and can share gifts with others.",
           "This social element turned individual rewards into community connections, increasing daily active users by 12%."
         ],
-        "image": "/telenor-gamification.png",
+        "image": "/telenor-gamification.svg",
         "layout": "text-left"
       }
     ]
   },
-  {
-    "id": "Mentormate",
-    "slug": "mentormate",
-    "heroTitle": "Product Designer at MentorMate",
-    "heroDescription": "Global software company offering end-to-end digital transformation services.",
-    "heroDescriptionHighlight": "",
-    "titleHighlight": "digital transformation",
-    "sections": [
-      {
-        "type": "intro",
-        "title": "In a nutshell",
-        "description": "scroll down for more specific outcomes",
-        "content": [
-          {
-            "type": "feature",
-            "title": "Research & Service Design",
-            "description": "I focused on user research and service design - spending significant time understanding both the business history and the actual lived experiences of users. This meant going deep: interviewing customers, observing behavior, identifying pain points, and building solutions grounded in real needs rather than assumptions. ."
-          },
-          {
-            "type": "feature",
-            "title": "Constant collaboration",
-            "description": "Each project required balancing user motivations with business goals and technical feasibility."
-          }
-        ],
-        "layout": "text-only"
-      },
-      {
-        "type": "golf-ecommerce",
-        "title": "E-commerce Platform for Golf Equipment",
-        "description": "A golf putter company needed an e-commerce platform that spoke to serious golfers who care deeply about equipment specs, performance metrics, and how gear impacts their game - not just casual shoppers",
-        "achievements": [
-          "The goal was to design an e-commerce experience tailored to golfers' decision-making process by understanding what truly matters when they evaluate and purchase equipment - from performance measurements to personal playing style",
-          "Through user research and service design work, we mapped different golfer personas, identified their success metrics, and understood how they evaluate gear",
-          "Launched a complete platform designed around golfer needs - tested for findability, usability, and product discoverability."
-        ],
-        "image": "/mentormate-golf.png",
-        "layout": "text-left"
-      }
-    ]
-  },
+  
   {
     "id": "Epam",
     "slug": "epam",
@@ -224,6 +185,46 @@ export const productDesignProjects: Project[] = [
         ],
         "image": "/epam-community.png",
         "layout": "text-right"
+      }
+    ]
+  },
+  {
+    "id": "Mentormate",
+    "slug": "mentormate",
+    "heroTitle": "Product Designer at MentorMate",
+    "heroDescription": "Global software company offering end-to-end digital transformation services.",
+    "heroDescriptionHighlight": "",
+    "titleHighlight": "digital transformation",
+    "sections": [
+      {
+        "type": "intro",
+        "title": "",
+        "description": "scroll down for more specific outcomes",
+        "content": [
+          {
+            "type": "feature",
+            "title": "Research & Service Design",
+            "description": "I focused on user research and service design - spending significant time understanding both the business history and the actual lived experiences of users. This meant going deep: interviewing customers, observing behavior, identifying pain points, and building solutions grounded in real needs rather than assumptions. ."
+          },
+          {
+            "type": "feature",
+            "title": "Constant collaboration",
+            "description": "Each project required balancing user motivations with business goals and technical feasibility."
+          }
+        ],
+        "layout": "text-only"
+      },
+      {
+        "type": "golf-ecommerce",
+        "title": "E-commerce Platform for Golf Equipment",
+        "description": "A golf putter company needed an e-commerce platform that spoke to serious golfers who care deeply about equipment specs, performance metrics, and how gear impacts their game - not just casual shoppers",
+        "achievements": [
+          "The goal was to design an e-commerce experience tailored to golfers' decision-making process by understanding what truly matters when they evaluate and purchase equipment - from performance measurements to personal playing style",
+          "Through user research and service design work, we mapped different golfer personas, identified their success metrics, and understood how they evaluate gear",
+          "Launched a complete platform designed around golfer needs - tested for findability, usability, and product discoverability."
+        ],
+        "image": "/mentormate-golf.png",
+        "layout": "text-left"
       }
     ]
   }

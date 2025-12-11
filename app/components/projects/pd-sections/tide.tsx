@@ -7,7 +7,8 @@ import PDSectionLeft from './PDSectionLeft';
 import PDSectionRight from './PDSectionRight';
 import PDSelectedWork from './PDSelectedWork';
 import PDKeepInMind from './PDKeepInMind';
-import { Project, IntroSection } from '@/types/project';
+import PDSlider from './PDSlider';
+import { Project, IntroSection, GenericSection, ProjectFeature } from '@/types/project';
 
 interface TideProps {
   projectData: Project;
@@ -22,17 +23,17 @@ export default function Tide({ projectData }: TideProps) {
     <div className="min-h-screen w-full">
       {/* 1. Hero Header Section */}
       <PDHero
-        title={(projectData as any).heroTitle || projectData.title}
-        subtitle={(projectData as any).heroDescription || projectData.shortDescription}
-        titleHighlight={(projectData as any).titleHighlight || ''}
-        descriptionHighlight={(projectData as any).heroDescriptionHighlight || ''}
-        background={(projectData as any).heroBackground || 'bg-bg-dark'}
+        title={projectData.heroTitle || projectData.title || ''}
+        subtitle={projectData.heroDescription || projectData.shortDescription || ''}
+        titleHighlight={projectData.titleHighlight || ''}
+        descriptionHighlight={projectData.heroDescriptionHighlight || ''}
+        background={projectData.heroBackground || 'bg-bg-dark'}
       />
 
       {/* 2. Intro Section */}
       {introSection && (
         <PDNutshell
-          features={Array.isArray(introSection.content) ? introSection.content.map((item: any) => ({
+          features={Array.isArray(introSection.content) ? introSection.content.map((item: ProjectFeature | string) => ({
             title: typeof item === 'string' ? '' : (item.title || ''),
             description: typeof item === 'string' ? item : (item.description || '')
           })) : []}
@@ -46,14 +47,16 @@ export default function Tide({ projectData }: TideProps) {
       />
 
       {/* 4. Project Sections */}
-      {projectSections.map((section) => {
+      {projectSections.map((section, index) => {
         const layout = section.layout || 'text-left';
-        const achievements = (section as any).achievements || [];
+        const achievements = (section as GenericSection).achievements || [];
         const image = section.image;
 
-        // For text-left layout: text on left, image on right (use PDSectionLeft)
-        // For text-right layout: text on right, image on left (use PDSectionRight)
-        if (layout === 'text-left' || layout === 'text-left-image-right') {
+        // Parse comma-separated images for slider sections
+        const sliderImages = image ? image.split(',').map(img => img.trim()) : ["/tide-home-1.svg", "/tide-home-2.svg", "/tide-home-3.svg"];
+
+        // First section (index 0): keep as PDSectionLeft
+        if (index === 0) {
           return (
             <PDSectionLeft
               key={section.type}
@@ -63,7 +66,22 @@ export default function Tide({ projectData }: TideProps) {
               images={image ? [image] : ["/rag-results.png"]}
             />
           );
-        } else if (layout === 'text-right' || layout === 'image-left-text-right') {
+        }
+        // Second and third sections (index 1, 2): use PDSlider with custom images
+        else if (index === 1 || index === 2) {
+          return (
+            <PDSlider
+              key={section.type}
+              title={section.title}
+              description={section.description || ''}
+              achievements={achievements}
+              sliderImages={sliderImages}
+              background="bg-white"
+            />
+          );
+        }
+        // For other sections: use the original layout logic
+        else if (layout === 'text-right' || layout === 'image-left-text-right') {
           return (
             <PDSectionRight
               key={section.type}

@@ -12,6 +12,37 @@ interface PDSliderProps {
   background?: string;
 }
 
+// List of words to bold - add your words here
+const WORDS_TO_BOLD = ['no consistent structure', 'company-wide framework', 'discoverability', 'findability', 'daily information','Designed an intuitive entry point','Increased active usage of invoicing by 23%','Started with early-state wireframes mapping the most critical information', 'Conducted iterative research and testing', 'Developed a prioritization framework', 'brand`s unique needs', 'core patterns', 'modular components', 'scalable white label platform'];
+
+// Function to bold specific words in text
+const boldSpecificWords = (text: string, wordsToBold: string[] = WORDS_TO_BOLD): React.ReactNode => {
+  if (!text || wordsToBold.length === 0) {
+    return text;
+  }
+
+  // Create a regex pattern that matches any of the words (case-insensitive)
+  const pattern = wordsToBold
+    .map(word => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) // Escape special regex characters
+    .join('|');
+  
+  const regex = new RegExp(`(${pattern})`, 'gi');
+
+  // Split text by the regex and wrap matches in <strong> tags with color
+  const parts = text.split(regex);
+
+  return parts.map((part, index) => {
+    // If the part matches any of our target words (case-insensitive), wrap it in strong tags with color
+    const isMatch = wordsToBold.some(word => part.toLowerCase() === word.toLowerCase());
+    
+    return isMatch ? (
+      <strong key={index} className="font-semibold" style={{ color: '#494848' }}>{part}</strong>
+    ) : (
+      <span key={index}>{part}</span>
+    );
+  });
+};
+
 export default function PDSlider({
   title,
   description,
@@ -61,12 +92,12 @@ export default function PDSlider({
   const wordsToHighlight = getWordsToHighlight(title);
 
   return (
-    <section className="bg-white w-full py-8 sm:py-12 md:py-16 lg:py-5xl min-h-[760px]">
-      <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
+    <section className="bg-white w-full py-16 md:py-24 lg:py-32">
+      <div className="max-w-[1000px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center w-full">
           {/* Title */}
           <h2 className="font-bricolage font-semibold text-display-md text-text-primary w-full">
-            {title}
+            {boldSpecificWords(title)}
           </h2>
 
           {/* Single row: Title with text content on left, slider on right */}
@@ -75,7 +106,7 @@ export default function PDSlider({
             <div className="flex flex-col gap-6 sm:gap-8 md:gap-10 lg:gap-[48px] items-start w-full lg:w-1/2">
               {/* Description */}
               <p className="font-bricolage font-normal text-text-lg-regular text-text-primary w-full">
-                {highlightWords(description, wordsToHighlight)}
+                {boldSpecificWords(description)}
               </p>
 
               {/* Achievements */}
@@ -89,20 +120,9 @@ export default function PDSlider({
 
                     return (
                       <div key={index} className="flex gap-2 sm:gap-3 md:gap-[10px] items-center w-full">
-                        <div className="size-3 sm:size-4 md:size-[12px] flex-shrink-0">
-                          {/* <div className="size-2 sm:size-3 md:size-[8px] rounded-full bg-text-orange"></div> */}
-                        </div>
+                       
                         <p className="font-bricolage font-normal text-text-lg-regular text-text-primary flex-1">
-                          {parts.map((part, i) => {
-                            if (i % 2 === 1) {
-                              return (
-                                <span key={i} className="font-bricolage font-bold">
-                                  {part}
-                                </span>
-                              );
-                            }
-                            return part;
-                          })}
+                          {boldSpecificWords(achievement)}
                         </p>
                       </div>
                     );
@@ -112,8 +132,8 @@ export default function PDSlider({
             </div>
 
             {/* Right Column: Slider */}
-            <div className="w-full lg:w-1/2 min-h-[200px] lg:min-h-[560px] max-h-[40vh] lg:max-h-[560px] overflow-clip rounded-lg">
-              <div className="relative w-full h-[200px] lg:h-[560px]">
+            <div className="w-full lg:w-1/2 aspect-video overflow-clip rounded-lg">
+              <div className="relative w-full h-[560px]">
                 {/* Slider Container */}
                 <div
                   ref={scrollRef}
@@ -123,9 +143,9 @@ export default function PDSlider({
                     msOverflowStyle: 'none',
                   }}
                 >
-                  <div className="flex gap-4 h-full">
+                  <div className="flex h-full md:gap-3 lg:gap-3">
                     {sliderImages.map((imagePath, index) => (
-                      <div key={index} className="w-[80vw] md:w-[500px] shrink-0 h-full relative">
+                      <div key={index} className="w-[300px] shrink-0 h-full relative">
                         <Image
                           alt={`Project image ${index + 1}`}
                           className="object-contain pointer-events-none"

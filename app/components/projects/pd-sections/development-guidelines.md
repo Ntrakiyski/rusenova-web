@@ -573,7 +573,7 @@ export default function PDSectionLeft({
   const wordsToHighlight = getWordsToHighlight(title);
 
   return (
-    <section className={`${background} w-full py-8 sm:py-12 md:py-16 lg:py-5xl min-h-[760px]`}>
+    <section className={`${background} w-full py-8 sm:py-12 md:py-16 lg:py-5xl `}>
       <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 lg:px-8 h-full flex items-center">
         <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center w-full">
           <h2 className="font-bricolage font-semibold text-display-md text-text-primary w-full">

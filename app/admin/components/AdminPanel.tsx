@@ -253,7 +253,7 @@ export default function AdminPanel() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Home Page Admin</h1>
+              <h1 className="text-2xl font-bold text-gray-1000">Home Page Admin</h1>
               <p className="text-sm text-gray-600">Edit and manage home page content</p>
             </div>
             <div className="flex gap-3">
@@ -293,7 +293,7 @@ export default function AdminPanel() {
       )}
 
       <div className="flex min-h-screen" style={{ '--sidebar-width': '0px' } as React.CSSProperties}>
-        <Sidebar collapsible="none" className="border-r bg-white text-gray-900">
+        <Sidebar collapsible="none" className="border-r bg-white text-gray-1000">
           <SidebarContent>
             <SidebarGroup>
               <SidebarMenu>

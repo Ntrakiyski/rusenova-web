@@ -16,7 +16,7 @@ export default function HomePageView({ content }: { content: HomeContent }) {
     <>
       <HeroSection content={content.hero} colors={content.colors} />
       <ServicesSection content={content.services} colors={content.colors} />
-      <FeaturesSection content={content.features} colors={content.colors} />
+      <FeaturesSection content={content.features} />
       <section id="projects">
         <MLPreviewSection content={content.mlPreview} mlData={mlData} colors={content.colors} />
       </section>

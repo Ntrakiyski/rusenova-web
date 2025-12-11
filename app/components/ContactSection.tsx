@@ -2,7 +2,9 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Mail, Linkedin } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import { FaLinkedinIn } from 'react-icons/fa';
+import { IconContext } from 'react-icons';
 
 
 interface ContactSectionProps {
@@ -16,6 +18,12 @@ interface ContactSectionProps {
 }
 
 export default function ContactSection({ content }: ContactSectionProps) {
+  const LinkedinIcon = (
+    <IconContext.Provider value={{ color: "black", size: '20px' }}>
+      <FaLinkedinIn />
+    </IconContext.Provider>
+  );
+
   // Fallback content in case content is undefined
   const fallbackContent = {
     title: "Want to talk about your project?",
@@ -30,8 +38,8 @@ export default function ContactSection({ content }: ContactSectionProps) {
 
   const contactContent = content || fallbackContent;
   return (
-    <section id="contact" className="relative py-20">
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-8">
+    <section id="contact" className="relative py-16 md:py-24 bg-white">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +86,7 @@ export default function ContactSection({ content }: ContactSectionProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="box-border flex items-center justify-center w-12 h-12 rounded-full border shadow-md transition-colors hover:opacity-90 bg-white border-white">
-                    <Linkedin className="w-5 h-5 text-text-primary" /> {/* White icon */}
+                    {LinkedinIcon}
                   </motion.a>
                 </div>
               </div>

@@ -1,13 +1,12 @@
 /* Optional: Just for font imports and base resets */
 @import url('https://fonts.googleapis.com/css2?family=Bricolage_Grotesque:wght@400;500;600;700&display=swap');
 
+@custom-variant dark (&:is(.dark *));
 
 /* app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
 
 @layer base {
   body {
@@ -21,5 +20,33 @@
 
   a {
     @apply text-text-orange hover:opacity-95 transition-opacity;
+  }
+}
+
+@theme inline {
+  --animate-flip: flip 6s infinite steps(2, end);
+  --animate-rotate: rotate 3s linear infinite both;
+  --color-success-foreground: var(----success-foreground);
+  --color-success: var(----success);
+  @keyframes flip {
+  to {
+    transform: rotate(360deg);
+    }
+  }
+  @keyframes rotate {
+  to {
+    transform: rotate(90deg);
+    }
+  }
+}
+
+:root {
+  --success: hsl(142.1 70.6% 45.3%);
+  --success-foreground: hsl(0 0% 100%);
+}
+
+@layer base {
+  * {
+    @apply border-transparent outline-none;
   }
 }

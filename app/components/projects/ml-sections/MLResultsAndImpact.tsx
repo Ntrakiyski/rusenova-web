@@ -2,10 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import {
-  // VideoPlayer,
-  // VideoPlayerContent,
-} from '@/components/ui/shadcn-io/video-player';
+import VideoPlayer from '@/components/ui/VideoPlayer';
 
 interface MLResultsAndImpactProps {
   title: string;
@@ -31,6 +28,7 @@ const boldSpecificWords = (text: string, wordsToBold: string[] = WORDS_TO_BOLD):
     .map(word => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')) // Escape special regex characters
     .join('|');
   
+
   const regex = new RegExp(`(${pattern})`, 'gi');
 
   // Split text by the regex and wrap matches in <strong> tags with color
@@ -40,6 +38,7 @@ const boldSpecificWords = (text: string, wordsToBold: string[] = WORDS_TO_BOLD):
     // If the part matches any of our target words (case-insensitive), wrap it in strong tags with color
     const isMatch = wordsToBold.some(word => part.toLowerCase() === word.toLowerCase());
     
+
     return isMatch ? (
       <strong key={index} className="font-semibold" style={{ color: '#494848' }}>{part}</strong>
     ) : (
@@ -70,8 +69,8 @@ export default function MLResultsAndImpact({
   background = 'bg-bg-light'
 }: MLResultsAndImpactProps) {
    return (
-    <section className={`${background} py-16 md:py-24 min-h-[760px] xl:min-h-[760px] 2xl:min-h-[760px] relative rounded-bl-[32px] rounded-br-[32px] overflow-hidden`}>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
+    <section className={`py-16 md:py-24 lg:py-32 relative rounded-bl-[32px] rounded-br-[32px] overflow-hidden`}>
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
         {/* Title and Description Row */}
         <div className="mb-8 md:mb-12">
           {title && (
@@ -91,16 +90,12 @@ export default function MLResultsAndImpact({
           <div className="mb-8 flex justify-center">
             <div className="w-full max-w-[1216px]">
               {video ? (
-                // Video player commented out - using GIF instead
-                <div className="w-full rounded-[12px] border border-white overflow-hidden relative shadow-xl">
-                  <Image
-                    src={video}
-                    alt={title || 'Results'}
-                    className="w-full aspect-video"
-                    width={1216}
-                    height={600}
-                  />
-                </div>
+                <VideoPlayer
+                  src={video}
+                  title={title || 'Results'}
+                  width={1216}
+                  height={600}
+                />
               ) : (
                 <Image
                   src={image!}
@@ -117,7 +112,7 @@ export default function MLResultsAndImpact({
         {/* Cards Row - Two Columns */}
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Quantifiable Outcomes Card */}
-          <div className="bg-bg-white rounded-[12px] overflow-hidden flex-1">
+          <div className="bg-bg-white rounded-[12px] overflow-hidden flex-1 border border-stroke">
             <div className="p-4 sm:p-6 pb-0 pt-6 sm:pt-8">
               <div className="flex flex-col gap-4 items-center mb-4 sm:mb-6">
                 <div className="bg-blue-100 rounded-[8px] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
@@ -157,7 +152,7 @@ export default function MLResultsAndImpact({
           </div>
 
           {/* Business Value Card */}
-          <div className="bg-bg-white rounded-[12px] overflow-hidden flex-1">
+          <div className="bg-bg-white rounded-[12px] overflow-hidden flex-1 border border-stroke">
             <div className="p-4 sm:p-6 pb-0 pt-6 sm:pt-8">
               <div className="flex flex-col gap-4 items-center mb-4 sm:mb-6">
                 <div className="bg-[#dcfae6] rounded-[8px] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">

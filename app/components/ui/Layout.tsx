@@ -48,7 +48,7 @@ export function Container({
   const sizeClasses = {
     sm: 'max-w-[768px]',
     md: 'max-w-[1024px]',
-    lg: 'max-w-[1280px]',
+    lg: 'max-w-[1000px]',
     full: 'w-full',
   };
 

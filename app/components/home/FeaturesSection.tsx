@@ -3,13 +3,13 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { HomeContent } from '@/types/project';
+import ParticleBackground from './ParticleBackground';
 
 interface FeaturesSectionProps {
   content: HomeContent['features'];
-  colors: HomeContent['colors'];
 }
 
-export default function FeaturesSection({ content, colors }: FeaturesSectionProps) {
+export default function FeaturesSection({ content }: FeaturesSectionProps) {
   const features = content.items;
 
   const featureContainerVariants = {
@@ -33,8 +33,20 @@ export default function FeaturesSection({ content, colors }: FeaturesSectionProp
   };
 
   return (
-    <section className={`relative py-16 md:py-24 overflow-hidden bg-bg-dark`}>
-      <div className="max-w-[1280px] mx-auto px-4 md:px-8 relative z-10">
+    <section className="relative py-16 md:py-24 overflow-hidden md: md:flex md:items-center">
+      <div className="absolute inset-0 z-0 w-full h-full">
+        <ParticleBackground 
+          particleCount={500}
+          lineColor={0x555555}
+          particleColor={0xffffff}
+          connectionDistance={120}
+          particleOpacity={0.8}
+          rotationSpeedX={0.00015}
+          rotationSpeedY={0.00105}
+          className="w-full h-full"
+        />
+      </div>
+      <div className="max-w-[1200px] mx-auto px-4 md:px-8 relative z-10 w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,14 +55,12 @@ export default function FeaturesSection({ content, colors }: FeaturesSectionProp
           className="flex flex-col items-center gap-5 mb-12 md:mb-16"
         >
           <h2
-            className={`text-display-md font-semibold text-center max-w-[768px]`}
-            style={{ color: 'white' }}
+            className={`text-display-md font-semibold text-center max-w-[768px] text-white`}
           >
             {content.title}
           </h2>
           <p
-            className={`text-text-xl-regular font-bricolage text-center max-w-[768px]`}
-            style={{ color: 'white' }}
+            className={`text-text-xl-regular font-bricolage text-center max-w-[768px] text-text-light-gray`}
           >
             {content.subtitle}
           </p>
@@ -67,7 +77,7 @@ export default function FeaturesSection({ content, colors }: FeaturesSectionProp
             <motion.div
               key={index}
               variants={featureItemVariants}
-              className="flex flex-col items-center gap-6 p-6 rounded-2xl"
+              className="flex flex-col items-center gap-6 p-6 rounded-2xl bg-[#302D2D] bg-opacity-80"
             >
               <div className="relative size-[72px]">
                 <Image
@@ -86,8 +96,7 @@ export default function FeaturesSection({ content, colors }: FeaturesSectionProp
                   {feature.title}
                 </h3>
                 <p
-                  className={`text-text-lg-regular font-bricolage`}
-                  style={{ color: colors.text.muted }}
+                  className={`text-text-lg-regular font-bricolage text-text-light-gray`}
                 >
                   {feature.description}
                 </p>

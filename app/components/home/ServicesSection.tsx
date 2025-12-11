@@ -33,7 +33,7 @@ export default function ServicesSection({ content, colors }: ServicesSectionProp
 
   return (
     <section className="bg-white py-16 md:py-24 rounded-bl-[40px] rounded-br-[40px]">
-      <div className="max-w-[1280px] mx-auto px-4 md:px-8">
+      <div className="max-w-[1000px] mx-auto px-4 md:px-8">
         <div className="flex flex-col gap-8">
           <motion.p
             initial={{ opacity: 0, y: 20 }}

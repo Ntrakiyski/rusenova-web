@@ -16,21 +16,9 @@ export default function MLSystemApproach({
   background = 'bg-bg-white'
 }: MLSystemApproachProps) {
   return (
-    <section className={`${background} py-16 md:py-24`}>
-      {/* 
-        Hide scrollbar styles (only applies when horizontal scrolling is active on desktop)
-      */}
-      <style jsx global>{`
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-      `}</style>
+    <section className={`${background} py-16 md:py-24 lg:py-32`}>
 
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
         <div className="mb-12">
@@ -46,22 +34,19 @@ export default function MLSystemApproach({
           )}
         </div>
 
-        {/* Cream Container */}
-        <div className="rounded-[16px] bg-[#F7F4ED] p-6 md:p-8 overflow-hidden">
+        {/* Cream Container - Always resizes to fit all cards */}
+        <div className="rounded-[16px] bg-[#F7F4ED] p-6 md:p-8">
           
-          {/* Scroll Wrapper */}
-          <div className="w-full sm:overflow-x-auto sm:pb-4 sm:-mb-4 scrollbar-hide">
-            
-            {/* Flex Strip */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-8 w-full sm:w-max">
+          {/* Flex Container - Cards always visible, resize to fit */}
+          <div className="w-full">
+            {/* Flex Strip - Vertical on mobile, horizontal on desktop */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 w-full">
               
               {cards.map((card, index) => (
                 <React.Fragment key={index}>
                   
-                  {/* The Card 
-                      flex flex-col justify-center items-center: Ensures content is centered
-                  */}
-                  <div className="flex-shrink-0 w-full sm:w-auto sm:min-w-[220px] bg-bg-white rounded-[12px] p-6 md:p-8 flex flex-col justify-center items-center">
+                  {/* The Card - Full width on mobile, proportional on desktop */}
+                  <div className="w-full md:flex-1 md:min-w-0 bg-bg-white rounded-[12px] p-6 md:p-8 flex flex-col justify-center items-center">
                     {/* 
                       text-center: Center text on all breakpoints
                     */}
@@ -70,24 +55,23 @@ export default function MLSystemApproach({
                     </h3>
                   </div>
 
-                  {/* Arrows logic */}
+
+                  {/* Arrow - Down on mobile, right on desktop */}
                   {index < cards.length - 1 && (
                     <div className="flex-shrink-0 text-text-primary">
-                      
                       {/* Mobile Arrow: Down */}
-                      <div className="block sm:hidden">
+                      <div className="block md:hidden">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M12 5v14M5 12l7 7 7-7"/>
                         </svg>
                       </div>
 
                       {/* Desktop Arrow: Right */}
-                      <div className="hidden sm:block">
+                      <div className="hidden md:block">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                       </div>
-
                     </div>
                   )}
 
