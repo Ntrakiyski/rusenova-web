@@ -50,3 +50,15 @@
     @apply border-transparent outline-none;
   }
 }
+
+html {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+body {
+  -webkit-user-select: none;
+  user-select: none;
+  overscroll-behavior-y: contain;
+}

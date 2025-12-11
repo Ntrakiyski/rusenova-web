@@ -3,9 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { HomeContent } from "@/types/project";
-import { Mail } from "lucide-react";
-import { FaLinkedinIn } from "react-icons/fa";
-import { IconContext } from "react-icons";
+import HomeButtonMail from "@/components/HomeButtonMail";
+import HomeButtonLinkedIn from "@/components/HomeButtonLinkedIn";
 
 interface HeroSectionProps {
   content: HomeContent["hero"];
@@ -15,7 +14,7 @@ interface HeroSectionProps {
 export default function HeroSection({ content, colors }: HeroSectionProps) {
   return (
     <section
-      className={`bg-bg-light relative pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden h-[85vh] flex flex-col justify-center rounded-b-[60px]`}
+    className={`bg-bg-light relative pt-16 md:pt-24 pb-16 md:pb-24 overflow-hidden h-svh flex flex-col justify-center rounded-b-[60px]`}
     >
       <div className="max-w-[1200px] mx-auto px-4 md:px-8 relative z-10">
         <div className="flex flex-col items-center gap-8 md:gap-12">
@@ -55,47 +54,8 @@ export default function HeroSection({ content, colors }: HeroSectionProps) {
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
             className="flex flex-col md:flex-row gap-3 md:gap-5 justify-center"
           >
-            {content.buttons.map((button, index) => {
-              // Determine layout based on index: Left (0) = Mail, Right (1) = Linkedin
-              const isLeft = index === 0;
-              const Icon = Mail;
-              const LinkedinIcon = (
-                <IconContext.Provider value={{ color: "white", size: '20px' }}>
-                  <FaLinkedinIn />
-                </IconContext.Provider>
-              );
-
-              // Set Background classes: Left = text-orange, Right = text-dark
-              const bgClass = isLeft
-                ? "bg-text-orange border-text-orange"
-                : "bg-bg-dark border-text-dark";
-
-              return (
-                <div
-                  key={index}
-                  className={`flex gap-2 items-center justify-center transition-colors hover:opacity-90 ${bgClass} rounded-full p-4 max-h-[44px]`}
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.15 }}
-                    whileTap={{ scale: 0.9 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                    // Applied dynamic bgClass, fixed sizes, and circle shape
-                    className={`box-border flex items-center justify-center`}
-                    onClick={() => window.open(button.link, "_blank")}
-                  >
-                    {/* Icon is always white */}
-                    {isLeft ? (
-                      <Icon className="w-5 h-5 text-white" />
-                    ) : (
-                      LinkedinIcon
-                    )}
-                  </motion.button>
-                  <p className="text-text-lg-semibold font-bricolage text-white mt-[2px]">
-                    {button.text}
-                  </p>
-                </div>
-              );
-            })}
+            <HomeButtonMail />
+            <HomeButtonLinkedIn />
           </motion.div>
         </div>
       </div>

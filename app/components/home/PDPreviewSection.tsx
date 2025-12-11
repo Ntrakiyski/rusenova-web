@@ -48,7 +48,7 @@ export default function PDPreviewSection({ pdData, colors, content }: PDPreviewS
               className={`text-text-xl-regular font-bricolage max-w-[768px]`}
               style={{ color: colors?.text.secondary || '#494848' }}
             >
-              {content?.subtitle || "This is my working experience company wide with just a few selected projects"}
+              {content?.subtitle || "This is my working experience company wide with a few selected projects"}
             </p>
           </div>
         </div>

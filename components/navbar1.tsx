@@ -215,7 +215,7 @@ const Navbar1 = ({
               />
             </div> */}
             <p
-              className={`text-md-semibold font-bold text-text-primary text-[20px] md:text-[24px]`}
+              className={`text-md-semibold font-bold text-text-primary text-[20px] md:text-[20px]`}
             >
               {logo.title}
             </p>

@@ -101,7 +101,7 @@ export default function PDPreviewEditor({ pdPreview, onChange }: PDPreviewEditor
           id="subtitle"
           value={pdPreview.subtitle}
           onChange={(e) => handleInputChange('subtitle', e.target.value)}
-          placeholder="This is my working experience company wide with just a few selected projects"
+          placeholder="This is my working experience company wide with a few selected projects"
           rows={3}
         />
       </div>
