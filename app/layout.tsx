@@ -99,9 +99,9 @@ export const metadata: Metadata = {
     siteName: 'Gloria Rusenova Portfolio',
     images: [
       {
-        url: '/me.png',
-        width: 800,
-        height: 800,
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
         alt: 'Gloria Rusenova - Product Design & Machine Learning Portfolio',
       },
     ],
@@ -110,7 +110,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Gloria Rusenova | Product Design & Machine Learning Engineer',
     description: 'Building intelligent systems that bridge machine learning and user experience. 9+ years designing products that impact 2M+ users.',
-    images: ['/me.png'],
+    images: ['/og-image.png'],
     creator: '@gloriarusenova',
   },
   alternates: {

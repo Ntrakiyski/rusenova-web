@@ -15,6 +15,8 @@ const nextConfig: NextConfig = {
   },
   // Disable source maps to avoid the warnings
   productionBrowserSourceMaps: false,
+  // Enable standalone output for Docker deployment
+  output: 'standalone',
 };
 
 export default nextConfig;
