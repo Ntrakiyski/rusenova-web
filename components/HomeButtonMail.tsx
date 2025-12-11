@@ -48,7 +48,7 @@ export default function HomeButtonMail() {
         <Mail className="w-5 h-5 text-white" />
       </motion.button>
       <p className="text-text-lg-semibold font-bricolage text-white mt-[2px]">
-        {copied ? "Copied" : "Copy Mail"}
+        {copied ? "Copied" : "Copy Email"}
       </p>
     </div>
   );

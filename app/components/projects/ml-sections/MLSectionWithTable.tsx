@@ -60,7 +60,7 @@ export default function MLSectionWithTable({
                       className={`border-b border-stroke last:border-b-0 ${rowIndex === rows.length - 1 ? 'bg-[#F1F6FD]' : ''}`}
                     >
                       {columns.map((column, colIndex) => (
-                        <td key={colIndex} className="py-4 px-4 font-bricolage text-text-secondary">
+                        <td key={colIndex} className="py-4 px-4 font-bricolage text-text-primary">
                           {rowIndex === rows.length - 1 && colIndex === columns.length - 1 ? (
                             <div className="flex items-center gap-1">
                               <img

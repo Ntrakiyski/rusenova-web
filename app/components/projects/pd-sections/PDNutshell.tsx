@@ -55,7 +55,7 @@ export default function PDNutshell({ title, features }: PDNutshellProps) {
                       {feature.title}
                     </h3>
                   )}
-                  <p className="font-bricolage font-normal text-text-lg-regular text-text-secondary w-full whitespace-pre-wrap">
+                  <p className="font-bricolage font-normal text-text-lg-regular text-text-primary w-full whitespace-pre-wrap">
                     {highlightWords(feature.description, wordsToHighlight)}
                   </p>
                   {/* Person and Role - only show if they exist (testimonial format) */}
@@ -64,7 +64,7 @@ export default function PDNutshell({ title, features }: PDNutshellProps) {
                       <p className="font-bricolage font-semibold text-text-lg-semibold text-text-primary w-full">
                         {feature.person}
                       </p>
-                      <p className="font-bricolage font-normal text-text-lg-regular text-text-secondary w-full">
+                      <p className="font-bricolage font-normal text-text-lg-regular text-text-primary w-full">
                         {feature.role}
                       </p>
                     </div>

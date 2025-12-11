@@ -23,13 +23,13 @@ const renderContent = (item: CostBenefitItem) => {
   // If content array exists, render it as multiple lines
   if (item.content) {
     if (typeof item.content === 'string') {
-      return <p className="font-bricolage text-text-secondary text-text-md-regular leading-relaxed flex-1 text-left">{item.content}</p>;
+      return <p className="font-bricolage text-text-primary text-text-md-regular leading-relaxed flex-1 text-left">{item.content}</p>;
     }
     
     return (
       <div className="space-y-2 flex-1 text-left">
         {item.content.map((line, idx) => (
-          <p key={idx} className="font-bricolage text-text-secondary text-text-md-regular">
+          <p key={idx} className="font-bricolage text-text-primary text-text-md-regular">
             {line}
           </p>
         ))}
@@ -39,7 +39,7 @@ const renderContent = (item: CostBenefitItem) => {
   
   // Fallback to description if content doesn't exist
   return (
-    <p className="font-bricolage text-text-secondary text-text-md-regular leading-relaxed flex-1 text-left">
+    <p className="font-bricolage text-text-primary text-text-md-regular leading-relaxed flex-1 text-left">
       {item.description || ''}
     </p>
   );

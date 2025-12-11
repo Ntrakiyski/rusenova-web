@@ -473,7 +473,7 @@ export const mlProjects: Project[] = [
       },
       {
         "type": "tech-stack",
-        "title": "Technologies Used",
+        "title": "Tools and Frameworks",
         "description": "How real-world deployment architecture designed for 10K transactions per second with sub-50ms latency would work?",
         "technologies": [
           "Python 3.13",

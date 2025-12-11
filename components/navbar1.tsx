@@ -247,7 +247,7 @@ const Navbar1 = ({
                             e.preventDefault();
                             handleNavClick(subItem.url);
                           }}
-                          className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 first:rounded-t-lg last:rounded-b-lg"
+                          className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-bg-light dark:hover:bg-gray-700 first:rounded-t-lg last:rounded-b-lg"
                         >
                           <div className="flex items-center gap-3">
                             <div>

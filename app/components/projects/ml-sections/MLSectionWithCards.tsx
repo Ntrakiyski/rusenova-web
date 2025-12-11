@@ -62,7 +62,7 @@ export default function MLSectionWithCards({
               <h3 className="font-bricolage text-text-primary text-display-xs font-semibold mb-6">
                 {card.title}
               </h3>
-              <p className="font-bricolage text-text-secondary text-text-md-regular leading-relaxed flex-1">
+              <p className="font-bricolage text-text-primary text-text-md-regular leading-relaxed flex-1">
                 {card.description}
               </p>
             </div>

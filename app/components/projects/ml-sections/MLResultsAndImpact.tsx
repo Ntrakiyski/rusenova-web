@@ -79,7 +79,7 @@ export default function MLResultsAndImpact({
             </h2>
           )}
           {description && (
-            <p className="font-bricolage text-text-primary text-text-xl-regular max-w-[768px] leading-[30px] text-left">
+            <p className="font-bricolage text-text-secondary text-text-xl-regular max-w-[768px] leading-[30px] text-left">
               {description}
             </p>
           )}

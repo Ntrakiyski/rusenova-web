@@ -62,7 +62,7 @@ export const productDesignProjects: Project[] = [
         ]
       }
     ],
-    "heroTitle": "Senior Product Designer",
+    "heroTitle": "Senior Product Designer at Tide",
     "heroDescription": "Tide is transforming SME banking & business management with 1.6M+ members across the UK, India, Germany & France.",
     "titleHighlight": "1.6M+ members",
     "heroDescriptionHighlight": ""
@@ -70,7 +70,7 @@ export const productDesignProjects: Project[] = [
   {
     "id": "Telenor",
     "slug": "telenor",
-    "heroTitle": "Service Designer",
+    "heroTitle": "Service Designer at Telenor",
     "heroDescription": "Back then Telenor was a telecommunication company with more than 1M users",
     "heroDescriptionHighlight": "",
     "titleHighlight": "1M users",

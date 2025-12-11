@@ -92,7 +92,7 @@ export default function MLChallenge({
             </h2>
           )}
           {description && (
-            <p className="font-bricolage text-text-primary text-text-xl-regular max-w-[768px]">
+            <p className="font-bricolage text-text-secondary text-text-xl-regular max-w-[768px]">
               {boldSpecificWords(description)}
             </p>
           )}

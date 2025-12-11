@@ -37,7 +37,7 @@ export default function PDTelenorIntro({
               <h2 className="font-bricolage font-semibold text-display-md text-text-primary">
                 {row1Feature?.title || title}
               </h2>
-              <p className="font-bricolage font-normal text-text-lg-regular text-text-secondary">
+              <p className="font-bricolage font-normal text-text-lg-regular text-text-primary">
                 {row1Feature?.description || 'Content for the first row with image on the right.'}
               </p>
             </div>
@@ -70,7 +70,7 @@ export default function PDTelenorIntro({
               <h3 className="font-bricolage font-semibold text-display-xs text-text-primary">
                 {row2Feature?.title || 'Second Row Title'}
               </h3>
-              <div className="font-bricolage font-normal text-text-lg-regular text-text-secondary">
+              <div className="font-bricolage font-normal text-text-lg-regular text-text-primary">
                 {row2Feature?.description && (
                   <>
                     <p className="italic mb-2">{row2Feature.description.split('\n')[0]}</p>

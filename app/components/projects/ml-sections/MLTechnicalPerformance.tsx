@@ -55,7 +55,7 @@ export default function MLTechnicalPerformance({
                       <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-2">
                         {metric.name}
                       </h3>
-                      <p className="font-bricolage text-text-secondary text-text-md-regular min-w-0">
+                      <p className="font-bricolage text-text-primary text-text-md-regular min-w-0">
                         {metric.description}
                       </p>
                     </div>
@@ -79,7 +79,7 @@ export default function MLTechnicalPerformance({
                 <h3 className="font-bricolage text-text-primary text-text-xl-semibold mb-2">
                   {metric.name}
                 </h3>
-                <p className="font-bricolage text-text-secondary text-text-md-regular min-w-0">
+                <p className="font-bricolage text-text-primary text-text-md-regular min-w-0">
                   {metric.details}
                 </p>
               </div>

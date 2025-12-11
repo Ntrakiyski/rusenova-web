@@ -75,7 +75,7 @@ export default function MLSectionWithCardsAndBullets({
               </h3>
               <div className="space-y-4 w-full flex-1">
                 {card.items.map((item, idx) => (
-                <div key={idx} className="flex text-left justify-start gap-2 text-text-secondary text-text-md-regular">
+                <div key={idx} className="flex text-left justify-start gap-2 text-text-primary text-text-md-regular">
                     {/* <img 
                       src="/Check icon.svg" 
                       alt="Check" 
