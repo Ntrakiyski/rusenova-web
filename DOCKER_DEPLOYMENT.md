@@ -4,7 +4,7 @@ This project is configured for deployment using Coolify with Docker Compose.
 
 ## Files Created
 
-- `Dockerfile`: Multi-stage build optimized for Next.js production
+- `Dockerfile`: Multi-stage build optimized for Next.js production (installs all dependencies for build)
 - `docker-compose.yml`: Coolify-compatible deployment configuration
 - `.dockerignore`: Excludes unnecessary files from build context
 - `next.config.ts`: Updated with `output: 'standalone'` for Docker deployment
