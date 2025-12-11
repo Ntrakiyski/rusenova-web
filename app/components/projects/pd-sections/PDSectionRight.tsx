@@ -59,8 +59,8 @@ export default function PDSectionRight({
           {/* Single row: Image on left, text content on right */}
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-[64px] items-center w-full">
             {/* Left Column: Image */}
-            <div className="w-full lg:w-1/2 aspect-video overflow-clip rounded-lg lg:order-1">
-              <div className="w-full h-[200px] lg:h-[560px] relative flex items-center justify-center">
+            <div className="w-full lg:w-1/2 aspect-[3/4] overflow-clip rounded-lg lg:order-1">
+              <div className="w-full h-full lg:h-[560px] relative flex items-center justify-center">
                 <Image
                   alt="RAG project results visualization"
                   className="object-contain pointer-events-none"

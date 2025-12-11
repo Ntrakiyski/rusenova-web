@@ -99,8 +99,8 @@ export default function PDSectionLeft({
             </div>
 
             {/* Right Column: Image */}
-            <div className="w-full lg:w-1/2 aspect-video overflow-clip rounded-lg">
-              <div className="w-full h-full relative flex items-center justify-center">
+            <div className="w-full lg:w-1/2 aspect-[3/4] overflow-clip rounded-lg">
+              <div className="w-full h-full lg:h-[560px] relative flex items-center justify-center">
                 <Image
                   alt="RAG project results visualization"
                   className="object-contain pointer-events-none"
