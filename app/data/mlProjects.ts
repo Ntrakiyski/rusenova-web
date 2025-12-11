@@ -473,8 +473,8 @@ export const mlProjects: Project[] = [
       },
       {
         "type": "tech-stack",
-        "title": "Tools and Frameworks",
-        "description": "How real-world deployment architecture designed for 10K transactions per second with sub-50ms latency would work?",
+        "title": "Technologies Used",
+        "description": " ",
         "technologies": [
           "Python 3.13",
           "XGBoost 3.1.0",
@@ -882,7 +882,7 @@ export const mlProjects: Project[] = [
       {
         "type": "tech-stack",
         "title": "Technologies Used",
-        "description": "A high-performance stack built for real-time audio processing and LLM orchestration.",
+        "description": " ",
         "technologies": [
           "Python 3.11",
           "OpenAI Whisper (Fine-tuned)",
