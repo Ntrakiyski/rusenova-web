@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Block admin areas if needed
+Disallow: /admin/
+
+# Allow all major search engines to crawl
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Sitemap
+Sitemap: https://gloriarusenova.dev/sitemap.xml

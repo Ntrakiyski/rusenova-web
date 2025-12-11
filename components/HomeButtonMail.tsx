@@ -8,7 +8,7 @@ export default function HomeButtonMail() {
   const [copied, setCopied] = useState(false);
 
   const handleMailClick = () => {
-    const email = "gloriarussenovaa@gmail.com";
+    const email = "gloriarusenovaa@gmail.com";
 
     // Defer the copy operation to break out of touch event context
     setTimeout(() => {
