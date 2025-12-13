@@ -79,7 +79,7 @@ export default function ContactEditor({ contact, onChange }: ContactEditorProps)
           id="email"
           value={contact.email}
           onChange={(e) => handleInputChange('email', e.target.value)}
-          placeholder="mailto:gloriarusenovaa@gmail.com"
+          placeholder="mailto:gloriarusenova@gmail.com"
         />
       </div>
 
