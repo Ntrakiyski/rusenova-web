@@ -98,7 +98,7 @@ export default function Footer() {
                     href={`/product-design/${project.slug}`}
                     className="font-bricolage font-normal text-text-light-gray hover:text-white text-sm transition-colors"
                   >
-                    {project.heroTitle} at {project.id}
+                    {project.heroTitle}
                   </NextLink>
                 </li>
               ))}
