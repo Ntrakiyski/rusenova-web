@@ -133,6 +133,7 @@ export default function RootLayout({
             __html: JSON.stringify(structuredData),
           }}
         />
+        <script defer src="https://analytics.worfklow.org/script.js" data-website-id="5118218e-7a5d-4f5a-97f7-4a041b67f0ee"></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
