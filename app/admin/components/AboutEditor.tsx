@@ -100,7 +100,7 @@ export default function AboutEditor({ about, onChange }: AboutEditorProps) {
           id="title"
           value={about.title}
           onChange={(e) => handleInputChange('title', e.target.value)}
-          placeholder="Behind the sceene"
+          placeholder="A Quick Hello"
         />
       </div>
 
